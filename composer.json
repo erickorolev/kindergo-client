@@ -1,0 +1,78 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "bensampo/laravel-enum": "^3.4",
+        "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.40",
+        "laravel/sanctum": "^2.11",
+        "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.3",
+        "lorisleiva/laravel-actions": "^2.1",
+        "spatie/laravel-fractal": "^5.8",
+        "spatie/laravel-json-api-paginate": "^1.10",
+        "spatie/laravel-query-builder": "^3.4",
+        "vinkla/hashids": "^9.1",
+        "wulfheart/pretty_routes": "^0.3.0"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "jasonmccreary/laravel-test-assertions": "^1.1",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "overtrue/phplint": "^3.0",
+        "phpunit/phpunit": "^9.3.3",
+        "psalm/plugin-laravel": "^1.4",
+        "squizlabs/php_codesniffer": "^3.6",
+        "vimeo/psalm": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml --extensions=php -s",
+        "phpcbf": "./vendor/bin/phpcbf --standard=phpcs.xml --extensions=php",
+        "psalm": "./vendor/bin/psalm --config=psalm.xml --no-cache --php-version=8.0",
+        "test": "./vendor/bin/phpunit --colors=always",
+        "lint": "vendor/bin/phplint --no-cache",
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
