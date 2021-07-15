@@ -35,3 +35,6 @@ Default credentials
 Username: `admin@admin.com`
 
 Password: `password`
+
+--
+deploy test
