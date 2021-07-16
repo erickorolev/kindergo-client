@@ -1,5 +1,6 @@
 <?php
 
+use Domains\Users\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
-Auth::routes();
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/admin', function () {
+        return view('dashboard');
+    })
+    ->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*Route::prefix('/admin')
+    ->middleware(['auth:sanctum', 'verified'])->as('admin.')
+    ->group(function () {
+        Route::resource('users', UserController::class);
+    });*/

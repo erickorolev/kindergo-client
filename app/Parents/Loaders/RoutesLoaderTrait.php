@@ -96,7 +96,7 @@ trait RoutesLoaderTrait
     {
         Route::group(['prefix' => 'admin',
             'as' => 'admin.', 'middleware' => [
-                'web', 'auth', 'role:Admin|Manager']], function (Router $router) use ($file) {
+                'web', 'auth']], function (Router $router) use ($file) {
                     require $file->getPathname();
                 });
     }

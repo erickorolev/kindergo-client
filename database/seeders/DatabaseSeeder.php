@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
+use Domains\Authorization\Seeders\PermissionsSeeder;
+use Domains\Users\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,8 +15,9 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        // \Domains\Users\Models\User::factory(10)->create();
+        $this->call(UserSeeder::class);
+        $this->call(PermissionsSeeder::class);
     }
 }

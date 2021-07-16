@@ -2,9 +2,13 @@
 
 namespace Domains\Users\Factories;
 
+use Domains\Users\Enums\AttendantGenderEnum;
 use Domains\Users\Models\User;
+use Domains\Users\ValueObjects\FullNameValueObject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Parents\ValueObjects\EmailValueObject;
+use Parents\ValueObjects\PhoneNumberValueObject;
 
 class UserFactory extends Factory
 {
@@ -19,16 +23,21 @@ class UserFactory extends Factory
      * Define the model's default state.
      *
      * @return array
-     * @psalm-suppress MixedPropertyFetch
      */
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail,
+            'name' => FullNameValueObject::fromNative($this->faker->firstName, $this->faker->lastName, null),
+            'email' => EmailValueObject::fromNative($this->faker->email),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => \Hash::make('password'),
             'remember_token' => Str::random(10),
+            'firstname' => $this->faker->firstName,
+            'lastname' => $this->faker->lastName,
+            'middle_name' => $this->faker->lastName,
+            'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
+            'attendant_gender' => AttendantGenderEnum::getRandomInstance(),
+            'otherphone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
         ];
     }
 
