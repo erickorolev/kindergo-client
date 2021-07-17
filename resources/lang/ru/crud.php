@@ -224,24 +224,24 @@ return [
     ],
 
     'roles' => [
-        'name' => 'Roles',
-        'index_title' => 'Roles List',
-        'create_title' => 'Create Role',
-        'edit_title' => 'Edit Role',
-        'show_title' => 'Show Role',
+        'name' => 'Роли',
+        'index_title' => 'Список ролей',
+        'create_title' => 'Создать роль',
+        'edit_title' => 'Отредактировать роль',
+        'show_title' => 'Показать роль',
         'inputs' => [
-            'name' => 'Name',
+            'name' => 'Наименование',
         ],
     ],
 
     'permissions' => [
-        'name' => 'Permissions',
-        'index_title' => 'Permissions List',
-        'create_title' => 'Create Permission',
-        'edit_title' => 'Edit Permission',
-        'show_title' => 'Show Permission',
+        'name' => 'Права доступа',
+        'index_title' => 'Список прав доступа',
+        'create_title' => 'Создать право доступа',
+        'edit_title' => 'Редактировать право доступа',
+        'show_title' => 'Показать право доступа',
         'inputs' => [
-            'name' => 'Name',
+            'name' => 'Наименование',
         ],
     ],
 ];

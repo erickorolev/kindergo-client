@@ -42,6 +42,9 @@ class FullNameCast implements CastsAttributes
         if (is_null($value)) {
             return '';
         }
+        if (is_string($value)) {
+            return $value;
+        }
         if (! $value instanceof FullNameValueObject) {
             throw new \InvalidArgumentException('Value must be of type FullName or null');
         }

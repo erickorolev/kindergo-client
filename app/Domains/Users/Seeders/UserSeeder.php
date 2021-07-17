@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Users\Seeders;
 
 use Domains\Users\Models\User;
@@ -15,7 +14,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         User::factory()
             ->count(1)

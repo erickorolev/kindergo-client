@@ -50,20 +50,20 @@
                         @endcan--}}
                 </x-nav-dropdown>
 
-                    {{--@if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
-                        Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
+                    @if (Auth::user()->can('list roles') ||
+                        Auth::user()->can('list permissions'))
                     <x-nav-dropdown title="Access Management" align="right" width="48">
 
-                        @can('view-any', Spatie\Permission\Models\Role::class)
-                        <x-dropdown-link href="{{ route('roles.index') }}">Roles</x-dropdown-link>
+                        @can('list roles')
+                        <x-dropdown-link href="{{ route('admin.roles.index') }}">Roles</x-dropdown-link>
                         @endcan
 
-                        @can('view-any', Spatie\Permission\Models\Permission::class)
-                        <x-dropdown-link href="{{ route('permissions.index') }}">Permissions</x-dropdown-link>
+                        @can('list permissions')
+                        <x-dropdown-link href="{{ route('admin.permissions.index') }}">Permissions</x-dropdown-link>
                         @endcan
 
                     </x-nav-dropdown>
-                    @endif--}}
+                    @endif
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

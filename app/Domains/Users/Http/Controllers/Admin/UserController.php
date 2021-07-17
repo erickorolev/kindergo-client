@@ -4,8 +4,22 @@ declare(strict_types=1);
 
 namespace Domains\Users\Http\Controllers\Admin;
 
+use Domains\Authorization\Actions\GetAllRolesAction;
+use Domains\Authorization\Models\Role;
 use Domains\Users\Actions\Admin\IndexUserAction;
+use Domains\Users\Actions\DeleteUserAction;
+use Domains\Users\Actions\GetUserByIdAction;
+use Domains\Users\Actions\StoreUserAction;
+use Domains\Users\Actions\UpdateUserAction;
+use Domains\Users\DataTransferObjects\UserData;
+use Domains\Users\Http\Requests\Admin\CreateUserRequest;
+use Domains\Users\Http\Requests\Admin\DeleteUserRequest;
+use Domains\Users\Http\Requests\Admin\EditUserRequest;
 use Domains\Users\Http\Requests\Admin\IndexUserRequest;
+use Domains\Users\Http\Requests\Admin\UserStoreRequest;
+use Domains\Users\Http\Requests\Admin\ShowUserRequest;
+use Domains\Users\Http\Requests\Admin\UserUpdateRequest;
+use Domains\Users\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Parents\Controllers\Controller;
 use \Illuminate\Contracts\Foundation\Application;
@@ -16,133 +30,73 @@ final class UserController extends Controller
 {
     public function index(IndexUserRequest $request): Factory|View|Application
     {
-        /** @var string $search */
+        /** @var ?string $search */
         $search = $request->get('search', '');
+        if (!$search) {
+            $search = '';
+        }
         /** @var LengthAwarePaginator $users */
         $users = IndexUserAction::run($search);
 
         return view('app.users.index', compact('users', 'search'));
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
+    public function create(CreateUserRequest $request): Factory|View|Application
     {
-        $this->authorize('create', User::class);
-
-        $roles = Role::get();
+        /** @var Role[] $roles */
+        $roles = GetAllRolesAction::run();
 
         return view('app.users.create', compact('roles'));
     }
 
-    /**
-     * @param \App\Http\Requests\UserStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(UserStoreRequest $request)
     {
-        $this->authorize('create', User::class);
-
-        $validated = $request->validated();
-
-        $validated['password'] = Hash::make($validated['password']);
-
-        if ($request->hasFile('imagename')) {
-            $validated['imagename'] = $request
-                ->file('imagename')
-                ->store('public');
-        }
-
-        $user = User::create($validated);
-
-        $user->syncRoles($request->roles);
+        /** @var User $user */
+        $user = StoreUserAction::run(UserData::fromRequest($request));
 
         return redirect()
-            ->route('users.edit', $user)
+            ->route('admin.users.edit', $user)
             ->withSuccess(__('crud.common.created'));
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, User $user)
+    public function show(ShowUserRequest $request, int $user): Factory|View|Application
     {
-        $this->authorize('view', $user);
 
-        return view('app.users.show', compact('user'));
+        return view('app.users.show', [
+            'user' => GetUserByIdAction::run($user)
+        ]);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request, User $user)
+    public function edit(EditUserRequest $request, int $user): Factory|View|Application
     {
-        $this->authorize('update', $user);
+        /** @var User $userModel */
+        $userModel = GetUserByIdAction::run($user);
+        /** @var Role[] $roles */
+        $roles = GetAllRolesAction::run();
 
-        $roles = Role::get();
-
-        return view('app.users.edit', compact('user', 'roles'));
+        return view('app.users.edit', [
+            'user' => $userModel,
+            'roles' => $roles
+        ]);
     }
 
-    /**
-     * @param \App\Http\Requests\UserUpdateRequest $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, int $user)
     {
-        $this->authorize('update', $user);
-
-        $validated = $request->validated();
-
-        if (empty($validated['password'])) {
-            unset($validated['password']);
-        } else {
-            $validated['password'] = Hash::make($validated['password']);
-        }
-
-        if ($request->hasFile('imagename')) {
-            if ($user->imagename) {
-                Storage::delete($user->imagename);
-            }
-
-            $validated['imagename'] = $request
-                ->file('imagename')
-                ->store('public');
-        }
-
-        $user->update($validated);
-
-        $user->syncRoles($request->roles);
+        $userData = UserData::fromRequest($request);
+        $userData->id = $user;
+        $userModel = UpdateUserAction::run($userData);
 
         return redirect()
-            ->route('users.edit', $user)
+            ->route('admin.users.edit', $userModel)
             ->withSuccess(__('crud.common.saved'));
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, User $user)
+    public function destroy(DeleteUserRequest $request, int $user)
     {
-        $this->authorize('delete', $user);
-
-        if ($user->imagename) {
-            Storage::delete($user->imagename);
-        }
-
-        $user->delete();
+        DeleteUserAction::run($user);
 
         return redirect()
-            ->route('users.index')
+            ->route('admin.users.index')
             ->withSuccess(__('crud.common.removed'));
     }
 }

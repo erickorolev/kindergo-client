@@ -32,9 +32,9 @@
                             </form>
                         </div>
                         <div class="md:w-1/2 text-right">
-                            @can('create', App\Models\Permission::class)
+                            @can('create permissions')
                             <a
-                                href="{{ route('permissions.create') }}"
+                                href="{{ route('admin.permissions.create') }}"
                                 class="button button-primary"
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
@@ -70,9 +70,9 @@
                                         aria-label="Row Actions"
                                         class="relative inline-flex align-middle"
                                     >
-                                        @can('update', $permission)
+                                        @can('update permissions', $permission)
                                         <a
-                                            href="{{ route('permissions.edit', $permission) }}"
+                                            href="{{ route('admin.permissions.edit', $permission) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -84,9 +84,9 @@
                                                 ></i>
                                             </button>
                                         </a>
-                                        @endcan @can('view', $permission)
+                                        @endcan @can('view permissions')
                                         <a
-                                            href="{{ route('permissions.show', $permission) }}"
+                                            href="{{ route('admin.permissions.show', $permission) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -96,9 +96,9 @@
                                                 <i class="icon ion-md-eye"></i>
                                             </button>
                                         </a>
-                                        @endcan @can('delete', $permission)
+                                        @endcan @can('delete permissions')
                                         <form
-                                            action="{{ route('permissions.destroy', $permission) }}"
+                                            action="{{ route('admin.permissions.destroy', $permission) }}"
                                             method="POST"
                                             onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                         >

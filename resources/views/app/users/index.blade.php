@@ -32,9 +32,9 @@
                             </form>
                         </div>
                         <div class="md:w-1/2 text-right">
-                            @can('create', App\Models\User::class)
+                            @can('create users')
                             <a
-                                href="{{ route('users.create') }}"
+                                href="{{ route('admin.users.create') }}"
                                 class="button button-primary"
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
@@ -77,7 +77,7 @@
                                     {{ $user->phone ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
-                                    {{ $user->attendant_gender ?? '-' }}
+                                    {{ $user->attendant_gender?->description ?? '-' }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-center"
@@ -88,9 +88,9 @@
                                         aria-label="Row Actions"
                                         class="relative inline-flex align-middle"
                                     >
-                                        @can('update', $user)
+                                        @can('update users')
                                         <a
-                                            href="{{ route('users.edit', $user) }}"
+                                            href="{{ route('admin.users.edit', $user) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -102,9 +102,10 @@
                                                 ></i>
                                             </button>
                                         </a>
-                                        @endcan @can('view', $user)
+                                        @endcan
+                                            @can('view users')
                                         <a
-                                            href="{{ route('users.show', $user) }}"
+                                            href="{{ route('admin.users.show', $user) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -114,9 +115,9 @@
                                                 <i class="icon ion-md-eye"></i>
                                             </button>
                                         </a>
-                                        @endcan @can('delete', $user)
+                                        @endcan @can('delete users', $user)
                                         <form
-                                            action="{{ route('users.destroy', $user) }}"
+                                            action="{{ route('admin.users.destroy', $user) }}"
                                             method="POST"
                                             onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                         >

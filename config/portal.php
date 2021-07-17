@@ -196,6 +196,7 @@ return [
         */
         'log-wrong-apiato-caller-style' => true,
 
-    ]
+    ],
+    'registration_default_role' => 'client'
 
 ];

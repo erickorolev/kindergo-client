@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Users\Models;
 
+use Domains\Authorization\Models\Role;
 use Domains\Users\Casts\EmailValueObjectCast;
 use Domains\Users\Casts\FullNameCast;
 use Domains\Users\Casts\PhoneValueObjectCast;
@@ -20,10 +21,13 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Parents\Casts\CrmIdValueObjectCast;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 use Units\Filterings\Scopes\Searchable;
 
-final class User extends Authenticatable
+final class User extends Authenticatable implements HasMedia
 {
     use Notifiable;
     use HasRoles;
@@ -33,8 +37,11 @@ final class User extends Authenticatable
     use HasApiTokens;
     use HasProfilePhoto;
     use TwoFactorAuthenticatable;
+    use InteractsWithMedia;
 
     public const DOMAIN_NAME = 'Users';
+
+    public const RESOURCE_NAME = 'users';
 
     protected $fillable = [
         'name',
@@ -67,6 +74,25 @@ final class User extends Authenticatable
         'crmid' => CrmIdValueObjectCast::class
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        self::created(function (User $user) {
+            /** @var string $registrationRole */
+            $registrationRole = config('panel.registration_default_role', 'client');
+            /** @var Role $role */
+            $role = Role::whereName($registrationRole)->first();
+            if (!$role) {
+                return;
+            }
+            /** @var string $roleName */
+            $roleName = $role->name;
+            if (!$user->hasRole($roleName)) {
+                $user->assignRole($role);
+            }
+        });
+    }
+
     public function timetables()
     {
         return $this->hasMany(Timetable::class);
@@ -85,6 +111,26 @@ final class User extends Authenticatable
     public function isSuperAdmin(): bool
     {
         return $this->hasRole('super-admin');
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
+    public function getAvatarAttribute(): ?Media
+    {
+        /** @var ?Media $file */
+        $file = $this->getMedia('avatar')->last();
+
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
     }
 
     /**

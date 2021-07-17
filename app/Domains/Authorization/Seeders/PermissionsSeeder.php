@@ -52,6 +52,8 @@ final class PermissionsSeeder extends \Parents\Seeders\Seeder
         $currentPermissions = Permission::all();
         $userRole = Role::create(['name' => 'user']);
         $userRole->givePermissionTo($currentPermissions);
+        $clientRole = Role::create(['name' => 'client']);
+        $clientRole->givePermissionTo($currentPermissions);
 
         // Create admin exclusive permissions
         Permission::create(['name' => 'list roles']);

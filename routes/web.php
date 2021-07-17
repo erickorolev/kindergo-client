@@ -22,8 +22,3 @@ Route::middleware(['auth:sanctum', 'verified'])
     })
     ->name('dashboard');
 
-/*Route::prefix('/admin')
-    ->middleware(['auth:sanctum', 'verified'])->as('admin.')
-    ->group(function () {
-        Route::resource('users', UserController::class);
-    });*/

@@ -10,6 +10,5 @@ return [
         \Domains\Users\Enums\AttendantGenderEnum::FEMALE => 'Женский',
         \Domains\Users\Enums\AttendantGenderEnum::MALE => 'Мужской',
         \Domains\Users\Enums\AttendantGenderEnum::NO_MATTER => 'Без разницы',
-        \Domains\Users\Enums\AttendantGenderEnum::OTHER => 'Другой'
     ]
 ];

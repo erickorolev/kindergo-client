@@ -29,7 +29,11 @@ final class UserData extends ObjectData
 
     public ?Media $avatar;
 
+    public ?string $avatar_path;
+
     public string $firstname;
+
+    public array $roles = [];
 
     public string $lastname;
 
@@ -56,7 +60,8 @@ final class UserData extends ObjectData
                 $request->input($prefix . 'middle_name'),
             ),
             'email' => EmailValueObject::fromNative($request->input($prefix . 'email')),
-            'password' => PasswordValueObject::fromNative($request->input($prefix . 'password')),
+            'password' => $request->input($prefix . 'password') ?
+                PasswordValueObject::fromNative($request->input($prefix . 'password')) : null,
             'firstname' => $request->input('firstname'),
             'lastname' => $request->input('lastname'),
             'middle_name' => $request->input('middle_name'),
@@ -67,7 +72,8 @@ final class UserData extends ObjectData
             'created_at' => now(),
             'updated_at' => now(),
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
-            'search' => $request->get('search', '')
+            'avatar_path' => $request->file('imagename')?->path(),
+            'roles' => $request->input($prefix . 'roles', [])
         ]);
     }
 }

@@ -9,21 +9,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-partials.card>
                 <x-slot name="title">
-                    <a href="{{ route('permissions.index') }}" class="mr-4"
+                    <a href="{{ route('admin.permissions.index') }}" class="mr-4"
                         ><i class="mr-1 icon ion-md-arrow-back"></i
                     ></a>
                 </x-slot>
 
                 <x-form
                     method="PUT"
-                    action="{{ route('permissions.update', $permission) }}"
+                    action="{{ route('admin.permissions.update', $permission) }}"
                     class="mt-4"
                 >
                     @include('app.permissions.form-inputs')
 
                     <div class="mt-10">
                         <a
-                            href="{{ route('permissions.index') }}"
+                            href="{{ route('admin.permissions.index') }}"
                             class="button"
                         >
                             <i
@@ -33,7 +33,7 @@
                         </a>
 
                         <a
-                            href="{{ route('permissions.create') }}"
+                            href="{{ route('admin.permissions.create') }}"
                             class="button"
                         >
                             <i class="mr-1 icon ion-md-add text-primary"></i>

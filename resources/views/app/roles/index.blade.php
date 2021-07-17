@@ -32,9 +32,9 @@
                             </form>
                         </div>
                         <div class="md:w-1/2 text-right">
-                            @can('create', App\Models\Role::class)
+                            @can('create roles')
                             <a
-                                href="{{ route('roles.create') }}"
+                                href="{{ route('admin.roles.create') }}"
                                 class="button button-primary"
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
@@ -70,9 +70,9 @@
                                         aria-label="Row Actions"
                                         class="relative inline-flex align-middle"
                                     >
-                                        @can('update', $role)
+                                        @can('update roles')
                                         <a
-                                            href="{{ route('roles.edit', $role) }}"
+                                            href="{{ route('admin.roles.edit', $role) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -84,9 +84,9 @@
                                                 ></i>
                                             </button>
                                         </a>
-                                        @endcan @can('view', $role)
+                                        @endcan @can('view roles')
                                         <a
-                                            href="{{ route('roles.show', $role) }}"
+                                            href="{{ route('admin.roles.show', $role) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -96,9 +96,9 @@
                                                 <i class="icon ion-md-eye"></i>
                                             </button>
                                         </a>
-                                        @endcan @can('delete', $role)
+                                        @endcan @can('delete roles')
                                         <form
-                                            action="{{ route('roles.destroy', $role) }}"
+                                            action="{{ route('admin.roles.destroy', $role) }}"
                                             method="POST"
                                             onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                         >
