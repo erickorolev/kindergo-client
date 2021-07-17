@@ -28,7 +28,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => FullNameValueObject::fromNative($this->faker->firstName, $this->faker->lastName, null),
-            'email' => EmailValueObject::fromNative($this->faker->email),
+            'email' => $this->faker->email,
             'email_verified_at' => now(),
             'password' => \Hash::make('password'),
             'remember_token' => Str::random(10),

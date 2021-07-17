@@ -68,7 +68,6 @@ final class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
         'attendant_gender' => AttendantGenderEnum::class,
         'name' => FullNameCast::class,
-        'email' => EmailValueObjectCast::class,
         'phone' => PhoneValueObjectCast::class,
         'otherphone' => PhoneValueObjectCast::class,
         'crmid' => CrmIdValueObjectCast::class
@@ -141,5 +140,15 @@ final class User extends Authenticatable implements HasMedia
     protected static function newFactory(): Factory
     {
         return UserFactory::new();
+    }
+
+    public function toArray(): array
+    {
+        $data = parent::toArray();
+        $data['phone'] = $this->phone->toNative();
+        $data['otherphone'] = $this->otherphone?->toNative();
+        $data['name'] = $this->name->toNative();
+        $data['attendant_gender'] = $this->attendant_gender->value;
+        return $data;
     }
 }

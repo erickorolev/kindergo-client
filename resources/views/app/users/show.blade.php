@@ -68,7 +68,7 @@
                             @lang('crud.users.inputs.imagename')
                         </h5>
                         <x-partials.thumbnail
-                            src="{{ $user->avatar->getUrl() }}"
+                            src="{{ $user->avatar?->getUrl() }}"
                             size="150"
                         />
                     </div>

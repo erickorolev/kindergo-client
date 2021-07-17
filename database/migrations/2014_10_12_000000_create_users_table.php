@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('two_factor_recovery_codes')->nullable();
             $table->foreignId('current_team_id')->nullable();
             $table->text('imagename')->nullable()->comment('Фотография');
+            $table->string('profile_photo_path')->nullable()->comment('Фотография Профиля');
             $table->string('firstname', 190)->comment('Имя');
             $table->string('lastname', 190)->comment('Фамилия');
             $table->string('middle_name', 190)->nullable()->comment('Отчество');

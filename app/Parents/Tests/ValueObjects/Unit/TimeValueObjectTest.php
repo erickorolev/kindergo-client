@@ -45,12 +45,12 @@ final class TimeValueObjectTest extends \Parents\Tests\PhpUnit\UnitTestCase
         $object1 = TimeValueObject::create(10, 2, 5);
         $object2 = TimeValueObject::createFromDateTime(new DateTime('10:02:05'));
 
-        $this->assertTrue($object1->isSame($object2));
+        $this->assertTrue($object1->sameValueAs($object2));
 
         $object1 = TimeValueObject::create(10, 2, 4);
         $object2 = TimeValueObject::createFromDateTime(new DateTime('10:02:05'));
 
-        $this->assertFalse($object1->isSame($object2));
+        $this->assertFalse($object1->sameValueAs($object2));
     }
 
     public function testLaterThan(): void

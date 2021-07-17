@@ -21,7 +21,7 @@ final class UserData extends ObjectData
 
     public FullNameValueObject $name;
 
-    public EmailValueObject $email;
+    public string $email;
 
     public ?Carbon $email_verified_at;
 
@@ -57,9 +57,9 @@ final class UserData extends ObjectData
             'name' => FullNameValueObject::fromNative(
                 $request->input($prefix . 'firstname'),
                 $request->input($prefix . 'lastname'),
-                $request->input($prefix . 'middle_name'),
+                $request->input($prefix . 'middle_name')
             ),
-            'email' => EmailValueObject::fromNative($request->input($prefix . 'email')),
+            'email' => $request->input($prefix . 'email'),
             'password' => $request->input($prefix . 'password') ?
                 PasswordValueObject::fromNative($request->input($prefix . 'password')) : null,
             'firstname' => $request->input('firstname'),
@@ -73,7 +73,7 @@ final class UserData extends ObjectData
             'updated_at' => now(),
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
             'avatar_path' => $request->file('imagename')?->path(),
-            'roles' => $request->input($prefix . 'roles', [])
+            'roles' => $request->has('roles') ? $request->input($prefix . 'roles', []) : []
         ]);
     }
 }

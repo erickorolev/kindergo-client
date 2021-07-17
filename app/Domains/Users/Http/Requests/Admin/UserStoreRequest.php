@@ -14,7 +14,7 @@ final class UserStoreRequest extends Request
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:255', 'string'],
+            'name' => ['nullable', 'max:255', 'string'],
             'email' => ['required', 'unique:users', 'email'],
             'password' => ['required'],
             'firstname' => ['required', 'max:190', 'string'],
