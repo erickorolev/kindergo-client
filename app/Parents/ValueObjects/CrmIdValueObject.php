@@ -46,10 +46,10 @@ final class CrmIdValueObject extends ValueObject
      */
     public function __toString(): string
     {
-        return $this->toNative();
+        return $this->toNative() ?? '';
     }
 
-    public function toNative(): string
+    public function toNative(): ?string
     {
         return $this->value;
     }

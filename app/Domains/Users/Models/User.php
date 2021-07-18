@@ -53,6 +53,7 @@ final class User extends Authenticatable implements HasMedia
         'phone',
         'attendant_gender',
         'otherphone',
+        'crmid'
     ];
 
     protected array $searchableFields = ['*'];
@@ -149,6 +150,21 @@ final class User extends Authenticatable implements HasMedia
         $data['otherphone'] = $this->otherphone?->toNative();
         $data['name'] = $this->name->toNative();
         $data['attendant_gender'] = $this->attendant_gender->value;
+        $data['crmid'] = $this->crmid?->toNative();
+        return $data;
+    }
+
+    public function toFullArray(): array
+    {
+        $data = parent::toArray();
+        $data['phone'] = $this->phone;
+        $data['otherphone'] = $this->otherphone;
+        $data['name'] = $this->name;
+        $data['attendant_gender'] = $this->attendant_gender;
+        $data['email_verified_at'] = $this->email_verified_at;
+        $data['crmid'] = $this->crmid;
+        $data['created_at'] = $this->created_at ?? now();
+        $data['updated_at'] = $this->updated_at ?? now();
         return $data;
     }
 }
