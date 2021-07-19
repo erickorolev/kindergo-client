@@ -19,6 +19,21 @@ return [
             'allowedFilters' => [
 
             ]
+        ],
+        'children' => [
+            'domain' => 'Children',
+            'relationships' => [
+                [
+                    'type' => 'users',
+                    'method' => 'users'
+                ]
+            ],
+            'allowedSorts' => [
+                'updated_at'
+            ],
+            'allowedFilters' => [
+
+            ]
         ]
     ]
 ];

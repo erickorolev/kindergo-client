@@ -69,8 +69,16 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
+        <x-inputs.select name="users[]" label="Users" multiple="true">
+            @foreach($users as $user)
+                <option value="{{$user->id}}" {{ in_array($user->id, $selected_users) ? 'selected' : '' }}>{{ $user->name }}</option>
+            @endforeach
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
         <div
-            x-data="imageViewer('{{ $editing && $child->imagename ? \Storage::url($child->imagename) : '' }}')"
+            x-data="imageViewer('{{ $editing && $child->avatar ? $child->avatar->getUrl() : '' }}')"
         >
             <x-inputs.partials.label
                 name="imagename"

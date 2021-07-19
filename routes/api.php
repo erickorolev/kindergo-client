@@ -1,5 +1,6 @@
 <?php
 
+use Domains\Authentication\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/v1/login', [AuthController::class, 'login'])->name('api.login');

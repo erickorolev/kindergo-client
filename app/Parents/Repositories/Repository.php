@@ -198,7 +198,7 @@ class Repository extends \Prettus\Repository\Eloquent\BaseRepository implements 
         return $model;
     }
 
-    private function getIncludesData(string $type): array
+    protected function getIncludesData(string $type): array
     {
         /** @var array $includes */
         $includes = collect(config("jsonapi.resources.{$type}.relationships"))

@@ -2,6 +2,7 @@
     'name',
     'label',
     'type' => 'text',
+    'multiple' => false
 ])
 
 @if($label ?? null)
@@ -14,6 +15,9 @@
     {{ ($required ?? false) ? 'required' : '' }}
     {{ $attributes->merge(['class' => 'block appearance-none w-full py-1 px-2 text-base leading-normal text-gray-800 border border-gray-200 rounded']) }}
     autocomplete="off"
+    @if ($multiple)
+        multiple
+    @endif
 >{{ $slot }}</select>
 
 @error($name)

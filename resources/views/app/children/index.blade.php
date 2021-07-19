@@ -32,9 +32,9 @@
                             </form>
                         </div>
                         <div class="md:w-1/2 text-right">
-                            @can('create', App\Models\Child::class)
+                            @can('create children')
                             <a
-                                href="{{ route('children.create') }}"
+                                href="{{ route('admin.children.create') }}"
                                 class="button button-primary"
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
@@ -106,9 +106,9 @@
                                         aria-label="Row Actions"
                                         class="relative inline-flex align-middle"
                                     >
-                                        @can('update', $child)
+                                        @can('update children')
                                         <a
-                                            href="{{ route('children.edit', $child) }}"
+                                            href="{{ route('admin.children.edit', $child) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -120,9 +120,9 @@
                                                 ></i>
                                             </button>
                                         </a>
-                                        @endcan @can('view', $child)
+                                        @endcan @can('view children')
                                         <a
-                                            href="{{ route('children.show', $child) }}"
+                                            href="{{ route('admin.children.show', $child) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -132,9 +132,9 @@
                                                 <i class="icon ion-md-eye"></i>
                                             </button>
                                         </a>
-                                        @endcan @can('delete', $child)
+                                        @endcan @can('delete children')
                                         <form
-                                            action="{{ route('children.destroy', $child) }}"
+                                            action="{{ route('admin.children.destroy', $child) }}"
                                             method="POST"
                                             onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                         >

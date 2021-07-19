@@ -12,7 +12,7 @@ use Parents\ValueObjects\EmailValueObject;
 use Parents\ValueObjects\PhoneNumberValueObject;
 use Parents\ValueObjects\UrlValueObject;
 
-class UserFactory extends Factory
+final class UserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

@@ -8,6 +8,7 @@ use Domains\Authorization\Actions\GetAllRolesAction;
 use Domains\Authorization\Models\Role;
 use Domains\Users\Actions\Admin\IndexUserAction;
 use Domains\Users\Actions\DeleteUserAction;
+use Domains\Users\Actions\GetAllUsersAction;
 use Domains\Users\Actions\GetUserByIdAction;
 use Domains\Users\Actions\StoreUserAction;
 use Domains\Users\Actions\UpdateUserAction;

@@ -23,11 +23,12 @@
                         Users
                         </x-dropdown-link>
                         @endcan
-                        {{--@can('view-any', App\Models\Child::class)
-                        <x-dropdown-link href="{{ route('children.index') }}">
+                        @can('list children')
+                        <x-dropdown-link href="{{ route('admin.children.index') }}">
                         Children
                         </x-dropdown-link>
                         @endcan
+                            {{--
                         @can('view-any', App\Models\Attendant::class)
                         <x-dropdown-link href="{{ route('attendants.index') }}">
                         Attendants
@@ -195,11 +196,12 @@
                 Users
                 </x-jet-responsive-nav-link>
                 @endcan
-                {{--@can('view-any', App\Models\Child::class)
-                <x-jet-responsive-nav-link href="{{ route('children.index') }}">
+                @can('list children')
+                <x-jet-responsive-nav-link href="{{ route('admin.children.index') }}">
                 Children
                 </x-jet-responsive-nav-link>
                 @endcan
+            {{--
                 @can('view-any', App\Models\Attendant::class)
                 <x-jet-responsive-nav-link href="{{ route('attendants.index') }}">
                 Attendants

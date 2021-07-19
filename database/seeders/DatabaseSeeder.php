@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Domains\Authorization\Seeders\PermissionsSeeder;
+use Domains\Children\Seeders\ChildSeeder;
 use Domains\Users\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(PermissionsSeeder::class);
+        $this->call(ChildSeeder::class);
     }
 }

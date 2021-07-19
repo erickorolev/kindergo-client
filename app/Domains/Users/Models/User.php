@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domains\Users\Models;
 
 use Domains\Authorization\Models\Role;
+use Domains\Children\Models\Child;
 use Domains\Users\Casts\EmailValueObjectCast;
 use Domains\Users\Casts\FullNameCast;
 use Domains\Users\Casts\PhoneValueObjectCast;
@@ -103,7 +104,7 @@ final class User extends Authenticatable implements HasMedia
         return $this->hasMany(Payment::class);
     }
 
-    public function children()
+    public function children(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Child::class);
     }

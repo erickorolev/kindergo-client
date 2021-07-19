@@ -6,7 +6,7 @@ namespace Domains\Users\Actions;
 
 use Domains\Users\DataTransferObjects\UserData;
 use Domains\Users\Models\User;
-use Domains\Users\Tasks\UpdateImagesTask;
+use Support\Media\Tasks\UpdateImagesTask;
 
 final class UpdateUserAction extends \Parents\Actions\Action
 {

@@ -6,7 +6,7 @@ namespace Domains\Users\Actions;
 
 use Domains\Users\DataTransferObjects\UserData;
 use Domains\Users\Models\User;
-use Domains\Users\Tasks\AttachImagesTask;
+use Support\Media\Tasks\AttachImagesTask;
 
 final class StoreUserAction extends \Parents\Actions\Action
 {

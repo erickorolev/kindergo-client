@@ -10,6 +10,7 @@ use Domains\Users\Actions\DeleteUserAction;
 use Domains\Users\Actions\GetUserByCrmidAction;
 use Domains\Users\Actions\GetUserByEmailAction;
 use Domains\Users\Actions\GetUserByIdAction;
+use Domains\Users\Actions\GetUserIdsFromArrayAction;
 use Domains\Users\Actions\StoreUserAction;
 use Domains\Users\Actions\UpdateUserAction;
 use Domains\Users\DataTransferObjects\UserData;
@@ -125,5 +126,20 @@ class UserActionsTest extends TestCase
         ]);
         $this->assertTrue($result->hasRole('usus'));
         $this->assertEquals('changed', $result->firstname);
+    }
+
+    public function testUserIdsArrayAction(): void
+    {
+        User::factory()->createOne();
+        /** @var User $user2 */
+        $user2 = User::factory()->createOne();
+        /** @var User $user3 */
+        $user3 = User::factory()->createOne();
+        $result = GetUserIdsFromArrayAction::run([$user2->id, $user3->id]);
+        $this->assertEquals($user2->id, $result[0]);
+        $this->assertEquals($user3->id, $result[1]);
+        $result = GetUserIdsFromArrayAction::run([$user2->crmid, $user3->crmid]);
+        $this->assertEquals($user2->id, $result[0]);
+        $this->assertEquals($user3->id, $result[1]);
     }
 }
