@@ -13,7 +13,9 @@ final class StoreUserAction extends \Parents\Actions\Action
     public function handle(UserData $userData): User
     {
         $user = User::create($userData->toArray());
-        $user->syncRoles($userData->roles);
+        if (!empty($userData->roles)) {
+            $user->syncRoles($userData->roles);
+        }
 
         AttachImagesTask::run($user, $userData);
         return $user;

@@ -166,7 +166,7 @@ trait RoutesLoaderTrait
     private function getMiddlewares(): array
     {
         return array_filter([
-            'api',
+            'auth:sanctum',
             $this->getRateLimitMiddleware(), // returns NULL if feature disabled. Null will be removed form the array.
         ]);
     }

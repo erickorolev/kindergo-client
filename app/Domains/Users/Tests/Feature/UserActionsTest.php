@@ -18,6 +18,7 @@ use Domains\Users\ValueObjects\PasswordValueObject;
 use Illuminate\Foundation\Testing\WithFaker;
 use Parents\Tests\PhpUnit\TestCase;
 use Parents\ValueObjects\CrmIdValueObject;
+use Parents\ValueObjects\UrlValueObject;
 
 class UserActionsTest extends TestCase
 {
@@ -89,6 +90,7 @@ class UserActionsTest extends TestCase
         $userArr = $user->toFullArray();
         $userArr['roles'] = [$role->id];
         $userArr['password'] = PasswordValueObject::fromNative('password');
+        $userArr['external_file'] = UrlValueObject::fromNative(null);
         $userData = new UserData($userArr);
         /** @var User $result */
         $result = StoreUserAction::run($userData);
@@ -112,6 +114,7 @@ class UserActionsTest extends TestCase
         $userArr = $user->toFullArray();
         $userArr['roles'] = [$role->id];
         $userArr['firstname'] = 'changed';
+        $userArr['external_file'] = UrlValueObject::fromNative(null);
         $userData = new UserData($userArr);
         $userData->id = $user->id;
         /** @var User $result */

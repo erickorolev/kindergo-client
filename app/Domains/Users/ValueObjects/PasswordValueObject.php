@@ -52,6 +52,11 @@ final class PasswordValueObject extends \Parents\ValueObjects\ValueObject
         return new self($value);
     }
 
+    public static function generateRandom(): self
+    {
+        return new self(Str::random(10));
+    }
+
     public function isNull(): bool
     {
         return false;
