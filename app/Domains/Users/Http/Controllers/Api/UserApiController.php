@@ -20,10 +20,15 @@ use Domains\Users\Transformers\UserTransformer;
 use Domains\Users\ValueObjects\PasswordValueObject;
 use Parents\Controllers\Controller;
 use Parents\Serializers\JsonApiSerializer;
+use Parents\Traits\RelationTrait;
 use Symfony\Component\HttpFoundation\Response;
 
 final class UserApiController extends Controller
 {
+    use RelationTrait;
+
+    protected string $relationClass = GetUserByIdAction::class;
+
     public function me(): \Illuminate\Http\JsonResponse
     {
         return fractal(

@@ -4,6 +4,12 @@
  * @routePrefix("api.")
  */
 
-//use Domains\Users\Http\Controllers\Api\UserApiController;
-
-//Route::apiResource('users', UserApiController::class);
+Route::get('children/{id}/{relation}', [
+    \Domains\Children\Http\Controllers\Api\ChildApiController::class,
+    'relations'
+])->name('children.relations');
+Route::post('children/{id}/{relation}/{parent}', [
+    \Domains\Children\Http\Controllers\Api\ChildApiController::class,
+    'relationCreate'
+])->name('children.relations.create');
+Route::apiResource('children', \Domains\Children\Http\Controllers\Api\ChildApiController::class);

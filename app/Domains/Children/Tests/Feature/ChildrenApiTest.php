@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Domains\Users\Tests\Feature;
+namespace Domains\Children\Tests\Feature;
 
 use Domains\Authorization\Seeders\PermissionsSeeder;
+use Domains\Children\Http\Controllers\Api\ChildApiController;
+use Domains\Children\Http\Requests\Admin\DeleteChildRequest;
+use Domains\Children\Http\Requests\Admin\IndexChildRequest;
+use Domains\Children\Http\Requests\Api\StoreChildApiRequest;
+use Domains\Children\Http\Requests\Api\UpdateChildApiRequest;
 use Domains\Children\Models\Child;
+use Domains\Children\Repositories\ChildRepositoryInterface;
+use Domains\Children\Repositories\Eloquent\ChildRepository;
 use Domains\TemporaryFile\Actions\UploadFileAction;
-use Domains\Users\Http\Controllers\Api\UserApiController;
-use Domains\Users\Http\Requests\Admin\DeleteUserRequest;
-use Domains\Users\Http\Requests\Admin\IndexUserRequest;
-use Domains\Users\Http\Requests\Api\UserStoreApiRequest;
-use Domains\Users\Http\Requests\Api\UserUpdateApiRequest;
 use Domains\Users\Models\User;
-use Domains\Users\Repositories\Eloquent\UserRepository;
-use Domains\Users\Repositories\UserRepositoryInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
@@ -23,7 +23,7 @@ use JMac\Testing\Traits\AdditionalAssertions;
 use Laravel\Sanctum\Sanctum;
 use Parents\Tests\PhpUnit\TestCase;
 
-class UserApiTest extends TestCase
+class ChildrenApiTest extends TestCase
 {
     use RefreshDatabase, WithFaker, AdditionalAssertions;
 
@@ -47,37 +47,36 @@ class UserApiTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_users_list(): void
+    public function it_gets_children_list(): void
     {
-        User::factory()
+        Child::factory()
             ->count(5)
             ->create([
                 'phone' => '+79025689977',
                 'otherphone' => '+79086675566'
             ]);
 
-        $response = $this->getJson(route('api.users.index'));
+        $response = $this->getJson(route('api.children.index'));
 
         $response->assertOk()->assertJson(fn(AssertableJson $json) => $json
-            ->has('data', 6, fn(AssertableJson $json) =>
+            ->has('data', 5, fn(AssertableJson $json) =>
             $json
-                ->where('type', 'users')
+                ->where('type', 'children')
                 ->hasAll([
                     'id',
                     'attributes',
                     'type',
-                    'attributes.name',
-                    'attributes.email',
                     'attributes.firstname',
                     'attributes.lastname',
                     'attributes.middle_name',
                     'attributes.phone',
-                    'attributes.attendant_gender',
-                    'attributes.attendant_gender.value',
-                    'attributes.attendant_gender.description',
+                    'attributes.gender',
+                    'attributes.gender.value',
+                    'attributes.gender.description',
                     'attributes.otherphone',
                     'attributes.crmid',
                     'attributes.media',
+                    'attributes.birthday'
                 ])->etc())->etc());
     }
 
@@ -86,8 +85,8 @@ class UserApiTest extends TestCase
      */
     public function it_uses_correct_repository(): void
     {
-        $repModel = app(UserRepositoryInterface::class);
-        $this->assertInstanceOf(UserRepository::class, $repModel);
+        $repModel = app(ChildRepositoryInterface::class);
+        $this->assertInstanceOf(ChildRepository::class, $repModel);
     }
 
     /**
@@ -95,7 +94,7 @@ class UserApiTest extends TestCase
      */
     public function it_uses_middleware(): void
     {
-        $this->assertRouteUsesMiddleware('api.users.index', ['auth:sanctum']);
+        $this->assertRouteUsesMiddleware('api.children.index', ['auth:sanctum']);
     }
 
     /**
@@ -104,28 +103,28 @@ class UserApiTest extends TestCase
     public function it_uses_index_request(): void
     {
         $this->assertActionUsesFormRequest(
-            UserApiController::class,
+            ChildApiController::class,
             'index',
-            IndexUserRequest::class
+            IndexChildRequest::class
         );
     }
 
     /**
      * @test
      */
-    public function it_stores_the_user(): void
+    public function it_stores_the_child(): void
     {
-        $data = User::factory()
+        $data = Child::factory()
             ->make()
             ->toArray();
         $data['phone'] = '+79876757777';
         $data['otherphone'] = '+79022884433';
-        $data['password'] = \Str::random('8');
+        $data['birthday'] = '1995-08-06';
 
         try {
-            $response = $this->postJson(route('api.users.store'), [
+            $response = $this->postJson(route('api.children.store'), [
                 'data' => [
-                    'type' => 'users',
+                    'type' => 'children',
                     'attributes' => $data
                 ]
             ]);
@@ -134,19 +133,13 @@ class UserApiTest extends TestCase
             $this->assertTrue(false, $ex->getMessage());
         }
 
-        unset($data['password']);
-        unset($data['email_verified_at']);
-        unset($data['current_team_id']);
         unset($data['imagename']);
-        unset($data['name']);
 
-        $this->assertDatabaseHas('users', $data);
+        $this->assertDatabaseHas('children', $data);
 
         $response->assertStatus(201)->assertJson([
             'data' => [
                 'attributes' => [
-                    'name' => $data['firstname'] . ' ' . $data['middle_name'] . ' ' . $data['lastname'],
-                    'email' => $data['email'],
                     'firstname' => $data['firstname'],
                     'lastname' => $data['lastname'],
                     'crmid' => $data['crmid'],
@@ -160,12 +153,12 @@ class UserApiTest extends TestCase
     /**
      * @test
      */
-    public function store_uses_create_request(): void
+    public function store_child_create_request(): void
     {
         $this->assertActionUsesFormRequest(
-            UserApiController::class,
+            ChildApiController::class,
             'store',
-            UserStoreApiRequest::class
+            StoreChildApiRequest::class
         );
     }
 
@@ -180,31 +173,30 @@ class UserApiTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_user(): void
+    public function it_updates_the_child(): void
     {
-        /** @var User $user */
-        $user = User::factory()->create();
+        /** @var Child $user */
+        $user = Child::factory()->create();
 
         $data = [
             'data' => [
-                'type' => 'users',
+                'type' => 'children',
                 'id' => (string) $user->id,
                 'attributes' => [
-                    'name' => $this->faker->name,
-                    'email' => $this->faker->email,
                     'firstname' => $this->faker->firstName,
                     'lastname' => $this->faker->lastName,
                     'middle_name' => $this->faker->text(10),
                     'phone' => '+79876757777',
-                    'attendant_gender' => 'No matter',
+                    'gender' => 'Male',
                     'otherphone' => '+79086665478',
+                    'birthday' => '1998-05-08'
                 ]
             ]
         ];
 
-        $response = $this->putJson(route('api.users.update', ['user' => $user->id]), $data);
+        $response = $this->putJson(route('api.children.update', ['child' => $user->id]), $data);
 
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas('children', [
             'id' => $user->id,
             'middle_name' => $data['data']['attributes']['middle_name']
         ]);
@@ -229,9 +221,9 @@ class UserApiTest extends TestCase
     public function update_uses_create_request(): void
     {
         $this->assertActionUsesFormRequest(
-            UserApiController::class,
+            ChildApiController::class,
             'update',
-            UserUpdateApiRequest::class
+            UpdateChildApiRequest::class
         );
     }
 
@@ -240,7 +232,7 @@ class UserApiTest extends TestCase
      */
     public function update_controller_uses_middleware(): void
     {
-        $this->assertRouteUsesMiddleware('api.users.update', ['auth:sanctum']);
+        $this->assertRouteUsesMiddleware('api.children.update', ['auth:sanctum']);
     }
 
     /**
@@ -248,9 +240,9 @@ class UserApiTest extends TestCase
      */
     public function it_deletes_the_user(): void
     {
-        $user = User::factory()->create();
+        $user = Child::factory()->create();
 
-        $response = $this->deleteJson(route('api.users.destroy', $user));
+        $response = $this->deleteJson(route('api.children.destroy', $user));
 
         $this->assertSoftDeleted($user);
 
@@ -263,9 +255,9 @@ class UserApiTest extends TestCase
     public function delete_uses_create_request(): void
     {
         $this->assertActionUsesFormRequest(
-            UserApiController::class,
+            ChildApiController::class,
             'destroy',
-            DeleteUserRequest::class
+            DeleteChildRequest::class
         );
     }
 
@@ -274,7 +266,7 @@ class UserApiTest extends TestCase
      */
     public function delete_controller_uses_middleware(): void
     {
-        $this->assertRouteUsesMiddleware('api.users.destroy', ['auth:sanctum']);
+        $this->assertRouteUsesMiddleware('api.children.destroy', ['auth:sanctum']);
     }
 
     public function testImagesAdding(): void
@@ -282,16 +274,17 @@ class UserApiTest extends TestCase
         $file = UploadedFile::fake()->create('test.pdf', 100, 'application/pdf');
         $result = UploadFileAction::run($file);
         $this->assertFileExists(storage_path('app/public/uploads/tmp/' . $result . '/test.pdf'));
-        $user = User::factory()->makeOne([
+        $user = Child::factory()->makeOne([
             'phone' => '+79086447896',
             'otherphone' => '+79996457899'
         ]);
         $userData = $user->toArray();
         $userData['file'] = $result;
+        $userData['birthday'] = '2000-05-06';
         try {
-            $response = $this->postJson(route('api.users.store'), [
+            $response = $this->postJson(route('api.children.store'), [
                 'data' => [
-                    'type' => 'users',
+                    'type' => 'children',
                     'attributes' => $userData
                 ]
             ], [
@@ -311,65 +304,55 @@ class UserApiTest extends TestCase
         }
 
 
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas('children', [
             'firstname' => $user->firstname,
             'lastname' => $user->lastname
         ]);
         $this->assertDatabaseHas('media', [
             'collection_name' => 'avatar',
-            'model_type' => 'Domains\Users\Models\User'
+            'model_type' => 'Domains\Children\Models\Child'
         ]);
     }
 
-    public function testChildrenIncludeInUser(): void
-    {
-        $user = User::factory()
-            ->createOne([
-                'phone' => '+79025689977',
-                'otherphone' => '+79086675566'
-            ]);
-        $child = Child::factory()->createOne([
-            'phone' => '+79025689988',
-            'otherphone' => '+79086675599'
-        ]);
-        $user->children()->attach($child->id);
-        $response = $this->getJson(route('api.users.show', [
-            'user' => $user->id,
-            'include' => 'children'
-        ]));
-        $response->assertOk()->assertJson(fn(AssertableJson $json) => $json
-            ->has('data')
-            ->where('data.type', 'users')
-            ->where('data.id', (string) $user->id)
-            ->has('included')
-            ->where('included.0.type', 'children')
-            ->where('included.0.id', (string) $child->id)
-            ->etc()
-        );
-    }
-
-    public function testGettingRelatedChildFromUser(): void
+    public function testGettingUsersInclude(): void
     {
         /** @var Child $child */
         $child = Child::factory()->createOne([
             'phone' => '+79876689875',
             'otherphone' => '+79026645879'
         ]);
-        /** @var User $user */
-        $user = User::factory()
-            ->createOne([
-                'phone' => '+79025689977',
-                'otherphone' => '+79086675566'
-            ]);
-        $child->users()->attach($user->id);
-        $response = $this->getJson(route('api.users.relations', [
-            'id' => $user->id,
-            'relation' => 'children'
+        $child->users()->attach(User::first()->id);
+        $response = $this->getJson(route('api.children.show', [
+            'child' => $child->id,
+            'include' => 'users'
+        ]));
+        $response->assertOk()->assertJson(fn(AssertableJson $json) => $json
+            ->has('data')
+            ->where('data.type', 'children')
+            ->where('data.id', (string) $child->id)
+            ->has('included')
+            ->where('included.0.type', 'users')
+            ->where('included.0.id', (string) User::first()->id)
+            ->etc()
+            );
+    }
+
+    public function testGettingRelatedUsersFromChild(): void
+    {
+        /** @var Child $child */
+        $child = Child::factory()->createOne([
+            'phone' => '+79876689875',
+            'otherphone' => '+79026645879'
+        ]);
+        $child->users()->attach(User::first()->id);
+        $response = $this->getJson(route('api.children.relations', [
+            'id' => $child->id,
+            'relation' => 'users'
         ]));
         $response->assertOk()->assertJson(fn(AssertableJson $json) => $json
             ->has('data', 1, fn(AssertableJson $json) =>
             $json
-                ->where('type', 'children')
+                ->where('type', 'users')
                 ->hasAll([
                     'id',
                     'attributes',

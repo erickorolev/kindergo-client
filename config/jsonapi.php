@@ -10,6 +10,10 @@ return [
                 [
                     'type' => 'roles',
                     'method' => 'roles'
+                ],
+                [
+                    'type' => 'children',
+                    'method' => 'children'
                 ]
             ],
             'allowedSorts' => [

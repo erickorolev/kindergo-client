@@ -15,7 +15,7 @@ use JMac\Testing\Traits\AdditionalAssertions;
 use Parents\Enums\GenderEnum;
 use Parents\Tests\PhpUnit\TestCase;
 
-class UsersControllerTest extends TestCase
+class ChildrenControllerTest extends TestCase
 {
     use RefreshDatabase, WithFaker, AdditionalAssertions;
 

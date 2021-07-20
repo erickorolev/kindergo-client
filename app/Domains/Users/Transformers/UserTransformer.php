@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domains\Users\Transformers;
 
+use Domains\Children\Models\Child;
+use Domains\Children\Transformers\ChildTransformer;
 use Domains\Users\Models\User;
 use Parents\Transformers\MediaTransformer;
 use Parents\Transformers\Transformer;
@@ -11,6 +13,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 final class UserTransformer extends Transformer
 {
+    protected $availableIncludes = [
+        'children'
+    ];
+
     public function transform(User $model): array
     {
         $medias = $model->getMedia('avatar');
@@ -35,5 +41,10 @@ final class UserTransformer extends Transformer
             ],
             'media' => $medias,
         ];
+    }
+
+    public function includeChildren(User $model): \League\Fractal\Resource\Collection
+    {
+        return $this->collection($model->children, new ChildTransformer(), Child::RESOURCE_NAME);
     }
 }

@@ -6,7 +6,9 @@ namespace Parents\Traits;
 
 use Domains\Listings\Models\ListingCategory;
 use Domains\Listings\Transformers\ListingProductTransformer;
+use Domains\Users\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laratrust;
 use League\Fractal\Serializer\JsonApiSerializer;
@@ -23,13 +25,15 @@ trait RelationTrait
      */
     public function relations(int $id, string $relation): JsonResponse
     {
+        /** @var User $user */
+        $user = Auth::user();
         abort_if(
-            !Laratrust::isAbleTo(strtolower(Str::snake(Str::singular($relation))) . '_access'),
+            $user->cant('list ' . $relation),
             Response::HTTP_FORBIDDEN,
             '403 Forbidden'
         );
-        /** @var ListingCategory $parentModel */
-        $parentModel = Portal::call($this->relationClass, [$id]);
+        /** @var User $parentModel */
+        $parentModel = $this->relationClass::run($id);
         /** @var \Illuminate\Support\Collection $data */
         $data = $parentModel->$relation;
         /** @var string $domain */
@@ -63,5 +67,20 @@ trait RelationTrait
             new JsonApiSerializer($this->getUrl())
         )->withResourceName($resourceName)
             ->respondJsonApi();
+    }
+
+    public function relationCreate(int $id, string $relation, int $parent): \Illuminate\Http\Response
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        abort_if(
+            $user->cant('update ' . $relation),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        /** @var User $parentModel */
+        $parentModel = $this->relationClass::run($id);
+        $parentModel->$relation()->syncWithoutDetaching([$parent]);
+        return response()->noContent();
     }
 }
