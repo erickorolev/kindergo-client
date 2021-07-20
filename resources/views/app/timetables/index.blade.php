@@ -32,9 +32,9 @@
                             </form>
                         </div>
                         <div class="md:w-1/2 text-right">
-                            @can('create', App\Models\Timetable::class)
+                            @can('create timetables')
                             <a
-                                href="{{ route('timetables.create') }}"
+                                href="{{ route('admin.timetables.create') }}"
                                 class="button button-primary"
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
@@ -138,9 +138,9 @@
                                         aria-label="Row Actions"
                                         class="relative inline-flex align-middle"
                                     >
-                                        @can('update', $timetable)
+                                        @can('update timetables', $timetable)
                                         <a
-                                            href="{{ route('timetables.edit', $timetable) }}"
+                                            href="{{ route('admin.timetables.edit', $timetable) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -152,9 +152,9 @@
                                                 ></i>
                                             </button>
                                         </a>
-                                        @endcan @can('view', $timetable)
+                                        @endcan @can('view timetables')
                                         <a
-                                            href="{{ route('timetables.show', $timetable) }}"
+                                            href="{{ route('admin.timetables.show', $timetable) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -164,9 +164,9 @@
                                                 <i class="icon ion-md-eye"></i>
                                             </button>
                                         </a>
-                                        @endcan @can('delete', $timetable)
+                                        @endcan @can('delete timetables')
                                         <form
-                                            action="{{ route('timetables.destroy', $timetable) }}"
+                                            action="{{ route('admin.timetables.destroy', $timetable->id) }}"
                                             method="POST"
                                             onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                         >

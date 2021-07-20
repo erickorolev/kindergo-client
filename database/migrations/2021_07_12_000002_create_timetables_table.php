@@ -19,7 +19,7 @@ class CreateTimetablesTable extends Migration
             $table->string('where_address')->comment('Куда');
             $table->integer('trips')->comment('Количество поездок');
             $table->integer('childrens')->comment('Количество детей');
-            $table->string('childrens_age', 100)->comment('Возраст детей');
+            $table->string('childrens_age', 50)->comment('Возраст детей');
             $table->date('date')->comment('Дата отправления');
             $table->time('time')->comment('Время отправления');
             $table->integer('duration')->comment('Длительность маршрута в минутах');
@@ -29,12 +29,7 @@ class CreateTimetablesTable extends Migration
             $table->integer('scheduled_wait_where')
                 ->comment('Запланированное ожидание в точке Куда в минутах');
             $table
-                ->enum('status', [
-                    'Pending',
-                    'Performed',
-                    'Completed',
-                    'Canceled',
-                ])
+                ->string('status', 100)
                 ->default('Pending')->comment('Статус');
             $table->boolean('bill_paid')->comment('Оплачен ли счёт');
             $table->text('description')->comment('Описание');

@@ -9,6 +9,8 @@ use Domains\Children\Repositories\Eloquent\ChildRepository;
 use Domains\TemporaryFile\Models\TemporaryFile;
 use Domains\TemporaryFile\Repositories\Eloquent\TemporaryFileRepository;
 use Domains\TemporaryFile\Repositories\TemporaryFileRepositoryInterface;
+use Domains\Timetables\Repositories\Eloquent\TimetableRepository;
+use Domains\Timetables\Repositories\TimetableRepositoryInterface;
 use Domains\Users\Repositories\Eloquent\UserRepository;
 use Domains\Users\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -22,6 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(ChildRepositoryInterface::class, ChildRepository::class);
+        $this->app->bind(TimetableRepositoryInterface::class, TimetableRepository::class);
         $this->app->bind(TemporaryFileRepositoryInterface::class, TemporaryFileRepository::class);
     }
 }

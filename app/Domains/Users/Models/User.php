@@ -6,6 +6,7 @@ namespace Domains\Users\Models;
 
 use Domains\Authorization\Models\Role;
 use Domains\Children\Models\Child;
+use Domains\Timetables\Models\Timetable;
 use Domains\Users\Casts\EmailValueObjectCast;
 use Domains\Users\Casts\FullNameCast;
 use Domains\Users\Casts\PhoneValueObjectCast;
@@ -94,7 +95,7 @@ final class User extends Authenticatable implements HasMedia
         });
     }
 
-    public function timetables()
+    public function timetables(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Timetable::class);
     }

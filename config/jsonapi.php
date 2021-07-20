@@ -14,6 +14,10 @@ return [
                 [
                     'type' => 'children',
                     'method' => 'children'
+                ],
+                [
+                    'type' => 'timetables',
+                    'method' => 'timetables'
                 ]
             ],
             'allowedSorts' => [
@@ -30,6 +34,29 @@ return [
                 [
                     'type' => 'users',
                     'method' => 'users'
+                ],
+                [
+                    'type' => 'timetables',
+                    'method' => 'timetables'
+                ]
+            ],
+            'allowedSorts' => [
+                'updated_at'
+            ],
+            'allowedFilters' => [
+
+            ]
+        ],
+        'timetables' => [
+            'domain' => 'Timetables',
+            'relationships' => [
+                [
+                    'type' => 'user',
+                    'method' => 'user'
+                ],
+                [
+                    'type' => 'children',
+                    'method' => 'children'
                 ]
             ],
             'allowedSorts' => [

@@ -9,21 +9,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-partials.card>
                 <x-slot name="title">
-                    <a href="{{ route('timetables.index') }}" class="mr-4"
+                    <a href="{{ route('admin.timetables.index') }}" class="mr-4"
                         ><i class="mr-1 icon ion-md-arrow-back"></i
                     ></a>
                 </x-slot>
 
                 <x-form
                     method="POST"
-                    action="{{ route('timetables.store') }}"
+                    action="{{ route('admin.timetables.store') }}"
                     class="mt-4"
                 >
                     @include('app.timetables.form-inputs')
 
                     <div class="mt-10">
                         <a
-                            href="{{ route('timetables.index') }}"
+                            href="{{ route('admin.timetables.index') }}"
                             class="button"
                         >
                             <i

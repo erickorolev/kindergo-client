@@ -28,15 +28,15 @@
                         Children
                         </x-dropdown-link>
                         @endcan
+                            @can('list timetables')
+                                <x-dropdown-link href="{{ route('admin.timetables.index') }}">
+                                    Timetables
+                                </x-dropdown-link>
+                            @endcan
                             {{--
                         @can('view-any', App\Models\Attendant::class)
                         <x-dropdown-link href="{{ route('attendants.index') }}">
                         Attendants
-                        </x-dropdown-link>
-                        @endcan
-                        @can('view-any', App\Models\Timetable::class)
-                        <x-dropdown-link href="{{ route('timetables.index') }}">
-                        Timetables
                         </x-dropdown-link>
                         @endcan
                         @can('view-any', App\Models\Payment::class)
@@ -201,15 +201,15 @@
                 Children
                 </x-jet-responsive-nav-link>
                 @endcan
+            @can('list timetables')
+                <x-jet-responsive-nav-link href="{{ route('admin.timetables.index') }}">
+                    Timetables
+                </x-jet-responsive-nav-link>
+            @endcan
             {{--
                 @can('view-any', App\Models\Attendant::class)
                 <x-jet-responsive-nav-link href="{{ route('attendants.index') }}">
                 Attendants
-                </x-jet-responsive-nav-link>
-                @endcan
-                @can('view-any', App\Models\Timetable::class)
-                <x-jet-responsive-nav-link href="{{ route('timetables.index') }}">
-                Timetables
                 </x-jet-responsive-nav-link>
                 @endcan
                 @can('view-any', App\Models\Payment::class)

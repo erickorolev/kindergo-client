@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Children\Models;
 
+use Domains\Timetables\Models\Timetable;
 use Domains\Users\Casts\PhoneValueObjectCast;
 use Domains\Users\Models\User;
 use Parents\Casts\CrmIdValueObjectCast;
@@ -50,7 +51,7 @@ final class Child extends Model implements HasMedia
         return $this->belongsToMany(User::class);
     }
 
-    public function timetables()
+    public function timetables(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Timetable::class);
     }

@@ -6,6 +6,8 @@ declare(strict_types=1);
 namespace Domains\Children\Transformers;
 
 use Domains\Children\Models\Child;
+use Domains\Timetables\Models\Timetable;
+use Domains\Timetables\Transformers\TimetableTransformer;
 use Domains\Users\Models\User;
 use Domains\Users\Transformers\UserTransformer;
 use Parents\Transformers\MediaTransformer;
@@ -15,7 +17,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 final class ChildTransformer extends Transformer
 {
     protected $availableIncludes = [
-        'users'
+        'users', 'timetables'
     ];
 
     public function transform(Child $model): array
@@ -46,5 +48,10 @@ final class ChildTransformer extends Transformer
     public function includeUsers(Child $model): \League\Fractal\Resource\Collection
     {
         return $this->collection($model->users, new UserTransformer(), User::RESOURCE_NAME);
+    }
+
+    public function includeTimetables(Child $model): \League\Fractal\Resource\Collection
+    {
+        return $this->collection($model->timetables, new TimetableTransformer(), Timetable::RESOURCE_NAME);
     }
 }
