@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Parents\Casts\CrmIdValueObjectCast;
 use Parents\Casts\TimeValueObjectCast;
 use Parents\Models\Model;
+use Parents\Scopes\UserScope;
 use Units\Filterings\Scopes\Searchable;
 
 final class Timetable extends Model
@@ -59,6 +60,16 @@ final class Timetable extends Model
         'time' => TimeValueObjectCast::class
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new UserScope());
+    }
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -86,11 +97,12 @@ final class Timetable extends Model
     public function toFullArray(): array
     {
         $data = parent::toArray();
-        $data['crmid'] = $this->crmid?->toNative();
+        $data['crmid'] = $this->crmid;
         $data['created_at'] = $this->created_at ?? now();
         $data['updated_at'] = $this->updated_at ?? now();
         $data['status'] = $this->status;
         $data['time'] = $this->time;
+        $data['date'] = $this->date;
         return $data;
     }
 

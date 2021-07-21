@@ -37,7 +37,7 @@ final class TimetableTransformer extends Transformer
             'description' => $model->description,
             'parking_info' => $model->parking_info,
             'user_id' => $model->user_id,
-            'crmid' => $model->crmid->toNative()
+            'crmid' => $model->crmid?->toNative()
         ];
     }
 

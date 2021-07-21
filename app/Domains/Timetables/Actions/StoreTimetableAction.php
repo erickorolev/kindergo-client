@@ -11,6 +11,8 @@ final class StoreTimetableAction extends \Parents\Actions\Action
 {
     public function handle(TimetableData $data): Timetable
     {
-        return Timetable::create($data->toArray());
+        $timetable = Timetable::create($data->toArray());
+        $timetable->children()->attach($data->children);
+        return $timetable;
     }
 }

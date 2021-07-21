@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domains\Timetables\Http\Controllers\Admin;
 
+use Domains\Children\Actions\GetChildrenDropdownListAction;
+use Domains\Timetables\Actions\DeleteTimetableAction;
 use Domains\Timetables\Actions\GetAllTimetablesAdminAction;
 use Domains\Timetables\Actions\GetTimetableByIdAction;
 use Domains\Timetables\Actions\StoreTimetableAction;
@@ -14,8 +16,8 @@ use Domains\Timetables\Http\Requests\Admin\EditTimetableRequest;
 use Domains\Timetables\Http\Requests\Admin\IndexTimetablesRequest;
 use Domains\Timetables\Http\Requests\Admin\ShowTimetableRequest;
 use Domains\Timetables\Http\Requests\Admin\TimetableStoreRequest;
-use Domains\Timetables\Http\Requests\CreateTimetableRequest;
-use Domains\Timetables\Http\Requests\TimetableUpdateRequest;
+use Domains\Timetables\Http\Requests\Admin\CreateTimetableRequest;
+use Domains\Timetables\Http\Requests\Admin\TimetableUpdateRequest;
 use Domains\Timetables\Models\Timetable;
 use Domains\Users\Actions\GetUsersDropdownListAction;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -41,8 +43,10 @@ final class TimetableController extends Controller
     {
         /** @var Collection $users */
         $users = GetUsersDropdownListAction::run();
+        /** @var Collection $children */
+        $children = GetChildrenDropdownListAction::run();
 
-        return view('app.timetables.create', compact('users'));
+        return view('app.timetables.create', compact('users', 'children'));
     }
 
     public function store(TimetableStoreRequest $request)
@@ -66,10 +70,13 @@ final class TimetableController extends Controller
     {
         /** @var Collection $users */
         $users = GetUsersDropdownListAction::run();
+        /** @var Collection $children */
+        $children = GetChildrenDropdownListAction::run();
 
         return view('app.timetables.edit', [
             'timetable' => GetTimetableByIdAction::run($timetable),
-            'users' => $users
+            'users' => $users,
+            'children' => $children
         ]);
     }
 
@@ -89,9 +96,9 @@ final class TimetableController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeleteTimetableRequest $request, Timetable $timetable)
+    public function destroy(DeleteTimetableRequest $request, int $timetable)
     {
-        $timetable->delete();
+        DeleteTimetableAction::run($timetable);
 
         return redirect()
             ->route('admin.timetables.index')

@@ -17,6 +17,11 @@ final class CrmIdValueObject extends ValueObject
         $this->value = $value;
     }
 
+    /**
+     * @param  string|null  $value
+     * @return static
+     * @throw \InvalidArgumentException
+     */
     public static function fromNative(?string $value): self
     {
         return new self($value);

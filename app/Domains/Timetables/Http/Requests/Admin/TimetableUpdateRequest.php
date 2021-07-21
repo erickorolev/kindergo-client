@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace Domains\Timetables\Http\Requests;
+namespace Domains\Timetables\Http\Requests\Admin;
 
 use BenSampo\Enum\Rules\EnumValue;
 use Domains\Timetables\Enums\TimetableStatusEnum;
@@ -30,6 +30,7 @@ final class TimetableUpdateRequest extends Request
             'description' => ['required', 'max:255', 'string'],
             'parking_info' => ['required', 'max:255', 'string'],
             'user_id' => ['nullable'],
+            'crmid' => ['nullable', 'max:50'],
         ];
     }
 

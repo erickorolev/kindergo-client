@@ -14,6 +14,9 @@ final class UpdateTimetableAction extends \Parents\Actions\Action
         /** @var Timetable $timetable */
         $timetable = GetTimetableByIdAction::run($data->id);
         $timetable->update($data->toArray());
+        if ($data->children) {
+            $timetable->children()->sync($data->children);
+        }
         return $timetable;
     }
 }

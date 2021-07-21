@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domains\Timetables\Http\Requests;
+namespace Domains\Timetables\Http\Requests\Admin;
 
 use Parents\Requests\Request;
 

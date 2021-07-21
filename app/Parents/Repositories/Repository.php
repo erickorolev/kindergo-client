@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Parents\Models\Model;
 use Parents\QueryBuilder\QB;
+use Parents\Scopes\UserScope;
 use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Traits\CacheableRepository as PrettusCacheableRepository;
 use Prettus\Repository\Criteria\RequestCriteria as PrettusRequestCriteria;

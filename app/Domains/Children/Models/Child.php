@@ -7,6 +7,8 @@ namespace Domains\Children\Models;
 use Domains\Timetables\Models\Timetable;
 use Domains\Users\Casts\PhoneValueObjectCast;
 use Domains\Users\Models\User;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Parents\Casts\CrmIdValueObjectCast;
 use Parents\Enums\GenderEnum;
 use Parents\Models\Model;
@@ -101,5 +103,21 @@ final class Child extends Model implements HasMedia
         $data['created_at'] = $this->created_at ?? now();
         $data['updated_at'] = $this->updated_at ?? now();
         return $data;
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        if (Auth::user()?->hasExactRoles(['client'])) {
+            static::addGlobalScope('users', function (Builder $builder) {
+                $builder->whereHas('users', function (Builder $q) {
+                    $q->where('child_user.user_id', Auth::id());
+                });
+            });
+        }
     }
 }

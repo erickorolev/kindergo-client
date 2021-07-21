@@ -14,4 +14,8 @@ interface TimetableRepositoryInterface
     public function jsonPaginate(): LengthAwarePaginator;
 
     public function findJson(int $id): Model;
+
+    public function scopeQuery(\Closure $scope);
+
+    public function pushCriteria($criteria);
 }
