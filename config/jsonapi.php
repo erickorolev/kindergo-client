@@ -74,7 +74,7 @@ return [
             'domain' => 'Payments',
             'relationships' => [
                 [
-                    'type' => 'user',
+                    'type' => 'users',
                     'method' => 'user'
                 ]
             ],

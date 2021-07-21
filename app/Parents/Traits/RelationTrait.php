@@ -50,8 +50,8 @@ trait RelationTrait
             $childModel = 'Domains\\' . $domain . '\Models\\' . $classPrefix;
         }
         if (!class_exists($transformerName)) {
-            /** @var string $correctRelation */
-            $correctRelation = config('jsonapi.resources.' . Str::ucfirst($relation) . '.domain');
+            /** @var ?string $correctRelation */
+            $correctRelation = config('jsonapi.resources.' . Str::plural($relation) . '.domain');
             /** @psalm-var class-string<ListingProductTransformer> $transformerName */
             $transformerName = 'Domains\\' . $correctRelation . '\Transformers\\' . $classPrefix . 'Transformer';
             $childModel = 'Domains\\' . $correctRelation . '\Models\\' . $classPrefix;
