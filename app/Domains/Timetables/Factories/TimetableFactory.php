@@ -8,6 +8,7 @@ use Domains\Timetables\Enums\TimetableStatusEnum;
 use Domains\Timetables\Models\Timetable;
 use Domains\Users\Models\User;
 use Parents\Factories\Factory;
+use Parents\ValueObjects\CrmIdValueObject;
 use Parents\ValueObjects\TimeValueObject;
 
 final class TimetableFactory extends Factory
@@ -38,6 +39,7 @@ final class TimetableFactory extends Factory
             'description' => $this->faker->sentence(15),
             'parking_info' => $this->faker->text,
             'user_id' => User::factory(),
+            'crmid' => CrmIdValueObject::fromNative($this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)),
         ];
     }
 }

@@ -16,5 +16,9 @@ return [
         \Domains\Timetables\Enums\TimetableStatusEnum::PENDING => 'В ожидании',
         \Domains\Timetables\Enums\TimetableStatusEnum::COMPLETED => 'Оплачен',
         \Domains\Timetables\Enums\TimetableStatusEnum::CANCELED => 'Отменён'
+    ],
+    \Domains\Payments\Enums\TypePaymentEnum::class => [
+        \Domains\Payments\Enums\TypePaymentEnum::BANK_PAYMENT => 'Банковская транзакция',
+        \Domains\Payments\Enums\TypePaymentEnum::ONLINE_PAYMENT => 'Онлайн платёж'
     ]
 ];

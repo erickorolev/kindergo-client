@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-partials.card>
                 <x-slot name="title">
-                    <a href="{{ route('payments.index') }}" class="mr-4"
+                    <a href="{{ route('admin.payments.index') }}" class="mr-4"
                         ><i class="mr-1 icon ion-md-arrow-back"></i
                     ></a>
                 </x-slot>
@@ -41,6 +41,12 @@
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
+                            @lang('crud.payments.inputs.crmid')
+                        </h5>
+                        <span>{{ $payment->crmid ?? '-' }}</span>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="font-medium text-gray-700">
                             @lang('crud.payments.inputs.user_id')
                         </h5>
                         <span>{{ optional($payment->user)->name ?? '-' }}</span>
@@ -48,13 +54,13 @@
                 </div>
 
                 <div class="mt-10">
-                    <a href="{{ route('payments.index') }}" class="button">
+                    <a href="{{ route('admin.payments.index') }}" class="button">
                         <i class="mr-1 icon ion-md-return-left"></i>
                         @lang('crud.common.back')
                     </a>
 
-                    @can('create', App\Models\Payment::class)
-                    <a href="{{ route('payments.create') }}" class="button">
+                    @can('create payments')
+                    <a href="{{ route('admin.payments.create') }}" class="button">
                         <i class="mr-1 icon ion-md-add"></i>
                         @lang('crud.common.create')
                     </a>

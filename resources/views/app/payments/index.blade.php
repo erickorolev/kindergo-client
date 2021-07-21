@@ -32,9 +32,9 @@
                             </form>
                         </div>
                         <div class="md:w-1/2 text-right">
-                            @can('create', App\Models\Payment::class)
+                            @can('create payments')
                             <a
-                                href="{{ route('payments.create') }}"
+                                href="{{ route('admin.payments.create') }}"
                                 class="button button-primary"
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
@@ -94,9 +94,9 @@
                                         aria-label="Row Actions"
                                         class="relative inline-flex align-middle"
                                     >
-                                        @can('update', $payment)
+                                        @can('update payments')
                                         <a
-                                            href="{{ route('payments.edit', $payment) }}"
+                                            href="{{ route('admin.payments.edit', $payment->id) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -108,9 +108,9 @@
                                                 ></i>
                                             </button>
                                         </a>
-                                        @endcan @can('view', $payment)
+                                        @endcan @can('view payments')
                                         <a
-                                            href="{{ route('payments.show', $payment) }}"
+                                            href="{{ route('admin.payments.show', $payment->id) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -120,9 +120,9 @@
                                                 <i class="icon ion-md-eye"></i>
                                             </button>
                                         </a>
-                                        @endcan @can('delete', $payment)
+                                        @endcan @can('delete payments')
                                         <form
-                                            action="{{ route('payments.destroy', $payment) }}"
+                                            action="{{ route('admin.payments.destroy', $payment) }}"
                                             method="POST"
                                             onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                         >

@@ -6,6 +6,8 @@ namespace Parents\Providers;
 
 use Domains\Children\Repositories\ChildRepositoryInterface;
 use Domains\Children\Repositories\Eloquent\ChildRepository;
+use Domains\Payments\Repositories\Eloquent\PaymentRepository;
+use Domains\Payments\Repositories\PaymentRepositoryInterface;
 use Domains\TemporaryFile\Models\TemporaryFile;
 use Domains\TemporaryFile\Repositories\Eloquent\TemporaryFileRepository;
 use Domains\TemporaryFile\Repositories\TemporaryFileRepositoryInterface;
@@ -25,6 +27,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(ChildRepositoryInterface::class, ChildRepository::class);
         $this->app->bind(TimetableRepositoryInterface::class, TimetableRepository::class);
+        $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
         $this->app->bind(TemporaryFileRepositoryInterface::class, TemporaryFileRepository::class);
     }
 }

@@ -48,4 +48,13 @@
             @endforeach
         </x-inputs.select>
     </x-inputs.group>
+    <x-inputs.group class="w-full">
+        <x-inputs.text
+            name="crmid"
+            label="CrmId"
+            value="{{ old('crmid', ($editing ? $payment->crmid : '')) }}"
+            maxlength="100"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
 </div>

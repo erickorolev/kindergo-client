@@ -186,18 +186,19 @@ return [
     ],
 
     'payments' => [
-        'name' => 'Payments',
-        'index_title' => 'Payments List',
-        'new_title' => 'New Payment',
-        'create_title' => 'Create Payment',
-        'edit_title' => 'Edit Payment',
-        'show_title' => 'Show Payment',
+        'name' => 'Платежи',
+        'index_title' => 'Список платежей',
+        'new_title' => 'Новый платёж',
+        'create_title' => 'Создать платёж',
+        'edit_title' => 'Редактировать платёж',
+        'show_title' => 'Показать платёж',
         'inputs' => [
-            'pay_date' => 'Pay Date',
-            'type_payment' => 'Type Payment',
-            'amount' => 'Amount',
-            'spstatus' => 'Spstatus',
-            'user_id' => 'User',
+            'pay_date' => 'Дата платежа',
+            'type_payment' => 'Тип платежа',
+            'amount' => 'Сумма',
+            'spstatus' => 'Статус',
+            'user_id' => 'Пользователь',
+            'crmid' => 'CRMID'
         ],
     ],
 

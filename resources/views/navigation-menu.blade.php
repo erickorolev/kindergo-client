@@ -33,15 +33,15 @@
                                     Timetables
                                 </x-dropdown-link>
                             @endcan
+                            @can('list payments')
+                                <x-dropdown-link href="{{ route('admin.payments.index') }}">
+                                    Payments
+                                </x-dropdown-link>
+                            @endcan
                             {{--
                         @can('view-any', App\Models\Attendant::class)
                         <x-dropdown-link href="{{ route('attendants.index') }}">
                         Attendants
-                        </x-dropdown-link>
-                        @endcan
-                        @can('view-any', App\Models\Payment::class)
-                        <x-dropdown-link href="{{ route('payments.index') }}">
-                        Payments
                         </x-dropdown-link>
                         @endcan
                         @can('view-any', App\Models\Trip::class)
@@ -206,15 +206,26 @@
                     Timetables
                 </x-jet-responsive-nav-link>
             @endcan
+            @can('list payments')
+                <x-jet-responsive-nav-link href="{{ route('admin.payments.index') }}">
+                    Payments
+                </x-jet-responsive-nav-link>
+            @endcan
+
+            @if (Auth::user()->can('list roles') || Auth::user()->can('list permissions'))
+                @can('list roles')
+                    <x-jet-responsive-nav-link href="{{ route('admin.roles.index') }}">Roles</x-jet-responsive-nav-link>
+                @endcan
+
+                @can('list permissions')
+                    <x-jet-responsive-nav-link href="{{ route('admin.permissions.index') }}">Permissions</x-jet-responsive-nav-link>
+                @endcan
+
+            @endif
             {{--
                 @can('view-any', App\Models\Attendant::class)
                 <x-jet-responsive-nav-link href="{{ route('attendants.index') }}">
                 Attendants
-                </x-jet-responsive-nav-link>
-                @endcan
-                @can('view-any', App\Models\Payment::class)
-                <x-jet-responsive-nav-link href="{{ route('payments.index') }}">
-                Payments
                 </x-jet-responsive-nav-link>
                 @endcan
                 @can('view-any', App\Models\Trip::class)
@@ -222,19 +233,7 @@
                 Trips
                 </x-jet-responsive-nav-link>
                 @endcan
-
-                @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
-                    Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
-
-                    @can('view-any', Spatie\Permission\Models\Role::class)
-                    <x-jet-responsive-nav-link href="{{ route('roles.index') }}">Roles</x-jet-responsive-nav-link>
-                    @endcan
-
-                    @can('view-any', Spatie\Permission\Models\Permission::class)
-                    <x-jet-responsive-nav-link href="{{ route('permissions.index') }}">Permissions</x-jet-responsive-nav-link>
-                    @endcan
-
-                @endif--}}
+--}}
         </div>
 
         <!-- Responsive Settings Options -->

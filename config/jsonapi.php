@@ -18,6 +18,10 @@ return [
                 [
                     'type' => 'timetables',
                     'method' => 'timetables'
+                ],
+                [
+                    'type' => 'payments',
+                    'method' => 'payments'
                 ]
             ],
             'allowedSorts' => [
@@ -57,6 +61,21 @@ return [
                 [
                     'type' => 'children',
                     'method' => 'children'
+                ]
+            ],
+            'allowedSorts' => [
+                'updated_at'
+            ],
+            'allowedFilters' => [
+
+            ]
+        ],
+        'payments' => [
+            'domain' => 'Payments',
+            'relationships' => [
+                [
+                    'type' => 'user',
+                    'method' => 'user'
                 ]
             ],
             'allowedSorts' => [
