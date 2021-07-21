@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domains\Timetables\Tests\Feature;
 
 use Domains\Authorization\Seeders\PermissionsSeeder;
+use Domains\Children\Models\Child;
 use Domains\Timetables\Http\Controllers\Api\TimetableApiController;
 use Domains\Timetables\Http\Requests\Admin\DeleteTimetableRequest;
 use Domains\Timetables\Http\Requests\Admin\IndexTimetablesRequest;
@@ -239,6 +240,27 @@ class TimetableApiTest extends TestCase
             TimetableApiController::class,
             'destroy',
             DeleteTimetableRequest::class
+        );
+    }
+
+    public function testGettingChildrenInclude(): void
+    {
+        /** @var Child $child */
+        $child = Child::factory()->createOne();
+        $timetable = Timetable::factory()->createOne();
+        $timetable->children()->attach($child->id);
+        $response = $this->getJson(route('api.timetables.show', [
+            'timetable' => $timetable->id,
+            'include' => 'children'
+        ]));
+        $response->assertOk()->assertJson(fn(AssertableJson $json) => $json
+            ->has('data')
+            ->where('data.type', 'timetables')
+            ->where('data.id', (string) $timetable->id)
+            ->has('included')
+            ->where('included.0.type', 'children')
+            ->where('included.0.id', (string) $child->id)
+            ->etc()
         );
     }
 }
