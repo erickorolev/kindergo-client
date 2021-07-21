@@ -46,7 +46,11 @@ final class TimetableController extends Controller
         /** @var Collection $children */
         $children = GetChildrenDropdownListAction::run();
 
-        return view('app.timetables.create', compact('users', 'children'));
+        return view('app.timetables.create', [
+            'users' => $users,
+            'children' => $children,
+            'selected_children' => []
+        ]);
     }
 
     public function store(TimetableStoreRequest $request)
@@ -72,11 +76,14 @@ final class TimetableController extends Controller
         $users = GetUsersDropdownListAction::run();
         /** @var Collection $children */
         $children = GetChildrenDropdownListAction::run();
+        /** @var Timetable $timetableModel */
+        $timetableModel = GetTimetableByIdAction::run($timetable);
 
         return view('app.timetables.edit', [
-            'timetable' => GetTimetableByIdAction::run($timetable),
+            'timetable' => $timetableModel,
             'users' => $users,
-            'children' => $children
+            'children' => $children,
+            'selected_children' => $timetableModel->children->pluck('id')->toArray()
         ]);
     }
 

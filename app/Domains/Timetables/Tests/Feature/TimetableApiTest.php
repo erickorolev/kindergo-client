@@ -246,7 +246,10 @@ class TimetableApiTest extends TestCase
     public function testGettingChildrenInclude(): void
     {
         /** @var Child $child */
-        $child = Child::factory()->createOne();
+        $child = Child::factory()->createOne([
+            'phone' => '+79876757777',
+            'otherphone' => '+79024445687'
+        ]);
         $timetable = Timetable::factory()->createOne();
         $timetable->children()->attach($child->id);
         $response = $this->getJson(route('api.timetables.show', [

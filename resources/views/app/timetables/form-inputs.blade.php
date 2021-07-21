@@ -153,6 +153,14 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
+        <x-inputs.select name="children[]" label="Children" multiple="true">
+            @foreach($children as $id=>$child)
+                <option value="{{$id}}" {{ in_array($id, $selected_children) ? 'selected' : '' }}>{{ $child }}</option>
+            @endforeach
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
         <x-inputs.select name="user_id" label="User">
             @php $selected = old('user_id', ($editing ? $timetable->user_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>

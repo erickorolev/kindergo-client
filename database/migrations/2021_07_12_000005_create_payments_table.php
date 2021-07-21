@@ -17,16 +17,11 @@ class CreatePaymentsTable extends Migration
             $table->bigIncrements('id');
             $table->date('pay_date')->comment('Дата платежа');
             $table
-                ->enum('type_payment', ['Online payment', 'Bank payment'])
+                ->string('type_payment', 100)
                 ->default('Online payment')->comment('Вид оплаты');
             $table->bigInteger('amount')->comment('Сумма в копейках');
             $table
-                ->enum('spstatus', [
-                    'Scheduled',
-                    'Canceled',
-                    'Delayed',
-                    'Executed',
-                ])
+                ->string('spstatus', 100)
                 ->default('Scheduled')->comment('Статус');
             $table->unsignedBigInteger('user_id')->comment('Контакт');
             $table->string('crmid', 100)->nullable()->comment('ID in Vtiger');
