@@ -30,7 +30,7 @@ class ModelRelationTest extends TestCase
         $timetable = Timetable::factory()->create();
         $trip = Trip::factory()->create(['timetable_id' => $timetable->id]);
 
-        $this->assertEquals($timetable->id, $trip->attendant_id);
+        $this->assertEquals($timetable->id, $trip->timetable_id);
         $this->assertInstanceOf(Timetable::class, $trip->timetable);
         $this->assertEquals($timetable->id, $trip->timetable->id);
     }
