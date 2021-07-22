@@ -11,7 +11,6 @@ use Domains\Users\Casts\PhoneValueObjectCast;
 use Parents\Casts\CrmIdValueObjectCast;
 use Parents\Enums\GenderEnum;
 use Parents\Models\Model;
-use Propaganistas\LaravelPhone\Casts\PhoneNumberCast;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;

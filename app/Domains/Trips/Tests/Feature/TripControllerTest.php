@@ -144,7 +144,7 @@ class TripControllerTest extends TestCase
             'status' => TripStatusEnum::getRandomValue(),
             'scheduled_wait_where' => $this->faker->randomNumber(1),
             'scheduled_wait_from' => $this->faker->randomNumber(1),
-            'parking_cost' => $this->faker->randomNumber(1),
+            'parking_cost' => $this->faker->randomNumber(3),
             'attendant_id' => $attendant->id,
             'timetable_id' => $timetable->id,
         ];

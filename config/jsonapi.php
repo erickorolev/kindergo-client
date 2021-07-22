@@ -107,6 +107,21 @@ return [
             'allowedFilters' => [
 
             ]
+        ],
+        'attendants' => [
+            'domain' => 'Attendants',
+            'relationships' => [
+                [
+                    'type' => 'trips',
+                    'method' => 'trips'
+                ]
+            ],
+            'allowedSorts' => [
+                'updated_at'
+            ],
+            'allowedFilters' => [
+
+            ]
         ]
     ]
 ];

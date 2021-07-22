@@ -9,14 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-partials.card>
                 <x-slot name="title">
-                    <a href="{{ route('attendants.index') }}" class="mr-4"
+                    <a href="{{ route('admin.attendants.index') }}" class="mr-4"
                         ><i class="mr-1 icon ion-md-arrow-back"></i
                     ></a>
                 </x-slot>
 
                 <x-form
                     method="POST"
-                    action="{{ route('attendants.store') }}"
+                    action="{{ route('admin.attendants.store') }}"
                     has-files
                     class="mt-4"
                 >
@@ -24,7 +24,7 @@
 
                     <div class="mt-10">
                         <a
-                            href="{{ route('attendants.index') }}"
+                            href="{{ route('admin.attendants.index') }}"
                             class="button"
                         >
                             <i

@@ -6,6 +6,8 @@ declare(strict_types=1);
 namespace Domains\Attendants\Transformers;
 
 use Domains\Attendants\Models\Attendant;
+use Domains\Trips\Models\Trip;
+use Domains\Trips\Transformers\TripTransformer;
 use Parents\Transformers\MediaTransformer;
 use Parents\Transformers\Transformer;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -13,7 +15,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 final class AttendantTransformer extends Transformer
 {
     protected $availableIncludes = [
-
+        'trips'
     ];
 
     public function transform(Attendant $model): array
@@ -41,5 +43,10 @@ final class AttendantTransformer extends Transformer
                 'updated_at' => $model->updated_at,
             ]
         ];
+    }
+
+    public function includeTrips(Attendant $model): \League\Fractal\Resource\Collection
+    {
+        return $this->collection($model->trips, new TripTransformer(), Trip::RESOURCE_NAME);
     }
 }

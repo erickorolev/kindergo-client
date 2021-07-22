@@ -32,9 +32,9 @@
                             </form>
                         </div>
                         <div class="md:w-1/2 text-right">
-                            @can('create', App\Models\Attendant::class)
+                            @can('create attendants')
                             <a
-                                href="{{ route('attendants.create') }}"
+                                href="{{ route('admin.attendants.create') }}"
                                 class="button button-primary"
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
@@ -106,9 +106,9 @@
                                         aria-label="Row Actions"
                                         class="relative inline-flex align-middle"
                                     >
-                                        @can('update', $attendant)
+                                        @can('update attendants')
                                         <a
-                                            href="{{ route('attendants.edit', $attendant) }}"
+                                            href="{{ route('admin.attendants.edit', $attendant->id) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -120,9 +120,9 @@
                                                 ></i>
                                             </button>
                                         </a>
-                                        @endcan @can('view', $attendant)
+                                        @endcan @can('view attendants', $attendant->id)
                                         <a
-                                            href="{{ route('attendants.show', $attendant) }}"
+                                            href="{{ route('admin.attendants.show', $attendant->id) }}"
                                             class="mr-1"
                                         >
                                             <button
@@ -132,9 +132,9 @@
                                                 <i class="icon ion-md-eye"></i>
                                             </button>
                                         </a>
-                                        @endcan @can('delete', $attendant)
+                                        @endcan @can('delete attendants', $attendant->id)
                                         <form
-                                            action="{{ route('attendants.destroy', $attendant) }}"
+                                            action="{{ route('admin.attendants.destroy', $attendant->id) }}"
                                             method="POST"
                                             onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                         >

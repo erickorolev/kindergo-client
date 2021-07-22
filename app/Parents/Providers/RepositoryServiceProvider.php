@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Parents\Providers;
 
+use Domains\Attendants\Repositories\AttendantRepositoryInterface;
+use Domains\Attendants\Repositories\Eloquent\AttendantRepository;
 use Domains\Children\Repositories\ChildRepositoryInterface;
 use Domains\Children\Repositories\Eloquent\ChildRepository;
 use Domains\Payments\Repositories\Eloquent\PaymentRepository;
@@ -31,6 +33,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TimetableRepositoryInterface::class, TimetableRepository::class);
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
         $this->app->bind(TripRepositoryInterface::class, TripRepository::class);
+        $this->app->bind(AttendantRepositoryInterface::class, AttendantRepository::class);
         $this->app->bind(TemporaryFileRepositoryInterface::class, TemporaryFileRepository::class);
     }
 }

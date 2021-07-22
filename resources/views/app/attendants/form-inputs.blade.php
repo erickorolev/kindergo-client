@@ -13,9 +13,9 @@
 
     <x-inputs.group class="w-full">
         <x-inputs.text
-            name="latname"
-            label="Latname"
-            value="{{ old('latname', ($editing ? $attendant->latname : '')) }}"
+            name="lastname"
+            label="Lastname"
+            value="{{ old('lastname', ($editing ? $attendant->lastname : '')) }}"
             maxlength="190"
             required
         ></x-inputs.text>

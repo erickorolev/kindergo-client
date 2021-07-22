@@ -9,14 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-partials.card>
                 <x-slot name="title">
-                    <a href="{{ route('attendants.index') }}" class="mr-4"
+                    <a href="{{ route('admin.attendants.index') }}" class="mr-4"
                         ><i class="mr-1 icon ion-md-arrow-back"></i
                     ></a>
                 </x-slot>
 
                 <x-form
                     method="PUT"
-                    action="{{ route('attendants.update', $attendant) }}"
+                    action="{{ route('admin.attendants.update', $attendant->id) }}"
                     has-files
                     class="mt-4"
                 >
@@ -24,7 +24,7 @@
 
                     <div class="mt-10">
                         <a
-                            href="{{ route('attendants.index') }}"
+                            href="{{ route('admin.attendants.index') }}"
                             class="button"
                         >
                             <i
@@ -34,7 +34,7 @@
                         </a>
 
                         <a
-                            href="{{ route('attendants.create') }}"
+                            href="{{ route('admin.attendants.create') }}"
                             class="button"
                         >
                             <i class="mr-1 icon ion-md-add text-primary"></i>
@@ -52,13 +52,13 @@
                 </x-form>
             </x-partials.card>
 
-            @can('view-any', App\Models\Trip::class)
+            {{--@can('list trips')
             <x-partials.card class="mt-5">
                 <x-slot name="title"> Trips </x-slot>
 
                 <livewire:attendant-trips-detail :attendant="$attendant" />
             </x-partials.card>
-            @endcan
+            @endcan--}}
         </div>
     </div>
 </x-app-layout>
