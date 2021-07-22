@@ -218,7 +218,7 @@ return [
             'attendant_id' => 'Attendant',
             'timetable_id' => 'Timetable',
             'scheduled_wait_where' => 'Scheduled Wait Where',
-            'sheduled_wait_from' => 'Sheduled Wait From',
+            'scheduled_wait_from' => 'Scheduled Wait From',
             'parking_cost' => 'Parking Cost',
         ],
     ],

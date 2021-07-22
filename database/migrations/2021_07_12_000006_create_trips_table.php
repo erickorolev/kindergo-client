@@ -21,20 +21,16 @@ class CreateTripsTable extends Migration
             $table->time('time')->comment('Время отправления');
             $table->integer('childrens')->default(0)->comment('Количество детей');
             $table
-                ->enum('status', [
-                    'Appointed',
-                    'Performed',
-                    'Completed',
-                    'Canceled',
-                ])
+                ->string('status', 100)
                 ->default('Appointed')->comment('Статус');
             $table->unsignedBigInteger('attendant_id')->nullable()->comment('Сопровождающий');
+            $table->unsignedBigInteger('user_id')->nullable()->comment('Клиент');
             $table->unsignedBigInteger('timetable_id')->comment('Расписание');
             $table->integer('scheduled_wait_where')
                 ->comment('Незапланированное время ожидания в точке Куда');
-            $table->integer('sheduled_wait_from')
+            $table->integer('scheduled_wait_from')
                 ->comment('Незапланированное время ожидания в точке Откуда');
-            $table->integer('parking_cost')->comment('Стоимость парковки');
+            $table->integer('parking_cost')->comment('Стоимость парковки')->default(0);
             $table->string('crmid', 100)->nullable()->comment('ID in Vtiger');
 
             $table->timestamps();

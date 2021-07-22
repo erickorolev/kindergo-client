@@ -18,7 +18,7 @@ final class GetClearUserIdAction extends \Parents\Actions\Action
         if ($user) {
             return $user->id;
         }
-        $user = GetUserByIdAction::run($id);
+        $user = User::whereId($id)->firstOrFail();
         return $user->id;
     }
 }

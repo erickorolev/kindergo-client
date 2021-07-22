@@ -9,27 +9,27 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-partials.card>
                 <x-slot name="title">
-                    <a href="{{ route('trips.index') }}" class="mr-4"
+                    <a href="{{ route('admin.trips.index') }}" class="mr-4"
                         ><i class="mr-1 icon ion-md-arrow-back"></i
                     ></a>
                 </x-slot>
 
                 <x-form
                     method="PUT"
-                    action="{{ route('trips.update', $trip) }}"
+                    action="{{ route('admin.trips.update', $trip) }}"
                     class="mt-4"
                 >
                     @include('app.trips.form-inputs')
 
                     <div class="mt-10">
-                        <a href="{{ route('trips.index') }}" class="button">
+                        <a href="{{ route('admin.trips.index') }}" class="button">
                             <i
                                 class="mr-1 icon ion-md-return-left text-primary"
                             ></i>
                             @lang('crud.common.back')
                         </a>
 
-                        <a href="{{ route('trips.create') }}" class="button">
+                        <a href="{{ route('admin.trips.create') }}" class="button">
                             <i class="mr-1 icon ion-md-add text-primary"></i>
                             @lang('crud.common.create')
                         </a>

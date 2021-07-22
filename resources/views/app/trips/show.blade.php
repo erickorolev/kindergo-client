@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-partials.card>
                 <x-slot name="title">
-                    <a href="{{ route('trips.index') }}" class="mr-4"
+                    <a href="{{ route('admin.trips.index') }}" class="mr-4"
                         ><i class="mr-1 icon ion-md-arrow-back"></i
                     ></a>
                 </x-slot>
@@ -76,9 +76,9 @@
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
-                            @lang('crud.trips.inputs.sheduled_wait_from')
+                            @lang('crud.trips.inputs.scheduled_wait_from')
                         </h5>
-                        <span>{{ $trip->sheduled_wait_from ?? '-' }}</span>
+                        <span>{{ $trip->scheduled_wait_from ?? '-' }}</span>
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
@@ -89,13 +89,13 @@
                 </div>
 
                 <div class="mt-10">
-                    <a href="{{ route('trips.index') }}" class="button">
+                    <a href="{{ route('admin.trips.index') }}" class="button">
                         <i class="mr-1 icon ion-md-return-left"></i>
                         @lang('crud.common.back')
                     </a>
 
-                    @can('create', App\Models\Trip::class)
-                    <a href="{{ route('trips.create') }}" class="button">
+                    @can('create trips')
+                    <a href="{{ route('admin.trips.create') }}" class="button">
                         <i class="mr-1 icon ion-md-add"></i>
                         @lang('crud.common.create')
                     </a>

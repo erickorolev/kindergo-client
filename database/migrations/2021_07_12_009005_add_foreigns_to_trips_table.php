@@ -21,6 +21,12 @@ class AddForeignsToTripsTable extends Migration
                 ->onUpdate('CASCADE');
 
             $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('CASCADE');
+
+            $table
                 ->foreign('timetable_id')
                 ->references('id')
                 ->on('timetables')
@@ -37,6 +43,7 @@ class AddForeignsToTripsTable extends Migration
     {
         Schema::table('trips', function (Blueprint $table) {
             $table->dropForeign(['attendant_id']);
+            $table->dropForeign(['user_id']);
             $table->dropForeign(['timetable_id']);
         });
     }

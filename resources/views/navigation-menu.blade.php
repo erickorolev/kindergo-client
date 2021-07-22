@@ -38,17 +38,18 @@
                                     Payments
                                 </x-dropdown-link>
                             @endcan
+                            @can('list trips')
+                                <x-dropdown-link href="{{ route('admin.trips.index') }}">
+                                    Trips
+                                </x-dropdown-link>
+                            @endcan
                             {{--
                         @can('view-any', App\Models\Attendant::class)
                         <x-dropdown-link href="{{ route('attendants.index') }}">
                         Attendants
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\Trip::class)
-                        <x-dropdown-link href="{{ route('trips.index') }}">
-                        Trips
-                        </x-dropdown-link>
-                        @endcan--}}
+                        --}}
                 </x-nav-dropdown>
 
                     @if (Auth::user()->can('list roles') ||
@@ -222,15 +223,15 @@
                 @endcan
 
             @endif
+            @can('list trips')
+                <x-jet-responsive-nav-link href="{{ route('admin.trips.index') }}">
+                    Trips
+                </x-jet-responsive-nav-link>
+            @endcan
             {{--
                 @can('view-any', App\Models\Attendant::class)
                 <x-jet-responsive-nav-link href="{{ route('attendants.index') }}">
                 Attendants
-                </x-jet-responsive-nav-link>
-                @endcan
-                @can('view-any', App\Models\Trip::class)
-                <x-jet-responsive-nav-link href="{{ route('trips.index') }}">
-                Trips
                 </x-jet-responsive-nav-link>
                 @endcan
 --}}

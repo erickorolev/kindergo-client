@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domains\Children\Models;
 
 use Domains\Timetables\Models\Timetable;
+use Domains\Trips\Models\Trip;
 use Domains\Users\Casts\PhoneValueObjectCast;
 use Domains\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -58,7 +59,7 @@ final class Child extends Model implements HasMedia
         return $this->belongsToMany(Timetable::class);
     }
 
-    public function trips()
+    public function trips(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Trip::class);
     }

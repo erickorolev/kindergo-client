@@ -93,9 +93,9 @@
 
     <x-inputs.group class="w-full">
         <x-inputs.number
-            name="sheduled_wait_from"
-            label="Sheduled Wait From"
-            value="{{ old('sheduled_wait_from', ($editing ? $trip->sheduled_wait_from : '')) }}"
+            name="scheduled_wait_from"
+            label="Scheduled Wait From"
+            value="{{ old('scheduled_wait_from', ($editing ? $trip->scheduled_wait_from : '')) }}"
             max="255"
             required
         ></x-inputs.number>
@@ -109,5 +109,30 @@
             max="255"
             required
         ></x-inputs.number>
+    </x-inputs.group>
+    <x-inputs.group class="w-full">
+        <x-inputs.text
+            name="crmid"
+            label="CRMID"
+            value="{{ old('crmid', ($editing ? $trip->crmid : '')) }}"
+            maxlength="50"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+    <x-inputs.group class="w-full">
+        <x-inputs.select name="user_id" label="User" required>
+            @php $selected = old('user_id', ($editing ? $trip->user_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
+            @foreach($users as $value => $label)
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
+    </x-inputs.group>
+    <x-inputs.group class="w-full">
+        <x-inputs.select name="children[]" label="Children" multiple="true">
+            @foreach($children as $id=>$child)
+                <option value="{{$id}}" {{ in_array($id, $selected_children) ? 'selected' : '' }}>{{ $child }}</option>
+            @endforeach
+        </x-inputs.select>
     </x-inputs.group>
 </div>

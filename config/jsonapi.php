@@ -42,6 +42,10 @@ return [
                 [
                     'type' => 'timetables',
                     'method' => 'timetables'
+                ],
+                [
+                    'type' => 'trips',
+                    'method' => 'trips'
                 ]
             ],
             'allowedSorts' => [
@@ -76,6 +80,25 @@ return [
                 [
                     'type' => 'users',
                     'method' => 'user'
+                ]
+            ],
+            'allowedSorts' => [
+                'updated_at'
+            ],
+            'allowedFilters' => [
+
+            ]
+        ],
+        'trips' => [
+            'domain' => 'Trips',
+            'relationships' => [
+                [
+                    'type' => 'timetables',
+                    'method' => 'timetable'
+                ],
+                [
+                    'type' => 'children',
+                    'method' => 'children'
                 ]
             ],
             'allowedSorts' => [

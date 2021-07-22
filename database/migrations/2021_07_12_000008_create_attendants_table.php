@@ -11,12 +11,12 @@ class CreateAttendantsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('attendants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('firstname', 190)->comment('Имя');
-            $table->string('latname', 190)->comment('Фамилия');
+            $table->string('lastname', 190)->comment('Фамилия');
             $table->string('middle_name', 190)->nullable()->comment('Отчество');
             $table->string('phone', 20)->comment('Телефон');
             $table->text('resume')->comment('Анкета');
@@ -39,7 +39,7 @@ class CreateAttendantsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('attendants');
     }
