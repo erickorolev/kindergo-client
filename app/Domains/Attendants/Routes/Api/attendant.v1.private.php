@@ -1,16 +1,19 @@
 <?php
 
 /**
- * @routeNamespace("Domains\Children\Http\Controllers\Api")
+ * @routeNamespace("Domains\Attendants\Http\Controllers\Api")
  * @routePrefix("api.")
  */
 
-Route::get('children/{id}/{relation}', [
-    \Domains\Children\Http\Controllers\Api\ChildApiController::class,
+Route::get('attendants/{id}/{relation}', [
+    \Domains\Attendants\Http\Controllers\Api\AttendantApiController::class,
     'relations'
-])->name('children.relations');
-Route::post('children/{id}/{relation}/{parent}', [
-    \Domains\Children\Http\Controllers\Api\ChildApiController::class,
+])->name('attendants.relations');
+Route::post('attendants/{id}/{relation}/{parent}', [
+    \Domains\Attendants\Http\Controllers\Api\AttendantApiController::class,
     'relationCreate'
-])->name('children.relations.create');
-Route::apiResource('children', \Domains\Children\Http\Controllers\Api\ChildApiController::class);
+])->name('attendants.relations.create');
+Route::apiResource(
+    'attendants',
+    \Domains\Attendants\Http\Controllers\Api\AttendantApiController::class
+);
