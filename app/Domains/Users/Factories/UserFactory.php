@@ -30,7 +30,9 @@ final class UserFactory extends Factory
     {
         return [
             'name' => FullNameValueObject::fromNative(
-                $this->faker->firstName(), $this->faker->lastName(), null
+                $this->faker->firstName(),
+                $this->faker->lastName(),
+                null
             ),
             'email' => $this->faker->email(),
             'email_verified_at' => now(),
