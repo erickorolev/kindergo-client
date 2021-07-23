@@ -18,6 +18,7 @@ use Domains\Users\Http\Requests\Api\UserUpdateApiRequest;
 use Domains\Users\Models\User;
 use Domains\Users\Transformers\UserTransformer;
 use Domains\Users\ValueObjects\PasswordValueObject;
+use Illuminate\Support\Facades\Auth;
 use Parents\Controllers\Controller;
 use Parents\Serializers\JsonApiSerializer;
 use Parents\Traits\RelationTrait;
@@ -27,12 +28,17 @@ final class UserApiController extends Controller
 {
     use RelationTrait;
 
+    /**
+     * @psalm-param class-string $relationClass
+     */
     protected string $relationClass = GetUserByIdAction::class;
 
     public function me(): \Illuminate\Http\JsonResponse
     {
+        /** @var User $user */
+        $user = Auth::user();
         return fractal(
-            auth()->user(),
+            $user,
             new UserTransformer(),
             new JsonApiSerializer($this->getUrl())
         )->withResourceName(User::RESOURCE_NAME)

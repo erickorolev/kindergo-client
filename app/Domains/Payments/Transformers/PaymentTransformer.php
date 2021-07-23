@@ -20,7 +20,7 @@ final class PaymentTransformer extends Transformer
         return [
             'id' => $model->id,
             'pay_date' => $model->pay_date,
-            'amount' => $model->amount->toNative(),
+            'amount' => $model->amount?->toNative(),
             'type_payment' => $model->type_payment->toArray(),
             'spstatus' => $model->spstatus->toArray(),
             'crmid' => $model->crmid?->toNative(),

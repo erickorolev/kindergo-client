@@ -14,7 +14,9 @@ class ModelRelationTest extends TestCase
 {
     public function testUserBelongsToTimetable(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->create(['user_id' => $user->id]);
 
         $this->assertInstanceOf(User::class, $timetable->user);
@@ -32,6 +34,6 @@ class ModelRelationTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $timetable->children);
         $this->assertInstanceOf(Child::class, $timetable->children->first());
-        $this->assertEquals($child->id, $timetable->children->first()->id);
+        $this->assertEquals($child->id, $timetable->children->first()?->id);
     }
 }

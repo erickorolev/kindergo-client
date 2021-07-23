@@ -29,7 +29,11 @@ use Illuminate\Contracts\Foundation\Application;
 final class RoleController extends Controller
 {
 
-    public function index(IndexRoleRequest $request): Factory|View|Application
+    /**
+     * @return \Illuminate\View\View
+     * @psalm-suppress MismatchingDocblockReturnType
+     */
+    public function index(IndexRoleRequest $request): self|View|Application
     {
         $search = $request->get('search', '');
         if (!$search) {
@@ -43,7 +47,11 @@ final class RoleController extends Controller
             ->with('search', $search);
     }
 
-    public function create(CreateRoleRequest $request): Factory|View|Application
+    /**
+     * @return \Illuminate\View\View
+     * @psalm-suppress MismatchingDocblockReturnType
+     */
+    public function create(CreateRoleRequest $request): self|View|Application
     {
         /** @var Permission[] $permissions */
         $permissions = GetAllPermissionsAction::run();
@@ -51,8 +59,9 @@ final class RoleController extends Controller
         return view('app.roles.create')->with('permissions', $permissions);
     }
 
-    public function store(StoreRoleRequest $request)
-    {
+    public function store(
+        StoreRoleRequest $request
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         /** @var Role $role */
         $role = StoreRoleAction::run(RoleData::fromRequest($request));
 
@@ -61,14 +70,22 @@ final class RoleController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    public function show(ShowRoleRequest $request, int $role): Factory|View|Application
+    /**
+     * @return \Illuminate\View\View
+     * @psalm-suppress MismatchingDocblockReturnType
+     */
+    public function show(ShowRoleRequest $request, int $role): self|View|Application
     {
         $roleModel = GetRoleByIdAction::run($role);
 
         return view('app.roles.show')->with('role', $roleModel);
     }
 
-    public function edit(EditRoleRequest $request, int $role): Factory|View|Application
+    /**
+     * @return \Illuminate\View\View
+     * @psalm-suppress MismatchingDocblockReturnType
+     */
+    public function edit(EditRoleRequest $request, int $role): self|View|Application
     {
         /** @var Permission[] $permissions */
         $permissions = GetAllPermissionsAction::run();
@@ -80,8 +97,10 @@ final class RoleController extends Controller
             ->with('permissions', $permissions);
     }
 
-    public function update(UpdateRoleRequest $request, int $role)
-    {
+    public function update(
+        UpdateRoleRequest $request,
+        int $role
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $roleData = RoleData::fromRequest($request);
         $roleData->id = $role;
 
@@ -92,8 +111,10 @@ final class RoleController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeleteRoleRequest $request, int $role)
-    {
+    public function destroy(
+        DeleteRoleRequest $request,
+        int $role
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         DeleteRoleByIdAction::run($role);
 
         return redirect()

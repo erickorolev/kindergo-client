@@ -16,7 +16,9 @@ class ModelRelationTest extends TestCase
 {
     public function testAttendantRelationship(): void
     {
+        /** @var Attendant $attendant */
         $attendant = Attendant::factory()->create();
+        /** @var Trip $trip */
         $trip = Trip::factory()->create(['attendant_id' => $attendant->id]);
 
         $this->assertEquals($attendant->id, $trip->attendant_id);
@@ -26,7 +28,9 @@ class ModelRelationTest extends TestCase
 
     public function testTimetableRelationship(): void
     {
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->create();
+        /** @var Trip $trip */
         $trip = Trip::factory()->create(['timetable_id' => $timetable->id]);
 
         $this->assertEquals($timetable->id, $trip->timetable_id);
@@ -36,7 +40,9 @@ class ModelRelationTest extends TestCase
 
     public function testUserRelationship(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
+        /** @var Trip $trip */
         $trip = Trip::factory()->create(['user_id' => $user->id]);
 
         $this->assertEquals($user->id, $trip->user_id);
@@ -46,12 +52,14 @@ class ModelRelationTest extends TestCase
 
     public function testChildrenRelationship(): void
     {
+        /** @var Trip $trip */
         $trip = Trip::factory()->create();
+        /** @var Child $child */
         $child = Child::factory()->create();
         $trip->children()->attach($child);
 
         $this->assertInstanceOf(Collection::class, $trip->children);
         $this->assertInstanceOf(Child::class, $trip->children->first());
-        $this->assertEquals($child->id, $trip->children->first()->id);
+        $this->assertEquals($child->id, $trip->children->first()?->id);
     }
 }

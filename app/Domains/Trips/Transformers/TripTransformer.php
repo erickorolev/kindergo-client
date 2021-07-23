@@ -23,14 +23,14 @@ final class TripTransformer extends Transformer
             'id' => $model->id,
             'name' => $model->name,
             'date' => $model->date,
-            'time' => $model->time->toNative(),
+            'time' => $model->time?->toNative(),
             'childrens' => $model->childrens,
             'status' => $model->status->toArray(),
             'attendant_id' => $model->attendant_id,
             'timetable_id' => $model->timetable_id,
             'scheduled_wait_where' => $model->scheduled_wait_where,
             'scheduled_wait_from' => $model->scheduled_wait_from,
-            'parking_cost' => $model->parking_cost->toNative(),
+            'parking_cost' => $model->parking_cost?->toNative(),
             'meta' => [
                 'created_at' => $model->created_at,
                 'updated_at' => $model->updated_at

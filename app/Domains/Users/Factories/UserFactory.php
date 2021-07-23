@@ -29,17 +29,19 @@ final class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => FullNameValueObject::fromNative($this->faker->firstName, $this->faker->lastName, null),
-            'email' => $this->faker->email,
+            'name' => FullNameValueObject::fromNative(
+                $this->faker->firstName(), $this->faker->lastName(), null
+            ),
+            'email' => $this->faker->email(),
             'email_verified_at' => now(),
             'password' => \Hash::make('password'),
             'remember_token' => Str::random(10),
-            'firstname' => $this->faker->firstName,
-            'lastname' => $this->faker->lastName,
-            'middle_name' => $this->faker->lastName,
-            'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'middle_name' => $this->faker->lastName(),
+            'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber()),
             'attendant_gender' => AttendantGenderEnum::getRandomInstance(),
-            'otherphone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
+            'otherphone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber()),
             'crmid' => CrmIdValueObject::fromNative(
                 $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
             ),

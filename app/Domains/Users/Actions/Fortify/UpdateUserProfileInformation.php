@@ -18,6 +18,7 @@ final class UpdateUserProfileInformation implements UpdatesUserProfileInformatio
      * @param  User  $user
      * @param  array  $input
      * @return void
+     * @psalm-suppress UndefinedInterfaceMethod
      */
     public function update($user, array $input): void
     {

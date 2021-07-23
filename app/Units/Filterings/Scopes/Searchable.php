@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Units\Filterings\Scopes;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait Searchable
 {
     /**
      * Search paginated items ordering by ID descending
      *
+     * @param Builder $query
      * @param string $search
      * @param integer $paginationQuantity
      * @return void
@@ -28,13 +31,13 @@ trait Searchable
      * Adds a scope to search the table based on the
      * $searchableFields array inside the model
      *
-     * @param [type] $query
-     * @param [type] $search
-     * @return void
+     * @param Builder $query
+     * @param string $search
+     * @return Builder
      */
     public function scopeSearch($query, $search)
     {
-        $query->where(function ($query) use ($search) {
+        $query->where(function (Builder $query) use ($search) {
             foreach ($this->getSearchableFields() as $field) {
                 $query->orWhere($field, 'like', "%{$search}%");
             }
@@ -49,6 +52,7 @@ trait Searchable
      * in all table fields
      *
      * @return array
+     * @psalm-suppress RedundantCondition
      */
     protected function getSearchableFields()
     {

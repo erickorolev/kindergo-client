@@ -32,7 +32,7 @@ class PaymentApiTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
+        /** @var User $user */
         $user = User::factory()->create(['email' => 'admin@admin.com']);
 
         Sanctum::actingAs($user, [], 'web');
@@ -73,6 +73,7 @@ class PaymentApiTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_payment(): void
     {
@@ -113,7 +114,7 @@ class PaymentApiTest extends TestCase
         $data = [
             'pay_date' => '2021-08-05',
             'type_payment' => TypePaymentEnum::getRandomValue(),
-            'amount' => $this->faker->randomNumber,
+            'amount' => $this->faker->randomNumber(),
             'spstatus' => SpStatusEnum::getRandomValue(),
             'user_id' => $user->id,
         ];
@@ -147,6 +148,7 @@ class PaymentApiTest extends TestCase
      */
     public function it_deletes_the_payment(): void
     {
+        /** @var Payment $payment */
         $payment = Payment::factory()->create();
 
         $response = $this->deleteJson(route('api.payments.destroy', $payment->id));

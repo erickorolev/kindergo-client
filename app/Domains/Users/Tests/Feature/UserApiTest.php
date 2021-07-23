@@ -33,6 +33,7 @@ class UserApiTest extends TestCase
     {
         parent::setUp();
 
+        /** @var User $user */
         $user = User::factory()->create([
             'email' => 'admin@admin.com',
             'phone' => '+79067598835',
@@ -114,6 +115,7 @@ class UserApiTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_user(): void
     {
@@ -122,7 +124,7 @@ class UserApiTest extends TestCase
             ->toArray();
         $data['phone'] = '+79876757777';
         $data['otherphone'] = '+79022884433';
-        $data['password'] = \Str::random('8');
+        $data['password'] = \Str::random(8);
 
         try {
             $response = $this->postJson(route('api.users.store'), [
@@ -131,32 +133,31 @@ class UserApiTest extends TestCase
                     'attributes' => $data
                 ]
             ]);
+            unset($data['password']);
+            unset($data['email_verified_at']);
+            unset($data['current_team_id']);
+            unset($data['imagename']);
+            unset($data['name']);
+
+            $this->assertDatabaseHas('users', $data);
+
+            $response->assertStatus(201)->assertJson([
+                'data' => [
+                    'attributes' => [
+                        'name' => $data['firstname'] . ' ' . $data['middle_name'] . ' ' . $data['lastname'],
+                        'email' => $data['email'],
+                        'firstname' => $data['firstname'],
+                        'lastname' => $data['lastname'],
+                        'crmid' => $data['crmid'],
+                        'phone' => '8 (987) 675-77-77',
+                        'otherphone' => '8 (902) 288-44-33'
+                    ]
+                ]
+            ]);
         } catch (\Illuminate\Validation\ValidationException $ex) {
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
-
-        unset($data['password']);
-        unset($data['email_verified_at']);
-        unset($data['current_team_id']);
-        unset($data['imagename']);
-        unset($data['name']);
-
-        $this->assertDatabaseHas('users', $data);
-
-        $response->assertStatus(201)->assertJson([
-            'data' => [
-                'attributes' => [
-                    'name' => $data['firstname'] . ' ' . $data['middle_name'] . ' ' . $data['lastname'],
-                    'email' => $data['email'],
-                    'firstname' => $data['firstname'],
-                    'lastname' => $data['lastname'],
-                    'crmid' => $data['crmid'],
-                    'phone' => '8 (987) 675-77-77',
-                    'otherphone' => '8 (902) 288-44-33'
-                ]
-            ]
-        ]);
     }
 
     /**
@@ -192,10 +193,10 @@ class UserApiTest extends TestCase
                 'type' => 'users',
                 'id' => (string) $user->id,
                 'attributes' => [
-                    'name' => $this->faker->name,
-                    'email' => $this->faker->email,
-                    'firstname' => $this->faker->firstName,
-                    'lastname' => $this->faker->lastName,
+                    'name' => $this->faker->name(),
+                    'email' => $this->faker->email(),
+                    'firstname' => $this->faker->firstName(),
+                    'lastname' => $this->faker->lastName(),
                     'middle_name' => $this->faker->text(10),
                     'phone' => '+79876757777',
                     'attendant_gender' => 'No matter',
@@ -221,8 +222,8 @@ class UserApiTest extends TestCase
         $this->assertEquals($data['data']['attributes']['middle_name'], $user->middle_name);
         $this->assertEquals($data['data']['attributes']['firstname'], $user->firstname);
         $this->assertEquals($data['data']['attributes']['lastname'], $user->lastname);
-        $this->assertEquals($data['data']['attributes']['phone'], $user->phone->toNative());
-        $this->assertEquals($data['data']['attributes']['otherphone'], $user->otherphone->toNative());
+        $this->assertEquals($data['data']['attributes']['phone'], $user->phone?->toNative());
+        $this->assertEquals($data['data']['attributes']['otherphone'], $user->otherphone?->toNative());
     }
 
     /**
@@ -250,6 +251,7 @@ class UserApiTest extends TestCase
      */
     public function it_deletes_the_user(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $response = $this->deleteJson(route('api.users.destroy', $user));
@@ -325,11 +327,13 @@ class UserApiTest extends TestCase
 
     public function testChildrenIncludeInUser(): void
     {
+        /** @var User $user */
         $user = User::factory()
             ->createOne([
                 'phone' => '+79025689977',
                 'otherphone' => '+79086675566'
             ]);
+        /** @var Child $child */
         $child = Child::factory()->createOne([
             'phone' => '+79025689988',
             'otherphone' => '+79086675599'

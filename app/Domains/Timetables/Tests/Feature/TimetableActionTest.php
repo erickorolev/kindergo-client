@@ -29,10 +29,11 @@ class TimetableActionTest extends TestCase
 
     public function testTimetableIsRestrictedForClients(): void
     {
+        /** @var User $user1 */
         $user1 = User::factory()->create(['email' => 'admin@admin.com']);
 
         $this->seed(PermissionsSeeder::class);
-
+        /** @var User $user */
         $user = User::factory()->createOne();
 
         $this->actingAs(
@@ -55,19 +56,21 @@ class TimetableActionTest extends TestCase
 
     public function testGettingTimetableByIdRestrictedForClients(): void
     {
+        /** @var User $user1 */
         $user1 = User::factory()->create(['email' => 'admin@admin.com']);
 
         $this->seed(PermissionsSeeder::class);
-
+        /** @var User $user */
         $user = User::factory()->createOne();
 
         $this->actingAs(
             $user
         );
-
+        /** @var Timetable $timetable1 */
         $timetable1 = Timetable::factory()->createOne([
             'user_id' => $user1->id
         ]);
+        /** @var Timetable $timetable2 */
         $timetable2 = Timetable::factory()->createOne([
             'user_id' => $user->id
         ]);
@@ -77,8 +80,14 @@ class TimetableActionTest extends TestCase
         GetTimetableByIdAction::run($timetable1->id);
     }
 
+    /**
+     * @test
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     * @psalm-suppress InvalidArrayOffset
+     */
     public function testStoreTimetableAction(): void
     {
+        /** @var Child $child */
         $child = Child::factory()->createOne();
         $timetableArr = Timetable::factory()->makeOne()->toFullArray();
         $timetableArr['children'] = [$child->id];
@@ -91,11 +100,18 @@ class TimetableActionTest extends TestCase
         $this->assertDatabaseHas('timetables', ['where_address' => $timetableData->where_address]);
     }
 
+    /**
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     * @test
+     * @psalm-suppress InvalidArrayOffset
+     */
     public function testUpdateTimetableAction(): void
     {
+        /** @var Child $child */
         $child = Child::factory()->createOne([
             'crmid' => '22x443'
         ]);
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->createOne();
         $timetableArr = $timetable->toFullArray();
         $timetableArr['children'] = GetChildrenIdsFromArrayAction::run([$child->crmid])->toArray();

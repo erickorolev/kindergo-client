@@ -25,8 +25,10 @@ class ChildrenControllerTest extends TestCase
     {
         parent::setUp();
 
+        /** @var User $user */
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
         $this->actingAs(
-            User::factory()->create(['email' => 'admin@admin.com'])
+            $user
         );
 
         $this->seed(PermissionsSeeder::class);
@@ -39,6 +41,7 @@ class ChildrenControllerTest extends TestCase
      */
     public function it_displays_index_view_with_children(): void
     {
+        /** @var Child[] $children */
         $children = Child::factory()
             ->count(5)
             ->create();
@@ -63,6 +66,7 @@ class ChildrenControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_child(): void
     {
@@ -77,23 +81,23 @@ class ChildrenControllerTest extends TestCase
         $data['users'] = [$user->crmid];
         try {
             $response = $this->post(route('admin.children.store'), $data);
+            unset($data['users']);
+
+            $this->assertDatabaseHas('children', $data);
+            /** @var Child $child */
+            $child = Child::latest('id')->first();
+
+            $response->assertRedirect(route('admin.children.edit', $child));
+            $this->assertCount(1, $child->users);
         } catch (\Illuminate\Validation\ValidationException $ex) {
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
-
-        unset($data['users']);
-
-        $this->assertDatabaseHas('children', $data);
-
-        $child = Child::latest('id')->first();
-
-        $response->assertRedirect(route('admin.children.edit', $child));
-        $this->assertCount(1, $child->users);
     }
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_with_file(): void
     {
@@ -126,14 +130,14 @@ class ChildrenControllerTest extends TestCase
         $this->assertDatabaseHas('children', [
             'firstname' => $data['firstname']
         ]);
-
+        /** @var Child $child */
         $child = Child::latest('id')->first();
 
         $photos = $child->getMedia('avatar');
 
         $this->assertCount(1, $photos);
-        $this->assertFileExists($photos->first()->getPath());
-        $this->assertFileExists($photos->first()->getPath('thumb'));
+        $this->assertFileExists($photos->first()?->getPath() ?? '');
+        $this->assertFileExists($photos->first()?->getPath('thumb') ?? '');
     }
 
     /**
@@ -141,6 +145,7 @@ class ChildrenControllerTest extends TestCase
      */
     public function it_displays_show_view_for_child(): void
     {
+        /** @var Child $child */
         $child = Child::factory()->create();
 
         $response = $this->get(route('admin.children.show', $child));
@@ -156,6 +161,7 @@ class ChildrenControllerTest extends TestCase
      */
     public function it_displays_edit_view_for_child(): void
     {
+        /** @var Child $child */
         $child = Child::factory()->create();
 
         $response = $this->get(route('admin.children.edit', $child));
@@ -168,16 +174,18 @@ class ChildrenControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_updates_the_child(): void
     {
         /** @var User $user */
         $user = User::factory()->createOne();
+        /** @var Child $child */
         $child = Child::factory()->create();
 
         $data = [
-            'firstname' => $this->faker->firstName,
-            'lastname' => $this->faker->lastName,
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
             'middle_name' => $this->faker->text(15),
             'birthday' => '1999-05-06',
             'gender' => GenderEnum::getRandomValue(),
@@ -203,6 +211,7 @@ class ChildrenControllerTest extends TestCase
      */
     public function it_deletes_the_child(): void
     {
+        /** @var Child $child */
         $child = Child::factory()->create();
 
         $response = $this->delete(route('admin.children.destroy', $child));

@@ -32,7 +32,7 @@ class ChildrenApiTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
+        /** @var User $user */
         $user = User::factory()->create([
             'email' => 'admin@admin.com',
             'phone' => '+79067598835',
@@ -113,6 +113,7 @@ class ChildrenApiTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_child(): void
     {
@@ -130,26 +131,25 @@ class ChildrenApiTest extends TestCase
                     'attributes' => $data
                 ]
             ]);
+            unset($data['imagename']);
+
+            $this->assertDatabaseHas('children', $data);
+
+            $response->assertStatus(201)->assertJson([
+                'data' => [
+                    'attributes' => [
+                        'firstname' => $data['firstname'],
+                        'lastname' => $data['lastname'],
+                        'crmid' => $data['crmid'],
+                        'phone' => '8 (987) 675-77-77',
+                        'otherphone' => '8 (902) 288-44-33'
+                    ]
+                ]
+            ]);
         } catch (\Illuminate\Validation\ValidationException $ex) {
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
-
-        unset($data['imagename']);
-
-        $this->assertDatabaseHas('children', $data);
-
-        $response->assertStatus(201)->assertJson([
-            'data' => [
-                'attributes' => [
-                    'firstname' => $data['firstname'],
-                    'lastname' => $data['lastname'],
-                    'crmid' => $data['crmid'],
-                    'phone' => '8 (987) 675-77-77',
-                    'otherphone' => '8 (902) 288-44-33'
-                ]
-            ]
-        ]);
     }
 
     /**
@@ -185,8 +185,8 @@ class ChildrenApiTest extends TestCase
                 'type' => 'children',
                 'id' => (string) $user->id,
                 'attributes' => [
-                    'firstname' => $this->faker->firstName,
-                    'lastname' => $this->faker->lastName,
+                    'firstname' => $this->faker->firstName(),
+                    'lastname' => $this->faker->lastName(),
                     'middle_name' => $this->faker->text(10),
                     'phone' => '+79876757777',
                     'gender' => 'Male',
@@ -213,8 +213,8 @@ class ChildrenApiTest extends TestCase
         $this->assertEquals($data['data']['attributes']['middle_name'], $user->middle_name);
         $this->assertEquals($data['data']['attributes']['firstname'], $user->firstname);
         $this->assertEquals($data['data']['attributes']['lastname'], $user->lastname);
-        $this->assertEquals($data['data']['attributes']['phone'], $user->phone->toNative());
-        $this->assertEquals($data['data']['attributes']['otherphone'], $user->otherphone->toNative());
+        $this->assertEquals($data['data']['attributes']['phone'], $user->phone?->toNative());
+        $this->assertEquals($data['data']['attributes']['otherphone'], $user->otherphone?->toNative());
     }
 
     /**
@@ -242,6 +242,7 @@ class ChildrenApiTest extends TestCase
      */
     public function it_deletes_the_user(): void
     {
+        /** @var Child $user */
         $user = Child::factory()->create();
 
         $response = $this->deleteJson(route('api.children.destroy', $user));
@@ -271,11 +272,16 @@ class ChildrenApiTest extends TestCase
         $this->assertRouteUsesMiddleware('api.children.destroy', ['auth:sanctum']);
     }
 
+    /**
+     * @test
+     * @psalm-suppress InvalidArrayOffset
+     */
     public function testImagesAdding(): void
     {
         $file = UploadedFile::fake()->create('test.pdf', 100, 'application/pdf');
         $result = UploadFileAction::run($file);
         $this->assertFileExists(storage_path('app/public/uploads/tmp/' . $result . '/test.pdf'));
+        /** @var Child $user */
         $user = Child::factory()->makeOne([
             'phone' => '+79086447896',
             'otherphone' => '+79996457899'
@@ -323,7 +329,7 @@ class ChildrenApiTest extends TestCase
             'phone' => '+79876689875',
             'otherphone' => '+79026645879'
         ]);
-        $child->users()->attach(User::first()->id);
+        $child->users()->attach(User::first()?->id);
         $response = $this->getJson(route('api.children.show', [
             'child' => $child->id,
             'include' => 'users'
@@ -334,7 +340,7 @@ class ChildrenApiTest extends TestCase
             ->where('data.id', (string) $child->id)
             ->has('included')
             ->where('included.0.type', 'users')
-            ->where('included.0.id', (string) User::first()->id)
+            ->where('included.0.id', (string) User::first()?->id)
             ->etc());
     }
 
@@ -345,7 +351,7 @@ class ChildrenApiTest extends TestCase
             'phone' => '+79876689875',
             'otherphone' => '+79026645879'
         ]);
-        $child->users()->attach(User::first()->id);
+        $child->users()->attach(User::first()?->id);
         $response = $this->getJson(route('api.children.relations', [
             'id' => $child->id,
             'relation' => 'users'

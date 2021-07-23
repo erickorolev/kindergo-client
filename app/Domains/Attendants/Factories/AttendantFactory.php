@@ -24,13 +24,13 @@ final class AttendantFactory extends Factory
     public function definition(): array
     {
         return [
-            'firstname' => $this->faker->firstName,
-            'lastname' => $this->faker->lastName,
-            'middle_name' => $this->faker->name,
-            'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
-            'resume' => $this->faker->text,
-            'car_model' => $this->faker->word,
-            'car_year' => $this->faker->year,
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'middle_name' => $this->faker->name(),
+            'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber()),
+            'resume' => $this->faker->text(),
+            'car_model' => $this->faker->word(),
+            'car_year' => $this->faker->year(),
             'email' => EmailValueObject::fromNative($this->faker->unique()->safeEmail),
             'gender' => GenderEnum::getRandomInstance(),
             'crmid' => CrmIdValueObject::fromNative(

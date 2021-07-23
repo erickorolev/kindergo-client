@@ -18,8 +18,10 @@ final class TimetableRepository extends Repository implements TimetableRepositor
 
     public function basicPaginate(string $search, int $pagination = 5): LengthAwarePaginator
     {
-        return Timetable::search($search)
+        /** @var LengthAwarePaginator $timetables */
+        $timetables = Timetable::search($search)
             ->latest()
             ->paginate($pagination);
+        return $timetables;
     }
 }

@@ -8,6 +8,11 @@ use Laravel\Jetstream\Http\Livewire\LogoutOtherBrowserSessionsForm;
 use Livewire\Livewire;
 use Parents\Tests\PhpUnit\TestCase;
 
+/**
+ * Class BrowserSessionsTest
+ * @package Domains\Authentication\Tests\Feature
+ * @psalm-suppress InvalidArgument
+ */
 class BrowserSessionsTest extends TestCase
 {
     use RefreshDatabase;

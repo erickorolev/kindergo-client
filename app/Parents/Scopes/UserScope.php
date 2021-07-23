@@ -16,8 +16,10 @@ final class UserScope implements Scope
 
     public function __construct(User $user = null)
     {
+        /** @var User $authUser */
+        $authUser = Auth::user();
         if (!$user) {
-            $this->user = Auth::user();
+            $this->user = $authUser;
         } else {
             $this->user = $user;
         }

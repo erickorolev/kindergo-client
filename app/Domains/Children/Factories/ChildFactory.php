@@ -22,13 +22,13 @@ final class ChildFactory extends Factory
     public function definition(): array
     {
         return [
-            'firstname' => $this->faker->firstName,
-            'lastname' => $this->faker->lastName,
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
             'middle_name' => $this->faker->text(15),
-            'birthday' => $this->faker->date,
+            'birthday' => $this->faker->date(),
             'gender' => GenderEnum::getRandomInstance(),
-            'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
-            'otherphone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
+            'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber()),
+            'otherphone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber()),
             'crmid' => CrmIdValueObject::fromNative(
                 $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
             ),

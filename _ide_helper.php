@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 8.49.2.
+ * Generated for Laravel 8.50.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -19,14 +19,26 @@
      */ 
         class App {
                     /**
+         * Get the application namespace.
+         *
+         * @return string 
+         * @throws \RuntimeException
+         * @static 
+         */ 
+        public static function getNamespace()
+        {
+                        /** @var \Parents\Foundation\Application $instance */
+                        return $instance->getNamespace();
+        }
+                    /**
          * Get the version number of the application.
          *
          * @return string 
          * @static 
          */ 
         public static function version()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->version();
         }
                     /**
@@ -37,8 +49,8 @@
          * @static 
          */ 
         public static function bootstrapWith($bootstrappers)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->bootstrapWith($bootstrappers);
         }
                     /**
@@ -49,8 +61,8 @@
          * @static 
          */ 
         public static function afterLoadingEnvironment($callback)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->afterLoadingEnvironment($callback);
         }
                     /**
@@ -62,8 +74,8 @@
          * @static 
          */ 
         public static function beforeBootstrapping($bootstrapper, $callback)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->beforeBootstrapping($bootstrapper, $callback);
         }
                     /**
@@ -75,8 +87,8 @@
          * @static 
          */ 
         public static function afterBootstrapping($bootstrapper, $callback)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->afterBootstrapping($bootstrapper, $callback);
         }
                     /**
@@ -86,20 +98,20 @@
          * @static 
          */ 
         public static function hasBeenBootstrapped()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->hasBeenBootstrapped();
         }
                     /**
          * Set the base path for the application.
          *
          * @param string $basePath
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function setBasePath($basePath)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->setBasePath($basePath);
         }
                     /**
@@ -110,20 +122,20 @@
          * @static 
          */ 
         public static function path($path = '')
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->path($path);
         }
                     /**
          * Set the application directory.
          *
          * @param string $path
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function useAppPath($path)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->useAppPath($path);
         }
                     /**
@@ -134,8 +146,8 @@
          * @static 
          */ 
         public static function basePath($path = '')
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->basePath($path);
         }
                     /**
@@ -146,8 +158,8 @@
          * @static 
          */ 
         public static function bootstrapPath($path = '')
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->bootstrapPath($path);
         }
                     /**
@@ -158,8 +170,8 @@
          * @static 
          */ 
         public static function configPath($path = '')
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->configPath($path);
         }
                     /**
@@ -170,20 +182,20 @@
          * @static 
          */ 
         public static function databasePath($path = '')
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->databasePath($path);
         }
                     /**
          * Set the database directory.
          *
          * @param string $path
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function useDatabasePath($path)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->useDatabasePath($path);
         }
                     /**
@@ -193,20 +205,20 @@
          * @static 
          */ 
         public static function langPath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->langPath();
         }
                     /**
          * Set the language file directory.
          *
          * @param string $path
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function useLangPath($path)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->useLangPath($path);
         }
                     /**
@@ -216,8 +228,8 @@
          * @static 
          */ 
         public static function publicPath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->publicPath();
         }
                     /**
@@ -227,20 +239,20 @@
          * @static 
          */ 
         public static function storagePath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->storagePath();
         }
                     /**
          * Set the storage directory.
          *
          * @param string $path
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function useStoragePath($path)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->useStoragePath($path);
         }
                     /**
@@ -251,8 +263,8 @@
          * @static 
          */ 
         public static function resourcePath($path = '')
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->resourcePath($path);
         }
                     /**
@@ -265,8 +277,8 @@
          * @static 
          */ 
         public static function viewPath($path = '')
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->viewPath($path);
         }
                     /**
@@ -276,32 +288,32 @@
          * @static 
          */ 
         public static function environmentPath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->environmentPath();
         }
                     /**
          * Set the directory for the environment file.
          *
          * @param string $path
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function useEnvironmentPath($path)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->useEnvironmentPath($path);
         }
                     /**
          * Set the environment file to be loaded during bootstrapping.
          *
          * @param string $file
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function loadEnvironmentFrom($file)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->loadEnvironmentFrom($file);
         }
                     /**
@@ -311,8 +323,8 @@
          * @static 
          */ 
         public static function environmentFile()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->environmentFile();
         }
                     /**
@@ -322,8 +334,8 @@
          * @static 
          */ 
         public static function environmentFilePath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->environmentFilePath();
         }
                     /**
@@ -334,8 +346,8 @@
          * @static 
          */ 
         public static function environment(...$environments)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->environment(...$environments);
         }
                     /**
@@ -345,8 +357,8 @@
          * @static 
          */ 
         public static function isLocal()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->isLocal();
         }
                     /**
@@ -356,8 +368,8 @@
          * @static 
          */ 
         public static function isProduction()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->isProduction();
         }
                     /**
@@ -368,8 +380,8 @@
          * @static 
          */ 
         public static function detectEnvironment($callback)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->detectEnvironment($callback);
         }
                     /**
@@ -379,8 +391,8 @@
          * @static 
          */ 
         public static function runningInConsole()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->runningInConsole();
         }
                     /**
@@ -390,8 +402,8 @@
          * @static 
          */ 
         public static function runningUnitTests()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->runningUnitTests();
         }
                     /**
@@ -401,8 +413,8 @@
          * @static 
          */ 
         public static function registerConfiguredProviders()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->registerConfiguredProviders();
         }
                     /**
@@ -414,8 +426,8 @@
          * @static 
          */ 
         public static function register($provider, $force = false)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->register($provider, $force);
         }
                     /**
@@ -426,8 +438,8 @@
          * @static 
          */ 
         public static function getProvider($provider)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getProvider($provider);
         }
                     /**
@@ -438,8 +450,8 @@
          * @static 
          */ 
         public static function getProviders($provider)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getProviders($provider);
         }
                     /**
@@ -450,8 +462,8 @@
          * @static 
          */ 
         public static function resolveProvider($provider)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->resolveProvider($provider);
         }
                     /**
@@ -461,8 +473,8 @@
          * @static 
          */ 
         public static function loadDeferredProviders()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->loadDeferredProviders();
         }
                     /**
@@ -473,8 +485,8 @@
          * @static 
          */ 
         public static function loadDeferredProvider($service)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->loadDeferredProvider($service);
         }
                     /**
@@ -486,8 +498,8 @@
          * @static 
          */ 
         public static function registerDeferredProvider($provider, $service = null)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->registerDeferredProvider($provider, $service);
         }
                     /**
@@ -499,8 +511,8 @@
          * @static 
          */ 
         public static function make($abstract, $parameters = [])
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->make($abstract, $parameters);
         }
                     /**
@@ -511,8 +523,8 @@
          * @static 
          */ 
         public static function bound($abstract)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->bound($abstract);
         }
                     /**
@@ -522,8 +534,8 @@
          * @static 
          */ 
         public static function isBooted()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->isBooted();
         }
                     /**
@@ -533,8 +545,8 @@
          * @static 
          */ 
         public static function boot()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->boot();
         }
                     /**
@@ -545,8 +557,8 @@
          * @static 
          */ 
         public static function booting($callback)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->booting($callback);
         }
                     /**
@@ -557,8 +569,8 @@
          * @static 
          */ 
         public static function booted($callback)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->booted($callback);
         }
                     /**
@@ -567,8 +579,8 @@
          * @static 
          */ 
         public static function handle($request, $type = 1, $catch = true)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->handle($request, $type, $catch);
         }
                     /**
@@ -578,8 +590,8 @@
          * @static 
          */ 
         public static function shouldSkipMiddleware()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->shouldSkipMiddleware();
         }
                     /**
@@ -589,8 +601,8 @@
          * @static 
          */ 
         public static function getCachedServicesPath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getCachedServicesPath();
         }
                     /**
@@ -600,8 +612,8 @@
          * @static 
          */ 
         public static function getCachedPackagesPath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getCachedPackagesPath();
         }
                     /**
@@ -611,8 +623,8 @@
          * @static 
          */ 
         public static function configurationIsCached()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->configurationIsCached();
         }
                     /**
@@ -622,8 +634,8 @@
          * @static 
          */ 
         public static function getCachedConfigPath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getCachedConfigPath();
         }
                     /**
@@ -633,8 +645,8 @@
          * @static 
          */ 
         public static function routesAreCached()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->routesAreCached();
         }
                     /**
@@ -644,8 +656,8 @@
          * @static 
          */ 
         public static function getCachedRoutesPath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getCachedRoutesPath();
         }
                     /**
@@ -655,8 +667,8 @@
          * @static 
          */ 
         public static function eventsAreCached()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->eventsAreCached();
         }
                     /**
@@ -666,20 +678,20 @@
          * @static 
          */ 
         public static function getCachedEventsPath()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getCachedEventsPath();
         }
                     /**
          * Add new prefix to list of absolute path prefixes.
          *
          * @param string $prefix
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function addAbsoluteCachePathPrefix($prefix)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->addAbsoluteCachePathPrefix($prefix);
         }
                     /**
@@ -689,8 +701,8 @@
          * @static 
          */ 
         public static function isDownForMaintenance()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->isDownForMaintenance();
         }
                     /**
@@ -705,20 +717,20 @@
          * @static 
          */ 
         public static function abort($code, $message = '', $headers = [])
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->abort($code, $message, $headers);
         }
                     /**
          * Register a terminating callback with the application.
          *
          * @param callable|string $callback
-         * @return \Illuminate\Foundation\Application 
+         * @return \Parents\Foundation\Application 
          * @static 
          */ 
         public static function terminating($callback)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->terminating($callback);
         }
                     /**
@@ -728,8 +740,8 @@
          * @static 
          */ 
         public static function terminate()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->terminate();
         }
                     /**
@@ -739,8 +751,8 @@
          * @static 
          */ 
         public static function getLoadedProviders()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getLoadedProviders();
         }
                     /**
@@ -751,8 +763,8 @@
          * @static 
          */ 
         public static function providerIsLoaded($provider)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->providerIsLoaded($provider);
         }
                     /**
@@ -762,8 +774,8 @@
          * @static 
          */ 
         public static function getDeferredServices()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getDeferredServices();
         }
                     /**
@@ -774,8 +786,8 @@
          * @static 
          */ 
         public static function setDeferredServices($services)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->setDeferredServices($services);
         }
                     /**
@@ -786,8 +798,8 @@
          * @static 
          */ 
         public static function addDeferredServices($services)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->addDeferredServices($services);
         }
                     /**
@@ -798,8 +810,8 @@
          * @static 
          */ 
         public static function isDeferredService($service)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->isDeferredService($service);
         }
                     /**
@@ -810,8 +822,8 @@
          * @static 
          */ 
         public static function provideFacades($namespace)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->provideFacades($namespace);
         }
                     /**
@@ -821,8 +833,8 @@
          * @static 
          */ 
         public static function getLocale()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getLocale();
         }
                     /**
@@ -832,8 +844,8 @@
          * @static 
          */ 
         public static function currentLocale()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->currentLocale();
         }
                     /**
@@ -843,8 +855,8 @@
          * @static 
          */ 
         public static function getFallbackLocale()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getFallbackLocale();
         }
                     /**
@@ -855,8 +867,8 @@
          * @static 
          */ 
         public static function setLocale($locale)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->setLocale($locale);
         }
                     /**
@@ -867,8 +879,8 @@
          * @static 
          */ 
         public static function setFallbackLocale($fallbackLocale)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->setFallbackLocale($fallbackLocale);
         }
                     /**
@@ -879,8 +891,8 @@
          * @static 
          */ 
         public static function isLocale($locale)
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->isLocale($locale);
         }
                     /**
@@ -890,8 +902,8 @@
          * @static 
          */ 
         public static function registerCoreContainerAliases()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->registerCoreContainerAliases();
         }
                     /**
@@ -901,21 +913,9 @@
          * @static 
          */ 
         public static function flush()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
+        {            //Method inherited from \Illuminate\Foundation\Application         
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->flush();
-        }
-                    /**
-         * Get the application namespace.
-         *
-         * @return string 
-         * @throws \RuntimeException
-         * @static 
-         */ 
-        public static function getNamespace()
-        {
-                        /** @var \Illuminate\Foundation\Application $instance */
-                        return $instance->getNamespace();
         }
                     /**
          * Define a contextual binding.
@@ -926,7 +926,7 @@
          */ 
         public static function when($concrete)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->when($concrete);
         }
                     /**
@@ -943,7 +943,7 @@
          */ 
         public static function has($id)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->has($id);
         }
                     /**
@@ -955,7 +955,7 @@
          */ 
         public static function resolved($abstract)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->resolved($abstract);
         }
                     /**
@@ -967,7 +967,7 @@
          */ 
         public static function isShared($abstract)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->isShared($abstract);
         }
                     /**
@@ -979,7 +979,7 @@
          */ 
         public static function isAlias($name)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->isAlias($name);
         }
                     /**
@@ -994,7 +994,7 @@
          */ 
         public static function bind($abstract, $concrete = null, $shared = false)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->bind($abstract, $concrete, $shared);
         }
                     /**
@@ -1006,7 +1006,7 @@
          */ 
         public static function hasMethodBinding($method)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->hasMethodBinding($method);
         }
                     /**
@@ -1019,7 +1019,7 @@
          */ 
         public static function bindMethod($method, $callback)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->bindMethod($method, $callback);
         }
                     /**
@@ -1032,7 +1032,7 @@
          */ 
         public static function callMethodBinding($method, $instance)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->callMethodBinding($method, $instance);
         }
                     /**
@@ -1046,7 +1046,7 @@
          */ 
         public static function addContextualBinding($concrete, $abstract, $implementation)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->addContextualBinding($concrete, $abstract, $implementation);
         }
                     /**
@@ -1060,7 +1060,7 @@
          */ 
         public static function bindIf($abstract, $concrete = null, $shared = false)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->bindIf($abstract, $concrete, $shared);
         }
                     /**
@@ -1073,7 +1073,7 @@
          */ 
         public static function singleton($abstract, $concrete = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->singleton($abstract, $concrete);
         }
                     /**
@@ -1086,7 +1086,7 @@
          */ 
         public static function singletonIf($abstract, $concrete = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->singletonIf($abstract, $concrete);
         }
                     /**
@@ -1099,7 +1099,7 @@
          */ 
         public static function scoped($abstract, $concrete = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->scoped($abstract, $concrete);
         }
                     /**
@@ -1112,7 +1112,7 @@
          */ 
         public static function scopedIf($abstract, $concrete = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->scopedIf($abstract, $concrete);
         }
                     /**
@@ -1126,7 +1126,7 @@
          */ 
         public static function extend($abstract, $closure)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->extend($abstract, $closure);
         }
                     /**
@@ -1139,7 +1139,7 @@
          */ 
         public static function instance($abstract, $instance)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->instance($abstract, $instance);
         }
                     /**
@@ -1152,7 +1152,7 @@
          */ 
         public static function tag($abstracts, $tags)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->tag($abstracts, $tags);
         }
                     /**
@@ -1164,7 +1164,7 @@
          */ 
         public static function tagged($tag)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->tagged($tag);
         }
                     /**
@@ -1178,7 +1178,7 @@
          */ 
         public static function alias($abstract, $alias)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->alias($abstract, $alias);
         }
                     /**
@@ -1191,7 +1191,7 @@
          */ 
         public static function rebinding($abstract, $callback)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->rebinding($abstract, $callback);
         }
                     /**
@@ -1205,7 +1205,7 @@
          */ 
         public static function refresh($abstract, $target, $method)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->refresh($abstract, $target, $method);
         }
                     /**
@@ -1218,7 +1218,7 @@
          */ 
         public static function wrap($callback, $parameters = [])
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->wrap($callback, $parameters);
         }
                     /**
@@ -1233,7 +1233,7 @@
          */ 
         public static function call($callback, $parameters = [], $defaultMethod = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->call($callback, $parameters, $defaultMethod);
         }
                     /**
@@ -1245,7 +1245,7 @@
          */ 
         public static function factory($abstract)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->factory($abstract);
         }
                     /**
@@ -1259,7 +1259,7 @@
          */ 
         public static function makeWith($abstract, $parameters = [])
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->makeWith($abstract, $parameters);
         }
                     /**
@@ -1273,7 +1273,7 @@
          */ 
         public static function get($id)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->get($id);
         }
                     /**
@@ -1287,7 +1287,7 @@
          */ 
         public static function build($concrete)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->build($concrete);
         }
                     /**
@@ -1300,7 +1300,7 @@
          */ 
         public static function beforeResolving($abstract, $callback = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->beforeResolving($abstract, $callback);
         }
                     /**
@@ -1313,7 +1313,7 @@
          */ 
         public static function resolving($abstract, $callback = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->resolving($abstract, $callback);
         }
                     /**
@@ -1326,7 +1326,7 @@
          */ 
         public static function afterResolving($abstract, $callback = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->afterResolving($abstract, $callback);
         }
                     /**
@@ -1337,7 +1337,7 @@
          */ 
         public static function getBindings()
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getBindings();
         }
                     /**
@@ -1349,7 +1349,7 @@
          */ 
         public static function getAlias($abstract)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->getAlias($abstract);
         }
                     /**
@@ -1361,7 +1361,7 @@
          */ 
         public static function forgetExtenders($abstract)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->forgetExtenders($abstract);
         }
                     /**
@@ -1373,7 +1373,7 @@
          */ 
         public static function forgetInstance($abstract)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->forgetInstance($abstract);
         }
                     /**
@@ -1384,7 +1384,7 @@
          */ 
         public static function forgetInstances()
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->forgetInstances();
         }
                     /**
@@ -1395,7 +1395,7 @@
          */ 
         public static function forgetScopedInstances()
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->forgetScopedInstances();
         }
                     /**
@@ -1406,7 +1406,7 @@
          */ 
         public static function getInstance()
         {            //Method inherited from \Illuminate\Container\Container         
-                        return \Illuminate\Foundation\Application::getInstance();
+                        return \Parents\Foundation\Application::getInstance();
         }
                     /**
          * Set the shared instance of the container.
@@ -1417,7 +1417,7 @@
          */ 
         public static function setInstance($container = null)
         {            //Method inherited from \Illuminate\Container\Container         
-                        return \Illuminate\Foundation\Application::setInstance($container);
+                        return \Parents\Foundation\Application::setInstance($container);
         }
                     /**
          * Determine if a given offset exists.
@@ -1428,7 +1428,7 @@
          */ 
         public static function offsetExists($key)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->offsetExists($key);
         }
                     /**
@@ -1440,7 +1440,7 @@
          */ 
         public static function offsetGet($key)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         return $instance->offsetGet($key);
         }
                     /**
@@ -1453,7 +1453,7 @@
          */ 
         public static function offsetSet($key, $value)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->offsetSet($key, $value);
         }
                     /**
@@ -1465,7 +1465,7 @@
          */ 
         public static function offsetUnset($key)
         {            //Method inherited from \Illuminate\Container\Container         
-                        /** @var \Illuminate\Foundation\Application $instance */
+                        /** @var \Parents\Foundation\Application $instance */
                         $instance->offsetUnset($key);
         }
          
@@ -8816,6 +8816,126 @@
             /**
      * 
      *
+     * @see \Illuminate\Cache\RateLimiter
+     */ 
+        class RateLimiter {
+                    /**
+         * Register a named limiter configuration.
+         *
+         * @param string $name
+         * @param \Closure $callback
+         * @return \Illuminate\Cache\RateLimiter 
+         * @static 
+         */ 
+        public static function for($name, $callback)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        return $instance->for($name, $callback);
+        }
+                    /**
+         * Get the given named rate limiter.
+         *
+         * @param string $name
+         * @return \Closure 
+         * @static 
+         */ 
+        public static function limiter($name)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        return $instance->limiter($name);
+        }
+                    /**
+         * Determine if the given key has been "accessed" too many times.
+         *
+         * @param string $key
+         * @param int $maxAttempts
+         * @return bool 
+         * @static 
+         */ 
+        public static function tooManyAttempts($key, $maxAttempts)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        return $instance->tooManyAttempts($key, $maxAttempts);
+        }
+                    /**
+         * Increment the counter for a given key for a given decay time.
+         *
+         * @param string $key
+         * @param int $decaySeconds
+         * @return int 
+         * @static 
+         */ 
+        public static function hit($key, $decaySeconds = 60)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        return $instance->hit($key, $decaySeconds);
+        }
+                    /**
+         * Get the number of attempts for the given key.
+         *
+         * @param string $key
+         * @return mixed 
+         * @static 
+         */ 
+        public static function attempts($key)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        return $instance->attempts($key);
+        }
+                    /**
+         * Reset the number of attempts for the given key.
+         *
+         * @param string $key
+         * @return mixed 
+         * @static 
+         */ 
+        public static function resetAttempts($key)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        return $instance->resetAttempts($key);
+        }
+                    /**
+         * Get the number of retries left for the given key.
+         *
+         * @param string $key
+         * @param int $maxAttempts
+         * @return int 
+         * @static 
+         */ 
+        public static function retriesLeft($key, $maxAttempts)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        return $instance->retriesLeft($key, $maxAttempts);
+        }
+                    /**
+         * Clear the hits and lockout timer for the given key.
+         *
+         * @param string $key
+         * @return void 
+         * @static 
+         */ 
+        public static function clear($key)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        $instance->clear($key);
+        }
+                    /**
+         * Get the number of seconds until the "key" is accessible again.
+         *
+         * @param string $key
+         * @return int 
+         * @static 
+         */ 
+        public static function availableIn($key)
+        {
+                        /** @var \Illuminate\Cache\RateLimiter $instance */
+                        return $instance->availableIn($key);
+        }
+         
+    }
+            /**
+     * 
+     *
      * @see \Illuminate\Routing\Redirector
      */ 
         class Redirect {
@@ -12206,47 +12326,6 @@
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
         }
-                    /**
-         * 
-         *
-         * @see \Laravel\Ui\AuthRouteMethods::auth()
-         * @param mixed $options
-         * @static 
-         */ 
-        public static function auth($options = [])
-        {
-                        return \Illuminate\Routing\Router::auth($options);
-        }
-                    /**
-         * 
-         *
-         * @see \Laravel\Ui\AuthRouteMethods::resetPassword()
-         * @static 
-         */ 
-        public static function resetPassword()
-        {
-                        return \Illuminate\Routing\Router::resetPassword();
-        }
-                    /**
-         * 
-         *
-         * @see \Laravel\Ui\AuthRouteMethods::confirmPassword()
-         * @static 
-         */ 
-        public static function confirmPassword()
-        {
-                        return \Illuminate\Routing\Router::confirmPassword();
-        }
-                    /**
-         * 
-         *
-         * @see \Laravel\Ui\AuthRouteMethods::emailVerification()
-         * @static 
-         */ 
-        public static function emailVerification()
-        {
-                        return \Illuminate\Routing\Router::emailVerification();
-        }
          
     }
             /**
@@ -14437,6 +14516,17 @@
                         $instance->replacer($rule, $replacer);
         }
                     /**
+         * Indicate that unvalidated array keys should be excluded, even if the parent array was validated.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function excludeUnvalidatedArrayKeys()
+        {
+                        /** @var \Illuminate\Validation\Factory $instance */
+                        $instance->excludeUnvalidatedArrayKeys();
+        }
+                    /**
          * Set the Validator instance resolver.
          *
          * @param \Closure $resolver
@@ -15714,6 +15804,888 @@
      
 }
 
+    namespace Intervention\Image\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Image {
+                    /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = [])
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->configure($config);
+        }
+                    /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->make($data);
+        }
+                    /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->canvas($width, $height, $background);
+        }
+                    /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+     
+}
+
+    namespace Jenssegers\Agent\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Agent {
+                    /**
+         * Get all detection rules. These rules include the additional
+         * platforms and browsers and utilities.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDetectionRulesExtended()
+        {
+                        return \Jenssegers\Agent\Agent::getDetectionRulesExtended();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRules()
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getRules();
+        }
+                    /**
+         * 
+         *
+         * @return \Jaybizzle\CrawlerDetect\CrawlerDetect 
+         * @static 
+         */ 
+        public static function getCrawlerDetect()
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getCrawlerDetect();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getBrowsers()
+        {
+                        return \Jenssegers\Agent\Agent::getBrowsers();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getOperatingSystems()
+        {
+                        return \Jenssegers\Agent\Agent::getOperatingSystems();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getPlatforms()
+        {
+                        return \Jenssegers\Agent\Agent::getPlatforms();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getDesktopDevices()
+        {
+                        return \Jenssegers\Agent\Agent::getDesktopDevices();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getProperties()
+        {
+                        return \Jenssegers\Agent\Agent::getProperties();
+        }
+                    /**
+         * Get accept languages.
+         *
+         * @param string $acceptLanguage
+         * @return array 
+         * @static 
+         */ 
+        public static function languages($acceptLanguage = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->languages($acceptLanguage);
+        }
+                    /**
+         * Get the browser name.
+         *
+         * @param string|null $userAgent
+         * @return string|bool 
+         * @static 
+         */ 
+        public static function browser($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->browser($userAgent);
+        }
+                    /**
+         * Get the platform name.
+         *
+         * @param string|null $userAgent
+         * @return string|bool 
+         * @static 
+         */ 
+        public static function platform($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->platform($userAgent);
+        }
+                    /**
+         * Get the device name.
+         *
+         * @param string|null $userAgent
+         * @return string|bool 
+         * @static 
+         */ 
+        public static function device($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->device($userAgent);
+        }
+                    /**
+         * Check if the device is a desktop computer.
+         *
+         * @param string|null $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isDesktop($userAgent = null, $httpHeaders = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isDesktop($userAgent, $httpHeaders);
+        }
+                    /**
+         * Check if the device is a mobile phone.
+         *
+         * @param string|null $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isPhone($userAgent = null, $httpHeaders = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isPhone($userAgent, $httpHeaders);
+        }
+                    /**
+         * Get the robot name.
+         *
+         * @param string|null $userAgent
+         * @return string|bool 
+         * @static 
+         */ 
+        public static function robot($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->robot($userAgent);
+        }
+                    /**
+         * Check if device is a robot.
+         *
+         * @param string|null $userAgent
+         * @return bool 
+         * @static 
+         */ 
+        public static function isRobot($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isRobot($userAgent);
+        }
+                    /**
+         * Get the device type
+         *
+         * @param null $userAgent
+         * @param null $httpHeaders
+         * @return string 
+         * @static 
+         */ 
+        public static function deviceType($userAgent = null, $httpHeaders = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->deviceType($userAgent, $httpHeaders);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function version($propertyName, $type = 'text')
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->version($propertyName, $type);
+        }
+                    /**
+         * Get the current script version.
+         * 
+         * This is useful for the demo.php file,
+         * so people can check on what version they are testing
+         * for mobile devices.
+         *
+         * @return string The version number in semantic version format.
+         * @static 
+         */ 
+        public static function getScriptVersion()
+        {            //Method inherited from \Mobile_Detect         
+                        return \Jenssegers\Agent\Agent::getScriptVersion();
+        }
+                    /**
+         * Set the HTTP Headers. Must be PHP-flavored. This method will reset existing headers.
+         *
+         * @param array $httpHeaders The headers to set. If null, then using PHP's _SERVER to extract
+         *                           the headers. The default null is left for backwards compatibility.
+         * @static 
+         */ 
+        public static function setHttpHeaders($httpHeaders = null)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setHttpHeaders($httpHeaders);
+        }
+                    /**
+         * Retrieves the HTTP headers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getHttpHeaders()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getHttpHeaders();
+        }
+                    /**
+         * Retrieves a particular header. If it doesn't exist, no exception/error is caused.
+         * 
+         * Simply null is returned.
+         *
+         * @param string $header The name of the header to retrieve. Can be HTTP compliant such as
+         *                       "User-Agent" or "X-Device-User-Agent" or can be php-esque with the
+         *                       all-caps, HTTP_ prefixed, underscore seperated awesomeness.
+         * @return string|null The value of the header.
+         * @static 
+         */ 
+        public static function getHttpHeader($header)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getHttpHeader($header);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMobileHeaders()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMobileHeaders();
+        }
+                    /**
+         * Get all possible HTTP headers that
+         * can contain the User-Agent string.
+         *
+         * @return array List of HTTP headers.
+         * @static 
+         */ 
+        public static function getUaHttpHeaders()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getUaHttpHeaders();
+        }
+                    /**
+         * Set CloudFront headers
+         * http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html#header-caching-web-device
+         *
+         * @param array $cfHeaders List of HTTP headers
+         * @return boolean If there were CloudFront headers to be set
+         * @static 
+         */ 
+        public static function setCfHeaders($cfHeaders = null)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setCfHeaders($cfHeaders);
+        }
+                    /**
+         * Retrieves the cloudfront headers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCfHeaders()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getCfHeaders();
+        }
+                    /**
+         * Set the User-Agent to be used.
+         *
+         * @param string $userAgent The user agent string to set.
+         * @return string|null 
+         * @static 
+         */ 
+        public static function setUserAgent($userAgent = null)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setUserAgent($userAgent);
+        }
+                    /**
+         * Retrieve the User-Agent.
+         *
+         * @return string|null The user agent if it's set.
+         * @static 
+         */ 
+        public static function getUserAgent()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getUserAgent();
+        }
+                    /**
+         * Set the detection type. Must be one of self::DETECTION_TYPE_MOBILE or
+         * self::DETECTION_TYPE_EXTENDED. Otherwise, nothing is set.
+         *
+         * @deprecated since version 2.6.9
+         * @param string $type The type. Must be a self::DETECTION_TYPE_* constant. The default
+         *                     parameter is null which will default to self::DETECTION_TYPE_MOBILE.
+         * @static 
+         */ 
+        public static function setDetectionType($type = null)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setDetectionType($type);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMatchingRegex()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMatchingRegex();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMatchesArray()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMatchesArray();
+        }
+                    /**
+         * Retrieve the list of known phone devices.
+         *
+         * @return array List of phone devices.
+         * @static 
+         */ 
+        public static function getPhoneDevices()
+        {            //Method inherited from \Mobile_Detect         
+                        return \Jenssegers\Agent\Agent::getPhoneDevices();
+        }
+                    /**
+         * Retrieve the list of known tablet devices.
+         *
+         * @return array List of tablet devices.
+         * @static 
+         */ 
+        public static function getTabletDevices()
+        {            //Method inherited from \Mobile_Detect         
+                        return \Jenssegers\Agent\Agent::getTabletDevices();
+        }
+                    /**
+         * Alias for getBrowsers() method.
+         *
+         * @return array List of user agents.
+         * @static 
+         */ 
+        public static function getUserAgents()
+        {            //Method inherited from \Mobile_Detect         
+                        return \Jenssegers\Agent\Agent::getUserAgents();
+        }
+                    /**
+         * Retrieve the list of known utilities.
+         *
+         * @return array List of utilities.
+         * @static 
+         */ 
+        public static function getUtilities()
+        {            //Method inherited from \Mobile_Detect         
+                        return \Jenssegers\Agent\Agent::getUtilities();
+        }
+                    /**
+         * Method gets the mobile detection rules. This method is used for the magic methods $detect->is*().
+         *
+         * @deprecated since version 2.6.9
+         * @return array All the rules (but not extended).
+         * @static 
+         */ 
+        public static function getMobileDetectionRules()
+        {            //Method inherited from \Mobile_Detect         
+                        return \Jenssegers\Agent\Agent::getMobileDetectionRules();
+        }
+                    /**
+         * Method gets the mobile detection rules + utilities.
+         * 
+         * The reason this is separate is because utilities rules
+         * don't necessary imply mobile. This method is used inside
+         * the new $detect->is('stuff') method.
+         *
+         * @deprecated since version 2.6.9
+         * @return array All the rules + extended.
+         * @static 
+         */ 
+        public static function getMobileDetectionRulesExtended()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMobileDetectionRulesExtended();
+        }
+                    /**
+         * Check the HTTP headers for signs of mobile.
+         * 
+         * This is the fastest mobile check possible; it's used
+         * inside isMobile() method.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkHttpHeadersForMobile()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->checkHttpHeadersForMobile();
+        }
+                    /**
+         * Check if the device is mobile.
+         * 
+         * Returns true if any type of mobile device detected, including special ones
+         *
+         * @param null $userAgent deprecated
+         * @param null $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isMobile($userAgent = null, $httpHeaders = null)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isMobile($userAgent, $httpHeaders);
+        }
+                    /**
+         * Check if the device is a tablet.
+         * 
+         * Return true if any type of tablet device is detected.
+         *
+         * @param string $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isTablet($userAgent = null, $httpHeaders = null)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isTablet($userAgent, $httpHeaders);
+        }
+                    /**
+         * This method checks for a certain property in the
+         * userAgent.
+         *
+         * @todo : The httpHeaders part is not yet used.
+         * @param string $key
+         * @param string $userAgent deprecated
+         * @param string $httpHeaders deprecated
+         * @return bool|int|null 
+         * @static 
+         */ 
+        public static function is($key, $userAgent = null, $httpHeaders = null)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->is($key, $userAgent, $httpHeaders);
+        }
+                    /**
+         * Some detection rules are relative (not standard),
+         * because of the diversity of devices, vendors and
+         * their conventions in representing the User-Agent or
+         * the HTTP headers.
+         * 
+         * This method will be used to check custom regexes against
+         * the User-Agent string.
+         *
+         * @param $regex
+         * @param string $userAgent
+         * @return bool 
+         * @todo : search in the HTTP headers too.
+         * @static 
+         */ 
+        public static function match($regex, $userAgent = null)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->match($regex, $userAgent);
+        }
+                    /**
+         * Prepare the version number.
+         *
+         * @todo Remove the error supression from str_replace() call.
+         * @param string $ver The string version, like "2.6.21.2152";
+         * @return float 
+         * @static 
+         */ 
+        public static function prepareVersionNo($ver)
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->prepareVersionNo($ver);
+        }
+                    /**
+         * Retrieve the mobile grading, using self::MOBILE_GRADE_* constants.
+         *
+         * @return string One of the self::MOBILE_GRADE_* constants.
+         * @static 
+         */ 
+        public static function mobileGrade()
+        {            //Method inherited from \Mobile_Detect         
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->mobileGrade();
+        }
+         
+    }
+     
+}
+
+    namespace Livewire { 
+            /**
+     * 
+     *
+     * @see \Livewire\LivewireManager
+     */ 
+        class Livewire {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function component($alias, $viewClass = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->component($alias, $viewClass);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAlias($class, $default = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getAlias($class, $default);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getComponentAliases()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getComponentAliases();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getClass($alias)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getClass($alias);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getInstance($component, $id)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getInstance($component, $id);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function mount($name, $params = [])
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->mount($name, $params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function dummyMount($id, $tagName)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->dummyMount($id, $tagName);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function test($name, $params = [])
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->test($name, $params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function visit($browser, $class, $queryString = '')
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->visit($browser, $class, $queryString);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function actingAs($user, $driver = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->actingAs($user, $driver);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addPersistentMiddleware($middleware)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->addPersistentMiddleware($middleware);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setPersistentMiddleware($middleware)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setPersistentMiddleware($middleware);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getPersistentMiddleware()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getPersistentMiddleware();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function styles($options = [])
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->styles($options);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function scripts($options = [])
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->scripts($options);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isLivewireRequest()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isLivewireRequest();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isDefinitelyLivewireRequest()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isDefinitelyLivewireRequest();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isProbablyLivewireRequest()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isProbablyLivewireRequest();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalUrl()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalUrl();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalPath()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalPath();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalMethod()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalMethod();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRootElementTagName($dom)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getRootElementTagName($dom);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function dispatch($event, ...$params)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->dispatch($event, ...$params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function listen($event, $callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->listen($event, $callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isOnVapor()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isOnVapor();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isRunningServerless()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isRunningServerless();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withQueryParams($queryParams)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withQueryParams($queryParams);
+        }
+         
+    }
+     
+}
+
     namespace Lorisleiva\Actions\Facades { 
             /**
      * 
@@ -16402,6 +17374,35 @@
         }
          
     }
+            /**
+     * 
+     *
+     */ 
+        class RedirectResponse {
+                    /**
+         * 
+         *
+         * @see \Laravel\Jetstream\JetstreamServiceProvider::boot()
+         * @param mixed $message
+         * @static 
+         */ 
+        public static function banner($message)
+        {
+                        return \Illuminate\Http\RedirectResponse::banner($message);
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Jetstream\JetstreamServiceProvider::boot()
+         * @param mixed $message
+         * @static 
+         */ 
+        public static function dangerBanner($message)
+        {
+                        return \Illuminate\Http\RedirectResponse::dangerBanner($message);
+        }
+         
+    }
      
 }
 
@@ -16426,12 +17427,63 @@
                     /**
          * 
          *
+         * @see \Livewire\LivewireServiceProvider::registerTestMacros()
+         * @param mixed $component
+         * @static 
+         */ 
+        public static function assertSeeLivewire($component)
+        {
+                        return \Illuminate\Testing\TestResponse::assertSeeLivewire($component);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\LivewireServiceProvider::registerTestMacros()
+         * @param mixed $component
+         * @static 
+         */ 
+        public static function assertDontSeeLivewire($component)
+        {
+                        return \Illuminate\Testing\TestResponse::assertDontSeeLivewire($component);
+        }
+                    /**
+         * 
+         *
          * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
          * @static 
          */ 
         public static function ray()
         {
                         return \Illuminate\Testing\TestResponse::ray();
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class TestView {
+                    /**
+         * 
+         *
+         * @see \Livewire\LivewireServiceProvider::registerTestMacros()
+         * @param mixed $component
+         * @static 
+         */ 
+        public static function assertSeeLivewire($component)
+        {
+                        return \Illuminate\Testing\TestView::assertSeeLivewire($component);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\LivewireServiceProvider::registerTestMacros()
+         * @param mixed $component
+         * @static 
+         */ 
+        public static function assertDontSeeLivewire($component)
+        {
+                        return \Illuminate\Testing\TestView::assertDontSeeLivewire($component);
         }
          
     }
@@ -16442,49 +17494,136 @@
             /**
      * 
      *
-     * @mixin \Illuminate\Routing\RouteRegistrar
      */ 
-        class Router {
+        class Route {
                     /**
          * 
          *
-         * @see \Laravel\Ui\AuthRouteMethods::auth()
-         * @param mixed $options
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $roles
          * @static 
          */ 
-        public static function auth($options = [])
+        public static function role($roles = [])
         {
-                        return \Illuminate\Routing\Router::auth($options);
+                        return \Illuminate\Routing\Route::role($roles);
         }
                     /**
          * 
          *
-         * @see \Laravel\Ui\AuthRouteMethods::resetPassword()
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $permissions
          * @static 
          */ 
-        public static function resetPassword()
+        public static function permission($permissions = [])
         {
-                        return \Illuminate\Routing\Router::resetPassword();
+                        return \Illuminate\Routing\Route::permission($permissions);
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\View { 
+            /**
+     * 
+     *
+     */ 
+        class ComponentAttributeBag {
+                    /**
+         * 
+         *
+         * @see \Livewire\LivewireServiceProvider::registerViewMacros()
+         * @param mixed $name
+         * @static 
+         */ 
+        public static function wire($name)
+        {
+                        return \Illuminate\View\ComponentAttributeBag::wire($name);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class View {
+                    /**
+         * 
+         *
+         * @see \Livewire\Macros\ViewMacros::extends()
+         * @param mixed $view
+         * @param mixed $params
+         * @static 
+         */ 
+        public static function extends($view, $params = [])
+        {
+                        return \Illuminate\View\View::extends($view, $params);
         }
                     /**
          * 
          *
-         * @see \Laravel\Ui\AuthRouteMethods::confirmPassword()
+         * @see \Livewire\Macros\ViewMacros::layout()
+         * @param mixed $view
+         * @param mixed $params
          * @static 
          */ 
-        public static function confirmPassword()
+        public static function layout($view, $params = [])
         {
-                        return \Illuminate\Routing\Router::confirmPassword();
+                        return \Illuminate\View\View::layout($view, $params);
         }
                     /**
          * 
          *
-         * @see \Laravel\Ui\AuthRouteMethods::emailVerification()
+         * @see \Livewire\Macros\ViewMacros::layoutData()
+         * @param mixed $data
          * @static 
          */ 
-        public static function emailVerification()
+        public static function layoutData($data = [])
         {
-                        return \Illuminate\Routing\Router::emailVerification();
+                        return \Illuminate\View\View::layoutData($data);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Macros\ViewMacros::section()
+         * @param mixed $section
+         * @static 
+         */ 
+        public static function section($section)
+        {
+                        return \Illuminate\View\View::section($section);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Macros\ViewMacros::slot()
+         * @param mixed $slot
+         * @static 
+         */ 
+        public static function slot($slot)
+        {
+                        return \Illuminate\View\View::slot($slot);
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\Validation { 
+            /**
+     * 
+     *
+     */ 
+        class Rule {
+                    /**
+         * 
+         *
+         * @see \Propaganistas\LaravelPhone\PhoneServiceProvider::boot()
+         * @static 
+         */ 
+        public static function phone()
+        {
+                        return \Illuminate\Validation\Rule::phone();
         }
          
     }
@@ -16959,7 +18098,6 @@ namespace  {
              * @param string $cursorName
              * @param string|null $cursor
              * @return \Illuminate\Contracts\Pagination\CursorPaginator 
-             * @throws \Illuminate\Pagination\CursorPaginationException
              * @static 
              */ 
             public static function cursorPaginate($perPage = null, $columns = [], $cursorName = 'cursor', $cursor = null)
@@ -19005,7 +20143,7 @@ namespace  {
                 /**
              * Add a descending "order by" clause to the query.
              *
-             * @param string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -19141,7 +20279,7 @@ namespace  {
                 /**
              * Remove all existing orders and optionally add a new order.
              *
-             * @param string|null $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string|null $column
              * @param string $direction
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -19748,6 +20886,7 @@ namespace  {
             class Notification extends \Illuminate\Support\Facades\Notification {}
             class Password extends \Illuminate\Support\Facades\Password {}
             class Queue extends \Illuminate\Support\Facades\Queue {}
+            class RateLimiter extends \Illuminate\Support\Facades\RateLimiter {}
             class Redirect extends \Illuminate\Support\Facades\Redirect {}
             class Request extends \Illuminate\Support\Facades\Request {}
             class Response extends \Illuminate\Support\Facades\Response {}
@@ -19760,6 +20899,9 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
+            class Image extends \Intervention\Image\Facades\Image {}
+            class Agent extends \Jenssegers\Agent\Facades\Agent {}
+            class Livewire extends \Livewire\Livewire {}
             class Action extends \Lorisleiva\Actions\Facades\Actions {}
             class Fractal extends \Spatie\Fractal\FractalFacade {}
             class Hashids extends \Vinkla\Hashids\Facades\Hashids {}

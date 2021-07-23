@@ -29,7 +29,7 @@ use Illuminate\Contracts\View\View;
 
 final class UserController extends Controller
 {
-    public function index(IndexUserRequest $request): Factory|View|Application
+    public function index(IndexUserRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var ?string $search */
         $search = $request->get('search', '');
@@ -42,7 +42,7 @@ final class UserController extends Controller
         return view('app.users.index', compact('users', 'search'));
     }
 
-    public function create(CreateUserRequest $request): Factory|View|Application
+    public function create(CreateUserRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var Role[] $roles */
         $roles = GetAllRolesAction::run();
@@ -50,8 +50,9 @@ final class UserController extends Controller
         return view('app.users.create', compact('roles'));
     }
 
-    public function store(UserStoreRequest $request)
-    {
+    public function store(
+        UserStoreRequest $request
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         /** @var User $user */
         $user = StoreUserAction::run(UserData::fromRequest($request));
 
@@ -60,7 +61,7 @@ final class UserController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    public function show(ShowUserRequest $request, int $user): Factory|View|Application
+    public function show(ShowUserRequest $request, int $user): \Illuminate\View\View|View|Application
     {
 
         return view('app.users.show', [
@@ -68,7 +69,7 @@ final class UserController extends Controller
         ]);
     }
 
-    public function edit(EditUserRequest $request, int $user): Factory|View|Application
+    public function edit(EditUserRequest $request, int $user): \Illuminate\View\View|View|Application
     {
         /** @var User $userModel */
         $userModel = GetUserByIdAction::run($user);
@@ -81,8 +82,10 @@ final class UserController extends Controller
         ]);
     }
 
-    public function update(UserUpdateRequest $request, int $user)
-    {
+    public function update(
+        UserUpdateRequest $request,
+        int $user
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $userData = UserData::fromRequest($request);
         $userData->id = $user;
         $userModel = UpdateUserAction::run($userData);
@@ -92,8 +95,10 @@ final class UserController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeleteUserRequest $request, int $user)
-    {
+    public function destroy(
+        DeleteUserRequest $request,
+        int $user
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         DeleteUserAction::run($user);
 
         return redirect()

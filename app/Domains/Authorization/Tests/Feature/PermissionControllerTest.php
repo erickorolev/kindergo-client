@@ -18,7 +18,9 @@ class PermissionControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->actingAs(User::factory()->create(['email' => 'admin@admin.com']));
+        /** @var User $user */
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
+        $this->actingAs($user);
 
         $this->seed(PermissionsSeeder::class);
 
@@ -27,8 +29,10 @@ class PermissionControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_displays_index_view_with_permissions()
+    public function it_displays_index_view_with_permissions(): void
     {
         $response = $this->get(route('admin.permissions.index'));
 
@@ -40,8 +44,10 @@ class PermissionControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_displays_create_view_for_permission()
+    public function it_displays_create_view_for_permission(): void
     {
         $response = $this->get(route('admin.permissions.create'));
 
@@ -50,8 +56,10 @@ class PermissionControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_stores_the_permission()
+    public function it_stores_the_permission(): void
     {
         $response = $this->post(route('admin.permissions.store'), [
             'name' => 'list secretaries',
@@ -67,9 +75,12 @@ class PermissionControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_displays_show_view_for_permission()
+    public function it_displays_show_view_for_permission(): void
     {
+        /** @var \Domains\Authorization\Models\Permission $permission */
         $permission = Permission::first();
 
         $response = $this->get(route('admin.permissions.show', $permission));
@@ -82,9 +93,12 @@ class PermissionControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_displays_edit_view_for_permission()
+    public function it_displays_edit_view_for_permission(): void
     {
+        /** @var PermissionsSeeder $permission */
         $permission = Permission::first();
 
         $response = $this->get(route('admin.permissions.edit', $permission));
@@ -97,9 +111,12 @@ class PermissionControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_updates_the_permission()
+    public function it_updates_the_permission(): void
     {
+        /** @var \Domains\Authorization\Models\Permission $permission */
         $permission = Permission::first();
 
         $data = [
@@ -119,9 +136,12 @@ class PermissionControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_deletes_the_permission()
+    public function it_deletes_the_permission(): void
     {
+        /** @var Permission $permission */
         $permission = Permission::first();
 
         $response = $this->delete(route('admin.permissions.destroy', $permission));

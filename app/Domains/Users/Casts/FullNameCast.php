@@ -32,6 +32,7 @@ class FullNameCast implements CastsAttributes
      * @param  ?FullNameValueObject|string  $value
      * @param  array  $attributes
      * @return string
+     * @psalm-suppress DocblockTypeContradiction
      */
     public function set($model, $key, $value, $attributes): string
     {

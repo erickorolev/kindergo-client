@@ -10,6 +10,11 @@ use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Livewire\Livewire;
 use Parents\Tests\PhpUnit\TestCase;
 
+/**
+ * Class ApiTokenPermissionsTest
+ * @package Domains\Authentication\Tests\Feature
+ * @psalm-suppress all
+ */
 class ApiTokenPermissionsTest extends TestCase
 {
     use RefreshDatabase;

@@ -30,7 +30,7 @@ use Illuminate\Contracts\Foundation\Application;
 
 final class TripController extends Controller
 {
-    public function index(IndexTripsRequest $request): Factory|View|Application
+    public function index(IndexTripsRequest $request): \Illuminate\View\View|View|Application
     {
         $search = $request->get('search', '');
 
@@ -43,7 +43,7 @@ final class TripController extends Controller
         return view('app.trips.index', compact('trips', 'search'));
     }
 
-    public function create(CreateTimetableRequest $request): Factory|View|Application
+    public function create(CreateTimetableRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var Collection $attendants */
         $attendants = GetAttendantPicklistAction::run();
@@ -62,8 +62,9 @@ final class TripController extends Controller
         ));
     }
 
-    public function store(TripStoreRequest $request)
-    {
+    public function store(
+        TripStoreRequest $request
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         /** @var Trip $trip */
         $trip = StoreTripAction::run(TripData::fromRequest($request));
 
@@ -72,7 +73,7 @@ final class TripController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    public function show(ShowTripRequest $request, int $trip): Factory|View|Application
+    public function show(ShowTripRequest $request, int $trip): \Illuminate\View\View|View|Application
     {
         /** @var Trip $trip */
         $trip = GetTripByIdAction::run($trip);
@@ -80,7 +81,7 @@ final class TripController extends Controller
         return view('app.trips.show', compact('trip'));
     }
 
-    public function edit(EditTripRequest $request, Trip $trip): Factory|View|Application
+    public function edit(EditTripRequest $request, Trip $trip): \Illuminate\View\View|View|Application
     {
         /** @var Collection $attendants */
         $attendants = GetAttendantPicklistAction::run();
@@ -105,8 +106,10 @@ final class TripController extends Controller
         );
     }
 
-    public function update(TripUpdateRequest $request, int $trip)
-    {
+    public function update(
+        TripUpdateRequest $request,
+        int $trip
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $tripData = TripData::fromRequest($request);
         $tripData->id = $trip;
         $tripModel = UpdateTripAction::run($tripData);
@@ -116,8 +119,10 @@ final class TripController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeleteTripRequest $request, int $trip)
-    {
+    public function destroy(
+        DeleteTripRequest $request,
+        int $trip
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         DeleteTripAction::run($trip);
 
         return redirect()

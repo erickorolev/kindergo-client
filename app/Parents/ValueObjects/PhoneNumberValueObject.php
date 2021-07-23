@@ -36,6 +36,7 @@ final class PhoneNumberValueObject extends ValueObject
      * @psalm-param ?string  $native
      * @return PhoneNumberValueObject
      * @psalm-suppress MoreSpecificImplementedParamType
+     * @psalm-suppress PossiblyInvalidCast
      */
     public static function fromNative($native, ?string $country = null): PhoneNumberValueObject
     {
@@ -53,6 +54,12 @@ final class PhoneNumberValueObject extends ValueObject
         return $this->number->getRawNumber();
     }
 
+    /**
+     * @param  string|null  $country
+     * @return string
+     * @throws \Propaganistas\LaravelPhone\Exceptions\CountryCodeException
+     * @psalm-suppress PossiblyInvalidCast
+     */
     public function toDisplayValue(?string $country = null): string
     {
         if (!$country) {

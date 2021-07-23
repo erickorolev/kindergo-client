@@ -17,7 +17,7 @@ class ReceivingFileTest extends \Parents\Tests\PhpUnit\TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
+        /** @var User $user */
         $user = User::factory()->create([
             'email' => 'admin@admin.com',
             'phone' => '+79067598835',

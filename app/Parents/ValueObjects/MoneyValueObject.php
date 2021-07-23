@@ -70,6 +70,11 @@ final class MoneyValueObject extends ValueObject
         return $this->money;
     }
 
+    /**
+     * @param  string|null  $preferred
+     * @return string
+     * @psalm-suppress PossiblyInvalidCast
+     */
     public function getFormattedValue(?string $preferred = null): string
     {
         if (!$preferred) {

@@ -18,6 +18,50 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Units\Filterings\Scopes\Searchable;
 
+/**
+ * Class Child
+ * @package Domains\Children\Models
+ * @property int $id
+ * @property string $firstname Имя
+ * @property string $lastname Фамилия
+ * @property string|null $middle_name Отчество
+ * @property \Illuminate\Support\Carbon $birthday Дата рождения
+ * @property \Parents\Enums\GenderEnum $gender Пол
+ * @property \Parents\ValueObjects\PhoneNumberValueObject|null $phone Телефон
+ * @property string|null $imagename Фотография
+ * @property \Parents\ValueObjects\PhoneNumberValueObject|null|null $otherphone Другой телефон
+ * @property \Parents\ValueObjects\CrmIdValueObject|null|null $crmid ID in Vtiger
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Media|null $avatar
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Domains\Timetables\Models\Timetable[] $timetables
+ * @property-read int|null $timetables_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Domains\Trips\Models\Trip[] $trips
+ * @property-read int|null $trips_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Domains\Users\Models\User[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Child newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Child newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Child query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Child search($search)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child searchLatestPaginated(string $search, string $paginationQuantity = 10)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereBirthday($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereCrmid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereFirstname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereGender($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereImagename($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereLastname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereMiddleName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereOtherphone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Child whereUpdatedAt($value)
+ */
 final class Child extends Model implements HasMedia
 {
     use Searchable;
@@ -87,7 +131,7 @@ final class Child extends Model implements HasMedia
     public function toArray(): array
     {
         $data = parent::toArray();
-        $data['phone'] = $this->phone->toNative();
+        $data['phone'] = $this->phone?->toNative();
         $data['otherphone'] = $this->otherphone?->toNative();
         $data['gender'] = $this->gender->value;
         $data['crmid'] = $this->crmid?->toNative();
@@ -113,7 +157,9 @@ final class Child extends Model implements HasMedia
      */
     protected static function booted(): void
     {
-        if (Auth::user()?->hasExactRoles(['client'])) {
+        /** @var ?User $authUser */
+        $authUser = Auth::user();
+        if ($authUser?->hasExactRoles(['client'])) {
             static::addGlobalScope('users', function (Builder $builder) {
                 $builder->whereHas('users', function (Builder $q) {
                     $q->where('child_user.user_id', Auth::id());

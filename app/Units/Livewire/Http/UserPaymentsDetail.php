@@ -2,9 +2,10 @@
 
 namespace Units\Livewire\Http;
 
-use App\Models\User;
+use Domains\Payments\Models\Payment;
+use Domains\Users\Models\User;
+use Illuminate\Support\Carbon;
 use Livewire\Component;
-use App\Models\Payment;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UserPaymentsDetail extends Component
@@ -13,16 +14,16 @@ class UserPaymentsDetail extends Component
 
     public User $user;
     public Payment $payment;
-    public $paymentPayDate;
+    public null|string $paymentPayDate;
 
-    public $selected = [];
-    public $editing = false;
-    public $allSelected = false;
-    public $showingModal = false;
+    public array $selected = [];
+    public bool $editing = false;
+    public bool $allSelected = false;
+    public bool $showingModal = false;
 
-    public $modalTitle = 'New Payment';
+    public string $modalTitle = 'New Payment';
 
-    protected $rules = [
+    protected array $rules = [
         'paymentPayDate' => ['required', 'date'],
         'payment.type_payment' => [
             'required',
@@ -35,13 +36,13 @@ class UserPaymentsDetail extends Component
         ],
     ];
 
-    public function mount(User $user)
+    public function mount(User $user): void
     {
         $this->user = $user;
         $this->resetPaymentData();
     }
 
-    public function resetPaymentData()
+    public function resetPaymentData(): void
     {
         $this->payment = new Payment();
 
@@ -50,7 +51,7 @@ class UserPaymentsDetail extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newPayment()
+    public function newPayment(): void
     {
         $this->editing = false;
         $this->modalTitle = trans('crud.user_payments.new_title');
@@ -59,7 +60,7 @@ class UserPaymentsDetail extends Component
         $this->showModal();
     }
 
-    public function editPayment(Payment $payment)
+    public function editPayment(Payment $payment): void
     {
         $this->editing = true;
         $this->modalTitle = trans('crud.user_payments.edit_title');
@@ -72,18 +73,18 @@ class UserPaymentsDetail extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -95,14 +96,14 @@ class UserPaymentsDetail extends Component
             $this->authorize('update', $this->payment);
         }
 
-        $this->payment->pay_date = \Carbon\Carbon::parse($this->paymentPayDate);
+        $this->payment->pay_date = Carbon::parse($this->paymentPayDate);
 
         $this->payment->save();
 
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', Payment::class);
 
@@ -114,6 +115,9 @@ class UserPaymentsDetail extends Component
         $this->resetPaymentData();
     }
 
+    /**
+     * @return void
+     */
     public function toggleFullSelection()
     {
         if (!$this->allSelected) {
@@ -126,7 +130,7 @@ class UserPaymentsDetail extends Component
         }
     }
 
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('livewire.user-payments-detail', [
             'payments' => $this->user->payments()->paginate(20),

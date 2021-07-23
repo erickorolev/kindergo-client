@@ -11,6 +11,7 @@ use Domains\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Parents\Tests\PhpUnit\TestCase;
+use Ramsey\Uuid\Type\Time;
 
 class TimetableControllerTest extends TestCase
 {
@@ -21,8 +22,10 @@ class TimetableControllerTest extends TestCase
     {
         parent::setUp();
 
+        /** @var User $user */
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
         $this->actingAs(
-            User::factory()->create(['email' => 'admin@admin.com'])
+            $user
         );
 
         $this->seed(PermissionsSeeder::class);
@@ -35,6 +38,7 @@ class TimetableControllerTest extends TestCase
      */
     public function it_displays_index_view_with_timetables(): void
     {
+        /** @var Timetable[] $timetables */
         $timetables = Timetable::factory()
             ->count(5)
             ->create();
@@ -59,6 +63,7 @@ class TimetableControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_timetable(): void
     {
@@ -71,6 +76,7 @@ class TimetableControllerTest extends TestCase
 
         $this->assertDatabaseHas('timetables', $data);
 
+        /** @var Timetable $timetable */
         $timetable = Timetable::latest('id')->first();
 
         $response->assertRedirect(route('admin.timetables.edit', $timetable));
@@ -81,6 +87,7 @@ class TimetableControllerTest extends TestCase
      */
     public function it_displays_show_view_for_timetable(): void
     {
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->create();
 
         $response = $this->get(route('admin.timetables.show', $timetable));
@@ -96,6 +103,7 @@ class TimetableControllerTest extends TestCase
      */
     public function it_displays_edit_view_for_timetable(): void
     {
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->create();
 
         $response = $this->get(route('admin.timetables.edit', $timetable->id));
@@ -111,26 +119,27 @@ class TimetableControllerTest extends TestCase
      */
     public function it_updates_the_timetable(): void
     {
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->create();
-
+        /** @var User $user */
         $user = User::factory()->create();
 
         $data = [
-            'name' => $this->faker->address,
-            'where_address' => $this->faker->address,
+            'name' => $this->faker->address(),
+            'where_address' => $this->faker->address(),
             'trips' => $this->faker->randomNumber(0),
             'childrens' => $this->faker->randomNumber(0),
             'childrens_age' => $this->faker->text(10),
-            'date' => $this->faker->date,
-            'time' => $this->faker->time,
+            'date' => $this->faker->date(),
+            'time' => $this->faker->time(),
             'duration' => $this->faker->randomNumber(0),
             'distance' => $this->faker->randomFloat(2, 0, 9999),
             'scheduled_wait_from' => $this->faker->randomNumber(0),
             'scheduled_wait_where' => $this->faker->randomNumber(0),
             'status' => TimetableStatusEnum::getRandomValue(),
-            'bill_paid' => $this->faker->boolean,
+            'bill_paid' => $this->faker->boolean(),
             'description' => $this->faker->sentence(15),
-            'parking_info' => $this->faker->text,
+            'parking_info' => $this->faker->text(),
             'user_id' => $user->id,
         ];
 
@@ -148,6 +157,7 @@ class TimetableControllerTest extends TestCase
      */
     public function it_deletes_the_timetable(): void
     {
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->create();
 
         $response = $this->delete(route('admin.timetables.destroy', $timetable));

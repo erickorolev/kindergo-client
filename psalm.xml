@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="1"
+    errorLevel="2"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -20,5 +20,6 @@
         <PropertyNotSetInConstructor errorLevel="suppress" />
         <UnnecessaryVarAnnotation errorLevel="suppress" />
         <UnusedClosureParam errorLevel="suppress" />
+        <MoreSpecificImplementedParamType errorLevel="info" />
     </issueHandlers>
 </psalm>

@@ -20,9 +20,10 @@ class AttendantControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
+        /** @var User $user */
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
         $this->actingAs(
-            User::factory()->create(['email' => 'admin@admin.com'])
+            $user
         );
 
         $this->seed(PermissionsSeeder::class);
@@ -35,6 +36,7 @@ class AttendantControllerTest extends TestCase
      */
     public function it_displays_index_view_with_attendants(): void
     {
+        /** @var Attendant[] $attendants */
         $attendants = Attendant::factory()
             ->count(5)
             ->create();
@@ -59,6 +61,7 @@ class AttendantControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_attendant(): void
     {
@@ -68,16 +71,15 @@ class AttendantControllerTest extends TestCase
         $data['phone'] = '+79067865489';
         try {
             $response = $this->post(route('admin.attendants.store'), $data);
+            $this->assertDatabaseHas('attendants', $data);
+            /** @var Attendant $attendant */
+            $attendant = Attendant::latest('id')->first();
+
+            $response->assertRedirect(route('admin.attendants.edit', $attendant->id));
         } catch (\Illuminate\Validation\ValidationException $ex) {
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
-
-        $this->assertDatabaseHas('attendants', $data);
-
-        $attendant = Attendant::latest('id')->first();
-
-        $response->assertRedirect(route('admin.attendants.edit', $attendant->id));
     }
 
     /**
@@ -121,14 +123,14 @@ class AttendantControllerTest extends TestCase
         $attendant = Attendant::factory()->create();
 
         $data = [
-            'firstname' => $this->faker->firstName,
-            'lastname' => $this->faker->lastName,
-            'middle_name' => $this->faker->lastName,
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'middle_name' => $this->faker->lastName(),
             'phone' => '+79086489965',
-            'resume' => $this->faker->text,
+            'resume' => $this->faker->text(),
             'car_model' => $this->faker->text(190),
-            'car_year' => $this->faker->year,
-            'email' => $this->faker->email,
+            'car_year' => $this->faker->year(),
+            'email' => $this->faker->email(),
             'gender' => GenderEnum::getRandomValue(),
         ];
 

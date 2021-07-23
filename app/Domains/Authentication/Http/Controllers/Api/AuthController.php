@@ -11,6 +11,12 @@ use Illuminate\Validation\ValidationException;
 
 final class AuthController extends Controller
 {
+    /**
+     * @param  LoginRequest  $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws ValidationException
+     * @psalm-suppress PossiblyUndefinedMethod
+     */
     public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
         $credentials = $request->validated();

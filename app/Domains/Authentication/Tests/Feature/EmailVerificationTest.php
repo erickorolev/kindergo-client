@@ -12,6 +12,11 @@ use Laravel\Fortify\Features;
 use Laravel\Jetstream\Features as JetstreamFeatures;
 use Parents\Tests\PhpUnit\TestCase;
 
+/**
+ * Class EmailVerificationTest
+ * @package Domains\Authentication\Tests\Feature
+ * @psalm-suppress all
+ */
 class EmailVerificationTest extends TestCase
 {
     use RefreshDatabase;

@@ -19,7 +19,7 @@ final class GetClearTimetableIdAction extends \Parents\Actions\Action
             $crmid = CrmIdValueObject::fromNative((string) $id);
             /** @var ?Timetable $user */
             $user = GetTimetableByCrmIdAction::run($crmid);
-            return $user->id;
+            return $user?->id;
         } catch (\InvalidArgumentException $ex) {
             /** @var Timetable $user */
             $user = GetTimetableByIdAction::run((int) $id);

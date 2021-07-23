@@ -13,8 +13,10 @@ final class PaymentRepository extends \Parents\Repositories\Repository implement
 
     public function basicPaginate(string $search, int $pagination): LengthAwarePaginator
     {
-        return Payment::search($search)
+        /** @var LengthAwarePaginator $payments */
+        $payments = Payment::search($search)
             ->latest()
             ->paginate(5);
+        return $payments;
     }
 }

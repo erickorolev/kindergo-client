@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Notification;
 use Laravel\Fortify\Features;
 use Parents\Tests\PhpUnit\TestCase;
 
+/**
+ * Class PasswordResetTest
+ * @package Domains\Authentication\Tests\Feature
+ * @psalm-suppress all
+ */
 class PasswordResetTest extends TestCase
 {
     use RefreshDatabase;

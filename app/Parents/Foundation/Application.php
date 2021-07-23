@@ -12,6 +12,7 @@ final class Application extends \Illuminate\Foundation\Application
      * @return string
      *
      * @throws \RuntimeException
+     * @psalm-suppress RedundantConditionGivenDocblockType
      */
     public function getNamespace()
     {
@@ -33,6 +34,6 @@ final class Application extends \Illuminate\Foundation\Application
         }
 
 
-        throw new RuntimeException('Unable to detect application namespace.');
+        throw new \RuntimeException('Unable to detect application namespace.');
     }
 }

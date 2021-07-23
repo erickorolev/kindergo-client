@@ -11,10 +11,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 final class AttendantRepository extends Repository implements AttendantRepositoryInterface
 {
+
     public function basicPaginate(string $search, int $pagination = 5): LengthAwarePaginator
     {
-        return Attendant::search($search)
+        /** @var LengthAwarePaginator $attendants */
+        $attendants = Attendant::search($search)
             ->latest()
             ->paginate($pagination);
+        return $attendants;
     }
 }

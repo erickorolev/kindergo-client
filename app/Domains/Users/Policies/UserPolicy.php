@@ -69,7 +69,7 @@ final class UserPolicy
         return $user->hasPermissionTo('delete users');
     }
 
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete users');
     }

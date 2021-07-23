@@ -2,10 +2,12 @@
 
 namespace Units\Livewire\Http;
 
-use App\Models\Trip;
+use Domains\Attendants\Models\Attendant;
+use Domains\Timetables\Models\Timetable;
+use Domains\Trips\Models\Trip;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Livewire\Component;
-use App\Models\Timetable;
-use App\Models\Attendant;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TimetableTripsDetail extends Component
@@ -14,17 +16,17 @@ class TimetableTripsDetail extends Component
 
     public Timetable $timetable;
     public Trip $trip;
-    public $timetableAttendants = [];
-    public $tripDate;
+    public array|Collection $timetableAttendants = [];
+    public null|string $tripDate;
 
-    public $selected = [];
-    public $editing = false;
-    public $allSelected = false;
-    public $showingModal = false;
+    public array $selected = [];
+    public bool $editing = false;
+    public bool $allSelected = false;
+    public bool $showingModal = false;
 
-    public $modalTitle = 'New Trip';
+    public string $modalTitle = 'New Trip';
 
-    protected $rules = [
+    protected array $rules = [
         'trip.name' => ['required', 'max:255', 'string'],
         'trip.where_address' => ['required', 'max:255', 'string'],
         'tripDate' => ['required', 'date'],
@@ -37,14 +39,14 @@ class TimetableTripsDetail extends Component
         'trip.attendant_id' => ['nullable', 'exists:attendants,id'],
     ];
 
-    public function mount(Timetable $timetable)
+    public function mount(Timetable $timetable): void
     {
         $this->timetable = $timetable;
         $this->timetableAttendants = Attendant::pluck('firstname', 'id');
         $this->resetTripData();
     }
 
-    public function resetTripData()
+    public function resetTripData(): void
     {
         $this->trip = new Trip();
 
@@ -53,7 +55,7 @@ class TimetableTripsDetail extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newTrip()
+    public function newTrip(): void
     {
         $this->editing = false;
         $this->modalTitle = trans('crud.timetable_trips.new_title');
@@ -62,7 +64,7 @@ class TimetableTripsDetail extends Component
         $this->showModal();
     }
 
-    public function editTrip(Trip $trip)
+    public function editTrip(Trip $trip): void
     {
         $this->editing = true;
         $this->modalTitle = trans('crud.timetable_trips.edit_title');
@@ -75,18 +77,18 @@ class TimetableTripsDetail extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -98,14 +100,14 @@ class TimetableTripsDetail extends Component
             $this->authorize('update', $this->trip);
         }
 
-        $this->trip->date = \Carbon\Carbon::parse($this->tripDate);
+        $this->trip->date = Carbon::parse($this->tripDate);
 
         $this->trip->save();
 
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', Trip::class);
 
@@ -117,6 +119,9 @@ class TimetableTripsDetail extends Component
         $this->resetTripData();
     }
 
+    /**
+     * @return void
+     */
     public function toggleFullSelection()
     {
         if (!$this->allSelected) {
@@ -129,7 +134,7 @@ class TimetableTripsDetail extends Component
         }
     }
 
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('livewire.timetable-trips-detail', [
             'trips' => $this->timetable->trips()->paginate(20),

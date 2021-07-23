@@ -33,7 +33,7 @@ final class ChildTransformer extends Transformer
             'firstname' => $model->firstname,
             'lastname' => $model->lastname,
             'middle_name' => $model->middle_name,
-            'phone' => $model->phone->toDisplayValue(),
+            'phone' => $model->phone?->toDisplayValue(),
             'gender' => $model->gender->toArray(),
             'otherphone' => $model->otherphone?->toDisplayValue(),
             'crmid' => $model->crmid?->toNative(),

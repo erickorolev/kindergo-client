@@ -26,7 +26,7 @@ use Illuminate\Contracts\Foundation\Application;
 
 final class AttendantController extends Controller
 {
-    public function index(IndexAttendantRequest $request): Factory|View|Application
+    public function index(IndexAttendantRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var ?string $search */
         $search = $request->get('search', '');
@@ -41,13 +41,14 @@ final class AttendantController extends Controller
         return view('app.attendants.index', compact('attendants', 'search'));
     }
 
-    public function create(CreateAttendantRequest $request): Factory|View|Application
+    public function create(CreateAttendantRequest $request): \Illuminate\View\View|View|Application
     {
         return view('app.attendants.create');
     }
 
-    public function store(AttendantStoreRequest $request)
-    {
+    public function store(
+        AttendantStoreRequest $request
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         /** @var Attendant $attendant */
         $attendant = StoreAttendantAction::run(AttendantData::fromRequest($request));
 
@@ -56,7 +57,7 @@ final class AttendantController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    public function show(ShowAttendantRequest $request, int $attendant): Factory|View|Application
+    public function show(ShowAttendantRequest $request, int $attendant): \Illuminate\View\View|View|Application
     {
         /** @var Attendant $attendantModel */
         $attendantModel = GetAttendantByIdAction::run($attendant);
@@ -66,7 +67,7 @@ final class AttendantController extends Controller
         ]);
     }
 
-    public function edit(EditAttendantRequest $request, int $attendant): Factory|View|Application
+    public function edit(EditAttendantRequest $request, int $attendant): \Illuminate\View\View|View|Application
     {
         /** @var Attendant $attendantModel */
         $attendantModel = GetAttendantByIdAction::run($attendant);
@@ -79,7 +80,7 @@ final class AttendantController extends Controller
     public function update(
         AttendantUpdateRequest $request,
         int $attendant
-    ) {
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $attendantData = AttendantData::fromRequest($request);
         $attendantData->id = $attendant;
 
@@ -90,8 +91,10 @@ final class AttendantController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeleteAttendantRequest $request, int $attendant)
-    {
+    public function destroy(
+        DeleteAttendantRequest $request,
+        int $attendant
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         DeleteAttendantAction::run($attendant);
 
         return redirect()

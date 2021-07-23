@@ -17,6 +17,8 @@ final class UpdateUserPassword implements UpdatesUserPasswords
      * @param  User  $user
      * @param  array  $input
      * @return void
+     * @psalm-suppress UndefinedInterfaceMethod
+     * @psalm-suppress MissingClosureParamType
      */
     public function update($user, array $input): void
     {

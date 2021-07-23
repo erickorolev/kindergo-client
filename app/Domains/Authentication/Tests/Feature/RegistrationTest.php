@@ -8,6 +8,11 @@ use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;
 use Parents\Tests\PhpUnit\TestCase;
 
+/**
+ * Class RegistrationTest
+ * @package Domains\Authentication\Tests\Feature
+ * @psalm-suppress all
+ */
 class RegistrationTest extends TestCase
 {
     use RefreshDatabase;

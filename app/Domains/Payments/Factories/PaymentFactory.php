@@ -21,6 +21,7 @@ final class PaymentFactory extends Factory
      * Define the model's default state.
      *
      * @return array
+     * @psalm-suppress UndefinedMagicPropertyFetch
      */
     public function definition(): array
     {
@@ -35,7 +36,7 @@ final class PaymentFactory extends Factory
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 
-            'user_id' => function () {
+            'user_id' => function (): int {
                 return User::factory()->create()->id;
             },
         ];

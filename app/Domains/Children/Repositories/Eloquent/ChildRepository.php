@@ -13,8 +13,10 @@ final class ChildRepository extends Repository implements ChildRepositoryInterfa
 {
     public function basicPaginate(string $search, int $pagination = 5): LengthAwarePaginator
     {
-        return Child::search($search)
+        /** @var LengthAwarePaginator $children */
+        $children = Child::search($search)
             ->latest()
             ->paginate($pagination);
+        return $children;
     }
 }

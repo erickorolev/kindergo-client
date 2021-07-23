@@ -15,7 +15,7 @@ final class UpdatePermissionAction extends \Parents\Actions\Action
         /** @var Permission $permission */
         $permission = GetPermissionByIdAction::run($permissionData->id);
         $permission->update($permissionData->toArray());
-
+        /** @var \Spatie\Permission\Models\Role[] $roles */
         $roles = Role::find($permissionData->roles);
         $permission->syncRoles($roles);
 

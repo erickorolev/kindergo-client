@@ -5,18 +5,27 @@ declare(strict_types=1);
 namespace Parents\Middlewares\Http;
 
 use Closure;
+use Domains\Users\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 final class IsAdmin extends \Parents\Middlewares\Middleware
 {
-    public function handle(Request $request, Closure $next): mixed
+    /**
+     * @param  Request  $request
+     * @param  Closure  $next
+     * @return mixed
+     * @psalm-suppress MissingReturnType
+     */
+    public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->hasAnyRole(['user', 'super-admin'])) {
+        /** @var User $authUser */
+        $authUser = Auth::user();
+        if ($authUser->hasAnyRole(['user', 'super-admin'])) {
             return $next($request);
-        } else {
-            abort(403);
         }
+
+        abort(403);
     }
 }

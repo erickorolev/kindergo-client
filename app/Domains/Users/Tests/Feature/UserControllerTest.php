@@ -17,8 +17,10 @@ class UserControllerTest extends TestCase
     {
         parent::setUp();
 
+        /** @var User $user */
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
         $this->actingAs(
-            User::factory()->create(['email' => 'admin@admin.com'])
+            $user
         );
 
         $this->seed(PermissionsSeeder::class);
@@ -31,6 +33,7 @@ class UserControllerTest extends TestCase
      */
     public function it_displays_index_view_with_users(): void
     {
+        /** @var User[] $users */
         $users = User::factory()
             ->count(5)
             ->create();
@@ -55,6 +58,7 @@ class UserControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_user(): void
     {
@@ -63,10 +67,14 @@ class UserControllerTest extends TestCase
             ->toArray();
         $data['phone'] = '+79876757777';
         $data['otherphone'] = '+79022884433';
-        $data['password'] = \Str::random('8');
+        $data['password'] = \Str::random(8);
 
         try {
             $response = $this->post(route('admin.users.store'), $data);
+
+            $user = User::latest('id')->first();
+
+            $response->assertRedirect(route('admin.users.edit', $user));
         } catch (\Illuminate\Validation\ValidationException $exception) {
             dump($exception->errors());
             $this->assertTrue(false, $exception->getMessage());
@@ -79,10 +87,6 @@ class UserControllerTest extends TestCase
         unset($data['name']);
 
         $this->assertDatabaseHas('users', $data);
-
-        $user = User::latest('id')->first();
-
-        $response->assertRedirect(route('admin.users.edit', $user));
     }
 
     /**
@@ -90,6 +94,7 @@ class UserControllerTest extends TestCase
      */
     public function it_displays_show_view_for_user(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $response = $this->get(route('admin.users.show', $user));
@@ -105,6 +110,7 @@ class UserControllerTest extends TestCase
      */
     public function it_displays_edit_view_for_user(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $response = $this->get(route('admin.users.edit', $user));
@@ -117,23 +123,25 @@ class UserControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_updates_the_user(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $data = [
-            'name' => $this->faker->name,
-            'email' => $this->faker->email,
-            'firstname' => $this->faker->firstName,
-            'lastname' => $this->faker->lastName,
-            'middle_name' => $this->faker->lastName,
+            'name' => $this->faker->name(),
+            'email' => $this->faker->email(),
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'middle_name' => $this->faker->lastName(),
             'phone' => '+79087568899',
             'attendant_gender' => 'No matter',
             'otherphone' => '+79024456879',
         ];
 
-        $data['password'] = \Str::random('8');
+        $data['password'] = \Str::random(8);
 
         $response = $this->put(route('admin.users.update', $user), $data);
 
@@ -152,9 +160,11 @@ class UserControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress ImplicitToStringCast
      */
     public function it_deletes_the_user(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $response = $this->delete(route('admin.users.destroy', $user));

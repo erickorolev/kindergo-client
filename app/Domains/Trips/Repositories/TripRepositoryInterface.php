@@ -7,6 +7,11 @@ namespace Domains\Trips\Repositories;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Parents\Models\Model;
 
+/**
+ * Interface TripRepositoryInterface
+ * @package Domains\Trips\Repositories
+ * @psalm-suppress all
+ */
 interface TripRepositoryInterface
 {
     public function basicPaginate(string $search, int $pagination): LengthAwarePaginator;

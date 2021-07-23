@@ -10,6 +10,8 @@ final class GetUserByEmailAction extends \Parents\Actions\Action
 {
     public function handle(string $email): ?User
     {
-        return User::whereEmail($email)->first();
+        /** @var ?User $user */
+        $user = User::whereEmail($email)->first();
+        return $user;
     }
 }

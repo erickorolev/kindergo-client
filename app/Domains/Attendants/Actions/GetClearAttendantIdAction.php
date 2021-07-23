@@ -18,7 +18,7 @@ final class GetClearAttendantIdAction extends \Parents\Actions\Action
             $crmid = CrmIdValueObject::fromNative((string) $id);
             /** @var ?Attendant $user */
             $user = GetAttendantByCrmIdAction::run($crmid);
-            return $user->id;
+            return $user?->id;
         } catch (\InvalidArgumentException $ex) {
             /** @var Attendant $user */
             $user = GetAttendantByIdAction::run($id);

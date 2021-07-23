@@ -28,7 +28,12 @@ use Illuminate\Contracts\Foundation\Application;
 
 final class PermissionController extends Controller
 {
-    public function index(IndexPermissionsRequest $request): Factory|View|Application
+
+    /**
+     * @return \Illuminate\View\View
+     * @psalm-suppress MismatchingDocblockReturnType
+     */
+    public function index(IndexPermissionsRequest $request): self|View|Application
     {
         /** @var ?string $search */
         $search = $request->get('search', '');
@@ -43,14 +48,19 @@ final class PermissionController extends Controller
             ->with('search', $search);
     }
 
-    public function create(CreatePermissionRequest $request): Factory|View|Application
+    /**
+     * @return \Illuminate\View\View
+     * @psalm-suppress MismatchingDocblockReturnType
+     */
+    public function create(CreatePermissionRequest $request): self|View|Application
     {
         $roles = GetAllRolesAction::run();
         return view('app.permissions.create')->with('roles', $roles);
     }
 
-    public function store(StorePermissionRequest $request)
-    {
+    public function store(
+        StorePermissionRequest $request
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $permission = StorePermissionAction::run(PermissionData::fromRequest($request));
 
         return redirect()
@@ -58,7 +68,12 @@ final class PermissionController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    public function show(ShowPermissionRequest $request, int $permission): Factory|View|Application
+
+    /**
+     * @return \Illuminate\View\View
+     * @psalm-suppress MismatchingDocblockReturnType
+     */
+    public function show(ShowPermissionRequest $request, int $permission): self|View|Application
     {
         /** @var Permission $permissionModel */
         $permissionModel = GetPermissionByIdAction::run($permission);
@@ -66,7 +81,12 @@ final class PermissionController extends Controller
         return view('app.permissions.show')->with('permission', $permissionModel);
     }
 
-    public function edit(EditPermissionRequest $request, int $permission): Factory|View|Application
+
+    /**
+     * @return \Illuminate\View\View
+     * @psalm-suppress MismatchingDocblockReturnType
+     */
+    public function edit(EditPermissionRequest $request, int $permission): self|View|Application
     {
         /** @var Permission $permissionModel */
         $permissionModel = GetPermissionByIdAction::run($permission);
@@ -78,8 +98,10 @@ final class PermissionController extends Controller
             ->with('roles', $roles);
     }
 
-    public function update(UpdatePermissionRequest $request, int $permission)
-    {
+    public function update(
+        UpdatePermissionRequest $request,
+        int $permission
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $permissionData = PermissionData::fromRequest($request);
         $permissionData->id = $permission;
         /** @var Permission $permissionModel */
@@ -90,8 +112,10 @@ final class PermissionController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeletePermissionRequest $request, int $permission)
-    {
+    public function destroy(
+        DeletePermissionRequest $request,
+        int $permission
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         DeletePermissionAction::run($permission);
 
         return redirect()

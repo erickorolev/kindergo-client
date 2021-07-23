@@ -6,6 +6,7 @@ namespace Domains\Timetables\Tests\Feature;
 
 use Domains\Authorization\Seeders\PermissionsSeeder;
 use Domains\Children\Models\Child;
+use Domains\Timetables\Enums\TimetableStatusEnum;
 use Domains\Timetables\Http\Controllers\Api\TimetableApiController;
 use Domains\Timetables\Http\Requests\Admin\DeleteTimetableRequest;
 use Domains\Timetables\Http\Requests\Admin\IndexTimetablesRequest;
@@ -32,6 +33,7 @@ class TimetableApiTest extends TestCase
     {
         parent::setUp();
 
+        /** @var User $user */
         $user = User::factory()->create(['email' => 'admin@admin.com']);
 
         Sanctum::actingAs($user, [], 'web');
@@ -46,6 +48,7 @@ class TimetableApiTest extends TestCase
      */
     public function it_gets_timetables_list(): void
     {
+        /** @var Timetable[] $timetables */
         $timetables = Timetable::factory()
             ->count(5)
             ->create();
@@ -81,6 +84,7 @@ class TimetableApiTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_timetable(): void
     {
@@ -114,26 +118,27 @@ class TimetableApiTest extends TestCase
      */
     public function it_updates_the_timetable(): void
     {
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->create();
-
+        /** @var User $user */
         $user = User::factory()->create();
 
         $data = [
-            'name' => $this->faker->address,
-            'where_address' => $this->faker->address,
+            'name' => $this->faker->address(),
+            'where_address' => $this->faker->address(),
             'trips' => $this->faker->randomNumber(0),
             'childrens' => $this->faker->randomNumber(0),
             'childrens_age' => $this->faker->text(10),
             'date' => '2021-06-08',
-            'time' => $this->faker->time,
+            'time' => $this->faker->time(),
             'duration' => $this->faker->randomNumber(0),
             'distance' => $this->faker->randomFloat(2, 0, 9999),
             'scheduled_wait_from' => $this->faker->randomNumber(0),
             'scheduled_wait_where' => $this->faker->randomNumber(0),
-            'status' => 'Pending',
-            'bill_paid' => $this->faker->boolean,
+            'status' => TimetableStatusEnum::getRandomValue(),
+            'bill_paid' => $this->faker->boolean(),
             'description' => $this->faker->sentence(15),
-            'parking_info' => $this->faker->text,
+            'parking_info' => $this->faker->text(),
             'user_id' => $user->id,
         ];
 
@@ -167,6 +172,7 @@ class TimetableApiTest extends TestCase
      */
     public function it_deletes_the_timetable(): void
     {
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->create();
 
         $response = $this->deleteJson(
@@ -252,6 +258,7 @@ class TimetableApiTest extends TestCase
             'phone' => '+79876757777',
             'otherphone' => '+79024445687'
         ]);
+        /** @var Timetable $timetable */
         $timetable = Timetable::factory()->createOne();
         $timetable->children()->attach($child->id);
         $response = $this->getJson(route('api.timetables.show', [

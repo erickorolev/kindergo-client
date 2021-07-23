@@ -29,9 +29,14 @@ use Illuminate\Contracts\Foundation\Application;
 
 final class TimetableController extends Controller
 {
-    public function index(IndexTimetablesRequest $request): Factory|View|Application
+    public function index(IndexTimetablesRequest $request): \Illuminate\View\View|View|Application
     {
+        /** @var ?string $search */
         $search = $request->get('search', '');
+
+        if (!$search) {
+            $search = '';
+        }
 
         /** @var LengthAwarePaginator $timetables */
         $timetables = GetAllTimetablesAdminAction::run($search);
@@ -39,7 +44,7 @@ final class TimetableController extends Controller
         return view('app.timetables.index', compact('timetables', 'search'));
     }
 
-    public function create(CreateTimetableRequest $request): Factory|View|Application
+    public function create(CreateTimetableRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var Collection $users */
         $users = GetUsersDropdownListAction::run();
@@ -53,8 +58,9 @@ final class TimetableController extends Controller
         ]);
     }
 
-    public function store(TimetableStoreRequest $request)
-    {
+    public function store(
+        TimetableStoreRequest $request
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         /** @var Timetable $timetable */
         $timetable = StoreTimetableAction::run(TimetableData::fromRequest($request));
 
@@ -63,14 +69,14 @@ final class TimetableController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    public function show(ShowTimetableRequest $request, int $timetable): Factory|View|Application
+    public function show(ShowTimetableRequest $request, int $timetable): \Illuminate\View\View|View|Application
     {
         return view('app.timetables.show', [
             'timetable' => GetTimetableByIdAction::run($timetable)
         ]);
     }
 
-    public function edit(EditTimetableRequest $request, int $timetable): Factory|View|Application
+    public function edit(EditTimetableRequest $request, int $timetable): \Illuminate\View\View|View|Application
     {
         /** @var Collection $users */
         $users = GetUsersDropdownListAction::run();
@@ -90,7 +96,7 @@ final class TimetableController extends Controller
     public function update(
         TimetableUpdateRequest $request,
         int $timetable
-    ) {
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $timetableData = TimetableData::fromRequest($request);
         $timetableData->id = $timetable;
 
@@ -103,8 +109,10 @@ final class TimetableController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeleteTimetableRequest $request, int $timetable)
-    {
+    public function destroy(
+        DeleteTimetableRequest $request,
+        int $timetable
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         DeleteTimetableAction::run($timetable);
 
         return redirect()

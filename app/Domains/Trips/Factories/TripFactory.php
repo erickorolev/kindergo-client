@@ -22,20 +22,21 @@ final class TripFactory extends Factory
      * Define the model's default state.
      *
      * @return array
+     * @psalm-suppress UndefinedMagicPropertyFetch
      */
     public function definition(): array
     {
         return [
-            'name' => $this->faker->address,
-            'where_address' => $this->faker->address,
+            'name' => $this->faker->address(),
+            'where_address' => $this->faker->address(),
             'date' => Carbon::now(),
-            'time' => TimeValueObject::fromNative($this->faker->time),
+            'time' => TimeValueObject::fromNative($this->faker->time()),
             'childrens' => $this->faker->randomNumber(1),
             'status' => TripStatusEnum::getRandomInstance(),
-            'attendant_id' => function () {
+            'attendant_id' => function (): int {
                 return Attendant::factory()->create()->id;
             },
-            'user_id' => function () {
+            'user_id' => function (): int {
                 return User::factory()->create()->id;
             },
             'scheduled_wait_where' => $this->faker->randomNumber(2),
@@ -47,7 +48,7 @@ final class TripFactory extends Factory
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 
-            'timetable_id' => function () {
+            'timetable_id' => function (): int {
                 return Timetable::factory()->create()->id;
             },
         ];

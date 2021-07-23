@@ -22,6 +22,6 @@ class ModelRelationTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $attendant->trips);
         $this->assertInstanceOf(Trip::class, $attendant->trips->first());
-        $this->assertEquals($trip->id, $attendant->trips->first()->id);
+        $this->assertEquals($trip->id, $attendant->trips->first()?->id);
     }
 }

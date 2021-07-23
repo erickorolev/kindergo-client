@@ -22,8 +22,10 @@ class PaymentControllerTest extends TestCase
     {
         parent::setUp();
 
+        /** @var User $user */
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
         $this->actingAs(
-            User::factory()->create(['email' => 'admin@admin.com'])
+            $user
         );
 
         $this->seed(PermissionsSeeder::class);
@@ -61,6 +63,7 @@ class PaymentControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_payment(): void
     {
@@ -72,7 +75,7 @@ class PaymentControllerTest extends TestCase
         $response = $this->post(route('admin.payments.store'), $data);
         $data['amount'] = $data['amount'] * 100;
         $this->assertDatabaseHas('payments', $data);
-
+        /** @var Payment $payment */
         $payment = Payment::latest('id')->first();
 
         $response->assertRedirect(route('admin.payments.edit', $payment->id));
@@ -83,6 +86,7 @@ class PaymentControllerTest extends TestCase
      */
     public function it_displays_show_view_for_payment(): void
     {
+        /** @var Payment $payment */
         $payment = Payment::factory()->create();
 
         $response = $this->get(route('admin.payments.show', $payment->id));
@@ -111,17 +115,19 @@ class PaymentControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_updates_the_payment(): void
     {
+        /** @var Payment $payment */
         $payment = Payment::factory()->create();
-
+        /** @var User $user */
         $user = User::factory()->create();
 
         $data = [
             'pay_date' => '2021-08-09',
             'type_payment' => TypePaymentEnum::getRandomValue(),
-            'amount' => $this->faker->randomNumber,
+            'amount' => $this->faker->randomNumber(),
             'spstatus' => SpStatusEnum::getRandomValue(),
             'user_id' => $user->id,
         ];
@@ -140,6 +146,7 @@ class PaymentControllerTest extends TestCase
      */
     public function it_deletes_the_payment(): void
     {
+        /** @var Payment $payment */
         $payment = Payment::factory()->create();
 
         $response = $this->delete(route('admin.payments.destroy', $payment));

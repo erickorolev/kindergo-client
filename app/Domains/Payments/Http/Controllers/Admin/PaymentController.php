@@ -27,7 +27,7 @@ use Illuminate\Contracts\Foundation\Application;
 
 final class PaymentController extends Controller
 {
-    public function index(IndexPaymentRequest $request): Factory|View|Application
+    public function index(IndexPaymentRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var ?string $search */
         $search = $request->get('search', '');
@@ -41,7 +41,7 @@ final class PaymentController extends Controller
         return view('app.payments.index', compact('payments', 'search'));
     }
 
-    public function create(CreatePaymentRequest $request): Factory|View|Application
+    public function create(CreatePaymentRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var Collection $users */
         $users = GetUsersDropdownListAction::run();
@@ -49,8 +49,9 @@ final class PaymentController extends Controller
         return view('app.payments.create', compact('users'));
     }
 
-    public function store(PaymentStoreRequest $request)
-    {
+    public function store(
+        PaymentStoreRequest $request
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $payment = StorePaymentAction::run(PaymentData::fromRequest($request));
 
         return redirect()
@@ -58,7 +59,7 @@ final class PaymentController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    public function show(ShowPaymentRequest $request, int $payment): Factory|View|Application
+    public function show(ShowPaymentRequest $request, int $payment): \Illuminate\View\View|View|Application
     {
 
         return view('app.payments.show', [
@@ -66,7 +67,7 @@ final class PaymentController extends Controller
         ]);
     }
 
-    public function edit(EditPaymentRequest $request, int $payment): Factory|View|Application
+    public function edit(EditPaymentRequest $request, int $payment): \Illuminate\View\View|View|Application
     {
         return view('app.payments.edit', [
             'payment' => GetPaymentByIdAction::run($payment),
@@ -74,8 +75,10 @@ final class PaymentController extends Controller
         ]);
     }
 
-    public function update(PaymentUpdateRequest $request, int $payment)
-    {
+    public function update(
+        PaymentUpdateRequest $request,
+        int $payment
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $paymentData = PaymentData::fromRequest($request);
         $paymentData->id = $payment;
         $paymentModel = UpdatePaymentAction::run($paymentData);
@@ -84,8 +87,10 @@ final class PaymentController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeletePaymentRequest $request, Payment $payment)
-    {
+    public function destroy(
+        DeletePaymentRequest $request,
+        Payment $payment
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $payment->delete();
 
         return redirect()

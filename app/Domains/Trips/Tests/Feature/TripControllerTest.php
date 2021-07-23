@@ -24,8 +24,11 @@ class TripControllerTest extends TestCase
     {
         parent::setUp();
 
+        /** @var User $user */
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
+
         $this->actingAs(
-            User::factory()->create(['email' => 'admin@admin.com'])
+            $user
         );
 
         $this->seed(PermissionsSeeder::class);
@@ -38,6 +41,7 @@ class TripControllerTest extends TestCase
      */
     public function it_displays_index_view_with_trips(): void
     {
+        /** @var Trip[] $trips */
         $trips = Trip::factory()
             ->count(5)
             ->create();
@@ -62,6 +66,7 @@ class TripControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_stores_the_trip(): void
     {
@@ -83,7 +88,7 @@ class TripControllerTest extends TestCase
         unset($data['children']);
 
         $this->assertDatabaseHas('trips', $data);
-
+        /** @var Trip $trip */
         $trip = Trip::latest('id')->first();
         $this->assertCount(1, $trip->children);
 
@@ -95,6 +100,7 @@ class TripControllerTest extends TestCase
      */
     public function it_displays_show_view_for_trip(): void
     {
+        /** @var Trip $trip */
         $trip = Trip::factory()->create();
 
         $response = $this->get(route('admin.trips.show', $trip));
@@ -123,10 +129,13 @@ class TripControllerTest extends TestCase
 
     /**
      * @test
+     * @psalm-suppress InvalidArrayOffset
      */
     public function it_updates_the_trip(): void
     {
+        /** @var User $user */
         $user = User::first();
+        /** @var Trip $trip */
         $trip = Trip::factory()->create([
             'user_id' => $user->id
         ]);
@@ -136,10 +145,10 @@ class TripControllerTest extends TestCase
         $timetable = Timetable::factory()->create();
 
         $data = [
-            'name' => $this->faker->address,
-            'where_address' => $this->faker->address,
+            'name' => $this->faker->address(),
+            'where_address' => $this->faker->address(),
             'date' => '2021-06-05',
-            'time' => $this->faker->time,
+            'time' => $this->faker->time(),
             'childrens' => $this->faker->randomNumber(1),
             'status' => TripStatusEnum::getRandomValue(),
             'scheduled_wait_where' => $this->faker->randomNumber(1),
@@ -166,6 +175,7 @@ class TripControllerTest extends TestCase
      */
     public function it_deletes_the_trip(): void
     {
+        /** @var Trip $trip */
         $trip = Trip::factory()->create();
 
         $response = $this->delete(route('admin.trips.destroy', $trip));

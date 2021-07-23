@@ -18,7 +18,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
         /** @var string $type */
         $type = $this->model()::RESOURCE_NAME;
         $includes = $this->getIncludesData($type);
-        /** @var Model $model */
+        /** @var User $model */
         $model = QB::for($this->model())
             ->allowedIncludes($includes)
             ->findOrFail($id);

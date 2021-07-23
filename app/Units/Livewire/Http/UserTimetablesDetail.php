@@ -2,9 +2,10 @@
 
 namespace Units\Livewire\Http;
 
-use App\Models\User;
+use Domains\Timetables\Models\Timetable;
+use Domains\Users\Models\User;
+use Illuminate\Support\Carbon;
 use Livewire\Component;
-use App\Models\Timetable;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UserTimetablesDetail extends Component
@@ -13,16 +14,16 @@ class UserTimetablesDetail extends Component
 
     public User $user;
     public Timetable $timetable;
-    public $timetableDate;
+    public null|string $timetableDate;
 
-    public $selected = [];
-    public $editing = false;
-    public $allSelected = false;
-    public $showingModal = false;
+    public array $selected = [];
+    public bool $editing = false;
+    public bool $allSelected = false;
+    public bool $showingModal = false;
 
-    public $modalTitle = 'New Timetable';
+    public string $modalTitle = 'New Timetable';
 
-    protected $rules = [
+    protected array $rules = [
         'timetable.name' => ['required', 'max:190', 'string'],
         'timetable.where_address' => ['required', 'max:255', 'string'],
         'timetable.trips' => ['required', 'numeric'],
@@ -43,13 +44,13 @@ class UserTimetablesDetail extends Component
         'timetable.parking_info' => ['required', 'max:255', 'string'],
     ];
 
-    public function mount(User $user)
+    public function mount(User $user): void
     {
         $this->user = $user;
         $this->resetTimetableData();
     }
 
-    public function resetTimetableData()
+    public function resetTimetableData(): void
     {
         $this->timetable = new Timetable();
 
@@ -58,7 +59,7 @@ class UserTimetablesDetail extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newTimetable()
+    public function newTimetable(): void
     {
         $this->editing = false;
         $this->modalTitle = trans('crud.user_timetables.new_title');
@@ -67,7 +68,7 @@ class UserTimetablesDetail extends Component
         $this->showModal();
     }
 
-    public function editTimetable(Timetable $timetable)
+    public function editTimetable(Timetable $timetable): void
     {
         $this->editing = true;
         $this->modalTitle = trans('crud.user_timetables.edit_title');
@@ -80,18 +81,18 @@ class UserTimetablesDetail extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -103,14 +104,14 @@ class UserTimetablesDetail extends Component
             $this->authorize('update', $this->timetable);
         }
 
-        $this->timetable->date = \Carbon\Carbon::parse($this->timetableDate);
+        $this->timetable->date = Carbon::parse($this->timetableDate);
 
         $this->timetable->save();
 
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', Timetable::class);
 
@@ -122,6 +123,9 @@ class UserTimetablesDetail extends Component
         $this->resetTimetableData();
     }
 
+    /**
+     * @return void
+     */
     public function toggleFullSelection()
     {
         if (!$this->allSelected) {
@@ -134,7 +138,7 @@ class UserTimetablesDetail extends Component
         }
     }
 
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('livewire.user-timetables-detail', [
             'timetables' => $this->user->timetables()->paginate(20),

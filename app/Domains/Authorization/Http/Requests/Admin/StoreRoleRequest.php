@@ -17,6 +17,11 @@ final class StoreRoleRequest extends Request
         ];
     }
 
+    /**
+     * @return bool
+     * @psalm-suppress PossiblyNullReference
+     * @psalm-suppress PossiblyInvalidMethodCall
+     */
     public function authorize(): bool
     {
         Sanctum::actingAs(request()->user(), [], 'web');

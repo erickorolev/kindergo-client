@@ -7,6 +7,11 @@ namespace Domains\Payments\Repositories;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Parents\Models\Model;
 
+/**
+ * Interface PaymentRepositoryInterface
+ * @package Domains\Payments\Repositories
+ * @psalm-suppress all
+ */
 interface PaymentRepositoryInterface
 {
     public function basicPaginate(string $search, int $pagination): LengthAwarePaginator;

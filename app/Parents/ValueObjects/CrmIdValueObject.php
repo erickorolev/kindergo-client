@@ -29,7 +29,7 @@ final class CrmIdValueObject extends ValueObject
 
     public function toInt(): int
     {
-        $data = explode('x', $this->value);
+        $data = explode('x', (string) $this->value);
         return (int) $data[1];
     }
 

@@ -47,6 +47,13 @@ final class ChildData extends ObjectData
 
     public Carbon $updated_at;
 
+    /**
+     * @param  Request  $request
+     * @param  string  $prefix
+     * @return static
+     * @throws \Spatie\DataTransferObject\Exceptions\UnknownProperties
+     * @psalm-suppress PossiblyInvalidMethodCall
+     */
     public static function fromRequest(Request $request, string $prefix = ''): self
     {
         return new self([

@@ -29,7 +29,7 @@ use Illuminate\Contracts\Foundation\Application;
 
 final class ChildController extends Controller
 {
-    public function index(IndexChildRequest $request): Factory|View|Application
+    public function index(IndexChildRequest $request): \Illuminate\View\View|View|Application
     {
         $search = $request->get('search', '');
         /** @var LengthAwarePaginator $children */
@@ -38,7 +38,7 @@ final class ChildController extends Controller
         return view('app.children.index', compact('children', 'search'));
     }
 
-    public function create(CreateChildRequest $request): Factory|View|Application
+    public function create(CreateChildRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var User[] $users */
         $users = GetAllUsersAction::run();
@@ -49,8 +49,9 @@ final class ChildController extends Controller
         ]);
     }
 
-    public function store(ChildStoreRequest $request)
-    {
+    public function store(
+        ChildStoreRequest $request
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $childData = ChildData::fromRequest($request);
         /** @var Child $child */
         $child = StoreChildAction::run($childData);
@@ -62,14 +63,14 @@ final class ChildController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    public function show(ShowChildRequest $request, int $child): Factory|View|Application
+    public function show(ShowChildRequest $request, int $child): \Illuminate\View\View|View|Application
     {
         return view('app.children.show', [
             'child' => GetChildByIdAction::run($child)
         ]);
     }
 
-    public function edit(EditChildRequest $request, int $child): Factory|View|Application
+    public function edit(EditChildRequest $request, int $child): \Illuminate\View\View|View|Application
     {
         /** @var User[] $users */
         $users = GetAllUsersAction::run();
@@ -83,8 +84,10 @@ final class ChildController extends Controller
         ]);
     }
 
-    public function update(ChildUpdateRequest $request, int $child)
-    {
+    public function update(
+        ChildUpdateRequest $request,
+        int $child
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $childData = ChildData::fromRequest($request);
         $childData->id = $child;
         /** @var Child $childModel */
@@ -95,8 +98,10 @@ final class ChildController extends Controller
             ->withSuccess(__('crud.common.saved'));
     }
 
-    public function destroy(DeleteChildRequest $request, int $child)
-    {
+    public function destroy(
+        DeleteChildRequest $request,
+        int $child
+    ): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         DeleteChildAction::run($child);
 
         return redirect()

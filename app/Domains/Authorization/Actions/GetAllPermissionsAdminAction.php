@@ -8,6 +8,13 @@ use Domains\Authorization\Models\Permission;
 
 final class GetAllPermissionsAdminAction extends \Parents\Actions\Action
 {
+    /**
+     * @param  string  $search
+     * @param  int  $pagination
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     * @psalm-suppress LessSpecificReturnStatement
+     * @psalm-suppress MoreSpecificReturnType
+     */
     public function handle(
         string $search = '',
         int $pagination = 10

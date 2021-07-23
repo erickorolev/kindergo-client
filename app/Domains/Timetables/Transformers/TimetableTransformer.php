@@ -27,7 +27,7 @@ final class TimetableTransformer extends Transformer
             'childrens' => $model->childrens,
             'childrens_age' => $model->childrens_age,
             'date' => $model->date,
-            'time' => $model->time->toNative(),
+            'time' => $model->time?->toNative(),
             'duration' => $model->duration,
             'distance' => $model->distance,
             'scheduled_wait_from' => $model->scheduled_wait_from,

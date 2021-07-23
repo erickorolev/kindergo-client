@@ -19,7 +19,7 @@ final class GetChildrenIdsFromArrayAction extends \Parents\Actions\Action
                 $crmid = CrmIdValueObject::fromNative((string) $id);
                 /** @var ?Child $user */
                 $user = GetChildByCrmIdAction::run($crmid);
-                $result->push($user->id);
+                $result->push($user?->id);
             } catch (\InvalidArgumentException $ex) {
                 /** @var User $user */
                 $user = GetChildByIdAction::run($id);

@@ -21,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
      * Register any authentication / authorization services.
      *
      * @return void
+     * @psalm-suppress MissingClosureParamType
      */
     public function boot(): void
     {

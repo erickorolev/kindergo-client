@@ -18,7 +18,9 @@ class RoleControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->actingAs(User::factory()->create(['email' => 'admin@admin.com']));
+        /** @var User $user */
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
+        $this->actingAs($user);
 
         $this->seed(PermissionsSeeder::class);
 
@@ -27,8 +29,10 @@ class RoleControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_displays_index_view_with_roles()
+    public function it_displays_index_view_with_roles(): void
     {
         $response = $this->get(route('admin.roles.index'));
 
@@ -40,8 +44,10 @@ class RoleControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_displays_create_view_for_role()
+    public function it_displays_create_view_for_role(): void
     {
         $response = $this->get(route('admin.roles.create'));
 
@@ -50,8 +56,10 @@ class RoleControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_stores_the_role()
+    public function it_stores_the_role(): void
     {
         $response = $this->post(route('admin.roles.store'), [
             'name' => 'secretary',
@@ -59,7 +67,7 @@ class RoleControllerTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('roles', ['name' => 'secretary']);
-
+        /** @var Role $role */
         $role = Role::latest('id')->first();
 
         $response->assertRedirect(route('admin.roles.edit', $role));
@@ -67,9 +75,12 @@ class RoleControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_displays_show_view_for_role()
+    public function it_displays_show_view_for_role(): void
     {
+        /** @var Role $role */
         $role = Role::first();
 
         $response = $this->get(route('admin.roles.show', $role));
@@ -82,9 +93,12 @@ class RoleControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_displays_edit_view_for_role()
+    public function it_displays_edit_view_for_role(): void
     {
+        /** @var Role $role */
         $role = Role::first();
 
         $response = $this->get(route('admin.roles.edit', $role));
@@ -97,9 +111,12 @@ class RoleControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_updates_the_role()
+    public function it_updates_the_role(): void
     {
+        /** @var Role $role */
         $role = Role::first();
 
         $data = [
@@ -119,9 +136,12 @@ class RoleControllerTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function it_deletes_the_role()
+    public function it_deletes_the_role(): void
     {
+        /** @var Role $role */
         $role = Role::first();
 
         $response = $this->delete(route('admin.roles.destroy', $role));

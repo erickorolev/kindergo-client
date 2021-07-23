@@ -9,6 +9,11 @@ use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Livewire\Livewire;
 use Parents\Tests\PhpUnit\TestCase;
 
+/**
+ * Class CreateApiTokenTest
+ * @package Domains\Authentication\Tests\Feature
+ * @psalm-suppress all
+ */
 class CreateApiTokenTest extends TestCase
 {
     use RefreshDatabase;

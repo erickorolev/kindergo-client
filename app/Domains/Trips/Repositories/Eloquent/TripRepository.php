@@ -13,8 +13,10 @@ final class TripRepository extends \Parents\Repositories\Repository implements T
 
     public function basicPaginate(string $search, int $pagination): LengthAwarePaginator
     {
-        return Trip::search($search)
+        /** @var LengthAwarePaginator $trips */
+        $trips = Trip::search($search)
             ->latest()
             ->paginate(5);
+        return $trips;
     }
 }

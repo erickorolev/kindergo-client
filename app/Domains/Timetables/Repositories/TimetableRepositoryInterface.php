@@ -7,6 +7,11 @@ namespace Domains\Timetables\Repositories;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Parents\Models\Model;
 
+/**
+ * Interface TimetableRepositoryInterface
+ * @package Domains\Timetables\Repositories
+ * @psalm-suppress all
+ */
 interface TimetableRepositoryInterface
 {
     public function basicPaginate(string $search, int $pagination): LengthAwarePaginator;

@@ -9,6 +9,11 @@ use Laravel\Jetstream\Http\Livewire\DeleteUserForm;
 use Livewire\Livewire;
 use Parents\Tests\PhpUnit\TestCase;
 
+/**
+ * Class DeleteAccountTest
+ * @package Domains\Authentication\Tests\Feature
+ * @psalm-suppress all
+ */
 class DeleteAccountTest extends TestCase
 {
     use RefreshDatabase;
