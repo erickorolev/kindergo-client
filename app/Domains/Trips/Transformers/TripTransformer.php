@@ -9,12 +9,14 @@ use Domains\Children\Transformers\ChildTransformer;
 use Domains\Timetables\Models\Timetable;
 use Domains\Timetables\Transformers\TimetableTransformer;
 use Domains\Trips\Models\Trip;
+use Domains\Users\Models\User;
+use Domains\Users\Transformers\UserTransformer;
 use Parents\Transformers\Transformer;
 
 final class TripTransformer extends Transformer
 {
     protected $availableIncludes = [
-        'timetable', 'children'
+        'timetable', 'children', 'user'
     ];
 
     public function transform(Trip $model): array
@@ -22,6 +24,7 @@ final class TripTransformer extends Transformer
         return [
             'id' => $model->id,
             'name' => $model->name,
+            'where_address' => $model->where_address,
             'date' => $model->date,
             'time' => $model->time?->toNative(),
             'childrens' => $model->childrens,
@@ -38,13 +41,18 @@ final class TripTransformer extends Transformer
         ];
     }
 
-    public function includeTimetables(Trip $model): \League\Fractal\Resource\Collection
+    public function includeTimetable(Trip $model): \League\Fractal\Resource\Item
     {
-        return $this->collection($model->timetable, new TimetableTransformer(), Timetable::RESOURCE_NAME);
+        return $this->item($model->timetable, new TimetableTransformer(), Timetable::RESOURCE_NAME);
+    }
+
+    public function includeUser(Trip $model): \League\Fractal\Resource\Item
+    {
+        return $this->item($model->user, new UserTransformer(), User::RESOURCE_NAME);
     }
 
     public function includeChildren(Trip $model): \League\Fractal\Resource\Collection
     {
-        return $this->collection($model->childrens, new ChildTransformer(), Child::RESOURCE_NAME);
+        return $this->collection($model->children, new ChildTransformer(), Child::RESOURCE_NAME);
     }
 }

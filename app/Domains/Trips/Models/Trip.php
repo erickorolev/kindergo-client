@@ -14,6 +14,7 @@ use Parents\Casts\CrmIdValueObjectCast;
 use Parents\Casts\MoneyValueCast;
 use Parents\Casts\TimeValueObjectCast;
 use Parents\Models\Model;
+use Parents\Scopes\UserScope;
 use Units\Filterings\Scopes\Searchable;
 
 /**
@@ -100,6 +101,16 @@ final class Trip extends Model
         'scheduled_wait_where' => 'int',
         'crmid' => CrmIdValueObjectCast::class
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new UserScope());
+    }
 
     public function attendant(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

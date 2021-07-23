@@ -6,11 +6,11 @@
  */
 
 Route::get('trips/{id}/{relation}', [
-    \Domains\Payments\Http\Controllers\Api\PaymentApiController::class,
+    \Domains\Trips\Http\Controllers\Api\TripApiController::class,
     'relations'
 ])->name('trips.relations');
 Route::post('trips/{id}/{relation}/{parent}', [
-    \Domains\Payments\Http\Controllers\Api\PaymentApiController::class,
+    \Domains\Trips\Http\Controllers\Api\TripApiController::class,
     'relationCreate'
 ])->name('trips.relations.create');
-Route::apiResource('trips', \Domains\Payments\Http\Controllers\Api\PaymentApiController::class);
+Route::apiResource('trips', \Domains\Trips\Http\Controllers\Api\TripApiController::class);
