@@ -11,8 +11,7 @@ final class GetPaymentByIdAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected PaymentRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(int $id): Payment

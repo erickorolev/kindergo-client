@@ -21,9 +21,9 @@ use Domains\Users\Actions\GetUsersDropdownListAction;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Parents\Controllers\Controller;
-use \Illuminate\Contracts\View\Factory;
-use \Illuminate\Contracts\View\View;
-use \Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
 
 final class PaymentController extends Controller
 {

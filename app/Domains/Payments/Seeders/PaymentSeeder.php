@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Payments\Seeders;
 
 use Domains\Payments\Models\Payment;

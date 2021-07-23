@@ -11,8 +11,7 @@ final class GetAllPermissionsAdminAction extends \Parents\Actions\Action
     public function handle(
         string $search = '',
         int $pagination = 10
-    ): \Illuminate\Pagination\LengthAwarePaginator
-    {
+    ): \Illuminate\Pagination\LengthAwarePaginator {
         return Permission::where('name', 'like', "%{$search}%")->paginate($pagination);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @routeNamespace("Domains\Children\Http\Controllers\Api")
  * @routePrefix("api.")

@@ -29,7 +29,9 @@ final class PaymentFactory extends Factory
             'type_payment' => TypePaymentEnum::getRandomInstance(),
             'amount' => MoneyValueObject::fromNative($this->faker->numberBetween(10000, 1000000)),
             'spstatus' => SpStatusEnum::getRandomInstance(),
-            'crmid' => CrmIdValueObject::fromNative($this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)),
+            'crmid' => CrmIdValueObject::fromNative(
+                $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
+            ),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

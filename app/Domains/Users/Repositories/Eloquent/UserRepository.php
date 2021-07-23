@@ -7,8 +7,8 @@ namespace Domains\Users\Repositories\Eloquent;
 use Domains\Users\Models\User;
 use Parents\Models\Model;
 use Parents\QueryBuilder\QB;
-use \Parents\Repositories\Repository;
-use \Domains\Users\Repositories\UserRepositoryInterface;
+use Parents\Repositories\Repository;
+use Domains\Users\Repositories\UserRepositoryInterface;
 
 class UserRepository extends Repository implements UserRepositoryInterface
 {

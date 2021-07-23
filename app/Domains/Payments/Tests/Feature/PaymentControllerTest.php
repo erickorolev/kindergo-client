@@ -15,7 +15,8 @@ use Parents\Tests\PhpUnit\TestCase;
 
 class PaymentControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected function setUp(): void
     {

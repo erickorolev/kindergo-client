@@ -6,8 +6,8 @@ namespace Domains\Attendants\Repositories\Eloquent;
 
 use Domains\Attendants\Models\Attendant;
 use Domains\Attendants\Repositories\AttendantRepositoryInterface;
-use \Parents\Repositories\Repository;
-use \Illuminate\Pagination\LengthAwarePaginator;
+use Parents\Repositories\Repository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 final class AttendantRepository extends Repository implements AttendantRepositoryInterface
 {

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Children\Transformers;
 
 use Domains\Children\Models\Child;

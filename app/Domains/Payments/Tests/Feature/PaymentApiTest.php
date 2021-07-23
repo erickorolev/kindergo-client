@@ -25,7 +25,9 @@ use Parents\Tests\PhpUnit\TestCase;
 
 class PaymentApiTest extends TestCase
 {
-    use RefreshDatabase, WithFaker, AdditionalAssertions;
+    use RefreshDatabase;
+    use WithFaker;
+    use AdditionalAssertions;
 
     protected function setUp(): void
     {
@@ -152,7 +154,6 @@ class PaymentApiTest extends TestCase
         $response->assertNoContent();
 
         $this->assertSoftDeleted($payment);
-
     }
 
     /**

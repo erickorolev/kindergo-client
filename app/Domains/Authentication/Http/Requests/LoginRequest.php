@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Authentication\Http\Requests;
 
 use Parents\Requests\Request;

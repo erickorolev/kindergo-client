@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Payments\Tests\Feature;
 
 use Domains\Payments\Models\Payment;

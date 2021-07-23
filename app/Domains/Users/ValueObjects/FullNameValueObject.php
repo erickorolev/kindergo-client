@@ -57,5 +57,4 @@ final class FullNameValueObject extends \Parents\ValueObjects\ValueObject
     {
         return false;
     }
-
 }

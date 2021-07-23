@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Users\Casts;
 
 use Domains\Users\Models\User;

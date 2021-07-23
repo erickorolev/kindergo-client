@@ -11,8 +11,7 @@ final class GetTripByIdAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected TripRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(int $id): Trip

@@ -39,7 +39,9 @@ final class TimetableFactory extends Factory
             'description' => $this->faker->sentence(15),
             'parking_info' => $this->faker->text,
             'user_id' => User::factory(),
-            'crmid' => CrmIdValueObject::fromNative($this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)),
+            'crmid' => CrmIdValueObject::fromNative(
+                $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
+            ),
         ];
     }
 }

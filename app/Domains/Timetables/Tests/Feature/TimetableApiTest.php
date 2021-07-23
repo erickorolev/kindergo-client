@@ -24,7 +24,9 @@ use Parents\Tests\PhpUnit\TestCase;
 
 class TimetableApiTest extends TestCase
 {
-    use RefreshDatabase, WithFaker, AdditionalAssertions;
+    use RefreshDatabase;
+    use WithFaker;
+    use AdditionalAssertions;
 
     protected function setUp(): void
     {
@@ -263,7 +265,6 @@ class TimetableApiTest extends TestCase
             ->has('included')
             ->where('included.0.type', 'children')
             ->where('included.0.id', (string) $child->id)
-            ->etc()
-        );
+            ->etc());
     }
 }

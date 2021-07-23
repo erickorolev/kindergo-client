@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Children\Factories;
 
 use Domains\Children\Models\Child;
@@ -30,7 +29,9 @@ final class ChildFactory extends Factory
             'gender' => GenderEnum::getRandomInstance(),
             'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
             'otherphone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
-            'crmid' => CrmIdValueObject::fromNative($this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)),
+            'crmid' => CrmIdValueObject::fromNative(
+                $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
+            ),
         ];
     }
 }

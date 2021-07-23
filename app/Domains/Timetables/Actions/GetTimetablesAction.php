@@ -11,8 +11,7 @@ final class GetTimetablesAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected TimetableRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(): \Illuminate\Pagination\LengthAwarePaginator

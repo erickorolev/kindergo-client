@@ -4,14 +4,14 @@ namespace Domains\Users\Tests\Feature;
 
 use Domains\Authorization\Seeders\PermissionsSeeder;
 use Domains\Users\Models\User;
-
 use Parents\Tests\PhpUnit\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected function setUp(): void
     {

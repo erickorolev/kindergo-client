@@ -21,4 +21,3 @@ Route::middleware(['auth:sanctum', 'verified'])
         return view('dashboard');
     })
     ->name('dashboard');
-

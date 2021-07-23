@@ -5,5 +5,4 @@
  * @routePrefix("admin.")
  */
 
-
 Route::resource('attendants', \Domains\Attendants\Http\Controllers\Admin\AttendantController::class);

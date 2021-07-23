@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Domains\Children\Repositories\Eloquent;
 
 use Domains\Children\Models\Child;
-use \Parents\Repositories\Repository;
-use \Domains\Children\Repositories\ChildRepositoryInterface;
-use \Illuminate\Pagination\LengthAwarePaginator;
+use Parents\Repositories\Repository;
+use Domains\Children\Repositories\ChildRepositoryInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 final class ChildRepository extends Repository implements ChildRepositoryInterface
 {

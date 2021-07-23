@@ -14,7 +14,8 @@ use Parents\Tests\PhpUnit\TestCase;
 
 class AttendantControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected function setUp(): void
     {

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Trips\Tests\Feature;
 
 use Domains\Attendants\Models\Attendant;
@@ -18,7 +17,8 @@ use Parents\Tests\PhpUnit\TestCase;
 
 class TripControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected function setUp(): void
     {

@@ -11,8 +11,7 @@ final class GetUserByIdAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected UserRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(int $id): User

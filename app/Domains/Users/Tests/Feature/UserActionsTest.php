@@ -24,6 +24,7 @@ use Parents\ValueObjects\UrlValueObject;
 class UserActionsTest extends TestCase
 {
     use WithFaker;
+
     /**
      * @test
      * @covers \Domains\Users\Actions\GetUserByEmailAction

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Trips\Factories;
 
 use Domains\Attendants\Models\Attendant;
@@ -42,7 +41,9 @@ final class TripFactory extends Factory
             'scheduled_wait_where' => $this->faker->randomNumber(2),
             'scheduled_wait_from' => $this->faker->randomNumber(2),
             'parking_cost' => $this->faker->randomNumber(5),
-            'crmid' => CrmIdValueObject::fromNative($this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)),
+            'crmid' => CrmIdValueObject::fromNative(
+                $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
+            ),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

@@ -10,8 +10,7 @@ final class GetAllUsersAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected UserRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(): \Illuminate\Pagination\LengthAwarePaginator

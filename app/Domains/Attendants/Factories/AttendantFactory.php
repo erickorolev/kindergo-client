@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Attendants\Factories;
 
 use Domains\Attendants\Models\Attendant;
@@ -34,7 +33,9 @@ final class AttendantFactory extends Factory
             'car_year' => $this->faker->year,
             'email' => EmailValueObject::fromNative($this->faker->unique()->safeEmail),
             'gender' => GenderEnum::getRandomInstance(),
-            'crmid' => CrmIdValueObject::fromNative($this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)),
+            'crmid' => CrmIdValueObject::fromNative(
+                $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
+            ),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

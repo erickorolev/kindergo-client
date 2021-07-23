@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domains\Authorization\Actions;
 
 use Domains\Authorization\Models\Role;
-use \Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 final class GetAllRolesAdminAction extends \Parents\Actions\Action
 {

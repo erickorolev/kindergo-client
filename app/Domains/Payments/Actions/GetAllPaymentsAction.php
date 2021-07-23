@@ -10,8 +10,7 @@ final class GetAllPaymentsAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected PaymentRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(): \Illuminate\Pagination\LengthAwarePaginator

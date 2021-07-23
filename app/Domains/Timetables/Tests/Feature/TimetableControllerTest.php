@@ -14,7 +14,8 @@ use Parents\Tests\PhpUnit\TestCase;
 
 class TimetableControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected function setUp(): void
     {

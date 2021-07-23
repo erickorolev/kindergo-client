@@ -22,9 +22,9 @@ use Domains\Authorization\Models\Permission;
 use Domains\Authorization\Models\Role;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Parents\Controllers\Controller;
-use \Illuminate\Contracts\View\Factory;
-use \Illuminate\Contracts\View\View;
-use \Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
 
 final class PermissionController extends Controller
 {

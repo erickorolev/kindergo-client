@@ -25,7 +25,9 @@ use Parents\Tests\PhpUnit\TestCase;
 
 class ChildrenApiTest extends TestCase
 {
-    use RefreshDatabase, WithFaker, AdditionalAssertions;
+    use RefreshDatabase;
+    use WithFaker;
+    use AdditionalAssertions;
 
     protected function setUp(): void
     {
@@ -333,8 +335,7 @@ class ChildrenApiTest extends TestCase
             ->has('included')
             ->where('included.0.type', 'users')
             ->where('included.0.id', (string) User::first()->id)
-            ->etc()
-            );
+            ->etc());
     }
 
     public function testGettingRelatedUsersFromChild(): void

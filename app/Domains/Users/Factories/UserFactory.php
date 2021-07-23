@@ -40,7 +40,9 @@ final class UserFactory extends Factory
             'phone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
             'attendant_gender' => AttendantGenderEnum::getRandomInstance(),
             'otherphone' => PhoneNumberValueObject::fromNative($this->faker->phoneNumber),
-            'crmid' => CrmIdValueObject::fromNative($this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)),
+            'crmid' => CrmIdValueObject::fromNative(
+                $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
+            ),
         ];
     }
 

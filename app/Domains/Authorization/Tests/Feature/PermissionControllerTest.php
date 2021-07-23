@@ -5,14 +5,14 @@ namespace Domains\Authorization\Tests\Feature;
 use Domains\Authorization\Seeders\PermissionsSeeder;
 use Domains\Users\Models\User;
 use Spatie\Permission\Models\Permission;
-
 use Parents\Tests\PhpUnit\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PermissionControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected function setUp(): void
     {

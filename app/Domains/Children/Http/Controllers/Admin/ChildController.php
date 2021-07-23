@@ -23,9 +23,9 @@ use Domains\Users\Actions\UpdateUserAction;
 use Domains\Users\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Parents\Controllers\Controller;
-use \Illuminate\Contracts\View\Factory;
-use \Illuminate\Contracts\View\View;
-use \Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
 
 final class ChildController extends Controller
 {

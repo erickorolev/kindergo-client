@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Parents\Scopes;
 
-
 use Domains\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Scope;

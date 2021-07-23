@@ -11,8 +11,7 @@ final class GetTimetableByIdAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected TimetableRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(int $id): Timetable

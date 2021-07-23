@@ -24,9 +24,9 @@ use Domains\Trips\Models\Trip;
 use Domains\Users\Actions\GetUsersDropdownListAction;
 use Illuminate\Support\Collection;
 use Parents\Controllers\Controller;
-use \Illuminate\Contracts\View\Factory;
-use \Illuminate\Contracts\View\View;
-use \Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
 
 final class TripController extends Controller
 {
@@ -55,7 +55,10 @@ final class TripController extends Controller
         $children = GetChildrenDropdownListAction::run();
 
         return view('app.trips.create', compact(
-            'attendants', 'timetables', 'users', 'children'
+            'attendants',
+            'timetables',
+            'users',
+            'children'
         ));
     }
 
@@ -92,8 +95,12 @@ final class TripController extends Controller
         return view(
             'app.trips.edit',
             compact(
-                'trip', 'attendants',
-                'timetables', 'users', 'children', 'selected_children'
+                'trip',
+                'attendants',
+                'timetables',
+                'users',
+                'children',
+                'selected_children'
             )
         );
     }

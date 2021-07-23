@@ -10,8 +10,7 @@ final class GetAllChildrenAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected ChildRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(): \Illuminate\Pagination\LengthAwarePaginator

@@ -11,8 +11,7 @@ final class GetAttendantByIdAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected AttendantRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(int $id): Attendant

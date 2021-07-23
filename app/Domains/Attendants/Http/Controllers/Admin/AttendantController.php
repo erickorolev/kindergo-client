@@ -20,9 +20,9 @@ use Domains\Attendants\Http\Requests\Admin\ShowAttendantRequest;
 use Domains\Attendants\Models\Attendant;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Parents\Controllers\Controller;
-use \Illuminate\Contracts\View\Factory;
-use \Illuminate\Contracts\View\View;
-use \Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
 
 final class AttendantController extends Controller
 {
@@ -84,7 +84,7 @@ final class AttendantController extends Controller
         $attendantData->id = $attendant;
 
         $attendant = UpdateAttendantAction::run($attendantData);
-        
+
         return redirect()
             ->route('admin.attendants.edit', $attendant)
             ->withSuccess(__('crud.common.saved'));

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Domains\Children\Http\Requests\Admin;
 
 use Parents\Requests\Request;

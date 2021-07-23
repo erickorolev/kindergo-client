@@ -10,8 +10,7 @@ final class GetAllChildrenAdminAction extends \Parents\Actions\Action
 {
     public function __construct(
         protected ChildRepositoryInterface $repository
-    )
-    {
+    ) {
     }
 
     public function handle(string $search, int $pagination = 5): \Illuminate\Pagination\LengthAwarePaginator

@@ -23,9 +23,9 @@ use Domains\Users\Http\Requests\Admin\UserUpdateRequest;
 use Domains\Users\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Parents\Controllers\Controller;
-use \Illuminate\Contracts\Foundation\Application;
-use \Illuminate\Contracts\View\Factory;
-use \Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 final class UserController extends Controller
 {

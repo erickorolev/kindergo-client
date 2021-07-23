@@ -17,7 +17,9 @@ use Parents\Tests\PhpUnit\TestCase;
 
 class ChildrenControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker, AdditionalAssertions;
+    use RefreshDatabase;
+    use WithFaker;
+    use AdditionalAssertions;
 
     protected function setUp(): void
     {
@@ -99,7 +101,7 @@ class ChildrenControllerTest extends TestCase
 
         config()->set('filesystems.disks.media', [
             'driver' => 'local',
-            'root' => __DIR__.'/../../temp', // choose any path...
+            'root' => __DIR__ . '/../../temp', // choose any path...
         ]);
 
         config()->set('medialibrary.default_filesystem', 'media');
