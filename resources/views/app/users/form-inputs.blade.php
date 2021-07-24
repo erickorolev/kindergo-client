@@ -88,6 +88,16 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
+        <x-inputs.text
+            name="crmid"
+            label="CrmId"
+            value="{{ old('crmid', ($editing ? $user->crmid : '')) }}"
+            maxlength="100"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
         <div
             x-data="imageViewer('{{ $editing && $user->avatar ? $user->avatar->getUrl() : '' }}')"
         >

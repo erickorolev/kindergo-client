@@ -153,6 +153,16 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
+        <x-inputs.text
+            name="crmid"
+            label="CrmId"
+            value="{{ old('crmid', ($editing ? $timetable->crmid : '')) }}"
+            maxlength="100"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
         <x-inputs.select name="children[]" label="Children" multiple="true">
             @foreach($children as $id=>$child)
                 <option value="{{$id}}" {{ in_array($id, $selected_children) ? 'selected' : '' }}>{{ $child }}</option>
