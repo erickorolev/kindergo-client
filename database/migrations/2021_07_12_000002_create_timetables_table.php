@@ -20,9 +20,10 @@ class CreateTimetablesTable extends Migration
             $table->integer('trips')->comment('Количество поездок');
             $table->integer('childrens')->comment('Количество детей');
             $table->string('childrens_age', 50)->comment('Возраст детей');
-            $table->date('date')->comment('Дата отправления');
-            $table->time('time')->comment('Время отправления');
+            $table->date('date')->nullable()->comment('Дата отправления');
+            $table->time('time')->nullable()->comment('Время отправления');
             $table->integer('duration')->comment('Длительность маршрута в минутах');
+            $table->integer('insurances')->comment('Количество страховок');
             $table->decimal('distance')->comment('Дистанция маршрута в км');
             $table->integer('scheduled_wait_from')
                 ->comment('Запланированное ожидание в точке Откуда в минутах');
@@ -32,8 +33,8 @@ class CreateTimetablesTable extends Migration
                 ->string('status', 100)
                 ->default('Pending')->comment('Статус');
             $table->boolean('bill_paid')->comment('Оплачен ли счёт');
-            $table->text('description')->comment('Описание');
-            $table->text('parking_info')->comment('Информация о парковке');
+            $table->text('description')->nullable()->comment('Описание');
+            $table->text('parking_info')->nullable()->comment('Информация о парковке');
             $table->unsignedBigInteger('user_id')->nullable()->comment('Контакт');
             $table->string('crmid', 100)->nullable()->comment('ID in Vtiger');
             $table->string('assigned_user_id', 100)->default('19x1')->comment('Owner in Vtiger');

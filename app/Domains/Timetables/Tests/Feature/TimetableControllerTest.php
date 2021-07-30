@@ -133,6 +133,7 @@ class TimetableControllerTest extends TestCase
             'date' => $this->faker->date(),
             'time' => $this->faker->time(),
             'duration' => $this->faker->randomNumber(0),
+            'insurances' => $this->faker->randomNumber(0),
             'distance' => $this->faker->randomFloat(2, 0, 9999),
             'scheduled_wait_from' => $this->faker->randomNumber(0),
             'scheduled_wait_where' => $this->faker->randomNumber(0),

@@ -28,9 +28,9 @@ final class TimetableData extends ObjectData
 
     public string $childrens_age;
 
-    public Carbon $date;
+    public ?Carbon $date;
 
-    public TimeValueObject $time;
+    public ?TimeValueObject $time;
 
     public int $duration;
 
@@ -40,13 +40,15 @@ final class TimetableData extends ObjectData
 
     public int $scheduled_wait_where;
 
+    public int $insurances;
+
     public ?TimetableStatusEnum $status;
 
     public bool $bill_paid;
 
-    public string $description;
+    public ?string $description;
 
-    public string $parking_info;
+    public ?string $parking_info;
 
     public ?int $user_id;
 
@@ -71,9 +73,12 @@ final class TimetableData extends ObjectData
             'trips' => (int) $request->input($prefix . 'trips'),
             'childrens' => (int) $request->input($prefix . 'childrens'),
             'childrens_age' => $request->input($prefix . 'childrens_age'),
-            'date' => Carbon::createFromFormat('Y-m-d', $request->input($prefix . 'date')),
-            'time' => TimeValueObject::fromNative($request->input($prefix . 'time')),
+            'date' => $request->input($prefix . 'date') ?
+                Carbon::createFromFormat('Y-m-d', $request->input($prefix . 'date')) : null,
+            'time' => $request->input($prefix . 'time') ?
+                TimeValueObject::fromNative($request->input($prefix . 'time')) : null,
             'duration' => (int) $request->input($prefix . 'duration'),
+            'insurances' => (int) $request->input($prefix . 'insurances'),
             'distance' => (float) $request->input($prefix . 'distance'),
             'scheduled_wait_from' => (int) $request->input($prefix . 'scheduled_wait_from'),
             'scheduled_wait_where' => (int) $request->input($prefix . 'scheduled_wait_where'),
@@ -101,9 +106,11 @@ final class TimetableData extends ObjectData
             'where_address' => $data->get('where_address'),
             'trips' => (int) $data->get('trips'),
             'childrens' => (int) $data->get('childrens'),
+            'insurances' => (int) $data->get('insurances'),
             'childrens_age' => $data->get('childrens_age'),
-            'date' => Carbon::createFromFormat('Y-m-d', $data->get('date')),
-            'time' => TimeValueObject::fromNative($data->get('time')),
+            'date' => $data->get('date') ?
+                Carbon::createFromFormat('Y-m-d', $data->get('date')) : null,
+            'time' => $data->get('time') ? TimeValueObject::fromNative($data->get('time')) : null,
             'duration' => (int) $data->get('duration'),
             'distance' => (float) $data->get('distance'),
             'scheduled_wait_from' => (int) $data->get('scheduled_wait_from'),

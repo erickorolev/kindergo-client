@@ -83,6 +83,16 @@
 
     <x-inputs.group class="w-full">
         <x-inputs.number
+            name="insurances"
+            label="Insurances"
+            value="{{ old('insurances', ($editing ? $timetable->insurances : '')) }}"
+            max="255"
+            required
+        ></x-inputs.number>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
+        <x-inputs.number
             name="distance"
             label="Distance"
             value="{{ old('distance', ($editing ? $timetable->distance : '')) }}"

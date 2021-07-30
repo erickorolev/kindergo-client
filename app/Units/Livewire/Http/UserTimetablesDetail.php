@@ -74,7 +74,7 @@ class UserTimetablesDetail extends Component
         $this->modalTitle = trans('crud.user_timetables.edit_title');
         $this->timetable = $timetable;
 
-        $this->timetableDate = $this->timetable->date->format('Y-m-d');
+        $this->timetableDate = $this->timetable->date?->format('Y-m-d');
 
         $this->dispatchBrowserEvent('refresh');
 

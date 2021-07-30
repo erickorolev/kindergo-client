@@ -27,16 +27,17 @@ use Units\Filterings\Scopes\Searchable;
  * @property \Illuminate\Database\Eloquent\Collection|\Domains\Trips\Models\Trip[] $trips Количество поездок
  * @property int $childrens Количество детей
  * @property string $childrens_age Возраст детей
- * @property \Illuminate\Support\Carbon $date Дата отправления
+ * @property \Illuminate\Support\Carbon|null $date Дата отправления
  * @property \Parents\ValueObjects\TimeValueObject|null $time Время отправления
  * @property int $duration Длительность маршрута в минутах
+ * @property int $insurances Количество страховок
  * @property float $distance Дистанция маршрута в км
  * @property int $scheduled_wait_from Запланированное ожидание в точке Откуда в минутах
  * @property int $scheduled_wait_where Запланированное ожидание в точке Куда в минутах
  * @property \Domains\Timetables\Enums\TimetableStatusEnum $status Статус
  * @property bool $bill_paid Оплачен ли счёт
- * @property string $description Описание
- * @property string $parking_info Информация о парковке
+ * @property ?string $description Описание
+ * @property ?string $parking_info Информация о парковке
  * @property int|null $user_id Контакт
  * @property \Parents\ValueObjects\CrmIdValueObject|null $crmid ID in Vtiger
  * @property \Parents\ValueObjects\CrmIdValueObject $assigned_user_id Owner in Vtiger
@@ -92,6 +93,7 @@ final class Timetable extends Model
         'time',
         'duration',
         'distance',
+        'insurances',
         'scheduled_wait_from',
         'scheduled_wait_where',
         'status',
