@@ -198,7 +198,8 @@ class ChildrenControllerTest extends TestCase
             'gender' => GenderEnum::getRandomValue(),
             'phone' => '+79876757777',
             'otherphone' => '+79876757799',
-            'users' => [$user->id]
+            'users' => [$user->id],
+            'assigned_user_id' => '19x1'
         ];
 
         $response = $this->put(route('admin.children.update', ['child' => $child->id]), $data);

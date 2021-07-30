@@ -52,6 +52,8 @@ final class TimetableData extends ObjectData
 
     public ?CrmIdValueObject $crmid;
 
+    public CrmIdValueObject $assigned_user_id;
+
     public array $children = [];
 
     public Carbon $created_at;
@@ -60,7 +62,6 @@ final class TimetableData extends ObjectData
 
     public static function fromRequest(Request $request, string $prefix = ''): self
     {
-        /** @var Collection $children */
         $children = GetChildrenIdsFromArrayAction::run($request->input($prefix . 'children', []));
         return new self([
             'created_at' => now(),
@@ -83,13 +84,15 @@ final class TimetableData extends ObjectData
             'parking_info' => $request->input($prefix . 'parking_info'),
             'user_id' => GetClearUserIdAction::run($request->input($prefix . 'user_id')),
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
+            'assigned_user_id' => CrmIdValueObject::fromNative(
+                $request->input($prefix . 'assigned_user_id')
+            ),
             'children' => $children->toArray()
         ]);
     }
 
     public static function fromConnector(Collection $data): self
     {
-        /** @var Collection $children */
         $children = GetChildrenIdsFromArrayAction::run($data->get('children', []));
         return new self([
             'created_at' => now(),
@@ -112,6 +115,7 @@ final class TimetableData extends ObjectData
             'parking_info' => $data->get('parking_info'),
             'user_id' => GetClearUserIdAction::run($data->get('user_id')),
             'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),
             'children' => $children->toArray()
         ]);
     }

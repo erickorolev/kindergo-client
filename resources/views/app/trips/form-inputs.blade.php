@@ -120,6 +120,15 @@
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="w-full">
+        <x-inputs.text
+            name="assigned_user_id"
+            label="Assigned User ID"
+            value="{{ old('assigned_user_id', ($editing ? $trip->assigned_user_id : '')) }}"
+            maxlength="100"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+    <x-inputs.group class="w-full">
         <x-inputs.select name="user_id" label="User" required>
             @php $selected = old('user_id', ($editing ? $trip->user_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>

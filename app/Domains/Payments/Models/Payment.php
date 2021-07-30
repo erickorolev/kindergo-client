@@ -26,6 +26,7 @@ use Units\Filterings\Scopes\Searchable;
  * @property \Domains\Payments\Enums\SpStatusEnum $spstatus Статус
  * @property int $user_id Контакт
  * @property \Parents\ValueObjects\CrmIdValueObject|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject $assigned_user_id ID in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -60,7 +61,8 @@ final class Payment extends Model
         'amount',
         'spstatus',
         'user_id',
-        'crmid'
+        'crmid',
+        'assigned_user_id'
     ];
 
     protected array $searchableFields = ['*'];
@@ -69,6 +71,7 @@ final class Payment extends Model
         'pay_date' => 'date',
         'amount' => MoneyValueCast::class,
         'crmid' => CrmIdValueObjectCast::class,
+        'assigned_user_id' => CrmIdValueObjectCast::class,
         'type_payment' => TypePaymentEnum::class,
         'spstatus' => SpStatusEnum::class
     ];
@@ -93,6 +96,7 @@ final class Payment extends Model
         $data = parent::toArray();
         $data['amount'] = $this->amount?->toFloat();
         $data['crmid'] = $this->crmid?->toNative();
+        $data['assigned_user_id'] = $this->assigned_user_id?->toNative();
         $data['type_payment'] = $this->type_payment->value;
         $data['spstatus'] = $this->spstatus->value;
         return $data;
@@ -103,6 +107,7 @@ final class Payment extends Model
         $data = parent::toArray();
         $data['amount'] = $this->amount;
         $data['crmid'] = $this->crmid;
+        $data['assigned_user_id'] = $this->assigned_user_id;
         $data['type_payment'] = $this->type_payment;
         $data['spstatus'] = $this->spstatus;
         return $data;

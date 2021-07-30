@@ -27,6 +27,8 @@ final class TripStoreRequest extends Request
             'scheduled_wait_where' => ['required', 'numeric'],
             'scheduled_wait_from' => ['required', 'numeric'],
             'parking_cost' => ['required', 'numeric'],
+            'crmid' => ['nullable', 'max:50'],
+            'assigned_user_id' => ['nullable', 'max:50', 'min:3'],
         ];
     }
 

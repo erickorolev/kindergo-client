@@ -29,10 +29,10 @@ final class AuthController extends Controller
 
         $user = GetUserByEmailAction::run($request->input('email'));
 
-        $token = $user->createToken('auth-token');
+        $token = $user?->createToken('auth-token');
 
         return response()->json([
-            'token' => $token->plainTextToken,
+            'token' => $token?->plainTextToken,
         ]);
     }
 }

@@ -141,6 +141,7 @@ class TimetableControllerTest extends TestCase
             'description' => $this->faker->sentence(15),
             'parking_info' => $this->faker->text(),
             'user_id' => $user->id,
+            'assigned_user_id' => '19x1'
         ];
 
         $response = $this->put(route('admin.timetables.update', $timetable), $data);

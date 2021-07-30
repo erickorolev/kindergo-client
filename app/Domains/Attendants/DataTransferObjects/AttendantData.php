@@ -39,6 +39,8 @@ final class AttendantData extends ObjectData
 
     public CrmIdValueObject $crmid;
 
+    public CrmIdValueObject $assigned_user_id;
+
     public ?string $file;
 
     public ?Media $avatar;
@@ -66,6 +68,9 @@ final class AttendantData extends ObjectData
             'file' => $request->input($prefix . 'file'),
             'external_file' => UrlValueObject::fromNative($request->input($prefix . 'external_file')),
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
+            'assigned_user_id' => CrmIdValueObject::fromNative(
+                $request->input($prefix . 'assigned_user_id')
+            ),
             'avatar_path' => $request->file($prefix . 'imagename')?->path(),
             'firstname' => $request->input($prefix . 'firstname'),
             'lastname' => $request->input($prefix . 'lastname'),
@@ -86,6 +91,7 @@ final class AttendantData extends ObjectData
             'updated_at' => now(),
             'external_file' => UrlValueObject::fromNative($data->get('external_file')),
             'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),
             'firstname' => $data->get('firstname'),
             'lastname' => $data->get('lastname'),
             'middle_name' => $data->get('middle_name'),

@@ -22,6 +22,7 @@ final class ChildStoreRequest extends Request
             'otherphone' => ['nullable', 'max:20', 'phone:RU'],
             'imagename' => ['nullable', 'image'],
             'crmid' => ['nullable', 'max:50'],
+            'assigned_user_id' => ['nullable', 'max:50', 'min:3'],
             'users' => ['nullable', 'array']
         ];
     }

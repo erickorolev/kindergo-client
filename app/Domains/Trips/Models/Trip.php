@@ -34,6 +34,7 @@ use Units\Filterings\Scopes\Searchable;
  * @property int $scheduled_wait_from Незапланированное время ожидания в точке Откуда
  * @property \Parents\ValueObjects\MoneyValueObject|null $parking_cost Стоимость парковки
  * @property \Parents\ValueObjects\CrmIdValueObject|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject $assigned_user_id Owner in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -86,7 +87,8 @@ final class Trip extends Model
         'scheduled_wait_from',
         'parking_cost',
         'user_id',
-        'crmid'
+        'crmid',
+        'assigned_user_id',
     ];
 
     protected array $searchableFields = ['*'];
@@ -99,7 +101,8 @@ final class Trip extends Model
         'time' => TimeValueObjectCast::class,
         'scheduled_wait_from' => 'int',
         'scheduled_wait_where' => 'int',
-        'crmid' => CrmIdValueObjectCast::class
+        'crmid' => CrmIdValueObjectCast::class,
+        'assigned_user_id' => CrmIdValueObjectCast::class,
     ];
 
     /**
@@ -137,6 +140,7 @@ final class Trip extends Model
         $data = parent::toArray();
         $data['time'] = $this->time?->toNative();
         $data['crmid'] = $this->crmid?->toNative();
+        $data['assigned_user_id'] = $this->assigned_user_id?->toNative();
         $data['parking_cost'] = $this->parking_cost?->toFloat();
         $data['status'] = $this->status->value;
         return $data;
@@ -147,6 +151,7 @@ final class Trip extends Model
         $data = parent::toArray();
         $data['time'] = $this->time;
         $data['crmid'] = $this->crmid;
+        $data['assigned_user_id'] = $this->assigned_user_id;
         $data['parking_cost'] = $this->parking_cost;
         $data['status'] = $this->status;
         return $data;

@@ -30,7 +30,8 @@ use Units\Filterings\Scopes\Searchable;
  * @property string|null $imagename Фотография
  * @property \Parents\ValueObjects\EmailValueObject|null|null $email Адрес электронной почты
  * @property \Parents\Enums\GenderEnum $gender Пол
- * @property \Parents\ValueObjects\CrmIdValueObject|null|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject|null $assigned_user_id Owner in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -80,14 +81,16 @@ final class Attendant extends Model implements HasMedia
         'imagename',
         'email',
         'gender',
-        'crmid'
+        'crmid',
+        'assigned_user_id'
     ];
 
     protected $casts = [
         'phone' => PhoneValueObjectCast::class,
         'email' => EmailValueObjectCast::class,
         'gender' => GenderEnum::class,
-        'crmid' => CrmIdValueObjectCast::class
+        'crmid' => CrmIdValueObjectCast::class,
+        'assigned_user_id' => CrmIdValueObjectCast::class,
     ];
 
     protected array $searchableFields = ['*'];
@@ -123,6 +126,7 @@ final class Attendant extends Model implements HasMedia
         $data['phone'] = $this->phone?->toNative();
         $data['gender'] = $this->gender->value;
         $data['crmid'] = $this->crmid?->toNative();
+        $data['assigned_user_id'] = $this->assigned_user_id?->toNative();
         $data['email'] = $this->email?->toNative();
         return $data;
     }
@@ -133,6 +137,7 @@ final class Attendant extends Model implements HasMedia
         $data['phone'] = $this->phone;
         $data['gender'] = $this->gender;
         $data['crmid'] = $this->crmid;
+        $data['assigned_user_id'] = $this->assigned_user_id;
         $data['email'] = $this->email;
         $data['created_at'] = $this->created_at ?? now();
         $data['updated_at'] = $this->updated_at ?? now();
@@ -145,6 +150,7 @@ final class Attendant extends Model implements HasMedia
         $data['type'] = 'Attendant';
         unset(
             $data['crmid'],
+            $data['assigned_user_id'],
             $data['id'],
             $data['created_at'],
             $data['updated_at'],

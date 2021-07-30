@@ -22,6 +22,8 @@ final class PaymentStoreApiRequest extends Request
                 new EnumValue(SpStatusEnum::class),
             ],
             'data.attributes.user_id' => ['required'],
+            'data.attributes.crmid' => ['nullable', 'max:50'],
+            'data.attributes.assigned_user_id' => ['nullable', 'max:50', 'min:3'],
         ];
         return $this->mergeWithDefaultRules($rules);
     }

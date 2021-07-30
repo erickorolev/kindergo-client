@@ -156,6 +156,7 @@ class TripControllerTest extends TestCase
             'parking_cost' => $this->faker->randomNumber(3),
             'attendant_id' => $attendant->id,
             'timetable_id' => $timetable->id,
+            'assigned_user_id' => '19x1'
         ];
 
         $response = $this->put(route('admin.trips.update', $trip), $data);

@@ -30,13 +30,14 @@ final class PaymentData extends ObjectData
 
     public CrmIdValueObject $crmid;
 
+    public CrmIdValueObject $assigned_user_id;
+
     public Carbon $created_at;
 
     public Carbon $updated_at;
 
     public static function fromRequest(Request $request, string $prefix = ''): self
     {
-        /** @var ?int $user_id */
         $user_id = GetClearUserIdAction::run($request->input($prefix . 'user_id'));
         return new self([
             'created_at' => now(),
@@ -46,13 +47,15 @@ final class PaymentData extends ObjectData
             'amount' => MoneyValueObject::fromNative($request->input($prefix . 'amount')),
             'spstatus' => SpStatusEnum::fromValue($request->input($prefix . 'spstatus')),
             'user_id' => $user_id,
-            'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid'))
+            'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
+            'assigned_user_id' => CrmIdValueObject::fromNative(
+                $request->input($prefix . 'assigned_user_id')
+            ),
         ]);
     }
 
     public static function fromConnector(Collection $data): self
     {
-        /** @var ?int $user_id */
         $user_id = GetClearUserIdAction::run($data->get('payer'));
         return new self([
             'created_at' => now(),
@@ -62,7 +65,8 @@ final class PaymentData extends ObjectData
             'amount' => MoneyValueObject::fromNative($data->get('amount')),
             'spstatus' => SpStatusEnum::fromValue($data->get('spstatus')),
             'user_id' => $user_id,
-            'crmid' => CrmIdValueObject::fromNative($data->get('id'))
+            'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),
         ]);
     }
 }

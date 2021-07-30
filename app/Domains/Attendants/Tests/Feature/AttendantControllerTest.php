@@ -139,6 +139,7 @@ class AttendantControllerTest extends TestCase
             'car_year' => $this->faker->year(),
             'email' => $this->faker->email(),
             'gender' => GenderEnum::getRandomValue(),
+            'assigned_user_id' => '19x1',
         ];
 
         $response = $this->put(route('admin.attendants.update', $attendant->id), $data);

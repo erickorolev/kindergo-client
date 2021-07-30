@@ -26,7 +26,6 @@ final class GetUsersFromVtigerCommand extends Command
         foreach ($contacts as $contact) {
             try {
                 $userData = UserData::fromConnector($contact);
-                /** @var ?User $existingUser */
                 $existingUser = GetUserByCrmidAction::run($userData->crmid->toNative());
                 if ($existingUser) {
                     $userData->id = $existingUser->id;

@@ -9,6 +9,11 @@ use Domains\Users\Models\User;
 use Illuminate\Support\Collection;
 use Parents\ValueObjects\CrmIdValueObject;
 
+/**
+ * Class GetChildrenIdsFromArrayAction
+ * @package Domains\Children\Actions
+ * @method static Collection run(array $ids)
+ */
 final class GetChildrenIdsFromArrayAction extends \Parents\Actions\Action
 {
     public function handle(array $ids): Collection

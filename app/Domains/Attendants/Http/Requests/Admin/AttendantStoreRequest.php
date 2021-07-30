@@ -23,7 +23,8 @@ final class AttendantStoreRequest extends Request
             'email' => ['required', 'email'],
             'gender' => ['required', new EnumValue(GenderEnum::class)],
             'imagename' => ['nullable', 'image'],
-            'crmid' => ['nullable', 'max:50']
+            'crmid' => ['nullable', 'max:50'],
+            'assigned_user_id' => ['nullable', 'max:50', 'min:3'],
         ];
     }
 

@@ -22,6 +22,7 @@ final class UpdateChildApiRequest extends Request
             'data.attributes.otherphone' => ['nullable', 'max:20', 'phone:RU'],
             'data.attributes.external_file' => ['nullable', 'url'],
             'data.attributes.crmid' => ['nullable', 'max:50'],
+            'data.attributes.assigned_user_id' => ['nullable', 'max:50', 'min:3'],
             'data.attributes.file' => ['nullable', 'max:100'],
         ];
         return $this->mergeWithDefaultRules($rules);

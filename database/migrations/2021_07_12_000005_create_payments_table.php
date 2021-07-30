@@ -25,6 +25,7 @@ class CreatePaymentsTable extends Migration
                 ->default('Scheduled')->comment('Статус');
             $table->unsignedBigInteger('user_id')->comment('Контакт');
             $table->string('crmid', 100)->nullable()->comment('ID in Vtiger');
+            $table->string('assigned_user_id', 100)->default('19x1')->comment('Owner in Vtiger');
 
             $table->timestamps();
             $table->softDeletes();

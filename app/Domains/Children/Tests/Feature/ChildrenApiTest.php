@@ -146,7 +146,7 @@ class ChildrenApiTest extends TestCase
                         'lastname' => $data['lastname'],
                         'crmid' => $data['crmid'],
                         'phone' => '8 (987) 675-77-77',
-                        'otherphone' => '8 (902) 288-44-33'
+                        'otherphone' => '8 (902) 288-44-33',
                     ]
                 ]
             ]);
@@ -198,7 +198,8 @@ class ChildrenApiTest extends TestCase
                     'phone' => '+79876757777',
                     'gender' => 'Male',
                     'otherphone' => '+79086665478',
-                    'birthday' => '1998-05-08'
+                    'birthday' => '1998-05-08',
+                    'assigned_user_id' => '19x1'
                 ]
             ]
         ];

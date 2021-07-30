@@ -80,7 +80,17 @@
         <x-inputs.text
             name="crmid"
             label="CrmId"
-            value="{{ old('crmid', ($editing ? $user->crmid : '')) }}"
+            value="{{ old('crmid', ($editing ? $child->crmid : '')) }}"
+            maxlength="100"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
+        <x-inputs.text
+            name="assigned_user_id"
+            label="Assigned User ID"
+            value="{{ old('assigned_user_id', ($editing ? $child->assigned_user_id : '')) }}"
             maxlength="100"
             required
         ></x-inputs.text>

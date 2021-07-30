@@ -27,6 +27,8 @@ final class TripUpdateApiRequest extends Request
             'data.attributes.scheduled_wait_where' => ['required', 'numeric'],
             'data.attributes.scheduled_wait_from' => ['required', 'numeric'],
             'data.attributes.parking_cost' => ['required', 'numeric'],
+            'data.attributes.crmid' => ['nullable', 'max:50'],
+            'data.attributes.assigned_user_id' => ['nullable', 'max:50', 'min:3'],
         ];
         return $this->mergeWithDefaultRules($rules);
     }

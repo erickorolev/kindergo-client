@@ -29,8 +29,9 @@ use Units\Filterings\Scopes\Searchable;
  * @property \Parents\Enums\GenderEnum $gender Пол
  * @property \Parents\ValueObjects\PhoneNumberValueObject|null $phone Телефон
  * @property string|null $imagename Фотография
- * @property \Parents\ValueObjects\PhoneNumberValueObject|null|null $otherphone Другой телефон
- * @property \Parents\ValueObjects\CrmIdValueObject|null|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\PhoneNumberValueObject|null $otherphone Другой телефон
+ * @property \Parents\ValueObjects\CrmIdValueObject|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject|null $assigned_user_id Owner in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -80,7 +81,8 @@ final class Child extends Model implements HasMedia
         'phone',
         'imagename',
         'otherphone',
-        'crmid'
+        'crmid',
+        'assigned_user_id'
     ];
 
     protected array $searchableFields = ['*'];
@@ -89,6 +91,7 @@ final class Child extends Model implements HasMedia
         'birthday' => 'date',
         'gender' => GenderEnum::class,
         'crmid' => CrmIdValueObjectCast::class,
+        'assigned_user_id' => CrmIdValueObjectCast::class,
         'phone' => PhoneValueObjectCast::class,
         'otherphone' => PhoneValueObjectCast::class,
     ];
@@ -135,6 +138,7 @@ final class Child extends Model implements HasMedia
         $data['otherphone'] = $this->otherphone?->toNative();
         $data['gender'] = $this->gender->value;
         $data['crmid'] = $this->crmid?->toNative();
+        $data['assigned_user_id'] = $this->assigned_user_id?->toNative();
         return $data;
     }
 
@@ -145,6 +149,7 @@ final class Child extends Model implements HasMedia
         $data['otherphone'] = $this->otherphone;
         $data['gender'] = $this->gender;
         $data['crmid'] = $this->crmid;
+        $data['assigned_user_id'] = $this->assigned_user_id;
         $data['created_at'] = $this->created_at ?? now();
         $data['updated_at'] = $this->updated_at ?? now();
         return $data;

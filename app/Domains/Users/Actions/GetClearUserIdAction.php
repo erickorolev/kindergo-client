@@ -6,6 +6,11 @@ namespace Domains\Users\Actions;
 
 use Domains\Users\Models\User;
 
+/**
+ * Class GetClearUserIdAction
+ * @package Domains\Users\Actions
+ * @method static int|null run(string|int|null $id)
+ */
 final class GetClearUserIdAction extends \Parents\Actions\Action
 {
     public function handle(string|int|null $id): ?int
@@ -13,8 +18,7 @@ final class GetClearUserIdAction extends \Parents\Actions\Action
         if ($id === null) {
             return null;
         }
-        /** @var ?User $user */
-        $user = GetUserByCrmidAction::run($id);
+        $user = GetUserByCrmidAction::run((string) $id);
         if ($user) {
             return $user->id;
         }

@@ -24,6 +24,7 @@ final class AttendantUpdateApiRequest extends Request
             'data.attributes.gender' => ['required', new EnumValue(GenderEnum::class)],
             'data.attributes.imagename' => ['nullable', 'image'],
             'data.attributes.crmid' => ['nullable', 'max:50'],
+            'data.attributes.assigned_user_id' => ['nullable', 'max:50', 'min:3'],
             'data.attributes.file' => ['nullable', 'max:100'],
             'data.attributes.external_file' => ['nullable', 'url'],
         ];

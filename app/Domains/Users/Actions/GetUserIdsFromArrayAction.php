@@ -13,10 +13,8 @@ final class GetUserIdsFromArrayAction extends \Parents\Actions\Action
     {
         $result = collect([]);
         foreach ($ids as $id) {
-            /** @var ?User $user */
             $user = GetUserByCrmidAction::run($id);
             if (!$user) {
-                /** @var User $user */
                 $user = GetUserByIdAction::run($id);
             }
             $result->push($user->id);

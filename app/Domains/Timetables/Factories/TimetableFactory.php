@@ -42,6 +42,7 @@ final class TimetableFactory extends Factory
             'crmid' => CrmIdValueObject::fromNative(
                 $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
             ),
+            'assigned_user_id' => CrmIdValueObject::fromNative('19x1'),
         ];
     }
 }

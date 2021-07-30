@@ -97,6 +97,16 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
+        <x-inputs.text
+            name="assigned_user_id"
+            label="Assigned User ID"
+            value="{{ old('assigned_user_id', ($editing ? $attendant->assigned_user_id : '')) }}"
+            maxlength="100"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
         <div
             x-data="imageViewer('{{ $editing && $attendant->imagename ? \Storage::url($attendant->imagename) : '' }}')"
         >

@@ -208,6 +208,7 @@ class UserApiTest extends TestCase
                     'phone' => '+79876757777',
                     'attendant_gender' => 'No matter',
                     'otherphone' => '+79086665478',
+                    'assigned_user_id' => '19x1'
                 ]
             ]
         ];

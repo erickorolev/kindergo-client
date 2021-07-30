@@ -30,6 +30,7 @@ final class StoreTimetableApiRequest extends Request
             'data.attributes.parking_info' => ['required', 'max:255', 'string'],
             'data.attributes.user_id' => ['nullable'],
             'data.attributes.crmid' => ['nullable', 'max:50'],
+            'data.attributes.assigned_user_id' => ['nullable', 'max:50', 'min:3'],
         ];
         return $this->mergeWithDefaultRules($rules);
     }

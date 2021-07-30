@@ -30,6 +30,7 @@ final class TimetableStoreRequest extends Request
             'parking_info' => ['required', 'max:255', 'string'],
             'user_id' => ['nullable'],
             'crmid' => ['nullable', 'max:50'],
+            'assigned_user_id' => ['nullable', 'max:50', 'min:3'],
         ];
     }
 

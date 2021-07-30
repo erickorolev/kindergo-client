@@ -74,7 +74,6 @@ class UserActionsTest extends TestCase
     {
         User::factory()->count(3)->create();
         $user = User::factory()->createOne();
-        /** @var User $result */
         $result = GetUserByIdAction::run($user->id);
         $this->assertEquals($user->id, $result->id);
     }

@@ -198,7 +198,8 @@ class AttendantApiTest extends TestCase
                     'gender' => 'Male',
                     'resume' => $this->faker->text(),
                     'car_model' => $this->faker->company(),
-                    'car_year' => $this->faker->year()
+                    'car_year' => $this->faker->year(),
+                    'assigned_user_id' => '19x1'
                 ]
             ]
         ];

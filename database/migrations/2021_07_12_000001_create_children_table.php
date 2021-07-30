@@ -26,6 +26,7 @@ class CreateChildrenTable extends Migration
             $table->text('imagename')->nullable()->comment('Фотография');
             $table->string('otherphone', 20)->nullable()->comment('Другой телефон');
             $table->string('crmid', 100)->nullable()->comment('ID in Vtiger');
+            $table->string('assigned_user_id', 100)->default('19x1')->comment('Owner in Vtiger');
 
             $table->timestamps();
             $table->softDeletes();

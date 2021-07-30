@@ -24,6 +24,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Parents\Casts\CrmIdValueObjectCast;
+use Parents\ValueObjects\CrmIdValueObject;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -51,6 +52,7 @@ use Units\Filterings\Scopes\Searchable;
  * @property \Domains\Users\Enums\AttendantGenderEnum $attendant_gender Предпочитаемый пол сопровождающего
  * @property \Parents\ValueObjects\PhoneNumberValueObject|null|null $otherphone Другой телефон
  * @property \Parents\ValueObjects\CrmIdValueObject $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject $assigned_user_id Owner in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -131,7 +133,8 @@ final class User extends Authenticatable implements HasMedia
         'phone',
         'attendant_gender',
         'otherphone',
-        'crmid'
+        'crmid',
+        'assigned_user_id'
     ];
 
     protected array $searchableFields = ['*'];
@@ -149,7 +152,8 @@ final class User extends Authenticatable implements HasMedia
         'name' => FullNameCast::class,
         'phone' => PhoneValueObjectCast::class,
         'otherphone' => PhoneValueObjectCast::class,
-        'crmid' => CrmIdValueObjectCast::class
+        'crmid' => CrmIdValueObjectCast::class,
+        'assigned_user_id' => CrmIdValueObjectCast::class
     ];
 
     public function __construct(array $attributes = [])
@@ -229,6 +233,7 @@ final class User extends Authenticatable implements HasMedia
         $data['name'] = $this->name->toNative();
         $data['attendant_gender'] = $this->attendant_gender->value;
         $data['crmid'] = $this->crmid?->toNative();
+        $data['assigned_user_id'] = $this->assigned_user_id?->toNative();
         return $data;
     }
 
@@ -241,6 +246,7 @@ final class User extends Authenticatable implements HasMedia
         $data['attendant_gender'] = $this->attendant_gender;
         $data['email_verified_at'] = $this->email_verified_at;
         $data['crmid'] = $this->crmid;
+        $data['assigned_user_id'] = $this->assigned_user_id;
         $data['created_at'] = $this->created_at ?? now();
         $data['updated_at'] = $this->updated_at ?? now();
         return $data;

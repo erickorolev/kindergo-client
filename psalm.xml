@@ -21,5 +21,6 @@
         <UnnecessaryVarAnnotation errorLevel="suppress" />
         <UnusedClosureParam errorLevel="suppress" />
         <MoreSpecificImplementedParamType errorLevel="info" />
+        <MethodSignatureMismatch errorLevel="info" />
     </issueHandlers>
 </psalm>

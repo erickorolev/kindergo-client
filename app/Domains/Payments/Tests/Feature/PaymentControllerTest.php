@@ -130,6 +130,7 @@ class PaymentControllerTest extends TestCase
             'amount' => $this->faker->randomNumber(),
             'spstatus' => SpStatusEnum::getRandomValue(),
             'user_id' => $user->id,
+            'assigned_user_id' => '19x1'
         ];
 
         $response = $this->put(route('admin.payments.update', $payment->id), $data);

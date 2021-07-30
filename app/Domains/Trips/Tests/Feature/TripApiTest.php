@@ -135,7 +135,8 @@ class TripApiTest extends TestCase
             'user_id' => $user->id,
             'attendant_id' => $trip->attendant_id,
             'timetable_id' => $trip->timetable_id,
-            'parking_cost' => $trip->parking_cost?->toFloat()
+            'parking_cost' => $trip->parking_cost?->toFloat(),
+            'assigned_user_id' => '19x1'
         ];
 
         $response = $this->putJson(

@@ -28,6 +28,7 @@ class CreateAttendantsTable extends Migration
                 ->enum('gender', ['Male', 'Female', 'Other'])
                 ->default('Other')->comment('Пол');
             $table->string('crmid', 100)->nullable()->comment('ID in Vtiger');
+            $table->string('assigned_user_id', 100)->default('19x1')->comment('Owner in Vtiger');
 
             $table->timestamps();
             $table->softDeletes();

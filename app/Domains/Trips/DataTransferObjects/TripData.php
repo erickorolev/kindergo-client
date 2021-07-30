@@ -49,6 +49,8 @@ final class TripData extends ObjectData
 
     public ?CrmIdValueObject $crmid;
 
+    public CrmIdValueObject $assigned_user_id;
+
     public ?string $file;
 
     public UrlValueObject $external_file;
@@ -67,9 +69,7 @@ final class TripData extends ObjectData
         $attendant_id = GetClearAttendantIdAction::run($request->input($prefix . 'attendant_id'));
         /** @var int $timetable_id */
         $timetable_id = GetClearTimetableIdAction::run($request->input($prefix . 'timetable_id'));
-        /** @var ?int $user_id */
         $user_id = GetClearUserIdAction::run($request->input($prefix . 'user_id'));
-        /** @var Collection $children */
         $children = GetChildrenIdsFromArrayAction::run($request->input($prefix . 'children', []));
         return new self([
             'created_at' => now(),
@@ -87,6 +87,9 @@ final class TripData extends ObjectData
             'parking_cost' => MoneyValueObject::fromNative($request->input($prefix . 'parking_cost')),
             'user_id' => $user_id,
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
+            'assigned_user_id' => CrmIdValueObject::fromNative(
+                $request->input($prefix . 'assigned_user_id')
+            ),
             'file' => $request->input($prefix . 'file'),
             'external_file' => UrlValueObject::fromNative($request->input($prefix . 'external_file')),
             'children' => $children->toArray()
@@ -99,9 +102,7 @@ final class TripData extends ObjectData
         $attendant_id = GetClearAttendantIdAction::run($data->get('cf_nrl_contacts59_id'));
         /** @var int $timetable_id */
         $timetable_id = GetClearTimetableIdAction::run($data->get('cf_nrl_timetable926_id'));
-        /** @var ?int $user_id */
         $user_id = GetClearUserIdAction::run($data->get('trips_contact'));
-        /** @var Collection $children */
         $children = GetChildrenIdsFromArrayAction::run($data->get('children', []));
         return new self([
             'created_at' => now(),
@@ -119,6 +120,7 @@ final class TripData extends ObjectData
             'parking_cost' => MoneyValueObject::fromNative($data->get('parking_cost')),
             'user_id' => $user_id,
             'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),
             'children' => $children->toArray()
         ]);
     }

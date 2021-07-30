@@ -38,7 +38,8 @@ use Units\Filterings\Scopes\Searchable;
  * @property string $description Описание
  * @property string $parking_info Информация о парковке
  * @property int|null $user_id Контакт
- * @property \Parents\ValueObjects\CrmIdValueObject|null|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject $assigned_user_id Owner in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -98,7 +99,8 @@ final class Timetable extends Model
         'description',
         'parking_info',
         'user_id',
-        'crmid'
+        'crmid',
+        'assigned_user_id'
     ];
 
     protected array $searchableFields = ['*'];
@@ -107,6 +109,7 @@ final class Timetable extends Model
         'date' => 'date',
         'bill_paid' => 'boolean',
         'crmid' => CrmIdValueObjectCast::class,
+        'assigned_user_id' => CrmIdValueObjectCast::class,
         'status' => TimetableStatusEnum::class,
         'trips' => 'integer',
         'childrens' => 'integer',
@@ -146,6 +149,7 @@ final class Timetable extends Model
     {
         $data = parent::toArray();
         $data['crmid'] = $this->crmid?->toNative();
+        $data['assigned_user_id'] = $this->assigned_user_id?->toNative();
         $data['status'] = $this->status->value;
         $data['time'] = $this->time?->toNative();
         return $data;
@@ -155,6 +159,7 @@ final class Timetable extends Model
     {
         $data = parent::toArray();
         $data['crmid'] = $this->crmid;
+        $data['assigned_user_id'] = $this->assigned_user_id;
         $data['created_at'] = $this->created_at ?? now();
         $data['updated_at'] = $this->updated_at ?? now();
         $data['status'] = $this->status;

@@ -76,7 +76,6 @@ final class UserApiController extends Controller
 
     public function show(ShowUserRequest $request, int $user): \Illuminate\Http\JsonResponse
     {
-        /** @var User $userModel */
         $userModel = GetUserByIdAction::run($user);
         return fractal(
             $userModel,
@@ -90,7 +89,6 @@ final class UserApiController extends Controller
     {
         $userData = UserData::fromRequest($request, 'data.attributes.');
         $userData->id = $user;
-        /** @var User $userModel */
         $userModel = UpdateUserAction::run($userData);
 
         return fractal(

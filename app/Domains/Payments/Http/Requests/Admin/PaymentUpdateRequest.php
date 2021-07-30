@@ -22,6 +22,8 @@ final class PaymentUpdateRequest extends Request
                 new EnumValue(SpStatusEnum::class),
             ],
             'user_id' => ['required'],
+            'crmid' => ['nullable', 'max:50'],
+            'assigned_user_id' => ['nullable', 'max:50', 'min:3'],
         ];
     }
 

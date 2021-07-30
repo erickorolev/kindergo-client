@@ -146,6 +146,7 @@ class UserControllerTest extends TestCase
             'phone' => '+79087568899',
             'attendant_gender' => 'No matter',
             'otherphone' => '+79024456879',
+            'assigned_user_id' => '19x1'
         ];
 
         $data['password'] = \Str::random(8);

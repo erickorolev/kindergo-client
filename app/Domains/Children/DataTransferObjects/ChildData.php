@@ -34,6 +34,8 @@ final class ChildData extends ObjectData
 
     public CrmIdValueObject $crmid;
 
+    public CrmIdValueObject $assigned_user_id;
+
     public ?string $file;
 
     public ?Media $avatar;
@@ -63,6 +65,9 @@ final class ChildData extends ObjectData
             'file' => $request->input($prefix . 'file'),
             'external_file' => UrlValueObject::fromNative($request->input($prefix . 'external_file')),
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
+            'assigned_user_id' => CrmIdValueObject::fromNative(
+                $request->input($prefix . 'assigned_user_id')
+            ),
             'avatar_path' => $request->file($prefix . 'imagename')?->path(),
             'otherphone' => $request->input($prefix . 'otherphone') ?
                 PhoneNumberValueObject::fromNative($request->input($prefix . 'otherphone')) : null,
@@ -83,6 +88,7 @@ final class ChildData extends ObjectData
             'updated_at' => now(),
             'external_file' => UrlValueObject::fromNative($data->get('external_file')),
             'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),
             'otherphone' => $data->get('otherphone') ?
                 PhoneNumberValueObject::fromNative($data->get('otherphone')) : null,
             'firstname' => $data->get('firstname'),

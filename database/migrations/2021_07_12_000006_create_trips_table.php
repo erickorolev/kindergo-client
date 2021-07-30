@@ -32,6 +32,7 @@ class CreateTripsTable extends Migration
                 ->comment('Незапланированное время ожидания в точке Откуда');
             $table->integer('parking_cost')->comment('Стоимость парковки')->default(0);
             $table->string('crmid', 100)->nullable()->comment('ID in Vtiger');
+            $table->string('assigned_user_id', 100)->default('19x1')->comment('Owner in Vtiger');
 
             $table->timestamps();
             $table->softDeletes();

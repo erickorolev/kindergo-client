@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
                 ->default('No matter')->comment('Предпочитаемый пол сопровождающего');
             $table->string('otherphone', 50)->nullable()->comment('Другой телефон');
             $table->string('crmid', 100)->nullable()->unique()->comment('ID in Vtiger');
+            $table->string('assigned_user_id', 100)->default('19x1')->comment('Owner in Vtiger');
 
             $table->timestamps();
             $table->softDeletes();

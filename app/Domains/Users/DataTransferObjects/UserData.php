@@ -53,6 +53,8 @@ final class UserData extends ObjectData
 
     public CrmIdValueObject $crmid;
 
+    public CrmIdValueObject $assigned_user_id;
+
     public Carbon $created_at;
 
     public Carbon $updated_at;
@@ -85,6 +87,9 @@ final class UserData extends ObjectData
             'created_at' => now(),
             'updated_at' => now(),
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
+            'assigned_user_id' => CrmIdValueObject::fromNative(
+                $request->input($prefix . 'assigned_user_id')
+            ),
             'avatar_path' => $request->file($prefix . 'imagename')?->path(),
             'roles' => $request->has($prefix . 'roles') ? $request->input($prefix . 'roles', []) : [],
             'file' => $request->input($prefix . 'file'),
@@ -112,6 +117,7 @@ final class UserData extends ObjectData
             'created_at' => now(),
             'updated_at' => now(),
             'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),
             'roles' => [],
             'external_file' => UrlValueObject::fromNative($data->get('external_file')),
         ]);
