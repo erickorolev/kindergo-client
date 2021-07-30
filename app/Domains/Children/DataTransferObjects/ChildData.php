@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Children\DataTransferObjects;
 
+use Illuminate\Support\Collection;
 use Parents\DataTransferObjects\ObjectData;
 use Illuminate\Support\Carbon;
 use Parents\Enums\GenderEnum;
@@ -72,6 +73,25 @@ final class ChildData extends ObjectData
             'birthday' => Carbon::createFromFormat('Y-m-d', $request->input($prefix . 'birthday')),
             'gender' => GenderEnum::fromValue($request->input($prefix . 'gender')),
             'users' => $request->input($prefix . 'users', [])
+        ]);
+    }
+
+    public static function fromConnector(Collection $data): self
+    {
+        return new self([
+            'created_at' => now(),
+            'updated_at' => now(),
+            'external_file' => UrlValueObject::fromNative($data->get('external_file')),
+            'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'otherphone' => $data->get('otherphone') ?
+                PhoneNumberValueObject::fromNative($data->get('otherphone')) : null,
+            'firstname' => $data->get('firstname'),
+            'lastname' => $data->get('lastname'),
+            'middle_name' => $data->get('middle_name'),
+            'phone' => PhoneNumberValueObject::fromNative($data->get('phone')),
+            'birthday' => Carbon::createFromFormat('Y-m-d', $data->get('birthday')),
+            'gender' => GenderEnum::fromValue($data->get('gender')),
+//            'users' => $data->get('users', [])
         ]);
     }
 }

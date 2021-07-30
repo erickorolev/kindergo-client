@@ -7,6 +7,7 @@ namespace Domains\Payments\DataTransferObjects;
 use Domains\Payments\Enums\SpStatusEnum;
 use Domains\Payments\Enums\TypePaymentEnum;
 use Domains\Users\Actions\GetClearUserIdAction;
+use Illuminate\Support\Collection;
 use Parents\DataTransferObjects\ObjectData;
 use Illuminate\Support\Carbon;
 use Parents\Requests\Request;
@@ -46,6 +47,22 @@ final class PaymentData extends ObjectData
             'spstatus' => SpStatusEnum::fromValue($request->input($prefix . 'spstatus')),
             'user_id' => $user_id,
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid'))
+        ]);
+    }
+
+    public static function fromConnector(Collection $data): self
+    {
+        /** @var ?int $user_id */
+        $user_id = GetClearUserIdAction::run($data->get('payer'));
+        return new self([
+            'created_at' => now(),
+            'updated_at' => now(),
+            'pay_date' => Carbon::createFromFormat('Y-m-d', $data->get('pay_date')),
+            'type_payment' => TypePaymentEnum::fromValue($data->get('type_payment')),
+            'amount' => MoneyValueObject::fromNative($data->get('amount')),
+            'spstatus' => SpStatusEnum::fromValue($data->get('spstatus')),
+            'user_id' => $user_id,
+            'crmid' => CrmIdValueObject::fromNative($data->get('id'))
         ]);
     }
 }

@@ -163,6 +163,18 @@ final class Timetable extends Model
         return $data;
     }
 
+    public function toCrmArray(): array
+    {
+        $data = $this->toArray();
+        unset(
+            $data['crmid'],
+            $data['id'],
+            $data['created_at'],
+            $data['updated_at'],
+        );
+        return $data;
+    }
+
     protected static function newFactory(): TimetableFactory
     {
         return TimetableFactory::new();

@@ -33,7 +33,7 @@ use Units\Filterings\Scopes\Searchable;
  * @property int $scheduled_wait_where Незапланированное время ожидания в точке Куда
  * @property int $scheduled_wait_from Незапланированное время ожидания в точке Откуда
  * @property \Parents\ValueObjects\MoneyValueObject|null $parking_cost Стоимость парковки
- * @property \Parents\ValueObjects\CrmIdValueObject|null|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject|null $crmid ID in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at

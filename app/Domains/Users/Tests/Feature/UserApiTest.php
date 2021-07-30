@@ -12,12 +12,14 @@ use Domains\Users\Http\Requests\Admin\DeleteUserRequest;
 use Domains\Users\Http\Requests\Admin\IndexUserRequest;
 use Domains\Users\Http\Requests\Api\UserStoreApiRequest;
 use Domains\Users\Http\Requests\Api\UserUpdateApiRequest;
+use Domains\Users\Jobs\SendUserToVtigerJob;
 use Domains\Users\Models\User;
 use Domains\Users\Repositories\Eloquent\UserRepository;
 use Domains\Users\Repositories\UserRepositoryInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Testing\Fluent\AssertableJson;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Laravel\Sanctum\Sanctum;
@@ -119,6 +121,8 @@ class UserApiTest extends TestCase
      */
     public function it_stores_the_user(): void
     {
+        Bus::fake();
+
         $data = User::factory()
             ->make()
             ->toArray();
@@ -158,6 +162,7 @@ class UserApiTest extends TestCase
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
+        Bus::assertDispatched(SendUserToVtigerJob::class);
     }
 
     /**
@@ -185,6 +190,8 @@ class UserApiTest extends TestCase
      */
     public function it_updates_the_user(): void
     {
+        Bus::fake();
+
         /** @var User $user */
         $user = User::factory()->create();
 
@@ -224,6 +231,8 @@ class UserApiTest extends TestCase
         $this->assertEquals($data['data']['attributes']['lastname'], $user->lastname);
         $this->assertEquals($data['data']['attributes']['phone'], $user->phone?->toNative());
         $this->assertEquals($data['data']['attributes']['otherphone'], $user->otherphone?->toNative());
+
+        Bus::assertDispatched(SendUserToVtigerJob::class);
     }
 
     /**

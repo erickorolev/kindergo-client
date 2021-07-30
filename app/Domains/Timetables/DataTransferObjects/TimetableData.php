@@ -86,4 +86,33 @@ final class TimetableData extends ObjectData
             'children' => $children->toArray()
         ]);
     }
+
+    public static function fromConnector(Collection $data): self
+    {
+        /** @var Collection $children */
+        $children = GetChildrenIdsFromArrayAction::run($data->get('children', []));
+        return new self([
+            'created_at' => now(),
+            'updated_at' => now(),
+            'name' => $data->get('name'),
+            'where_address' => $data->get('where_address'),
+            'trips' => (int) $data->get('trips'),
+            'childrens' => (int) $data->get('childrens'),
+            'childrens_age' => $data->get('childrens_age'),
+            'date' => Carbon::createFromFormat('Y-m-d', $data->get('date')),
+            'time' => TimeValueObject::fromNative($data->get('time')),
+            'duration' => (int) $data->get('duration'),
+            'distance' => (float) $data->get('distance'),
+            'scheduled_wait_from' => (int) $data->get('scheduled_wait_from'),
+            'scheduled_wait_where' => (int) $data->get('scheduled_wait_where'),
+            'status' => $data->get('status') ?
+                TimetableStatusEnum::fromValue($data->get('status')) : null,
+            'bill_paid' => (bool) $data->get('bill_paid'),
+            'description' => $data->get('description'),
+            'parking_info' => $data->get('parking_info'),
+            'user_id' => GetClearUserIdAction::run($data->get('user_id')),
+            'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'children' => $children->toArray()
+        ]);
+    }
 }

@@ -139,6 +139,20 @@ final class Attendant extends Model implements HasMedia
         return $data;
     }
 
+    public function toCrmArray(): array
+    {
+        $data = $this->toArray();
+        $data['type'] = 'Attendant';
+        unset(
+            $data['crmid'],
+            $data['id'],
+            $data['created_at'],
+            $data['updated_at'],
+            $data['imagename'],
+        );
+        return $data;
+    }
+
     protected static function newFactory(): AttendantFactory
     {
         return AttendantFactory::new();

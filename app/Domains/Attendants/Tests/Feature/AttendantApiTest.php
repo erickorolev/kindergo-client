@@ -6,6 +6,7 @@ namespace Domains\Attendants\Tests\Feature;
 
 use Domains\Attendants\Http\Requests\Api\AttendantStoreApiRequest;
 use Domains\Attendants\Http\Requests\Api\AttendantUpdateApiRequest;
+use Domains\Attendants\Jobs\SendAttendantToVtigerJob;
 use Domains\Authorization\Seeders\PermissionsSeeder;
 use Domains\Attendants\Http\Controllers\Api\AttendantApiController;
 use Domains\Attendants\Http\Requests\Admin\DeleteAttendantRequest;
@@ -19,6 +20,7 @@ use Domains\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Testing\Fluent\AssertableJson;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Laravel\Sanctum\Sanctum;
@@ -114,6 +116,8 @@ class AttendantApiTest extends TestCase
      */
     public function it_stores_the_attendant(): void
     {
+        Bus::fake();
+
         $data = Attendant::factory()
             ->make()
             ->toArray();
@@ -147,6 +151,8 @@ class AttendantApiTest extends TestCase
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
+
+        Bus::assertDispatched(SendAttendantToVtigerJob::class);
     }
 
     /**
@@ -174,6 +180,8 @@ class AttendantApiTest extends TestCase
      */
     public function it_updates_the_attendant(): void
     {
+        Bus::fake();
+
         /** @var Attendant $user */
         $user = Attendant::factory()->create();
 
@@ -214,6 +222,8 @@ class AttendantApiTest extends TestCase
         $this->assertEquals($data['data']['attributes']['lastname'], $user->lastname);
         $this->assertEquals($data['data']['attributes']['phone'], $user->phone?->toNative());
         $this->assertEquals($data['data']['attributes']['resume'], $user->resume);
+
+        Bus::assertDispatched(SendAttendantToVtigerJob::class);
     }
 
     /**
@@ -277,6 +287,8 @@ class AttendantApiTest extends TestCase
      */
     public function testImagesAdding(): void
     {
+        Bus::fake();
+
         $file = UploadedFile::fake()->create('test.pdf', 100, 'application/pdf');
         $result = UploadFileAction::run($file);
         $this->assertFileExists(storage_path('app/public/uploads/tmp/' . $result . '/test.pdf'));

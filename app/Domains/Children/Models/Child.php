@@ -150,6 +150,20 @@ final class Child extends Model implements HasMedia
         return $data;
     }
 
+    public function toCrmArray(): array
+    {
+        $data = $this->toArray();
+        $data['type'] = 'Child';
+        unset(
+            $data['crmid'],
+            $data['id'],
+            $data['created_at'],
+            $data['updated_at'],
+            $data['imagename'],
+        );
+        return $data;
+    }
+
     /**
      * The "booted" method of the model.
      *

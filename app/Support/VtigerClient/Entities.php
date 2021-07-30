@@ -267,7 +267,11 @@ class Entities
 
         if (!empty($params)) {
             foreach ($params as $param => $value) {
-                $criteria[ ] = "{$param} LIKE '{$value}'";
+                if ($param == 'modifiedtime') {
+                    $criteria[ ] = "{$param} > '{$value}'";
+                } else {
+                    $criteria[ ] = "{$param} LIKE '{$value}'";
+                }
             }
 
             $query .= sprintf(' WHERE %s', implode(" AND ", $criteria));

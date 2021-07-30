@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Attendants\DataTransferObjects;
 
+use Illuminate\Support\Collection;
 use Parents\DataTransferObjects\ObjectData;
 use Illuminate\Support\Carbon;
 use Parents\Enums\GenderEnum;
@@ -75,6 +76,25 @@ final class AttendantData extends ObjectData
             'resume' => $request->input($prefix . 'resume'),
             'car_model' => $request->input($prefix . 'car_model'),
             'car_year' => $request->input($prefix . 'car_year')
+        ]);
+    }
+
+    public static function fromConnector(Collection $data): self
+    {
+        return new self([
+            'created_at' => now(),
+            'updated_at' => now(),
+            'external_file' => UrlValueObject::fromNative($data->get('external_file')),
+            'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'firstname' => $data->get('firstname'),
+            'lastname' => $data->get('lastname'),
+            'middle_name' => $data->get('middle_name'),
+            'phone' => PhoneNumberValueObject::fromNative($data->get('phone')),
+            'gender' => GenderEnum::fromValue($data->get('gender')),
+            'email' => EmailValueObject::fromNative($data->get('email')),
+            'resume' => $data->get('resume'),
+            'car_model' => $data->get('car_model'),
+            'car_year' => $data->get('car_year')
         ]);
     }
 }

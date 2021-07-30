@@ -3,7 +3,9 @@
 namespace Domains\Users\Tests\Feature;
 
 use Domains\Authorization\Seeders\PermissionsSeeder;
+use Domains\Users\Jobs\SendUserToVtigerJob;
 use Domains\Users\Models\User;
+use Illuminate\Support\Facades\Bus;
 use Parents\Tests\PhpUnit\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -62,6 +64,8 @@ class UserControllerTest extends TestCase
      */
     public function it_stores_the_user(): void
     {
+        Bus::fake();
+
         $data = User::factory()
             ->make()
             ->toArray();
@@ -87,6 +91,7 @@ class UserControllerTest extends TestCase
         unset($data['name']);
 
         $this->assertDatabaseHas('users', $data);
+        Bus::assertDispatched(SendUserToVtigerJob::class);
     }
 
     /**
@@ -127,6 +132,8 @@ class UserControllerTest extends TestCase
      */
     public function it_updates_the_user(): void
     {
+        Bus::fake();
+
         /** @var User $user */
         $user = User::factory()->create();
 
@@ -156,6 +163,8 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('users', $data);
 
         $response->assertRedirect(route('admin.users.edit', $user));
+
+        Bus::assertDispatched(SendUserToVtigerJob::class);
     }
 
     /**

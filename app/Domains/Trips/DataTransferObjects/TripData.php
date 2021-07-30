@@ -92,4 +92,34 @@ final class TripData extends ObjectData
             'children' => $children->toArray()
         ]);
     }
+
+    public static function fromConnector(Collection $data): self
+    {
+        /** @var int $attendant_id */
+        $attendant_id = GetClearAttendantIdAction::run($data->get('cf_nrl_contacts59_id'));
+        /** @var int $timetable_id */
+        $timetable_id = GetClearTimetableIdAction::run($data->get('cf_nrl_timetable926_id'));
+        /** @var ?int $user_id */
+        $user_id = GetClearUserIdAction::run($data->get('trips_contact'));
+        /** @var Collection $children */
+        $children = GetChildrenIdsFromArrayAction::run($data->get('children', []));
+        return new self([
+            'created_at' => now(),
+            'updated_at' => now(),
+            'name' => $data->get('name'),
+            'where_address' => $data->get('where_address'),
+            'date' => Carbon::createFromFormat('Y-m-d', $data->get('date')),
+            'time' => TimeValueObject::fromNative($data->get('time')),
+            'childrens' => (int) $data->get('childrens'),
+            'status' => TripStatusEnum::fromValue($data->get('status')),
+            'attendant_id' => $attendant_id,
+            'timetable_id' => $timetable_id,
+            'scheduled_wait_where' => (int) $data->get('scheduled_wait_where'),
+            'scheduled_wait_from' => (int) $data->get('scheduled_wait_from'),
+            'parking_cost' => MoneyValueObject::fromNative($data->get('parking_cost')),
+            'user_id' => $user_id,
+            'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'children' => $children->toArray()
+        ]);
+    }
 }

@@ -25,7 +25,7 @@ use Units\Filterings\Scopes\Searchable;
  * @property \Parents\ValueObjects\MoneyValueObject|null $amount Сумма в копейках
  * @property \Domains\Payments\Enums\SpStatusEnum $spstatus Статус
  * @property int $user_id Контакт
- * @property \Parents\ValueObjects\CrmIdValueObject|null|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject|null $crmid ID in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at

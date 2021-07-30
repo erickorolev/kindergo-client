@@ -50,7 +50,7 @@ use Units\Filterings\Scopes\Searchable;
  * @property \Parents\ValueObjects\PhoneNumberValueObject|null $phone Телефон
  * @property \Domains\Users\Enums\AttendantGenderEnum $attendant_gender Предпочитаемый пол сопровождающего
  * @property \Parents\ValueObjects\PhoneNumberValueObject|null|null $otherphone Другой телефон
- * @property \Parents\ValueObjects\CrmIdValueObject|null|null $crmid ID in Vtiger
+ * @property \Parents\ValueObjects\CrmIdValueObject $crmid ID in Vtiger
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -243,6 +243,22 @@ final class User extends Authenticatable implements HasMedia
         $data['crmid'] = $this->crmid;
         $data['created_at'] = $this->created_at ?? now();
         $data['updated_at'] = $this->updated_at ?? now();
+        return $data;
+    }
+
+    public function toCrmArray(): array
+    {
+        $data = $this->toArray();
+        $data['type'] = 'Client';
+        unset(
+            $data['crmid'],
+            $data['id'],
+            $data['created_at'],
+            $data['updated_at'],
+            $data['email_verified_at'],
+            $data['avatar'],
+            $data['avatar_path'],
+        );
         return $data;
     }
 }

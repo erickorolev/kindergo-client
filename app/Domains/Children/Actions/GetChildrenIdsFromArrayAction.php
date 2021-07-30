@@ -15,6 +15,9 @@ final class GetChildrenIdsFromArrayAction extends \Parents\Actions\Action
     {
         $result = collect([]);
         foreach ($ids as $id) {
+            if (!$id) {
+                continue;
+            }
             try {
                 $crmid = CrmIdValueObject::fromNative((string) $id);
                 /** @var ?Child $user */

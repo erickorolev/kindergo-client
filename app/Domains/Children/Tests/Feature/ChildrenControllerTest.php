@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Domains\Children\Tests\Feature;
 
 use Domains\Authorization\Seeders\PermissionsSeeder;
+use Domains\Children\Jobs\SendChildToVtigerJob;
 use Domains\Children\Models\Child;
 use Domains\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Storage;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Parents\Enums\GenderEnum;
@@ -70,6 +72,8 @@ class ChildrenControllerTest extends TestCase
      */
     public function it_stores_the_child(): void
     {
+        Bus::fake();
+
         /** @var User $user */
         $user = User::factory()->createOne();
         $data = Child::factory()
@@ -93,6 +97,7 @@ class ChildrenControllerTest extends TestCase
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
+        Bus::assertDispatched(SendChildToVtigerJob::class);
     }
 
     /**
@@ -178,6 +183,8 @@ class ChildrenControllerTest extends TestCase
      */
     public function it_updates_the_child(): void
     {
+        Bus::fake();
+
         /** @var User $user */
         $user = User::factory()->createOne();
         /** @var Child $child */
@@ -204,6 +211,7 @@ class ChildrenControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.children.edit', $child));
         $this->assertCount(1, $child->users);
+        Bus::assertDispatched(SendChildToVtigerJob::class);
     }
 
     /**

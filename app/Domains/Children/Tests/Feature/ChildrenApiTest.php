@@ -10,6 +10,7 @@ use Domains\Children\Http\Requests\Admin\DeleteChildRequest;
 use Domains\Children\Http\Requests\Admin\IndexChildRequest;
 use Domains\Children\Http\Requests\Api\StoreChildApiRequest;
 use Domains\Children\Http\Requests\Api\UpdateChildApiRequest;
+use Domains\Children\Jobs\SendChildToVtigerJob;
 use Domains\Children\Models\Child;
 use Domains\Children\Repositories\ChildRepositoryInterface;
 use Domains\Children\Repositories\Eloquent\ChildRepository;
@@ -18,6 +19,7 @@ use Domains\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Testing\Fluent\AssertableJson;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Laravel\Sanctum\Sanctum;
@@ -117,6 +119,8 @@ class ChildrenApiTest extends TestCase
      */
     public function it_stores_the_child(): void
     {
+        Bus::fake();
+
         $data = Child::factory()
             ->make()
             ->toArray();
@@ -150,6 +154,7 @@ class ChildrenApiTest extends TestCase
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
+        Bus::assertDispatched(SendChildToVtigerJob::class);
     }
 
     /**
@@ -177,6 +182,8 @@ class ChildrenApiTest extends TestCase
      */
     public function it_updates_the_child(): void
     {
+        Bus::fake();
+
         /** @var Child $user */
         $user = Child::factory()->create();
 
@@ -215,6 +222,7 @@ class ChildrenApiTest extends TestCase
         $this->assertEquals($data['data']['attributes']['lastname'], $user->lastname);
         $this->assertEquals($data['data']['attributes']['phone'], $user->phone?->toNative());
         $this->assertEquals($data['data']['attributes']['otherphone'], $user->otherphone?->toNative());
+        Bus::assertDispatched(SendChildToVtigerJob::class);
     }
 
     /**
@@ -278,6 +286,7 @@ class ChildrenApiTest extends TestCase
      */
     public function testImagesAdding(): void
     {
+        Bus::fake();
         $file = UploadedFile::fake()->create('test.pdf', 100, 'application/pdf');
         $result = UploadFileAction::run($file);
         $this->assertFileExists(storage_path('app/public/uploads/tmp/' . $result . '/test.pdf'));

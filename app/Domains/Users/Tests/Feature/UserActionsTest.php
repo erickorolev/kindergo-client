@@ -95,7 +95,7 @@ class UserActionsTest extends TestCase
         $userArr['external_file'] = UrlValueObject::fromNative(null);
         $userData = new UserData($userArr);
         /** @var User $result */
-        $result = StoreUserAction::run($userData);
+        $result = StoreUserAction::run($userData, false);
         $this->assertDatabaseHas('users', [
             'email' => $result->email,
             'firstname' => $result->firstname
@@ -120,7 +120,7 @@ class UserActionsTest extends TestCase
         $userData = new UserData($userArr);
         $userData->id = $user->id;
         /** @var User $result */
-        $result = UpdateUserAction::run($userData);
+        $result = UpdateUserAction::run($userData, false);
         $this->assertDatabaseHas('users', [
             'email' => $result->email,
             'firstname' => 'changed'

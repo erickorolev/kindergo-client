@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Domains\Attendants\Tests\Feature;
 
+use Domains\Attendants\Jobs\SendAttendantToVtigerJob;
 use Domains\Attendants\Models\Attendant;
 use Domains\Authorization\Seeders\PermissionsSeeder;
 use Domains\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Bus;
 use Parents\Enums\GenderEnum;
 use Parents\Tests\PhpUnit\TestCase;
 
@@ -65,6 +67,8 @@ class AttendantControllerTest extends TestCase
      */
     public function it_stores_the_attendant(): void
     {
+        Bus::fake();
+
         $data = Attendant::factory()
             ->make()
             ->toArray();
@@ -80,6 +84,7 @@ class AttendantControllerTest extends TestCase
             dump($ex->errors());
             $this->assertTrue(false, $ex->getMessage());
         }
+        Bus::assertDispatched(SendAttendantToVtigerJob::class);
     }
 
     /**
@@ -119,6 +124,8 @@ class AttendantControllerTest extends TestCase
      */
     public function it_updates_the_attendant(): void
     {
+        Bus::fake();
+
         /** @var Attendant $attendant */
         $attendant = Attendant::factory()->create();
 
@@ -141,6 +148,7 @@ class AttendantControllerTest extends TestCase
         $this->assertDatabaseHas('attendants', $data);
 
         $response->assertRedirect(route('admin.attendants.edit', $attendant->id));
+        Bus::assertDispatched(SendAttendantToVtigerJob::class);
     }
 
     /**

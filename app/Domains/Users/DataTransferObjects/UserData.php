@@ -7,6 +7,7 @@ namespace Domains\Users\DataTransferObjects;
 use Domains\Users\Enums\AttendantGenderEnum;
 use Domains\Users\ValueObjects\FullNameValueObject;
 use Domains\Users\ValueObjects\PasswordValueObject;
+use Illuminate\Support\Collection;
 use Parents\DataTransferObjects\ObjectData;
 use Illuminate\Support\Carbon;
 use Parents\Requests\Request;
@@ -88,6 +89,31 @@ final class UserData extends ObjectData
             'roles' => $request->has($prefix . 'roles') ? $request->input($prefix . 'roles', []) : [],
             'file' => $request->input($prefix . 'file'),
             'external_file' => UrlValueObject::fromNative($request->input($prefix . 'external_file')),
+        ]);
+    }
+
+    public static function fromConnector(Collection $data): self
+    {
+        return new self([
+            'name' => FullNameValueObject::fromNative(
+                $data->get('firstname'),
+                $data->get('lastname'),
+                $data->get('middle_name')
+            ),
+            'email' => $data->get('email'),
+            'password' => PasswordValueObject::fromNative($data->get('password')),
+            'firstname' => $data->get('firstname'),
+            'lastname' => $data->get('lastname'),
+            'middle_name' => $data->get('middle_name'),
+            'phone' => PhoneNumberValueObject::fromNative($data->get('phone')),
+            'attendant_gender' => AttendantGenderEnum::fromValue($data->get('attendant_gender')),
+            'otherphone' => $data->get('otherphone') ?
+                PhoneNumberValueObject::fromNative($data->get('otherphone')) : null,
+            'created_at' => now(),
+            'updated_at' => now(),
+            'crmid' => CrmIdValueObject::fromNative($data->get('id')),
+            'roles' => [],
+            'external_file' => UrlValueObject::fromNative($data->get('external_file')),
         ]);
     }
 }

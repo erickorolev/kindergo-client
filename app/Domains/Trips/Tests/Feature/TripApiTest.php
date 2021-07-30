@@ -98,6 +98,8 @@ class TripApiTest extends TestCase
             ]
         ]);
         $data['parking_cost'] = $data['parking_cost'] * 100;
+        unset($data['created_at']);
+        unset($data['updated_at']);
         $this->assertDatabaseHas('trips', $data);
 
         $response->assertStatus(201)->assertJson([
