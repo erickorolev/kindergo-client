@@ -33,7 +33,6 @@ final class AttendantTransformer extends Transformer
             'resume' => $model->resume,
             'car_model' => $model->car_model,
             'car_year' => $model->car_year,
-            'email' => $model->email?->toNative(),
             'gender' => $model->gender->toArray(),
             'crmid' => $model->crmid?->toNative(),
             'media' => $medias,

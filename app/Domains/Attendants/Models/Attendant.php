@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Attendants\Models;
 
+use Domains\Attendants\Casts\AttendantPhoneCast;
 use Domains\Attendants\Factories\AttendantFactory;
 use Domains\Trips\Models\Trip;
 use Domains\Users\Casts\EmailValueObjectCast;
@@ -23,10 +24,10 @@ use Units\Filterings\Scopes\Searchable;
  * @property string $firstname Имя
  * @property string $lastname Фамилия
  * @property string|null $middle_name Отчество
- * @property \Parents\ValueObjects\PhoneNumberValueObject|null $phone Телефон
- * @property string $resume Анкета
- * @property string $car_model Марка автомобиля
- * @property string $car_year Год автомобиля
+ * @property \Domains\Attendants\ValueObjects\AttendantPhoneNumber|null $phone Телефон
+ * @property ?string $resume Анкета
+ * @property ?string $car_model Марка автомобиля
+ * @property ?string $car_year Год автомобиля
  * @property string|null $imagename Фотография
  * @property \Parents\ValueObjects\EmailValueObject|null|null $email Адрес электронной почты
  * @property \Parents\Enums\GenderEnum $gender Пол
@@ -86,7 +87,7 @@ final class Attendant extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'phone' => PhoneValueObjectCast::class,
+        'phone' => AttendantPhoneCast::class,
         'email' => EmailValueObjectCast::class,
         'gender' => GenderEnum::class,
         'crmid' => CrmIdValueObjectCast::class,

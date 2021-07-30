@@ -19,9 +19,9 @@ class CreateAttendantsTable extends Migration
             $table->string('lastname', 190)->comment('Фамилия');
             $table->string('middle_name', 190)->nullable()->comment('Отчество');
             $table->string('phone', 20)->comment('Телефон');
-            $table->text('resume')->comment('Анкета');
-            $table->string('car_model', 190)->comment('Марка автомобиля');
-            $table->string('car_year', 50)->comment('Год автомобиля');
+            $table->text('resume')->nullable()->comment('Анкета');
+            $table->string('car_model', 190)->nullable()->comment('Марка автомобиля');
+            $table->string('car_year', 50)->nullable()->comment('Год автомобиля');
             $table->text('imagename')->nullable()->comment('Фотография');
             $table->string('email', 100)->nullable()->comment('Адрес электронной почты');
             $table

@@ -27,11 +27,11 @@ final class AttendantData extends ObjectData
 
     public EmailValueObject $email;
 
-    public string $resume;
+    public ?string $resume;
 
-    public string $car_model;
+    public ?string $car_model;
 
-    public string $car_year;
+    public ?string $car_year;
 
     public GenderEnum $gender;
 
