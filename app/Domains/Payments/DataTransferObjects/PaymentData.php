@@ -43,9 +43,11 @@ final class PaymentData extends ObjectData
             'created_at' => now(),
             'updated_at' => now(),
             'pay_date' => Carbon::createFromFormat('Y-m-d', $request->input($prefix . 'pay_date')),
-            'type_payment' => TypePaymentEnum::fromValue($request->input($prefix . 'type_payment')),
+            'type_payment' => TypePaymentEnum::fromValue(
+                $request->input($prefix . 'type_payment', 'Not specified')
+            ),
             'amount' => MoneyValueObject::fromNative($request->input($prefix . 'amount')),
-            'spstatus' => SpStatusEnum::fromValue($request->input($prefix . 'spstatus')),
+            'spstatus' => SpStatusEnum::fromValue($request->input($prefix . 'spstatus', 'Not specified')),
             'user_id' => $user_id,
             'crmid' => CrmIdValueObject::fromNative($request->input($prefix . 'crmid')),
             'assigned_user_id' => CrmIdValueObject::fromNative(
@@ -61,9 +63,9 @@ final class PaymentData extends ObjectData
             'created_at' => now(),
             'updated_at' => now(),
             'pay_date' => Carbon::createFromFormat('Y-m-d', $data->get('pay_date')),
-            'type_payment' => TypePaymentEnum::fromValue($data->get('type_payment')),
+            'type_payment' => TypePaymentEnum::fromValue($data->get('type_payment', 'Not specified')),
             'amount' => MoneyValueObject::fromNative($data->get('amount')),
-            'spstatus' => SpStatusEnum::fromValue($data->get('spstatus')),
+            'spstatus' => SpStatusEnum::fromValue($data->get('spstatus', 'Not specified')),
             'user_id' => $user_id,
             'crmid' => CrmIdValueObject::fromNative($data->get('id')),
             'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),

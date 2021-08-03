@@ -115,8 +115,8 @@ final class TimetableData extends ObjectData
             'distance' => (float) $data->get('distance'),
             'scheduled_wait_from' => (int) $data->get('scheduled_wait_from'),
             'scheduled_wait_where' => (int) $data->get('scheduled_wait_where'),
-            'status' => $data->get('status') ?
-                TimetableStatusEnum::fromValue($data->get('status')) : null,
+            'status' => $data->get('timetable_status') ?
+                TimetableStatusEnum::fromValue($data->get('timetable_status')) : null,
             'bill_paid' => (bool) $data->get('bill_paid'),
             'description' => $data->get('description'),
             'parking_info' => $data->get('parking_info'),

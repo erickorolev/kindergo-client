@@ -112,7 +112,7 @@ final class TripData extends ObjectData
             'date' => Carbon::createFromFormat('Y-m-d', $data->get('date')),
             'time' => TimeValueObject::fromNative($data->get('time')),
             'childrens' => (int) $data->get('childrens'),
-            'status' => TripStatusEnum::fromValue($data->get('status')),
+            'status' => TripStatusEnum::fromValue($data->get('trips_status')),
             'attendant_id' => $attendant_id,
             'timetable_id' => $timetable_id,
             'scheduled_wait_where' => (int) $data->get('scheduled_wait_where'),

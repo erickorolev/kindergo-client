@@ -13,4 +13,6 @@ final class SpStatusEnum extends \Parents\Enums\Enum implements \BenSampo\Enum\C
     public const DELAYED = 'Delayed';
 
     public const EXECUTED = 'Executed';
+
+    public const NOT_SPECIFIED = 'Not specified';
 }
