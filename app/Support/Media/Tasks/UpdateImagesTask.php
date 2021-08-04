@@ -33,6 +33,11 @@ final class UpdateImagesTask extends \Parents\Tasks\Task
             $avatar->delete();
         }
 
+        $docs = $user->getMedia('documents');
+        foreach ($docs as $doc) {
+            $doc->delete();
+        }
+
         if ($userData->avatar_path) {
             $user->addMedia($userData->avatar_path)
                 ->toMediaCollection($collection);

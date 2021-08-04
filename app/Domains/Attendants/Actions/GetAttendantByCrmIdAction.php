@@ -7,6 +7,9 @@ namespace Domains\Attendants\Actions;
 use Domains\Attendants\Models\Attendant;
 use Parents\ValueObjects\CrmIdValueObject;
 
+/**
+ * @method static Attendant|null run(CrmIdValueObject $crmid)
+ */
 final class GetAttendantByCrmIdAction extends \Parents\Actions\Action
 {
     public function handle(CrmIdValueObject $crmid): ?Attendant

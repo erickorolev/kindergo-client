@@ -31,8 +31,7 @@ final class GetAttendantsFromVtigerCommand extends Command
         foreach ($attendants as $attendant) {
             try {
                 $attendantData = AttendantData::fromConnector($attendant);
-                /** @var ?Attendant $existingUser */
-                $existingUser = GetAttendantByCrmIdAction::run($attendantData->crmid->toNative());
+                $existingUser = GetAttendantByCrmIdAction::run($attendantData->crmid);
                 if ($existingUser) {
                     $attendantData->id = $existingUser->id;
                     UpdateAttendantAction::run($attendantData, false);
