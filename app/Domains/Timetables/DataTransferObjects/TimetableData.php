@@ -120,7 +120,7 @@ final class TimetableData extends ObjectData
             'bill_paid' => (bool) $data->get('bill_paid'),
             'description' => $data->get('description'),
             'parking_info' => $data->get('parking_info'),
-            'user_id' => GetClearUserIdAction::run($data->get('user_id')),
+            'user_id' => GetClearUserIdAction::run($data->get('cf_nrl_contacts580_id')),
             'crmid' => CrmIdValueObject::fromNative($data->get('id')),
             'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),
             'children' => $children->toArray()

@@ -26,8 +26,7 @@ final class GetTimetablesFromVtigerCommand extends Command
         foreach ($timetables as $timetable) {
             try {
                 $timetableData = TimetableData::fromConnector($timetable);
-                /** @var ?Timetable $existingTimetable */
-                $existingTimetable = GetTimetableByCrmIdAction::run($timetableData->crmid?->toNative());
+                $existingTimetable = GetTimetableByCrmIdAction::run($timetableData->crmid);
                 if ($existingTimetable) {
                     $timetableData->id = $existingTimetable->id;
                     UpdateTimetableAction::run($timetableData);

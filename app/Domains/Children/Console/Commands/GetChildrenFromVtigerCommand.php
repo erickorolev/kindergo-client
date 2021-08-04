@@ -34,7 +34,6 @@ final class GetChildrenFromVtigerCommand extends Command
     {
         $connector = app(ChildConnector::class);
         $children = $connector->receive();
-        ray($children)->color('green');
         foreach ($children as $child) {
             try {
                 $childData = ChildData::fromConnector($child);

@@ -24,7 +24,6 @@ final class GetPaymentsFromVtigerCommand extends Command
     {
         $connector = app(PaymentConnector::class);
         $payments = $connector->receive();
-        ray($payments)->green();
         /** @var Collection $payment */
         foreach ($payments as $payment) {
             try {
