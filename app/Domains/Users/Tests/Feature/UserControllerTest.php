@@ -3,9 +3,12 @@
 namespace Domains\Users\Tests\Feature;
 
 use Domains\Authorization\Seeders\PermissionsSeeder;
+use Domains\Users\Actions\GetUserByEmailAction;
 use Domains\Users\Jobs\SendUserToVtigerJob;
 use Domains\Users\Models\User;
+use Domains\Users\Notifications\PasswordSendNotification;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Notification;
 use Parents\Tests\PhpUnit\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -65,6 +68,8 @@ class UserControllerTest extends TestCase
     public function it_stores_the_user(): void
     {
         Bus::fake();
+        Notification::fake();
+        Notification::assertNothingSent();
 
         $data = User::factory()
             ->make()
@@ -92,6 +97,10 @@ class UserControllerTest extends TestCase
 
         $this->assertDatabaseHas('users', $data);
         Bus::assertDispatched(SendUserToVtigerJob::class);
+        Notification::assertSentTo(
+            [GetUserByEmailAction::run($data['email'])],
+            PasswordSendNotification::class
+        );
     }
 
     /**

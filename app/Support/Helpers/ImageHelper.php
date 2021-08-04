@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Support\Helpers;
 
+use Parents\ValueObjects\UrlValueObject;
+
 class ImageHelper
 {
     public static function imageUrl(
@@ -23,5 +25,23 @@ class ImageHelper
         $url = "{$width}/{$height}/";
 
         return $baseUrl . $url;
+    }
+
+    public static function convertDocumentsToValueObject(array $docs): array
+    {
+        $result = array();
+        foreach ($docs as $doc) {
+            $result[] = UrlValueObject::fromNative(config('services.vtiger.url') .
+                $doc['path'] . $doc['attachmentsid'] . '_' . $doc['storedname']);
+        }
+        return $result;
+    }
+
+    public static function getValueObjectFromArray(array $image): UrlValueObject
+    {
+        if (empty($image)) {
+            return UrlValueObject::fromNative(null);
+        }
+        return UrlValueObject::fromNative($image[0]['url']);
     }
 }
