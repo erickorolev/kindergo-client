@@ -108,7 +108,7 @@
 
     <x-inputs.group class="w-full">
         <div
-            x-data="imageViewer('{{ $editing && $attendant->imagename ? \Storage::url($attendant->imagename) : '' }}')"
+            x-data="imageViewer('{{ $editing && $attendant->avatar ? $attendant->avatar->getUrl() : '' }}')"
         >
             <x-inputs.partials.label
                 name="imagename"

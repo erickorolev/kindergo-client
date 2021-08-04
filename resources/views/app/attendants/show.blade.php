@@ -74,7 +74,7 @@
                             @lang('crud.attendants.inputs.imagename')
                         </h5>
                         <x-partials.thumbnail
-                            src="{{ $attendant->imagename ? \Storage::url($attendant->imagename) : '' }}"
+                            src="{{ $attendant->avatar?->getUrl() }}"
                             size="150"
                         />
                     </div>

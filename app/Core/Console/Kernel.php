@@ -49,6 +49,7 @@ class Kernel extends ConsoleKernel
          $schedule->command('users:receive')->hourly();
          $schedule->command('children:receive')->hourly();
          $schedule->command('attendants:receive')->hourly();
+         $schedule->command('payments:receive')->hourly();
     }
 
     /**

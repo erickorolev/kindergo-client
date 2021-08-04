@@ -24,12 +24,12 @@ final class GetPaymentsFromVtigerCommand extends Command
     {
         $connector = app(PaymentConnector::class);
         $payments = $connector->receive();
+        ray($payments)->green();
         /** @var Collection $payment */
         foreach ($payments as $payment) {
             try {
                 $paymentData = PaymentData::fromConnector($payment);
-                /** @var ?Payment $existingTimetable */
-                $existingTimetable = GetPaymentByCrmIdAction::run($paymentData->crmid->toNative());
+                $existingTimetable = GetPaymentByCrmIdAction::run($paymentData->crmid);
                 if ($existingTimetable) {
                     $paymentData->id = $existingTimetable->id;
                     UpdatePaymentAction::run($paymentData);
