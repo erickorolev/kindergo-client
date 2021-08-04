@@ -16,7 +16,8 @@ final class UpdateChildAction extends \Parents\Actions\Action
     {
         /** @var Child $child */
         $child = GetChildByIdAction::run($childData->id);
-        $child->update($childData->toArray());
+        $childArr = $childData->toArray();
+        $child->update($childArr);
         if ($childData->users) {
             $child->users()->sync(GetUserIdsFromArrayAction::run($childData->users));
         }

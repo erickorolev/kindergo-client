@@ -34,11 +34,11 @@ final class GetChildrenFromVtigerCommand extends Command
     {
         $connector = app(ChildConnector::class);
         $children = $connector->receive();
+        ray($children)->color('green');
         foreach ($children as $child) {
             try {
                 $childData = ChildData::fromConnector($child);
-                /** @var ?Child $existingUser */
-                $existingUser = GetChildByCrmIdAction::run($childData->crmid->toNative());
+                $existingUser = GetChildByCrmIdAction::run($childData->crmid);
                 if ($existingUser) {
                     $childData->id = $existingUser->id;
                     UpdateChildAction::run($childData, false);

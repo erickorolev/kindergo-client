@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use Domains\Attendants\Console\Commands\GetAttendantsFromVtigerCommand;
+use Domains\Children\Console\Commands\GetChildrenFromVtigerCommand;
 use Domains\Payments\Console\Commands\GetPaymentsFromVtigerCommand;
 use Domains\Timetables\Console\Commands\GetTimetablesFromVtigerCommand;
 use Domains\Trips\Console\Commands\GetTripsFromVtigerCommand;
@@ -29,6 +30,7 @@ class Kernel extends ConsoleKernel
         ListActionsCommand::class,
         ListTasksCommand::class,
         GetPortalVersionCommand::class,
+        GetChildrenFromVtigerCommand::class,
         GetUsersFromVtigerCommand::class,
         GetAttendantsFromVtigerCommand::class,
         GetTimetablesFromVtigerCommand::class,
@@ -42,9 +44,10 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
          $schedule->command('users:receive')->hourly();
+         $schedule->command('children:receive')->hourly();
     }
 
     /**
