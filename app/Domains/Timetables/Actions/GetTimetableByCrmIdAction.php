@@ -8,12 +8,15 @@ use Domains\Timetables\Models\Timetable;
 use Parents\ValueObjects\CrmIdValueObject;
 
 /**
- * @method static Timetable|null run(CrmIdValueObject $crmid)
+ * @method static Timetable|null run(?CrmIdValueObject $crmid)
  */
 final class GetTimetableByCrmIdAction extends \Parents\Actions\Action
 {
-    public function handle(CrmIdValueObject $crmid): ?Timetable
+    public function handle(?CrmIdValueObject $crmid): ?Timetable
     {
+        if (!$crmid) {
+            return null;
+        }
         return Timetable::where('crmid', $crmid->toNative())->first();
     }
 }

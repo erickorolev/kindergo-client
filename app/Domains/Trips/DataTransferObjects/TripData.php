@@ -18,6 +18,7 @@ use Parents\ValueObjects\MoneyValueObject;
 use Parents\ValueObjects\TimeValueObject;
 use Parents\ValueObjects\UrlValueObject;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Support\Helpers\ImageHelper;
 
 final class TripData extends ObjectData
 {
@@ -58,6 +59,8 @@ final class TripData extends ObjectData
     public ?Media $avatar;
 
     public array $children = [];
+
+    public array $documents = [];
 
     public Carbon $created_at;
 
@@ -101,7 +104,7 @@ final class TripData extends ObjectData
         /** @var int $attendant_id */
         $attendant_id = GetClearAttendantIdAction::run($data->get('cf_nrl_contacts59_id'));
         /** @var int $timetable_id */
-        $timetable_id = GetClearTimetableIdAction::run($data->get('cf_nrl_timetable926_id'));
+        $timetable_id = GetClearTimetableIdAction::run($data->get('cf_timetable_id'));
         $user_id = GetClearUserIdAction::run($data->get('trips_contact'));
         $children = GetChildrenIdsFromArrayAction::run($data->get('children', []));
         return new self([
@@ -121,7 +124,9 @@ final class TripData extends ObjectData
             'user_id' => $user_id,
             'crmid' => CrmIdValueObject::fromNative($data->get('id')),
             'assigned_user_id' => CrmIdValueObject::fromNative($data->get('assigned_user_id')),
-            'children' => $children->toArray()
+            'children' => $children->toArray(),
+            'external_file' => UrlValueObject::fromNative(null),
+            'documents' => ImageHelper::convertDocumentsToValueObject($data->get('images', []))
         ]);
     }
 }
