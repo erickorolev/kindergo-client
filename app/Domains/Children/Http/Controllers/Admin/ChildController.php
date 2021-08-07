@@ -7,6 +7,7 @@ namespace Domains\Children\Http\Controllers\Admin;
 use Domains\Children\Actions\DeleteChildAction;
 use Domains\Children\Actions\GetAllChildrenAdminAction;
 use Domains\Children\Actions\GetChildByIdAction;
+use Domains\Children\Actions\GetChildrenForListAction;
 use Domains\Children\Actions\StoreChildAction;
 use Domains\Children\Actions\UpdateChildAction;
 use Domains\Children\DataTransferObjects\ChildData;
@@ -19,6 +20,7 @@ use Domains\Children\Http\Requests\Admin\ShowChildRequest;
 use Domains\Children\Http\Requests\Admin\EditChildRequest;
 use Domains\Children\Models\Child;
 use Domains\Users\Actions\GetAllUsersAction;
+use Domains\Users\Actions\GetUsersDropdownListAction;
 use Domains\Users\Actions\UpdateUserAction;
 use Domains\Users\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -73,7 +75,7 @@ final class ChildController extends Controller
     public function edit(EditChildRequest $request, int $child): \Illuminate\View\View|View|Application
     {
         /** @var User[] $users */
-        $users = GetAllUsersAction::run();
+        $users = GetUsersDropdownListAction::run();
         /** @var Child $childModel */
         $childModel = GetChildByIdAction::run($child);
 

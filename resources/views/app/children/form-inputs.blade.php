@@ -70,8 +70,8 @@
 
     <x-inputs.group class="w-full">
         <x-inputs.select name="users[]" label="Users" multiple="true">
-            @foreach($users as $user)
-                <option value="{{$user->id}}" {{ in_array($user->id, $selected_users) ? 'selected' : '' }}>{{ $user->name }}</option>
+            @foreach($users as $id=>$user)
+                <option value="{{$id}}" {{ in_array($id, $selected_users) ? 'selected' : '' }}>{{ $user->toNative() }}</option>
             @endforeach
         </x-inputs.select>
     </x-inputs.group>
