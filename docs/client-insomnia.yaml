@@ -1,0 +1,1729 @@
+_type: export
+__export_format: 4
+__export_date: 2021-08-19T12:47:09.729Z
+__export_source: insomnia.desktop.app:v2021.4.0
+resources:
+  - _id: req_25adc25d13094c37a1fa66e8e35dfa73
+    parentId: fld_f5b16029713841658dd831adfb7f5441
+    modified: 1628144626539
+    created: 1628144026537
+    url: "{{ _.BASE_URL }}/force/Client/62"
+    name: Force User
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_a494a9bc00bc4dbda8964e8c0afd9126
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_063a4842959b4541b71836bc722d03f8
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication: {}
+    metaSortKey: -1628144026537
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f5b16029713841658dd831adfb7f5441
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1628144018164
+    created: 1628144018164
+    name: Force
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1628144018164
+    _type: request_group
+  - _id: wrk_779f531ce83a4abaa94c430eaa0c0916
+    parentId: null
+    modified: 1626674002408
+    created: 1626674002408
+    name: Kindergou-Client
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_5af6fab19e094fd7a9cf3f8f3484ebfd
+    parentId: fld_f5b16029713841658dd831adfb7f5441
+    modified: 1628180409330
+    created: 1628145168536
+    url: "{{ _.BASE_URL }}/force/Attendant/84"
+    name: Force Attendant
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_a494a9bc00bc4dbda8964e8c0afd9126
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_063a4842959b4541b71836bc722d03f8
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication: {}
+    metaSortKey: -1627605495766
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a38286065aa04f5789cd084d39131acf
+    parentId: fld_f5b16029713841658dd831adfb7f5441
+    modified: 1628146020960
+    created: 1628146000416
+    url: "{{ _.BASE_URL }}/force/Child/75"
+    name: Force Child
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_a494a9bc00bc4dbda8964e8c0afd9126
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_063a4842959b4541b71836bc722d03f8
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication: {}
+    metaSortKey: -1627336230380.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d67843eca38c40fdac3bfdfa27c59d10
+    parentId: fld_f5b16029713841658dd831adfb7f5441
+    modified: 1628146652534
+    created: 1628146640927
+    url: "{{ _.BASE_URL }}/force/payments/58"
+    name: Force Payment
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_a494a9bc00bc4dbda8964e8c0afd9126
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_063a4842959b4541b71836bc722d03f8
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication: {}
+    metaSortKey: -1627201597687.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_afa13e155f5f4f7fb67cbadf0e5ed22a
+    parentId: fld_f5b16029713841658dd831adfb7f5441
+    modified: 1628147382794
+    created: 1628147161979
+    url: "{{ _.BASE_URL }}/force/timetables/81"
+    name: Force Timetable
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_a494a9bc00bc4dbda8964e8c0afd9126
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_063a4842959b4541b71836bc722d03f8
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication: {}
+    metaSortKey: -1627134281341.375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9d3f1a36d2704f84885dcd67a64ffc01
+    parentId: fld_f5b16029713841658dd831adfb7f5441
+    modified: 1628147926877
+    created: 1628147917010
+    url: "{{ _.BASE_URL }}/force/trips/82"
+    name: Force Trip
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_a494a9bc00bc4dbda8964e8c0afd9126
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_063a4842959b4541b71836bc722d03f8
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication: {}
+    metaSortKey: -1627100623168.1875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_adbbf78d1ade449698ebeec057f8f9d5
+    parentId: fld_5444b6a7580c4a71b0e691c94f592e7a
+    modified: 1627067143340
+    created: 1627066964995
+    url: "{{ _.BASE_URL }}/trips"
+    name: Store Trip
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+        		"type": "trips",
+            "attributes": {
+              "name": "Repina Street, 113",
+        			"where_address": "Komsomolskaya, 221",
+              "date": "2021-09-12",
+              "time": "11:11:43",
+              "childrens": 4,
+              "status": "Completed",
+              "attendant_id": 2,
+              "timetable_id": 3,
+              "scheduled_wait_where": 35,
+              "scheduled_wait_from": 21,
+              "parking_cost": 23124
+            }
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_1bc3749589a54fe5a24c9aecaf2b051b
+      - id: pair_b8e08eac988b48cba5ef30b3dff4ba2e
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627066964995
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_5444b6a7580c4a71b0e691c94f592e7a
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1627066829906
+    created: 1627066829906
+    name: Trips
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1627066829906
+    _type: request_group
+  - _id: req_aaa6956a7fe742e3a3741a0dd80eeff6
+    parentId: fld_5444b6a7580c4a71b0e691c94f592e7a
+    modified: 1627067202055
+    created: 1627067180633
+    url: "{{ _.BASE_URL }}/trips/7"
+    name: Update Trip
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+        		"type": "trips",
+        		"id": "7",
+            "attributes": {
+              "name": "Repina Street, 113",
+        			"where_address": "Komsomolskaya, 221",
+              "date": "2021-09-12",
+              "time": "11:14:43",
+              "childrens": 4,
+              "status": "Completed",
+              "attendant_id": 2,
+              "timetable_id": 3,
+              "scheduled_wait_where": 35,
+              "scheduled_wait_from": 21,
+              "parking_cost": 23124
+            }
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_1bc3749589a54fe5a24c9aecaf2b051b
+      - id: pair_b8e08eac988b48cba5ef30b3dff4ba2e
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627066921092
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0fe0163547744e43b1049e6b4debe849
+    parentId: fld_5444b6a7580c4a71b0e691c94f592e7a
+    modified: 1627066913218
+    created: 1627066877145
+    url: "{{ _.BASE_URL }}/trips"
+    name: Get All Trips
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_7d2da6eeb43242ba816bd0c36d80bde1
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_bf517998871748faa2b33a5a5723ba6e
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627066877189
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e3f990a3e490442581097ce582b665ce
+    parentId: fld_5444b6a7580c4a71b0e691c94f592e7a
+    modified: 1627067430370
+    created: 1627066939734
+    url: "{{ _.BASE_URL }}/trips/2"
+    name: Get Trip By ID
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_2ac5977c13d0498d995d2acd719f996b
+        name: include
+        value: timetable
+        description: ""
+        disabled: false
+    headers:
+      - id: pair_7d2da6eeb43242ba816bd0c36d80bde1
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_bf517998871748faa2b33a5a5723ba6e
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627065209540
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_982bf992c20a465c968cb34eb25e4613
+    parentId: fld_a6ffbcfe2cbd434ab4c1a60fcb42479a
+    modified: 1627063595113
+    created: 1627063541891
+    url: "{{ _.BASE_URL }}/attendants/7"
+    name: Delete Attendants
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_471599e9493c46aab2c70b217d372548
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_e89f7b01807848a982f46614f0248a20
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627063541891
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_a6ffbcfe2cbd434ab4c1a60fcb42479a
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1627062797582
+    created: 1627062797582
+    name: Attendants
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1627062797582
+    _type: request_group
+  - _id: req_628b64a9cec3465bbdbd9d3d8652b2bb
+    parentId: fld_a6ffbcfe2cbd434ab4c1a60fcb42479a
+    modified: 1627063522167
+    created: 1627063407807
+    url: "{{ _.BASE_URL }}/attendants/7"
+    name: Update Attendant
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+            "type": "attendants",
+        		"id": "7",
+            "attributes": {
+              "firstname": "Сергей",
+              "lastname": "Сергеев",
+              "middle_name": "Сергеевич",
+              "phone": "+79067896668",
+              "resume": "Я супер и пупер водитель Серёга changed",
+              "car_model": "Lada",
+              "car_year": "2013",
+              "email": "serg@example.com",
+              "gender": "Male",
+              "crmid": "61x221"
+            }
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_c770fea0573c441b8fcf494a8aadbad4
+      - id: pair_f296e90492dc49db806bacfe7b876b43
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627063407807
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9854821196ae4021a28e3c68fbadae3a
+    parentId: fld_a6ffbcfe2cbd434ab4c1a60fcb42479a
+    modified: 1627063464252
+    created: 1627063199246
+    url: "{{ _.BASE_URL }}/attendants"
+    name: Store Attendant
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+            "type": "attendants",
+            "attributes": {
+              "firstname": "Сергей",
+              "lastname": "Сергеев",
+              "middle_name": "Сергеевич",
+              "phone": "+79067896668",
+              "resume": "Я супер и пупер водитель Серёга",
+              "car_model": "Lada",
+              "car_year": "2013",
+              "email": "serg@example.com",
+              "gender": "Male",
+              "crmid": "61x221"
+            }
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_86b6dc59704144c6aed9988f9b71dcde
+      - id: pair_c122bf5a8ec14725b494e5b092484329
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627063199246
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ad864587abb8465db68b866ac2731701
+    parentId: fld_a6ffbcfe2cbd434ab4c1a60fcb42479a
+    modified: 1627063146345
+    created: 1627063098631
+    url: "{{ _.BASE_URL }}/attendants/1"
+    name: Get Attendant By ID
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_a4df2a05177b41819f7759d877af775d
+        name: include
+        value: trips
+        description: ""
+    headers:
+      - id: pair_8e32222d08ce43378de1365616274aa8
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_d3ac8f76dace460493655705761c5a82
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627063098631
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_bc36e6e73a864eb9880d75fe8d9e71a1
+    parentId: fld_a6ffbcfe2cbd434ab4c1a60fcb42479a
+    modified: 1627063168134
+    created: 1627062807149
+    url: "{{ _.BASE_URL }}/attendants"
+    name: Get All Attendants
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_ca5fe07824ec48b5bb8d923c1fd63129
+        name: include
+        value: trips
+        description: ""
+        disabled: true
+    headers:
+      - id: pair_4978ee420d7b456f948b215d856abdb9
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_5abf9fac48f44ac389c327162a795ecb
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1627062807149
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c97674036a074828898c6c8697c361a7
+    parentId: fld_23abcc91a5104f20a67793cfd99d4fb1
+    modified: 1626877670084
+    created: 1626877638666
+    url: "{{ _.BASE_URL }}/payments/3/user"
+    name: User from payment
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_a48bd3e836244fc7aafde412506c76b4
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_f520128e469d40769440a4da2bdf50f0
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626877638666
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_23abcc91a5104f20a67793cfd99d4fb1
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1626877102065
+    created: 1626877102065
+    name: Payments
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1626877102065
+    _type: request_group
+  - _id: req_f2bd679d0960425c9edb679e0c186906
+    parentId: fld_23abcc91a5104f20a67793cfd99d4fb1
+    modified: 1626877600224
+    created: 1626877570504
+    url: "{{ _.BASE_URL }}/payments/3"
+    name: Delete Payment
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_30610a3d07504a22b704ca3c16a987c0
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_35c74b7aaf8f4ab09f78531a7c483b7f
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626877570504
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d3e0ed68cf374addb6aea0078fa4807f
+    parentId: fld_23abcc91a5104f20a67793cfd99d4fb1
+    modified: 1626877460832
+    created: 1626877379897
+    url: "{{ _.BASE_URL }}/payments/3"
+    name: Update Payment
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "data": {
+            "type": "payments",
+        		"id": "3",
+            "attributes": {
+              "pay_date": "2021-09-11",
+              "amount": 1240,
+              "type_payment": "Online payment",
+              "spstatus": "Scheduled",
+              "crmid": "22x114",
+        			"user_id": 8
+            }    
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_abd82086035845d68cf76e638b78112e
+      - id: pair_376d2d15b6484f8080d6315eb134817a
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626877379897
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6cfa2f09815f42c5b5881b3056b0f9ea
+    parentId: fld_23abcc91a5104f20a67793cfd99d4fb1
+    modified: 1626877406620
+    created: 1626877202710
+    url: "{{ _.BASE_URL }}/payments"
+    name: Store Payment
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "data": {
+            "type": "payments",
+            "attributes": {
+              "pay_date": "2021-09-09",
+              "amount": 1230,
+              "type_payment": "Online payment",
+              "spstatus": "Scheduled",
+              "crmid": "22x114",
+        			"user_id": 8
+            }    
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_d778a8ae141b44c389bad9df171644c9
+      - id: pair_8252ad2d468743c7a60620dd37797a4b
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626877202710
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b4ce55d395ec47a68c57f555d2e22b4c
+    parentId: fld_23abcc91a5104f20a67793cfd99d4fb1
+    modified: 1626877147643
+    created: 1626877116447
+    url: "{{ _.BASE_URL }}/payments"
+    name: Get All Payments
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_4cfb3b59d5de43849c04810330de0532
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_17212d0684974e2cab093a54345b8e15
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626877116447
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6a380df1acce443aa73ce00dbcb2d26c
+    parentId: fld_23abcc91a5104f20a67793cfd99d4fb1
+    modified: 1626877344793
+    created: 1626877183862
+    url: "{{ _.BASE_URL }}/payments/2"
+    name: Get Payment By Id
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_4f89975cca3f49fca1e08d603886a4d2
+        name: include
+        value: user
+        description: ""
+    headers:
+      - id: pair_4cfb3b59d5de43849c04810330de0532
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_17212d0684974e2cab093a54345b8e15
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626864077844
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fc64720674b14e77847d5904f632223a
+    parentId: fld_7407815dac0d44a0b136968f413331ef
+    modified: 1626851080783
+    created: 1626851039240
+    url: "{{ _.BASE_URL }}/timetables/5/children"
+    name: Children from timetable
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_482176a6cd214a4ea5568b94bf9ee874
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_6916a960487248c2a50283d36459b31d
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626851039241
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_7407815dac0d44a0b136968f413331ef
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1626805356579
+    created: 1626805356579
+    name: Timetables
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1626805356579
+    _type: request_group
+  - _id: req_604d11ffb30e4441b6c70c5aa6854226
+    parentId: fld_7407815dac0d44a0b136968f413331ef
+    modified: 1626850996491
+    created: 1626850946570
+    url: "{{ _.BASE_URL }}/timetables/5/children/3"
+    name: Add Child To Timetable
+    description: ""
+    method: POST
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_a804dff0a72c4ea1824b2c2e6e223483
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_89e3c1a47db94207a8e6ab10d5bdfaf6
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626850946570
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_49516d650f954598a94df440ec87cbc6
+    parentId: fld_7407815dac0d44a0b136968f413331ef
+    modified: 1626850582658
+    created: 1626847830247
+    url: "{{ _.BASE_URL }}/timetables"
+    name: Store Timetable
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+        		"type": "timetables",
+        		"attributes": {
+        			"name": "Sokoilova street, 143",
+        			"where_address": "Europa, 3",
+        			"trips": 4,
+        			"childrens": 2,
+        			"childrens_age": "12 and 3",
+        			"date": "2021-09-09",
+        			"time": "10:05:06",
+        			"duration": 12,
+        			"distance": 11.2,
+        			"scheduled_wait_from": 3,
+        			"scheduled_wait_where": 4,
+        			"status": "Pending",
+        			"bill_paid": false,
+        			"description": "This is our description",
+        			"parking_info": "This is our parking info",
+        			"user_id": 9,
+        			"children": [1,2]
+        		}
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_fc6c5775290b438584c1391b73af284f
+      - id: pair_943e7b29f72e461b8da66d865b08a87a
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626847830247
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6087570912c14fc39082a2107136fbdb
+    parentId: fld_7407815dac0d44a0b136968f413331ef
+    modified: 1626850909496
+    created: 1626850868688
+    url: "{{ _.BASE_URL }}/timetables/8"
+    name: Update Timetable
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+        		"type": "timetables",
+        		"id": "8",
+        		"attributes": {
+        			"name": "Entuziastov street, 143",
+        			"where_address": "Europa, 3",
+        			"trips": 3,
+        			"childrens": 3,
+        			"childrens_age": "12 and 3",
+        			"date": "2021-09-09",
+        			"time": "10:05:06",
+        			"duration": 12,
+        			"distance": 11.2,
+        			"scheduled_wait_from": 3,
+        			"scheduled_wait_where": 4,
+        			"status": "Pending",
+        			"bill_paid": false,
+        			"description": "This is our description",
+        			"parking_info": "This is our parking info",
+        			"user_id": 9,
+        			"children": [1,2]
+        		}
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_fc6c5775290b438584c1391b73af284f
+      - id: pair_943e7b29f72e461b8da66d865b08a87a
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626826616225
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fe9e01597dc4438f835087ec4e68f495
+    parentId: fld_7407815dac0d44a0b136968f413331ef
+    modified: 1626852846743
+    created: 1626805402203
+    url: "{{ _.BASE_URL }}/timetables"
+    name: Get All Timetables
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_868886f008eb4b8187fab022d3effb78
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_acda54bd6f0942b09122e2a043e6f197
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.RESTRICTED_TOKEN }}"
+    metaSortKey: -1626805402203
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7cc4df0221784ff788f1883621b49c63
+    parentId: fld_7407815dac0d44a0b136968f413331ef
+    modified: 1626851004894
+    created: 1626847794957
+    url: "{{ _.BASE_URL }}/timetables/5"
+    name: Get Timetable By ID
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_e0f9010536454c1d8f8f21dfc509920b
+        name: include
+        value: children
+        description: ""
+    headers:
+      - id: pair_868886f008eb4b8187fab022d3effb78
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_acda54bd6f0942b09122e2a043e6f197
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626785745501
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d99b59ed31664c08b3867b363c8559e0
+    parentId: fld_6ee47394fc854d3a8855cdc9fd2f325a
+    modified: 1626810715618
+    created: 1626766088799
+    url: "{{ _.BASE_URL }}/children/3/users/9"
+    name: Add User To Child
+    description: ""
+    method: POST
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_094fbb479acb4f6ea490fa52d062c086
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_ee974939197a47e291627522341e7fe8
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626766088799
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_6ee47394fc854d3a8855cdc9fd2f325a
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1626760828263
+    created: 1626760828263
+    name: Children
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1626760828263
+    _type: request_group
+  - _id: req_da1fc807ff1346b1a847c379d6d3700d
+    parentId: fld_6ee47394fc854d3a8855cdc9fd2f325a
+    modified: 1626765442975
+    created: 1626765409075
+    url: "{{ _.BASE_URL }}/children/12"
+    name: Delete Child
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_2a282c82bf984118a520093c290627aa
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_adf473580a9a44aaa082789905450484
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626765409075
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_eaeed25ab1e64bdc9ae044fb8cef7431
+    parentId: fld_6ee47394fc854d3a8855cdc9fd2f325a
+    modified: 1626878038473
+    created: 1626763103526
+    url: "{{ _.BASE_URL }}/children/3/users"
+    name: Users from children
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_0ef0d8a843a44ea28c8587733e80f206
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_04c77d47f40a4d0aa061257413952894
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626763103600
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0c1a3194d4d941ceb3ca16b95e80a6ef
+    parentId: fld_6ee47394fc854d3a8855cdc9fd2f325a
+    modified: 1626761624039
+    created: 1626761581118
+    url: "{{ _.BASE_URL }}/children/13"
+    name: Update Child
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+        		"type": "children",
+        		"id": "13",
+        		"attributes": {
+        			"firstname": "Igorka",
+        			"lastname": "Vasilyev",
+        			"middle_name": "Ivanovich",
+        			"birthday": "1999-08-06",
+        			"gender": "Male",
+        			"phone": "+79086789985",
+        			"otherphone": null,
+        			"crmid": "25x685"
+        		}
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_b4bc5deeffa346bf81c619f98a0e703d
+      - id: pair_bb1531870f3545118ac3c5a2ac8de2a9
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626761581118
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_84fd69f661a946c6ae889aac351ca032
+    parentId: fld_6ee47394fc854d3a8855cdc9fd2f325a
+    modified: 1626761286174
+    created: 1626761030660
+    url: "{{ _.BASE_URL }}/children"
+    name: Store Children
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+        		"type": "children",
+        		"attributes": {
+        			"firstname": "Igor",
+        			"lastname": "Vasilyev",
+        			"middle_name": "Ivanovich",
+        			"birthday": "1999-08-06",
+        			"gender": "Male",
+        			"phone": "+79086789985",
+        			"otherphone": null,
+        			"crmid": "25x685"
+        		}
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_1c8f2ccf7a1c4ee38b1d8d37b67cb880
+      - id: pair_ca0dbe97d21b433181036cb126c90d41
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626761030660
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b5cc0449db7348619d68be9f02a7f08c
+    parentId: fld_6ee47394fc854d3a8855cdc9fd2f325a
+    modified: 1626766138961
+    created: 1626760982453
+    url: "{{ _.BASE_URL }}/children/3"
+    name: Get Children By ID
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_3d495b4181d14438a7396280e2b1caa9
+        name: include
+        value: users
+        description: ""
+    headers:
+      - id: pair_0924f9b1a1544f1bafd4614d25927dc0
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_d1fc498c917148eb89674f2baf151433
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626760982453
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2f3742c058214cc2a43fc0f6c39fd154
+    parentId: fld_6ee47394fc854d3a8855cdc9fd2f325a
+    modified: 1626811340337
+    created: 1626760837883
+    url: "{{ _.BASE_URL }}/children"
+    name: Get All Children
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_d99f8ef4fe4547019aca14889f109acc
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_5e52b3f5b617481c87f9fe1fbd2b326f
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626760837884
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_54d2952f5cda4e05bdccda3f703a798f
+    parentId: fld_3e467ab2aeaa48d9b8d7a5ba8c1d53b6
+    modified: 1627063340191
+    created: 1626677900543
+    url: "{{ _.BASE_URL }}/upload"
+    name: Upload File
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - id: pair_1c98dd41767348eb8177c6a434b7a5c4
+          name: file_upload
+          value: ""
+          description: ""
+          type: file
+          fileName: /home/sergey/Изображения/2021-07-12_13-04.png
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+        id: pair_9d80096d7e3b4749891859ab8e7b2959
+      - id: pair_244df66c1ffa4bdea1ab72582633b738
+        name: Accept
+        value: application/json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626677900544
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_3e467ab2aeaa48d9b8d7a5ba8c1d53b6
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1626677858140
+    created: 1626677858140
+    name: Temporary File
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1626677858140
+    _type: request_group
+  - _id: req_b643d0c54ddc4be8bf2a1bd8640d5d6c
+    parentId: fld_94df48e3195b48f3a6b78f47af0b86c0
+    modified: 1626765965489
+    created: 1626765904948
+    url: "{{ _.BASE_URL }}/users/2/children/3"
+    name: Add Child To User
+    description: ""
+    method: POST
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_65f4baba79544ca3848f6db587fa5f0b
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_5ce81f5bcede49d1bdf87c48da77c696
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626765905021
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_94df48e3195b48f3a6b78f47af0b86c0
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1626675306877
+    created: 1626675306877
+    name: Users
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1626675306878
+    _type: request_group
+  - _id: req_ca307575fbb6453ba701e1af5cee4a61
+    parentId: fld_94df48e3195b48f3a6b78f47af0b86c0
+    modified: 1626765185334
+    created: 1626765146738
+    url: "{{ _.BASE_URL }}/users/1/children"
+    name: Related Childs
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_7a9a8267808c4a1dac050cc9e554ddf5
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_c1a24b1f6cb748d99dfaf6f73b8293f1
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626765146813
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_86e7d836b7a24ae88904c58854eaa910
+    parentId: fld_94df48e3195b48f3a6b78f47af0b86c0
+    modified: 1626683548778
+    created: 1626683484366
+    url: "{{ _.BASE_URL }}/users/13"
+    name: Update Request
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+        		"type": "users",
+        		"id": "13",
+        		"attributes": {
+        			"email": "test3@mail.ru",
+        			"firstname": "sergeika changed",
+        			"lastname": "emelkaka",
+        			"middle_name": "prtr2",
+        			"phone": "+79024589977",
+        			"attendant_gender": "Male"
+        		}
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_ec5d71cf9fc6461d85532bdc885a7e57
+      - id: pair_fdfb3681367c4cc4ae1ec8d07ab0c13d
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626683484366
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_de7ec2ffa8684b4aa0e20498c6e55ea2
+    parentId: fld_94df48e3195b48f3a6b78f47af0b86c0
+    modified: 1626766025581
+    created: 1626681287698
+    url: "{{ _.BASE_URL }}/users/2"
+    name: Get User By Id
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_151b204e7bdf4a28aaa7e1705a80236d
+        name: include
+        value: children
+        description: ""
+    headers:
+      - id: pair_93a6d40e769642579b58d1b1a09a7674
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_47602283f92b4376ad905031e3703daa
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626681287773
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_02d3347bb63c49e89441c2f4b056aaa9
+    parentId: fld_94df48e3195b48f3a6b78f47af0b86c0
+    modified: 1626700433415
+    created: 1626679438371
+    url: "{{ _.BASE_URL }}/users"
+    name: Store User
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"data": {
+        		"type": "users",
+        		"attributes": {
+        			"email": "test3@mail.ru",
+        			"firstname": "sergeika",
+        			"lastname": "emelkaka",
+        			"middle_name": "prtr2",
+        			"phone": "+79024589977",
+        			"attendant_gender": "Male",
+        			"file": "60f57a0c473216.24630559-1626700300"
+        		}
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_c3424a4e073a40e387c7401e8cc99155
+      - id: pair_78d36435f4814dd3b06d9b15d115257b
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626679438371
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_814cd6fa119d4341ac5dc7b3438f261f
+    parentId: fld_94df48e3195b48f3a6b78f47af0b86c0
+    modified: 1626811321814
+    created: 1626676846419
+    url: "{{ _.BASE_URL }}/users"
+    name: Get All Users
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_3a0afdc008a544f0b19f3a175286b90e
+        name: include
+        value: children
+        description: ""
+        disabled: true
+      - id: pair_19c88b662f274d86a03b450bb66e2068
+        name: sort
+        value: updated_at
+        description: ""
+    headers:
+      - id: pair_db68822aebb64f9d9daf86c714002727
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_ba3ca669e38c439d85d5d680daa8d936
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626676846419
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3c62b9b904994def8c531c4936f20313
+    parentId: fld_94df48e3195b48f3a6b78f47af0b86c0
+    modified: 1626675351697
+    created: 1626675317306
+    url: "{{ _.BASE_URL }}/users/me"
+    name: Get AUth User
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_4623b5a03fe14395bcd3cc9679a26e11
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+      - id: pair_9265a6d2aa684d02b54f019f49ed5b02
+        name: Content-Type
+        value: application/vnd.api+json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.TOKEN }}"
+    metaSortKey: -1626675317306
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_24554f3997de4ba1a1bf2291a16cac5e
+    parentId: fld_c9836b95b07a458aa6f78dd34a43278a
+    modified: 1626852835758
+    created: 1626674767964
+    url: "{{ _.BASE_URL }}/login"
+    name: Get Token
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "{{ _.USERNAME }}",
+        	"password": "{{ _.PASSWORD }}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/vnd.api+json
+        id: pair_76218b439785455b96f28701eec738d5
+      - id: pair_cb2759100a4d47079a7394ad248bed8e
+        name: Accept
+        value: application/vnd.api+json
+        description: ""
+    authentication: {}
+    metaSortKey: -1626674767964
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_c9836b95b07a458aa6f78dd34a43278a
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1626674731461
+    created: 1626674731461
+    name: Auth
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1626674731461
+    _type: request_group
+  - _id: env_3ed5b5be7d7fe2bd5dfd2fbec09bf3ee8da61f6d
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1627062947884
+    created: 1626674002756
+    name: Base Environment
+    data:
+      BASE_URL: http://client.kindergou.test:8000/api/v1
+      USERNAME: admin@admin.com
+      PASSWORD: password
+      TOKEN: 1|SELvgqCQEHr1EUI1fYxsTWi1L22RgAhkiOmqwGAw
+      RESTRICTED_TOKEN: 3|967tzJr89WL6tMCuS49fJtKpPAJyy15642BbTMCk
+    dataPropertyOrder:
+      "&":
+        - BASE_URL
+        - USERNAME
+        - PASSWORD
+        - TOKEN
+        - RESTRICTED_TOKEN
+    color: null
+    isPrivate: false
+    metaSortKey: 1626674002756
+    _type: environment
+  - _id: jar_3ed5b5be7d7fe2bd5dfd2fbec09bf3ee8da61f6d
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1626674002779
+    created: 1626674002779
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_4df49a09ffa54f558c072db7e265b206
+    parentId: wrk_779f531ce83a4abaa94c430eaa0c0916
+    modified: 1626674002414
+    created: 1626674002414
+    fileName: Kindergou-Client
+    contents: ""
+    contentType: yaml
+    _type: api_spec
