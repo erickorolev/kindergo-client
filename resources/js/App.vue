@@ -15,11 +15,11 @@
                                 </a>
                             </div>
                             <ul class="s-header-list list-none m-0 border border-main-gray-light flex justify-start rounded-lg bg-white items-stretch hidden lg:flex">
-                                <li class="lg:border-r border-main-gray-light active lg:rounded-l-lg"><a href="#" class="px-5 py-3.5 block lg:rounded-l-lg hover:bg-header-blue transition duration-500 ease-in-out">Поездки</a></li>
-                                <li class="lg:border-r border-main-gray-light"><a href="#" class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out">Расписания</a></li>
-                                <li class="lg:border-r border-main-gray-light"><a href="#" class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out">Платежи</a></li>
-                                <li class="lg:border-r border-main-gray-light"><a href="#" class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out">Дети</a></li>
-                                <li class="rounded-r-lg"><a href="#" class="px-5 py-3.5 block rounded-r-lg hover:bg-header-blue transition duration-500 ease-in-out">Сопровождающие</a></li>
+                                <li class="lg:border-r border-main-gray-light active lg:rounded-l-lg"><a href="#" class="px-5 py-3.5 block lg:rounded-l-lg hover:bg-header-blue transition duration-500 ease-in-out">Поездки // trips</a></li>
+                                <li class="lg:border-r border-main-gray-light"><a href="#" class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out">Расписания // timetables</a></li>
+                                <li class="lg:border-r border-main-gray-light"><a href="#" class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out">Платежи // payments</a></li>
+                                <li class="lg:border-r border-main-gray-light"><a href="#" class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out">Дети // Children</a></li>
+                                <li class="rounded-r-lg"><a href="#" class="px-5 py-3.5 block rounded-r-lg hover:bg-header-blue transition duration-500 ease-in-out">Сопровождающие // Attendants</a></li>
                             </ul>
                         </div>
                         <div class="flex">
