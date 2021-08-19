@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Helvetica";
+    src: url("/assets/fonts/helvetica-bold.eot"); /* IE9 */
+    src: url("/assets/fonts/helvetica-bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("/assets/fonts/helvetica-bold.woff") format("woff"), /* chrome, firefox */
+    url("/assets/fonts/helvetica-bold.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("/assets/fonts/helvetica-bold.svg#Helvetica") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: 700;
+}
+
+
+
+@font-face {
+    font-family: "Helvetica";
+    src: url("/assets/fonts/helvetica.eot"); /* IE9 */
+    src: url("/assets/fonts/helvetica.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("/assets/fonts/helvetica.woff") format("woff"), /* chrome, firefox */
+    url("/assets/fonts/helvetica.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("/assets/fonts/helvetica.svg#Helvetica") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
