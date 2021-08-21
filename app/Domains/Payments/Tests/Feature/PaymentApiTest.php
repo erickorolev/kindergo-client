@@ -89,6 +89,8 @@ class PaymentApiTest extends TestCase
             ]
         ]);
         $data['amount'] = $data['amount'] * 100;
+        unset($data['created_at']);
+        unset($data['updated_at']);
         $this->assertDatabaseHas('payments', $data);
 
         $response->assertStatus(201)->assertJson([

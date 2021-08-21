@@ -43,7 +43,7 @@ final class ChildController extends Controller
     public function create(CreateChildRequest $request): \Illuminate\View\View|View|Application
     {
         /** @var User[] $users */
-        $users = GetAllUsersAction::run();
+        $users = GetUsersDropdownListAction::run();
 
         return view('app.children.create', [
             'users' => $users,

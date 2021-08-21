@@ -106,6 +106,7 @@ class ChildrenControllerTest extends TestCase
      */
     public function it_stores_with_file(): void
     {
+        Bus::fake();
         $this->withoutExceptionHandling();
 
         config()->set('filesystems.disks.media', [
@@ -142,7 +143,7 @@ class ChildrenControllerTest extends TestCase
 
         $this->assertCount(1, $photos);
         $this->assertFileExists($photos->first()?->getPath() ?? '');
-        $this->assertFileExists($photos->first()?->getPath('thumb') ?? '');
+        Bus::assertDispatched(SendChildToVtigerJob::class);
     }
 
     /**

@@ -31,7 +31,7 @@ final class AttendantFactory extends Factory
             'resume' => $this->faker->text(),
             'car_model' => $this->faker->word(),
             'car_year' => $this->faker->year(),
-            'email' => EmailValueObject::fromNative($this->faker->unique()->safeEmail),
+            'email' => EmailValueObject::fromNative($this->faker->unique()->safeEmail()),
             'gender' => GenderEnum::getRandomInstance(),
             'crmid' => CrmIdValueObject::fromNative(
                 $this->faker->randomNumber(2) . 'x' . $this->faker->randomNumber(3)
