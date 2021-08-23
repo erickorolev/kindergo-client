@@ -99,6 +99,10 @@ return [
                 [
                     'type' => 'children',
                     'method' => 'children'
+                ],
+                [
+                    'type' => 'attendant',
+                    'method' => 'attendant'
                 ]
             ],
             'allowedSorts' => [

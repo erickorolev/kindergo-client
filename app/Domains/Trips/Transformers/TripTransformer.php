@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domains\Trips\Transformers;
 
+use Domains\Attendants\Models\Attendant;
+use Domains\Attendants\Transformers\AttendantTransformer;
 use Domains\Children\Models\Child;
 use Domains\Children\Transformers\ChildTransformer;
 use Domains\Timetables\Models\Timetable;
@@ -16,7 +18,7 @@ use Parents\Transformers\Transformer;
 final class TripTransformer extends Transformer
 {
     protected $availableIncludes = [
-        'timetable', 'children', 'user'
+        'timetable', 'children', 'user', 'attendant'
     ];
 
     public function transform(Trip $model): array
@@ -54,5 +56,10 @@ final class TripTransformer extends Transformer
     public function includeChildren(Trip $model): \League\Fractal\Resource\Collection
     {
         return $this->collection($model->children, new ChildTransformer(), Child::RESOURCE_NAME);
+    }
+
+    public function includeAttendant(Trip $model): \League\Fractal\Resource\Item
+    {
+        return $this->item($model->attendant, new AttendantTransformer(), Attendant::RESOURCE_NAME);
     }
 }
