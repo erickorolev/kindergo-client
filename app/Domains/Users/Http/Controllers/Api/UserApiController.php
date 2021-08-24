@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domains\Users\Http\Controllers\Api;
 
 use Domains\Users\Actions\DeleteUserAction;
+use Domains\Users\Actions\Fortify\UpdateUserPassword;
 use Domains\Users\Actions\GetAllUsersAction;
 use Domains\Users\Actions\GetUserByIdAction;
 use Domains\Users\Actions\StoreUserAction;
@@ -18,6 +19,7 @@ use Domains\Users\Http\Requests\Api\UserUpdateApiRequest;
 use Domains\Users\Models\User;
 use Domains\Users\Transformers\UserTransformer;
 use Domains\Users\ValueObjects\PasswordValueObject;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Parents\Controllers\Controller;
 use Parents\Serializers\JsonApiSerializer;
@@ -32,6 +34,22 @@ final class UserApiController extends Controller
      * @psalm-param class-string $relationClass
      */
     protected string $relationClass = GetUserByIdAction::class;
+
+    public function password(Request $request, UpdateUserPassword $action): \Illuminate\Http\JsonResponse
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        if (!$user) {
+            abort(403);
+        }
+        $action->update($user, $request->all());
+        return fractal(
+            $user,
+            new UserTransformer(),
+            new JsonApiSerializer($this->getUrl())
+        )->withResourceName(User::RESOURCE_NAME)
+            ->respondJsonApi();
+    }
 
     public function me(): \Illuminate\Http\JsonResponse
     {
