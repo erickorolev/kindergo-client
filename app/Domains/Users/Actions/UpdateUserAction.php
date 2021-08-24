@@ -30,7 +30,11 @@ final class UpdateUserAction extends \Parents\Actions\Action
             unset($userArr['password']);
         }
         $user->update($userArr);
-        $user->syncRoles($userData->roles);
+        $roles = [2];
+        if (!empty($userData->roles)) {
+            $roles = $userData->roles;
+        }
+        $user->syncRoles($roles);
         UpdateImagesTask::run($user, $userData);
         if ($dispatchUpdate) {
             SendUserToVtigerJob::dispatch($user);

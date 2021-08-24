@@ -20,7 +20,9 @@ final class StoreUserAction extends \Parents\Actions\Action
     public function handle(UserData $userData, bool $dispatchUpdate = true): User
     {
         $user = User::create($userData->toArray());
-        if (!empty($userData->roles)) {
+        if (empty($userData->roles)) {
+            $user->syncRoles([2]);
+        } else {
             $user->syncRoles($userData->roles);
         }
 
