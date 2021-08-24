@@ -1,0 +1,135 @@
+<template>
+  <div class="s-page overflow-hidden">
+    <header-component />
+    <div class="s-about py-8">
+      <div class="container mx-auto">
+        <div class="border-b border-black">
+          <h2 class="text-black text-2xl">Информация о ребенке</h2>
+        </div>
+        <div class="flex pt-8 justify-start flex-wrap md:flex-nowrap">
+          <div class="w-full lg:w-1/2 md:w-4/5 order-2 md:order-1 pt-6 md:pt-0">
+            <ul class="s-about-info text-black max-w-2xl pr-6">
+              <li class="block sm:flex mb-6">
+                <div class="font-bold w-2/5 md:w-3/6">Имя</div>
+                <div class="w-3/5 md:w-3/6">
+                  <div class="text flex items-center">
+                    {{ child.firstname }}
+                  </div>
+                </div>
+              </li>
+              <li class="block sm:flex mb-6">
+                <div class="font-bold w-2/5 md:w-3/6">Фамилия</div>
+                <div class="w-3/5 md:w-3/6">{{ child.lastname }}</div>
+              </li>
+              <li class="block sm:flex mb-6">
+                <div class="font-bold w-2/5 md:w-3/6">Отчество</div>
+                <div class="w-3/5 md:w-3/6">{{ child.middle_name }}</div>
+              </li>
+              <li class="block sm:flex mb-6">
+                <div class="font-bold w-2/5 md:w-3/6">Дата рождения</div>
+                <div class="w-3/5 md:w-3/6">
+                  {{
+                    ("0" + new Date(child.birthday).getDate()).substr(-2) +
+                    "." +
+                    ("0" + (new Date(child.birthday).getMonth() + 1)).substr(
+                      -2
+                    ) +
+                    "." +
+                    new Date(child.birthday).getFullYear()
+                  }}
+                </div>
+              </li>
+              <li class="block sm:flex mb-6">
+                <div class="font-bold w-2/5 md:w-3/6">Пол</div>
+                <div class="w-3/5 md:w-3/6">{{ child.gender }}</div>
+              </li>
+              <li class="block sm:flex mb-6">
+                <div class="font-bold w-2/5 md:w-3/6">Телефон</div>
+                <div class="w-3/5 md:w-3/6">{{ child.phone }}</div>
+              </li>
+              <li class="block sm:flex mb-6">
+                <div class="font-bold w-2/5 md:w-3/6">Другой тел</div>
+                <div class="w-3/5 md:w-3/6">{{ child.otherphone }}</div>
+              </li>
+            </ul>
+            <div class="md:mt-20 mt-8">
+              <a
+                href="/#/children"
+                class="s-about-btn group relative inline-flex justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
+              >
+                Изменить
+              </a>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2 md:w-1/5 order-1 md:order-2">
+            <div class="s-about-avatar pr-4">
+              <div class="font-bold pb-4 text-black">Фотография</div>
+              <img
+                src="../../img/child.jpg"
+                alt="img"
+                class="block w-full max-w-15"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import HeaderComponent from "./HeaderComponent.vue";
+import axios from "axios";
+import { Child } from "../types/children";
+
+export default defineComponent({
+  name: "ChildComponent",
+  components: {
+    HeaderComponent
+  },
+  setup() {
+    const showParam = ref<boolean>(false);
+    const child = ref<Child>({
+      firstname: "",
+      lastname: "",
+      middle_name: "",
+      birthday: "",
+      gender: "",
+      phone: "",
+      otherphone: ""
+    });
+    return { showParam, child };
+  },
+  mounted() {
+    const auth = localStorage.getItem("token");
+    const vm = this;
+    const currentUrl = window.location.hash;
+    axios
+      .get(`/api/v1/${currentUrl.replace("#/", "")}`, {
+        headers: {
+          "Content-Type": "application/vnd.api+json",
+          Accept: "application/vnd.api+json",
+          Authorization: "Bearer " + auth
+        }
+      })
+      .then(function (response: any) {
+        vm.child.firstname = response.data.data.attributes.firstname;
+        vm.child.lastname = response.data.data.attributes.lastname;
+        vm.child.middle_name = response.data.data.attributes.middle_name;
+        vm.child.birthday = response.data.data.attributes.birthday;
+        vm.child.gender = response.data.data.attributes.gender.description;
+        vm.child.phone = response.data.data.attributes.phone;
+        vm.child.otherphone = response.data.data.attributes.otherphone;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
+  methods: {
+    show(param: boolean): void {
+      this.showParam = param;
+    }
+  }
+});
+</script>

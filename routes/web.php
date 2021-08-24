@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->middleware([
-    'web', 'auth']);
+Route::view('/', 'index');
 
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/admin', function () {

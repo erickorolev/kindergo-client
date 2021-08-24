@@ -37,3 +37,4 @@
 .button.button-danger:disabled {
     @apply bg-red-200 !important;
 }
+  
