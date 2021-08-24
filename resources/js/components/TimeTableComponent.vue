@@ -45,7 +45,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="schedule.child1.url"
+                :href="schedule.child1.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ schedule.child1.name }}</a
               >
@@ -57,7 +57,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="schedule.child3.url"
+                :href="schedule.child3.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ schedule.child3.name }}</a
               >
@@ -69,7 +69,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="schedule.child2.url"
+                :href="schedule.child2.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ schedule.child2.name }}</a
               >
@@ -81,7 +81,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="schedule.child4.url"
+                :href="schedule.child4.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ schedule.child4.name }}</a
               >
@@ -199,6 +199,7 @@ import { defineComponent, ref } from "vue";
 import HeaderComponent from "./HeaderComponent.vue";
 import axios from "axios";
 import { Schedule } from "../types/schedules";
+import { base_url } from "../data";
 
 export default defineComponent({
   name: "TimeTableComponent",
@@ -241,16 +242,15 @@ export default defineComponent({
       scheduled_wait_where: 0,
       number_insurance: 0
     });
-    return { showParam, schedule };
+    return { showParam, schedule, base_url };
   },
   mounted() {
     const auth = localStorage.getItem("token");
     const vm = this;
     const currentUrl = window.location.hash;
-    let users: Array<any> = [];
     let children: Array<any> = [];
     axios
-      .get(`/api/v1/${currentUrl.replace("#/", "")}?include=user,children`, {
+      .get(`/api/v1/${currentUrl.replace("#/", "")}?include=children`, {
         headers: {
           "Content-Type": "application/vnd.api+json",
           Accept: "application/vnd.api+json",
@@ -258,14 +258,13 @@ export default defineComponent({
         }
       })
       .then(function (response: any) {
-        response.data.included.forEach((item: any) => {
-          if (item && item.type === "users") {
-            users.push(item);
-          }
-          if (item && item.type === "children") {
-            children.push(item);
-          }
-        });
+        if (response.data.included) {
+          response.data.included.forEach((item: any) => {
+            if (item && item.type === "children") {
+              children.push(item);
+            }
+          });
+        }
         vm.schedule.name = response.data.data.attributes.name;
         vm.schedule.where_address = response.data.data.attributes.where_address;
         vm.schedule.date = response.data.data.attributes.date;

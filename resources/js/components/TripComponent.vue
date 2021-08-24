@@ -49,7 +49,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.attendant.url"
+                :href="trip.attendant.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.attendant.name }}</a
               >
@@ -61,7 +61,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.child1.url"
+                :href="trip.child1.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.child1.name }}</a
               >
@@ -73,7 +73,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.child3.url"
+                :href="trip.child3.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.child3.name }}</a
               >
@@ -85,7 +85,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.child2.url"
+                :href="trip.child2.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.child2.name }}</a
               >
@@ -97,7 +97,7 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.child4.url"
+                :href="trip.child4.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.child4.name }}</a
               >
@@ -109,7 +109,7 @@
             <div class="font-bold w-3/6">Расписание</div>
             <div class="w-3/6">
               <a
-                :href="trip.schedule.url"
+                :href="trip.schedule.url.replace(base_url, '#')"
                 class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.schedule.name }}</a
               >
@@ -118,7 +118,7 @@
           <li class="flex mb-6">
             <div class="font-bold w-3/6">
               <div class="max-w-10">
-                Незапланированное ожидание в точке “Куда” (мин)
+                Незапланированное ожидание в точке "Куда" (мин)
               </div>
             </div>
             <div class="w-3/6">{{ trip.scheduled_wait_where }}</div>
@@ -126,7 +126,7 @@
           <li class="flex mb-6">
             <div class="font-bold w-3/6">
               <div class="max-w-10">
-                Незапланированное ожидание в точке “Откуда” (мин)
+                Незапланированное ожидание в точке "Откуда" (мин)
               </div>
             </div>
             <div class="w-3/6">{{ trip.scheduled_wait_from }}</div>
@@ -158,6 +158,7 @@ import { defineComponent, ref } from "vue";
 import HeaderComponent from "./HeaderComponent.vue";
 import axios from "axios";
 import { Trip } from "../types/trips";
+import { base_url } from "../data";
 
 export default defineComponent({
   name: "TripComponent",
@@ -201,7 +202,7 @@ export default defineComponent({
       scheduled_wait_where: 0,
       scheduled_wait_from: 0
     });
-    return { showParam, trip };
+    return { showParam, trip, base_url };
   },
   mounted() {
     const auth = localStorage.getItem("token");

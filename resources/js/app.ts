@@ -17,43 +17,102 @@ import {createApp} from 'vue';
 import { createRouter, createWebHistory } from 'vue-router'; 
 import 'bootstrap';
 import '../css/style.css';
+import '../sass/modal.scss';
+import '../css/fontawesome.min.css';
+import '../css/all.css';
 
 import App from './App.vue';
 
-import LoginComponent from './components/LoginComponent.vue';
-import PasswordChangeComponent from './components/PasswordChangeComponent.vue';
-import TripsComponent from './components/TripsComponent.vue';
-import TripComponent from './components/TripComponent.vue';
-import TimeTablesComponent from './components/TimeTablesComponent.vue';
-import TimeTableComponent from './components/TimeTableComponent.vue';
-import PaymentsComponent from './components/PaymentsComponent.vue';
-import PaymentComponent from './components/PaymentComponent.vue';
-import ChildrenComponent from './components/ChildrenComponent.vue';
-import ChildComponent from './components/ChildComponent.vue';
-import AttendantsComponent from './components/AttendantsComponent.vue';
-import AttendantComponent from './components/AttendantComponent.vue';
-
-const auth = (param: object): any => {
-    if (localStorage.getItem('token') === null) {
-        window.location.href = '/#/login';        
-    } else {
-       return param;    
-    }     
-}
-
 const routes = [   
-    { path: '/login', name: 'login', component: LoginComponent },
-    { path: '/passwordchange', name: 'passwordchange', component: PasswordChangeComponent },
-    { path: '/trips', name: 'trips', component: auth(TripsComponent) },
-    { path: '/trips/:id', name: 'trip', component: auth(TripComponent) },
-    { path: '/timetables', name: 'timetables', component: auth(TimeTablesComponent) },
-    { path: '/timetables/:id', name: 'timetable', component: auth(TimeTableComponent) },
-    { path: '/payments', name: 'payments', component: auth(PaymentsComponent) },
-    { path: '/payments/:id', name: 'payment', component: auth(PaymentComponent) },
-    { path: '/children', name: 'children', component: auth(ChildrenComponent) },
-    { path: '/children/:id', name: 'child', component: auth(ChildComponent) },
-    { path: '/attendants', name: 'attendants', component: auth(AttendantsComponent) },
-    { path: '/attendants/:id', name: 'attendant', component: auth(AttendantComponent) },
+    { path: '/login', name: 'login', component: function() {        
+        return import('./components/LoginComponent.vue');
+      },  
+    },
+    { path: '/trips', name: 'trips', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/TripsComponent.vue');
+      },  
+    },
+    { path: '/trips/:id', name: 'trip', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/TripComponent.vue');
+      },  
+    },
+    { path: '/timetables', name: 'timetables', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/TimetablesComponent.vue');
+      },  
+    },
+    { path: '/timetables/:id', name: 'timetable', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/TimetableComponent.vue');
+      },  
+    },
+    { path: '/payments', name: 'payments', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/PaymentsComponent.vue');
+      },  
+    },
+    { path: '/payments/:id', name: 'payment', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/PaymentComponent.vue');
+      },  
+    },
+    { path: '/children', name: 'children', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/ChildrenComponent.vue');
+      },  
+    },
+    { path: '/children/:id', name: 'child', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/ChildComponent.vue');
+      },  
+    },
+    { path: '/childedit/:id', name: 'childedit', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/ChildEditComponent.vue');
+      },  
+    },
+    { path: '/attendants', name: 'attendants', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/AttendantsComponent.vue');
+      },  
+    },
+    { path: '/attendants/:id', name: 'attendant', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/AttendantComponent.vue');
+      },  
+    },
+    { path: '/lk', name: 'lk', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/LkComponent.vue');
+      },  
+    },
+    { path: '/**', redirect: { name: 'login' }},
     { path: '/', redirect: { name: 'login' }}
 ]
 

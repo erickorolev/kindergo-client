@@ -54,7 +54,7 @@
             </ul>
             <div class="md:mt-20 mt-8">
               <a
-                href="/#/children"
+                :href="'/#/childedit/' + child.id"
                 class="s-about-btn group relative inline-flex justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
               >
                 Изменить
@@ -91,6 +91,7 @@ export default defineComponent({
   setup() {
     const showParam = ref<boolean>(false);
     const child = ref<Child>({
+      id: "",
       firstname: "",
       lastname: "",
       middle_name: "",
@@ -114,6 +115,7 @@ export default defineComponent({
         }
       })
       .then(function (response: any) {
+        vm.child.id = response.data.data.id;
         vm.child.firstname = response.data.data.attributes.firstname;
         vm.child.lastname = response.data.data.attributes.lastname;
         vm.child.middle_name = response.data.data.attributes.middle_name;

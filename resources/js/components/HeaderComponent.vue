@@ -12,7 +12,7 @@
           <div class="s-header-logo mr-6">
             <a href="/">
               <img
-                class="mx-auto w-auto"
+                class="mx-auto w-auto position-sticky"
                 src="../../img/logo.jpg"
                 alt="Kindergo Driveclub"
               />
@@ -82,35 +82,7 @@
               width="60"
               @click="openpop"
             />
-            <div
-              v-if="userpop === true"
-              class="s-header-user-nav absolute right-0 top-16 bg-header-purple border-main-gray-light border text-main-gray-light w-40 divide-y divide-main-gray-light transition duration-500 ease-in-out"
-            >
-              <ul>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-2 py-0.5 hover:bg-white transition duration-500 ease-in-out"
-                    >Личный профиль</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/#/passwordchange"
-                    class="block px-2 py-0.5 open-popup hover:bg-white transition duration-500 ease-in-out"
-                    data-effect="mfp-zoom-in"
-                    >Изменить пароль</a
-                  >
-                </li>
-                <li>
-                  <a
-                    @click="logout"
-                    class="block px-2 py-0.5 hover:bg-white transition duration-500 ease-in-out"
-                    >Выйти</a
-                  >
-                </li>
-              </ul>
-            </div>
+            <pop-component :userpop="userpop" />
           </div>
         </div>
       </div>
@@ -120,6 +92,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import PopComponent from "./PopComponent.vue";
 
 export default defineComponent({
   name: "HeaderComponent",
@@ -129,15 +102,14 @@ export default defineComponent({
       currentUrl: window.location.hash
     };
   },
+  components: {
+    PopComponent
+  },
   setup() {},
   mounted() {},
   methods: {
     openpop() {
       this.userpop = !this.userpop;
-    },
-    logout() {
-      localStorage.clear();
-      this.$router.push("/");
     }
   }
 });
