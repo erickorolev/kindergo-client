@@ -84,7 +84,7 @@ const routes = [
         return import('./components/ChildComponent.vue');
       },  
     },
-    { path: '/childedit/:id', name: 'childedit', component: function() {
+    { path: '/child/edit/:id', name: 'childedit', component: function() {
         if (localStorage.getItem("token") == null) {          
           document.location = <any>"";
         }
@@ -110,6 +110,13 @@ const routes = [
           document.location = <any>"";
         }
         return import('./components/LkComponent.vue');
+      },  
+    },
+    { path: '/lk/edit/:id', name: 'lkedit', component: function() {
+        if (localStorage.getItem("token") == null) {          
+          document.location = <any>"";
+        }
+        return import('./components/LkEditComponent.vue');
       },  
     },
     { path: '/**', redirect: { name: 'login' }},

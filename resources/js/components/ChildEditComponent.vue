@@ -125,17 +125,22 @@
                 <div class="font-bold pb-4 text-black mr-4">Фотография</div>
 
                 <div class="input-file-container">
-                  <input class="input-file" id="my-file" type="file" />
+                  <input
+                    class="input-file"
+                    id="my-file"
+                    type="file"
+                    @change="fileUpload($event)"
+                  />
                   <label tabindex="0" for="my-file" class="input-file-trigger"
                     ><img src="../../img/icon-edit.png" alt="img" width="20"
                   /></label>
                 </div>
               </div>
               <img
-                src="../../img/child.jpg"
+                v-if="media !== ''"
+                :src="media"
                 alt="img"
                 class="block w-full max-w-15"
-                id="js-img"
               />
             </div>
           </div>
@@ -165,6 +170,8 @@ export default defineComponent({
     const gender = ref<string>("");
     const phone = ref<string>("");
     const otherphone = ref<string>("");
+    const media = ref<string>("");
+    const fileid = ref<string>("");
     return {
       id,
       firstname,
@@ -173,7 +180,9 @@ export default defineComponent({
       birthday,
       gender,
       phone,
-      otherphone
+      otherphone,
+      media,
+      fileid
     };
   },
   mounted() {
@@ -197,6 +206,10 @@ export default defineComponent({
         vm.gender = response.data.data.attributes.gender.value;
         vm.phone = response.data.data.attributes.phone;
         vm.otherphone = response.data.data.attributes.otherphone;
+        vm.media =
+          response.data.data.attributes.media.length > 0
+            ? response.data.data.attributes.media[0].url
+            : "";
       })
       .catch(function (error) {
         console.log(error);
@@ -224,7 +237,7 @@ export default defineComponent({
             phone: this.phone,
             otherphone: this.otherphone,
             crmid: "25x685",
-            assigned_user_id: "19x1"
+            file: this.fileid
           }
         }
       };
@@ -242,6 +255,28 @@ export default defineComponent({
         .catch(function (error) {
           console.log(error.response.data);
           document.location = <any>`/#/children/${vm.id}`;
+        });
+    },
+    fileUpload(e: any) {
+      const vm = this;
+      const auth = localStorage.getItem("token");
+      let requestData = new FormData();
+      requestData.append("file_upload", e.target.files[0]);
+
+      axios
+        .post("/api/v1/upload", requestData, {
+          headers: {
+            "Content-Type": "application/vnd.api+json",
+            Accept: "application/vnd.api+json",
+            Authorization: "Bearer " + auth
+          }
+        })
+        .then((res: any) => {
+          vm.fileid = res.data;
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
   }

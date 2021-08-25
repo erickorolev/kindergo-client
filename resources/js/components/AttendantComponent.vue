@@ -49,7 +49,8 @@
             <div class="s-about-avatar pr-4">
               <div class="font-bold pb-4 text-black">Фотография</div>
               <img
-                src="../../img/attendant.jpg"
+                v-if="attendant.media !== ''"
+                :src="attendant.media"
                 alt="img"
                 class="block w-full max-w-15"
               />
@@ -81,7 +82,8 @@ export default defineComponent({
       car_model: "",
       car_year: "",
       gender: "",
-      resume: ""
+      resume: "",
+      media: ""
     });
     return { showParam, attendant };
   },
@@ -105,6 +107,10 @@ export default defineComponent({
         vm.attendant.car_model = response.data.data.attributes.car_model;
         vm.attendant.gender = response.data.data.attributes.gender.description;
         vm.attendant.resume = response.data.data.attributes.resume;
+        vm.attendant.media =
+          response.data.data.attributes.media.length > 0
+            ? response.data.data.attributes.media[0].url
+            : "";
       })
       .catch(function (error) {
         console.log(error);

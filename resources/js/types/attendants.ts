@@ -12,4 +12,5 @@ export interface Attendant {
   car_year: string | number;
   gender: string;
   resume: string;
+  media: string;
 }

@@ -14,4 +14,5 @@ export interface Child {
   gender: string;
   phone: string;
   otherphone: string;
+  media: string;
 }

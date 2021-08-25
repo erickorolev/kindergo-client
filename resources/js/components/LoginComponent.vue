@@ -156,8 +156,8 @@ import axios from "axios";
 export default defineComponent({
   name: "LoginComponent",
   setup() {
-    const email = ref("admin@admin.com");
-    const password = ref<number | string>("password");
+    const email = ref("");
+    const password = ref<number | string>("");
 
     return { email, password };
   },

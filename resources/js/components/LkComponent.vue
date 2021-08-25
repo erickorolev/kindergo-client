@@ -82,14 +82,23 @@
                 </div>
               </li>
             </ul>
+            <div class="md:mt-20 mt-8">
+              <a
+                :href="'/#/lk/edit/' + lk.id"
+                class="s-about-btn group relative inline-flex justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
+              >
+                Изменить
+              </a>
+            </div>
           </div>
           <div class="w-full lg:w-1/2 md:w-1/5 order-1 md:order-2">
             <div class="s-about-avatar pr-4">
               <div class="font-bold pb-4 text-black">Фотография</div>
               <img
-                src="../../img/lk-img1.jpg"
+                v-if="lk.media !== ''"
+                :src="lk.media"
                 alt="img"
-                class="block max-w-15 w-full"
+                class="block w-full max-w-15"
               />
             </div>
           </div>
@@ -113,6 +122,7 @@ export default defineComponent({
   },
   setup() {
     const lk = ref<Lk>({
+      id: "",
       firstname: "",
       lastname: "",
       middle_name: "",
@@ -120,6 +130,7 @@ export default defineComponent({
       phone: "",
       otherphone: "",
       attendant_gender: "",
+      media: "",
       child1: {
         name: "",
         url: ""
@@ -137,9 +148,7 @@ export default defineComponent({
         url: ""
       }
     });
-    const links = ref<object>({});
-    const current_page = ref<number>(0);
-    return { lk, links, current_page, base_url };
+    return { lk, base_url };
   },
   mounted() {
     this.getData("/api/v1/users/me?include=children");
@@ -165,6 +174,7 @@ export default defineComponent({
               }
             });
           }
+          vm.lk.id = response.data.data.id;
           vm.lk.firstname = response.data.data.attributes.firstname;
           vm.lk.lastname = response.data.data.attributes.lastname;
           vm.lk.middle_name = response.data.data.attributes.middle_name;
@@ -173,6 +183,10 @@ export default defineComponent({
           vm.lk.otherphone = response.data.data.attributes.otherphone;
           vm.lk.attendant_gender =
             response.data.data.attributes.attendant_gender.description;
+          vm.lk.media =
+            response.data.data.attributes.media.length > 0
+              ? response.data.data.attributes.media[0].url
+              : "";
           vm.lk.child1 =
             children.length > 0
               ? {
@@ -213,8 +227,6 @@ export default defineComponent({
                   url: children[4].links.self
                 }
               : { name: "", url: "" };
-
-          vm.links = Object.assign({}, response.data.links);
         })
         .catch(function (error) {
           console.log(error);

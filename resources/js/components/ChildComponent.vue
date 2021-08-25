@@ -54,7 +54,7 @@
             </ul>
             <div class="md:mt-20 mt-8">
               <a
-                :href="'/#/childedit/' + child.id"
+                :href="'/#/child/edit/' + child.id"
                 class="s-about-btn group relative inline-flex justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
               >
                 Изменить
@@ -65,7 +65,8 @@
             <div class="s-about-avatar pr-4">
               <div class="font-bold pb-4 text-black">Фотография</div>
               <img
-                src="../../img/child.jpg"
+                v-if="child.media !== ''"
+                :src="child.media"
                 alt="img"
                 class="block w-full max-w-15"
               />
@@ -98,7 +99,8 @@ export default defineComponent({
       birthday: "",
       gender: "",
       phone: "",
-      otherphone: ""
+      otherphone: "",
+      media: ""
     });
     return { showParam, child };
   },
@@ -123,6 +125,10 @@ export default defineComponent({
         vm.child.gender = response.data.data.attributes.gender.description;
         vm.child.phone = response.data.data.attributes.phone;
         vm.child.otherphone = response.data.data.attributes.otherphone;
+        vm.child.media =
+          response.data.data.attributes.media.length > 0
+            ? response.data.data.attributes.media[0].url
+            : "";
       })
       .catch(function (error) {
         console.log(error);
