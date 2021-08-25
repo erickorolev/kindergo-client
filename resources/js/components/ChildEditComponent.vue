@@ -136,6 +136,13 @@
                   /></label>
                 </div>
               </div>
+              <div class="py-3" v-if="fileid !== ''">
+                <span>файл выбран</span>
+                <i
+                  class="fas fa-times pl-2 cursor-pointer"
+                  @click="removefile"
+                ></i>
+              </div>
               <img
                 v-if="media !== ''"
                 :src="media"
@@ -278,6 +285,9 @@ export default defineComponent({
         .catch((error) => {
           console.log(error);
         });
+    },
+    removefile() {
+      this.fileid = "";
     }
   }
 });
