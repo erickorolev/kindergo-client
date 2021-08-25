@@ -49,8 +49,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.attendant.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(trip.attendant.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.attendant.name }}</a
               >
             </div>
@@ -61,8 +61,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.child1.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(trip.child1.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.child1.name }}</a
               >
             </div>
@@ -73,8 +73,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.child3.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(trip.child3.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.child3.name }}</a
               >
             </div>
@@ -85,8 +85,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.child2.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(trip.child2.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.child2.name }}</a
               >
             </div>
@@ -97,8 +97,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="trip.child4.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(trip.child4.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.child4.name }}</a
               >
             </div>
@@ -109,8 +109,8 @@
             <div class="font-bold w-3/6">Расписание</div>
             <div class="w-3/6">
               <a
-                :href="trip.schedule.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(trip.schedule.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ trip.schedule.name }}</a
               >
             </div>
@@ -207,24 +207,19 @@ export default defineComponent({
   mounted() {
     const auth = localStorage.getItem("token");
     const vm = this;
-    const currentUrl = window.location.hash;
+    const currentUrl = this.$route.path;
     let timetables: Array<any> = [];
     let attendants: Array<any> = [];
     let children: Array<any> = [];
+
     axios
-      .get(
-        `/api/v1/${currentUrl.replace(
-          "#/",
-          ""
-        )}?include=timetable,attendant,children`,
-        {
-          headers: {
-            "Content-Type": "application/vnd.api+json",
-            Accept: "application/vnd.api+json",
-            Authorization: "Bearer " + auth
-          }
+      .get(`/api/v1${currentUrl}?include=timetable,attendant,children`, {
+        headers: {
+          "Content-Type": "application/vnd.api+json",
+          Accept: "application/vnd.api+json",
+          Authorization: "Bearer " + auth
         }
-      )
+      })
       .then(function (response: any) {
         response.data.included.forEach((item: any) => {
           if (item && item.type === "timetables") {
@@ -311,6 +306,9 @@ export default defineComponent({
       });
   },
   methods: {
+    onNavigate(url: string): void {
+      this.$router.push(url);
+    },
     show(param: boolean): void {
       this.showParam = param;
     }

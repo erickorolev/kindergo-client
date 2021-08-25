@@ -54,8 +54,8 @@
             </ul>
             <div class="md:mt-20 mt-8">
               <a
-                :href="'/#/child/edit/' + child.id"
-                class="s-about-btn group relative inline-flex justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
+                @click="onNavigate('/child/edit/' + child.id)"
+                class="cursor-pointer s-about-btn group relative inline-flex justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
               >
                 Изменить
               </a>
@@ -107,9 +107,9 @@ export default defineComponent({
   mounted() {
     const auth = localStorage.getItem("token");
     const vm = this;
-    const currentUrl = window.location.hash;
+    const currentUrl = this.$route.path;
     axios
-      .get(`/api/v1/${currentUrl.replace("#/", "")}`, {
+      .get(`/api/v1${currentUrl}`, {
         headers: {
           "Content-Type": "application/vnd.api+json",
           Accept: "application/vnd.api+json",
@@ -137,6 +137,9 @@ export default defineComponent({
   methods: {
     show(param: boolean): void {
       this.showParam = param;
+    },
+    onNavigate(url: string): void {
+      this.$router.push(url);
     }
   }
 });

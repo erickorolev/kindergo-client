@@ -25,8 +25,8 @@
               class="hover:bg-header-blue transition duration-500 ease-in-out s-trops-table-linewrap"
             >
               <a
-                :href="'/#/trips/' + item.id"
-                class="s-trips-table-line flex-nowrap flex py-3"
+                @click="onNavigate('/trips/' + item.id)"
+                class="cursor-pointer s-trips-table-line flex-nowrap flex py-3"
               >
                 <span class="px-3.5 w-72">{{ item.name }}</span>
                 <span class="px-3.5 w-72">{{ item.where_address }}</span>
@@ -106,6 +106,9 @@ export default defineComponent({
     this.getData("/api/v1/trips");
   },
   methods: {
+    onNavigate(url: string): void {
+      this.$router.push(url);
+    },
     getData(url: string) {
       const auth = localStorage.getItem("token");
       const vm = this;

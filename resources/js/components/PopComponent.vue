@@ -6,8 +6,8 @@
     <ul>
       <li>
         <a
-          href="/#/lk"
-          class="block px-2 py-0.5 hover:bg-white transition duration-500 ease-in-out"
+          @click="onNavigate('/lk')"
+          class="cursor-pointer block px-2 py-0.5 hover:bg-white transition duration-500 ease-in-out"
           >Личный профиль</a
         >
       </li>
@@ -144,9 +144,12 @@ export default defineComponent({
     return { current_password, password, password_confirmation };
   },
   methods: {
+    onNavigate(url: string): void {
+      this.$router.push(url);
+    },
     logout(): void {
       localStorage.clear();
-      document.location = <any>"";
+      this.$router.push("/");
     },
     update(): void {
       const vm = this;

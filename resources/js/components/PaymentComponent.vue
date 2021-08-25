@@ -61,9 +61,9 @@ export default defineComponent({
   mounted() {
     const auth = localStorage.getItem("token");
     const vm = this;
-    const currentUrl = window.location.hash;
+    const currentUrl = this.$route.path;
     axios
-      .get(`/api/v1/${currentUrl.replace("#/", "")}`, {
+      .get(`/api/v1${currentUrl}`, {
         headers: {
           "Content-Type": "application/vnd.api+json",
           Accept: "application/vnd.api+json",

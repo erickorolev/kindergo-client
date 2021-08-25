@@ -45,8 +45,8 @@
                 <div class="font-bold w-2/5 md:w-3/6">Ребенок 1</div>
                 <div class="w-3/5 md:w-3/6">
                   <a
-                    :href="lk.child1.url.replace(base_url, '#')"
-                    class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                    @click="onNavigate(lk.child1.url.replace(base_url, ''))"
+                    class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                     >{{ lk.child1.name }}</a
                   >
                 </div>
@@ -55,8 +55,8 @@
                 <div class="font-bold w-2/5 md:w-3/6">Ребенок 2</div>
                 <div class="w-3/5 md:w-3/6">
                   <a
-                    :href="lk.child2.url.replace(base_url, '#')"
-                    class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                    @click="onNavigate(lk.child2.url.replace(base_url, ''))"
+                    class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                     >{{ lk.child2.name }}</a
                   >
                 </div>
@@ -65,8 +65,8 @@
                 <div class="font-bold w-2/5 md:w-3/6">Ребенок 3</div>
                 <div class="w-3/5 md:w-3/6">
                   <a
-                    :href="lk.child3.url.replace(base_url, '#')"
-                    class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                    @click="onNavigate(lk.child3.url.replace(base_url, ''))"
+                    class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                     >{{ lk.child3.name }}</a
                   >
                 </div>
@@ -75,8 +75,8 @@
                 <div class="font-bold w-2/5 md:w-3/6">Ребенок 4</div>
                 <div class="w-3/5 md:w-3/6">
                   <a
-                    :href="lk.child4.url.replace(base_url, '#')"
-                    class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                    @click="onNavigate(lk.child4.url.replace(base_url, ''))"
+                    class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                     >{{ lk.child4.name }}</a
                   >
                 </div>
@@ -84,8 +84,8 @@
             </ul>
             <div class="md:mt-20 mt-8">
               <a
-                :href="'/#/lk/edit/' + lk.id"
-                class="s-about-btn group relative inline-flex justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
+                @click="onNavigate('/lk/edit/' + lk.id)"
+                class="cursor-pointer s-about-btn group relative inline-flex justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
               >
                 Изменить
               </a>
@@ -154,6 +154,9 @@ export default defineComponent({
     this.getData("/api/v1/users/me?include=children");
   },
   methods: {
+    onNavigate(url: string): void {
+      this.$router.push(url);
+    },
     getData(url: string) {
       const auth = localStorage.getItem("token");
       const vm = this;

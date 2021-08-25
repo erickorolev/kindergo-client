@@ -27,8 +27,8 @@
               class="hover:bg-header-blue transition duration-500 ease-in-out s-trops-table-linewrap"
             >
               <a
-                :href="'/#/payments/' + item.id"
-                class="s-trips-table-line flex-nowrap flex py-3 w-full"
+                @click="onNavigate('/payments/' + item.id)"
+                class="cursor-pointer s-trips-table-line flex-nowrap flex py-3 w-full"
               >
                 <span class="px-3.5 w-60">{{
                   ("0" + new Date(item.pay_date).getDate()).substr(-2) +
@@ -106,6 +106,9 @@ export default defineComponent({
     this.getData("/api/v1/payments");
   },
   methods: {
+    onNavigate(url: string): void {
+      this.$router.push(url);
+    },
     getData(url: string) {
       const auth = localStorage.getItem("token");
       const vm = this;

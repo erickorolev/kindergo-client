@@ -123,8 +123,8 @@ const routes = [
     { path: '/', redirect: { name: 'login' }}
 ]
 
-const router = createRouter({
-    history: createWebHistory('/#'),
+const router = createRouter({    
+    history: createWebHistory(),
     routes
 }) 
 

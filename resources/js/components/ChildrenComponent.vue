@@ -27,8 +27,8 @@
               class="hover:bg-header-blue transition duration-500 ease-in-out s-trops-table-linewrap"
             >
               <a
-                :href="'/#/children/' + item.id"
-                class="s-trips-table-line flex-nowrap flex py-3 w-full"
+                @click="onNavigate('/children/' + item.id)"
+                class="cursor-pointer s-trips-table-line flex-nowrap flex py-3 w-full"
               >
                 <span class="px-3.5 w-44">{{ item.firstname }}</span>
                 <span class="px-3.5 w-44">{{ item.lastname }}</span>
@@ -106,6 +106,9 @@ export default defineComponent({
     this.getData("/api/v1/children");
   },
   methods: {
+    onNavigate(url: string): void {
+      this.$router.push(url);
+    },
     getData(url: string) {
       const auth = localStorage.getItem("token");
       const vm = this;

@@ -103,8 +103,8 @@
                 <div class="font-bold w-2/5 md:w-3/6">Ребенок 1</div>
                 <div class="w-3/5 md:w-3/6">
                   <a
-                    :href="child1.url.replace(base_url, '#')"
-                    class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                    @click="onNavigate(child1.url.replace(base_url, ''))"
+                    class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                     >{{ child1.name }}</a
                   >
                 </div>
@@ -113,8 +113,8 @@
                 <div class="font-bold w-2/5 md:w-3/6">Ребенок 2</div>
                 <div class="w-3/5 md:w-3/6">
                   <a
-                    :href="child2.url.replace(base_url, '#')"
-                    class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                    @click="onNavigate(child2.url.replace(base_url, ''))"
+                    class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                     >{{ child2.name }}</a
                   >
                 </div>
@@ -123,8 +123,8 @@
                 <div class="font-bold w-2/5 md:w-3/6">Ребенок 3</div>
                 <div class="w-3/5 md:w-3/6">
                   <a
-                    :href="child3.url.replace(base_url, '#')"
-                    class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                    @click="onNavigate(child3.url.replace(base_url, ''))"
+                    class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                     >{{ child3.name }}</a
                   >
                 </div>
@@ -133,8 +133,8 @@
                 <div class="font-bold w-2/5 md:w-3/6">Ребенок 4</div>
                 <div class="w-3/5 md:w-3/6">
                   <a
-                    :href="child4.url.replace(base_url, '#')"
-                    class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                    @click="onNavigate(child4.url.replace(base_url, ''))"
+                    class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                     >{{ child4.name }}</a
                   >
                 </div>
@@ -151,8 +151,8 @@
               </div>
               <div>
                 <a
-                  href="/#/kl"
-                  class="s-about-btn group relative inline-flex justify-center w-28 px-4 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
+                  @click="onNavigate('/lk')"
+                  class="cursor-pointer s-about-btn group relative inline-flex justify-center w-28 px-4 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
                 >
                   Отмена
                 </a>
@@ -187,7 +187,7 @@
               </div>
               <img
                 v-if="media !== ''"
-                src="media"
+                :src="media"
                 alt="img"
                 class="block w-full max-w-15"
               />
@@ -260,6 +260,9 @@ export default defineComponent({
     this.getData("/api/v1/users/me?include=children");
   },
   methods: {
+    onNavigate(url: string): void {
+      this.$router.push(url);
+    },
     getData(url: string) {
       const auth = localStorage.getItem("token");
       const vm = this;
@@ -365,11 +368,11 @@ export default defineComponent({
           }
         })
         .then(function (response: any) {
-          document.location = <any>"/#/lk";
+          document.location = <any>"/lk";
         })
         .catch(function (error) {
           console.log(error.response.data);
-          document.location = <any>"/#/lk";
+          document.location = <any>"/lk";
         });
     },
     fileUpload(e: any) {

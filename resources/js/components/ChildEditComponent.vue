@@ -111,8 +111,8 @@
               </div>
               <div>
                 <a
-                  :href="'/#/children/' + id"
-                  class="s-about-btn group relative inline-flex justify-center w-28 px-4 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
+                  @click="onNavigate('/children/' + id)"
+                  class="cursor-pointer s-about-btn group relative inline-flex justify-center w-28 px-4 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-btn-bg font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 text-sm border border-btn-border"
                 >
                   Отмена
                 </a>
@@ -195,7 +195,7 @@ export default defineComponent({
   mounted() {
     const auth = localStorage.getItem("token");
     const vm = this;
-    const currentUrl = window.location.hash.split("/");
+    const currentUrl = this.$route.path;
     this.id = currentUrl[currentUrl.length - 1];
     axios
       .get(`/api/v1/children/${this.id}`, {
@@ -257,11 +257,11 @@ export default defineComponent({
           }
         })
         .then(function (response: any) {
-          document.location = <any>`/#/children/${vm.id}`;
+          document.location = <any>`/children/${vm.id}`;
         })
         .catch(function (error) {
           console.log(error.response.data);
-          document.location = <any>`/#/children/${vm.id}`;
+          document.location = <any>`/children/${vm.id}`;
         });
     },
     fileUpload(e: any) {
@@ -288,6 +288,9 @@ export default defineComponent({
     },
     removefile() {
       this.fileid = "";
+    },
+    onNavigate(url: string): void {
+      this.$router.push(url);
     }
   }
 });

@@ -45,8 +45,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="schedule.child1.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(schedule.child1.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ schedule.child1.name }}</a
               >
             </div>
@@ -57,8 +57,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="schedule.child3.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(schedule.child3.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ schedule.child3.name }}</a
               >
             </div>
@@ -69,8 +69,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="schedule.child2.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(schedule.child2.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ schedule.child2.name }}</a
               >
             </div>
@@ -81,8 +81,8 @@
             </div>
             <div class="w-3/6">
               <a
-                :href="schedule.child4.url.replace(base_url, '#')"
-                class="text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
+                @click="onNavigate(schedule.child4.url.replace(base_url, ''))"
+                class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
                 >{{ schedule.child4.name }}</a
               >
             </div>
@@ -247,10 +247,10 @@ export default defineComponent({
   mounted() {
     const auth = localStorage.getItem("token");
     const vm = this;
-    const currentUrl = window.location.hash;
+    const currentUrl = this.$route.path;
     let children: Array<any> = [];
     axios
-      .get(`/api/v1/${currentUrl.replace("#/", "")}?include=children`, {
+      .get(`/api/v1${currentUrl}?include=children`, {
         headers: {
           "Content-Type": "application/vnd.api+json",
           Accept: "application/vnd.api+json",
@@ -330,6 +330,9 @@ export default defineComponent({
       });
   },
   methods: {
+    onNavigate(url: string): void {
+      this.$router.push(url);
+    },
     show(param: boolean): void {
       this.showParam = param;
     }

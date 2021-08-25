@@ -31,6 +31,7 @@
               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-main-gray placeholder-gray-500 text-sm text-main-gray-light focus:outline-none focus:border-main-blue-light focus:z-10 transition duration-500 ease-in-out"
               placeholder=""
               v-model="email"
+              @keypress="keysubmit($event)"
             />
           </div>
           <div class="mt-3">
@@ -46,6 +47,7 @@
               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-main-gray placeholder-gray-500 text-main-gray-light focus:outline-none focus:border-main-blue-light focus:z-10 text-sm transition duration-500 ease-in-out"
               placeholder=""
               v-model="password"
+              @keypress="keysubmit($event)"
             />
           </div>
           <div class="mt-3 ml-2">
@@ -53,6 +55,7 @@
               type="button"
               class="group text-lg relative flex justify-center px-4 border border-transparent text-sm font-medium rounded-md text-white bg-main-blue-medium font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400"
               @click="submit"
+              @keypress="keysubmit($event)"
             >
               Войти
             </button>
@@ -112,7 +115,7 @@
                           type="text"
                           name="email"
                           class="block border border-nav-blue rounded shadow-md1 outline-none text-main-gray-light px-4 h-8"
-                          value="yourmail@mail.ru"
+                          value=""
                         />
                       </div>
                     </div>
@@ -186,6 +189,11 @@ export default defineComponent({
         .catch(function (error) {
           console.log(error);
         });
+    },
+    keysubmit(event: any): void {
+      if (event.key == "Enter") {
+        this.submit();
+      }
     }
   }
 });

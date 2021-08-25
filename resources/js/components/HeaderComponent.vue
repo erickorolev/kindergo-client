@@ -10,7 +10,7 @@
             <i class="fas fa-times hidden"></i>
           </div>
           <div class="s-header-logo mr-6">
-            <a href="/">
+            <a class="cursor-pointer" @click="onNavigate('/')">
               <img
                 class="mx-auto w-auto position-sticky"
                 src="../../img/logo.jpg"
@@ -26,8 +26,8 @@
               :class="currentUrl.indexOf('trips') > -1 ? 'active' : ''"
             >
               <a
-                href="/#/trips"
-                class="px-5 py-3.5 block lg:rounded-l-lg hover:bg-header-blue transition duration-500 ease-in-out"
+                @click="onNavigate('/trips')"
+                class="cursor-pointer px-5 py-3.5 block lg:rounded-l-lg hover:bg-header-blue transition duration-500 ease-in-out"
                 >Поездки</a
               >
             </li>
@@ -36,8 +36,8 @@
               :class="currentUrl.indexOf('timetables') > -1 ? 'active' : ''"
             >
               <a
-                href="/#/timetables"
-                class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out"
+                @click="onNavigate('/timetables')"
+                class="cursor-pointer px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out"
                 >Расписания</a
               >
             </li>
@@ -46,8 +46,8 @@
               :class="currentUrl.indexOf('payments') > -1 ? 'active' : ''"
             >
               <a
-                href="/#/payments"
-                class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out"
+                @click="onNavigate('/payments')"
+                class="cursor-pointer px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out"
                 >Платежи</a
               >
             </li>
@@ -56,8 +56,8 @@
               :class="currentUrl.indexOf('children') > -1 ? 'active' : ''"
             >
               <a
-                href="/#/children"
-                class="px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out"
+                @click="onNavigate('/children')"
+                class="cursor-pointer px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out"
                 >Дети</a
               >
             </li>
@@ -66,8 +66,8 @@
               :class="currentUrl.indexOf('attendants') > -1 ? 'active' : ''"
             >
               <a
-                href="/#/attendants"
-                class="px-5 py-3.5 block rounded-r-lg hover:bg-header-blue transition duration-500 ease-in-out"
+                @click="onNavigate('/attendants')"
+                class="cursor-pointer px-5 py-3.5 block rounded-r-lg hover:bg-header-blue transition duration-500 ease-in-out"
                 >Сопровождающие</a
               >
             </li>
@@ -99,7 +99,7 @@ export default defineComponent({
   data() {
     return {
       userpop: false,
-      currentUrl: window.location.hash
+      currentUrl: this.$route.path
     };
   },
   components: {
@@ -108,8 +108,11 @@ export default defineComponent({
   setup() {},
   mounted() {},
   methods: {
-    openpop() {
+    openpop(): void {
       this.userpop = !this.userpop;
+    },
+    onNavigate(url: string): void {
+      this.$router.push(url);
     }
   }
 });
