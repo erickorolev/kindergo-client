@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Users\Actions;
 
+use Domains\Authorization\Models\Role;
 use Domains\Users\DataTransferObjects\UserData;
 use Domains\Users\Jobs\SendUserToVtigerJob;
 use Domains\Users\Models\User;
@@ -20,8 +21,10 @@ final class StoreUserAction extends \Parents\Actions\Action
     public function handle(UserData $userData, bool $dispatchUpdate = true): User
     {
         $user = User::create($userData->toArray());
+        /** @var \Spatie\Permission\Contracts\Role $defaultRole */
+        $defaultRole = Role::whereName('client')->first();
         if (empty($userData->roles)) {
-            $user->syncRoles([2]);
+            $user->syncRoles($defaultRole);
         } else {
             $user->syncRoles($userData->roles);
         }

@@ -35,9 +35,15 @@ final class UserApiController extends Controller
      */
     protected string $relationClass = GetUserByIdAction::class;
 
+    /**
+     * @param  Request  $request
+     * @param  UpdateUserPassword  $action
+     * @return \Illuminate\Http\JsonResponse
+     * @psalm-suppress PossiblyNullArgument
+     */
     public function password(Request $request, UpdateUserPassword $action): \Illuminate\Http\JsonResponse
     {
-        /** @var User $user */
+        /** @var User|null $user */
         $user = Auth::user();
         if (!$user) {
             abort(403);
