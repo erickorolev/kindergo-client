@@ -30,91 +30,91 @@ const routes = [
     },
     { path: '/trips', name: 'trips', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/TripsComponent.vue');
       },  
     },
     { path: '/trips/:id', name: 'trip', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/TripComponent.vue');
       },  
     },
     { path: '/timetables', name: 'timetables', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/TimetablesComponent.vue');
       },  
     },
     { path: '/timetables/:id', name: 'timetable', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/TimetableComponent.vue');
       },  
     },
     { path: '/payments', name: 'payments', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/PaymentsComponent.vue');
       },  
     },
     { path: '/payments/:id', name: 'payment', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/PaymentComponent.vue');
       },  
     },
     { path: '/children', name: 'children', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/ChildrenComponent.vue');
       },  
     },
     { path: '/children/:id', name: 'child', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/ChildComponent.vue');
       },  
     },
     { path: '/child/edit/:id', name: 'childedit', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/ChildEditComponent.vue');
       },  
     },
     { path: '/attendants', name: 'attendants', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/AttendantsComponent.vue');
       },  
     },
     { path: '/attendants/:id', name: 'attendant', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/AttendantComponent.vue');
       },  
     },
     { path: '/lk', name: 'lk', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/LkComponent.vue');
       },  
     },
     { path: '/lk/edit/:id', name: 'lkedit', component: function() {
         if (localStorage.getItem("token") == null) {          
-          document.location = <any>"";
+          document.location = <any>"/";
         }
         return import('./components/LkEditComponent.vue');
       },  

@@ -257,11 +257,11 @@ export default defineComponent({
           }
         })
         .then(function (response: any) {
-          document.location = <any>`/children/${vm.id}`;
+          vm.$router.push(`/children/${vm.id}`);
         })
         .catch(function (error) {
           console.log(error.response.data);
-          document.location = <any>`/children/${vm.id}`;
+          vm.$router.push(`/children/${vm.id}`);
         });
     },
     fileUpload(e: any) {

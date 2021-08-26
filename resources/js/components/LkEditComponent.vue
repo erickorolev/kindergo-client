@@ -368,11 +368,11 @@ export default defineComponent({
           }
         })
         .then(function (response: any) {
-          document.location = <any>"/lk";
+          vm.$router.push("/lk");
         })
         .catch(function (error) {
           console.log(error.response.data);
-          document.location = <any>"/lk";
+          vm.$router.push("/lk");
         });
     },
     fileUpload(e: any) {

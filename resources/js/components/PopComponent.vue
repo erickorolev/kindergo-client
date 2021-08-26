@@ -23,7 +23,7 @@
       <li>
         <a
           @click="logout"
-          class="block px-2 py-0.5 hover:bg-white transition duration-500 ease-in-out"
+          class="cursor-pointer block px-2 py-0.5 hover:bg-white transition duration-500 ease-in-out"
           >Выйти</a
         >
       </li>
@@ -62,6 +62,7 @@
                           name="passwcur"
                           class="block border border-nav-blue rounded shadow-md1 outline-none text-main-gray-light px-4 h-8"
                           v-model="current_password"
+                          @keypress="keysubmit($event)"
                         />
                       </div>
                     </div>
@@ -75,6 +76,7 @@
                           name="passwnew"
                           class="block border border-nav-blue rounded shadow-md1 outline-none text-main-gray-light px-4 h-8"
                           v-model="password"
+                          @keypress="keysubmit($event)"
                         />
                       </div>
                     </div>
@@ -90,6 +92,7 @@
                           name="passwrep"
                           class="block border border-nav-blue rounded shadow-md1 outline-none text-main-gray-light px-4 h-8"
                           v-model="password_confirmation"
+                          @keypress="keysubmit($event)"
                         />
                       </div>
                     </div>
@@ -102,6 +105,7 @@
                     <button
                       type="button"
                       @click="update"
+                      @keypress="keysubmit($event)"
                       class="group text-lg relative flex justify-center px-4 border border-transparent text-sm font-medium rounded-md text-white bg-main-blue-medium font-bold transition duration-500 ease-in-out hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-blue-400 h-8"
                     >
                       Сохранить
@@ -149,7 +153,12 @@ export default defineComponent({
     },
     logout(): void {
       localStorage.clear();
-      this.$router.push("/");
+      document.location = <any>"/";
+    },
+    keysubmit(event: any): void {
+      if (event.key == "Enter") {
+        this.update();
+      }
     },
     update(): void {
       const vm = this;
@@ -172,6 +181,7 @@ export default defineComponent({
           vm.logout();
         })
         .catch(function (error: any) {
+          alert("Ошибка проверки");
           console.log(error.response.data);
         });
     }

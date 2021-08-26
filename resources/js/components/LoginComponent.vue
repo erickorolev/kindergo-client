@@ -187,6 +187,7 @@ export default defineComponent({
           vm.$router.push("trips");
         })
         .catch(function (error) {
+          alert("учетные данные неверны");
           console.log(error);
         });
     },
