@@ -18,12 +18,13 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/{any}', function () {
-    return view('index');
-})->where('any', '.*');
 
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/admin', function () {
         return view('dashboard');
     })
     ->name('dashboard');
+
+Route::get('/{any}', function () {
+    return view('index');
+})->where('any', '.*');
