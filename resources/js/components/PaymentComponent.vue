@@ -28,8 +28,8 @@
             <div class="w-3/6">{{ payment.type_payment }}</div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
-            <div class="font-bold w-3/6">Сумма</div>
-            <div class="w-3/6">{{ payment.amount }}</div>
+            <div class="font-bold w-3/6">Сумма (руб)</div>
+            <div class="w-3/6">{{ formatPrice(payment.amount) }}</div>
           </li>
         </ul>
       </div>
@@ -85,6 +85,10 @@ export default defineComponent({
   methods: {
     show(param: boolean): void {
       this.showParam = param;
+    },
+    formatPrice(value:number): string {
+      let val = (value/1).toFixed(2).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
   }
 });

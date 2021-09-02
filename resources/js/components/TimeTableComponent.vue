@@ -91,21 +91,12 @@
             <div class="font-bold w-2/6">
               Даты отправления
             </div>
-            <div class="w-4/6">
-              <textarea
-                name="dates"
-                cols="30"
-                rows="10"
-                class="block w-full border-0 outline-none h-28"
-              >
-              {{
-                  ("0" + new Date(schedule.date).getDate()).substr(-2) +
-                  " " +
-                  ("0" + (new Date(schedule.date).getMonth() + 1)).substr(-2) +
-                  " " +
-                  new Date(schedule.date).getFullYear()
-                }}
-              </textarea>
+            <div class="w-4/6">              
+              {{("0" + new Date(schedule.date).getDate()).substr(-2) +
+                "." +
+                ("0" + (new Date(schedule.date).getMonth() + 1)).substr(-2) +
+                "." +
+                new Date(schedule.date).getFullYear()}}              
             </div>
           </li>
           <li class="block md:flex mb-6 md:w-3/4 w-full">
@@ -118,9 +109,8 @@
                 cols="30"
                 rows="10"
                 class="block w-full border-0 outline-none h-28"
-              >
-              {{ schedule.description }}
-              </textarea>
+                v-model="schedule.description"
+              ></textarea>
             </div>
           </li>
           <li class="block md:flex mb-6 md:w-3/4 w-full">
@@ -133,9 +123,8 @@
                 cols="30"
                 rows="10"
                 class="block w-full border-0 outline-none h-28"
-              >
-              {{ schedule.parking_info }}
-              </textarea>
+                v-model="schedule.parking_info"
+              ></textarea>
             </div>
           </li>
           <li v-if="showParam" class="block md:flex mb-6 md:w-1/2 w-full">

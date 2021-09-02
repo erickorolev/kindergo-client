@@ -166,12 +166,14 @@ export default defineComponent({
   methods: {
     openpop(): void {
       this.userpop = !this.userpop;
+      this.showMenu = false;
     },
     onNavigate(url: string): void {
       this.$router.push(url);
     },
     toggleMenu(): void {
       this.showMenu = !this.showMenu;
+      this.userpop = false;
     }
   }
 });
