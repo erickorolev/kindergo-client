@@ -84,19 +84,22 @@
                 <div class="font-bold w-2/5 md:w-3/6">
                   Предпочитаемый пол сопровождающего
                 </div>
-                <div class="w-3/5 md:w-3/6">
-                  <div class="select inline-flex">
-                    <select
-                      class="js-select"
-                      name="type"
-                      v-model="attendant_gender"
-                    >
-                      <option value=""></option>
-                      <option value="Female">Женский</option>
-                      <option value="Male">Мужчина</option>
-                      <option value="Does not matter">Не важно</option>
-                    </select>
-                  </div>
+                <div class="w-3/5 md:w-3/6 relative cursor-pointer">
+                  <span @click="showAttendantGender">
+                    {{attendant}}
+                    <i class="fas fa-angle-down ml-2"></i>
+                  </span>
+                  <ul
+                    v-if="showAttendant"
+                    class="s-header-list list-none m-0 border border-main-gray-light flex justify-start rounded-lg bg-white items-stretch flex active"
+                  >
+                    <li class="border-r border-main-gray-light rounded-l" @click="attendantGender('Female', 'Женский')">
+                      Женский
+                    </li>
+                    <li class="border-r border-main-gray-light" @click="attendantGender('Male', 'Мужчина')">
+                      Мужчина
+                    </li>                    
+                  </ul>                  
                 </div>
               </li>
               <li class="block sm:flex mb-6">
@@ -211,6 +214,8 @@ export default defineComponent({
     HeaderComponent
   },
   setup() {
+    const showAttendant = ref<Boolean>(false);
+    const attendant = ref<string>("");
     const id = ref<string>("");
     const firstname = ref<string>("");
     const lastname = ref<string>("");
@@ -239,6 +244,8 @@ export default defineComponent({
     const fileid = ref<string>("");
 
     return {
+      showAttendant,
+      attendant,
       id,
       firstname,
       lastname,
@@ -292,6 +299,8 @@ export default defineComponent({
           vm.otherphone = response.data.data.attributes.otherphone;
           vm.attendant_gender =
             response.data.data.attributes.attendant_gender.value;
+          vm.attendant =
+            response.data.data.attributes.attendant_gender.description;
           vm.media =
             response.data.data.attributes.media.length > 0
               ? response.data.data.attributes.media[0].url
@@ -399,7 +408,28 @@ export default defineComponent({
     },
     removefile() {
       this.fileid = "";
+    },
+    showAttendantGender() {
+      this.showAttendant = !this.showAttendant;
+    },
+    attendantGender(value: string, description:string): void {
+      this.attendant_gender = value;
+      this.attendant = description;
+      this.showAttendant = false;
     }
   }
 });
 </script>
+<style scoped lang="scss">
+  .s-header-list.active {
+    position: absolute;
+    left: -3px;
+    top: 36px;
+    display: block;
+    z-index: 999;
+    li {
+      padding: 10px 30px;
+      border-bottom: 1px solid;
+    }    
+  }
+</style>
