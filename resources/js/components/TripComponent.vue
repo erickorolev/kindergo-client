@@ -287,7 +287,7 @@ export default defineComponent({
               }
             : { name: "", url: "" };
         vm.trip.attendant =
-          attendants.length > 0
+          timetables.length > 0
             ? {
                 name:
                   attendants[0].attributes.firstname +
