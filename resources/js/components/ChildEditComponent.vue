@@ -62,8 +62,13 @@
               </li>
               <li class="block sm:flex mb-6">
                 <div class="font-bold w-2/5 md:w-3/6">Пол</div>
+<<<<<<< HEAD
+                <div class="w-3/5 md:w-3/6 relative cursor-pointer">
+                  <span @click="showAttendantGender">
+=======
                 <div class="w-3/5 md:w-3/6 relative">
                   <span class="cursor-pointer" @click="showAttendantGender">
+>>>>>>> 1232d823b146142a846c53d0255664c990bc682f
                     {{attendant}}
                     <i class="fas fa-angle-down ml-2"></i>
                   </span>
