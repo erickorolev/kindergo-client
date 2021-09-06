@@ -45,5 +45,7 @@ System supports following commands for getting data from Vtiger:
 * `php artisan attendants:receive` - getting all attendants in contacts module in Vtiger.
 * `php artisan payments:receive` - import payments from SPPayments module in Vtiger
 * `php artisan timetables:receive` - import timetables
-* `php atrisan trips:receive` - Getting trips from vtiger
+* `php artisan trips:receive` - Getting trips from vtiger
 
+Логи
+storage/logs
