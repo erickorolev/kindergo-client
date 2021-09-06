@@ -48,4 +48,4 @@ System supports following commands for getting data from Vtiger:
 * `php artisan trips:receive` - Getting trips from vtiger
 
 Логи
-storage/logs
+`/storage/logs`
