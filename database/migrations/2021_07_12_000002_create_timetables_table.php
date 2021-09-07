@@ -20,7 +20,7 @@ class CreateTimetablesTable extends Migration
             $table->integer('trips')->comment('Количество поездок');
             $table->integer('childrens')->comment('Количество детей');
             $table->string('childrens_age', 50)->comment('Возраст детей');
-            $table->date('date')->nullable()->comment('Дата отправления');
+            $table->text('date')->nullable()->comment('Даты отправления');
             $table->time('time')->nullable()->comment('Время отправления');
             $table->integer('duration')->comment('Длительность маршрута в минутах');
             $table->integer('insurances')->comment('Количество страховок');

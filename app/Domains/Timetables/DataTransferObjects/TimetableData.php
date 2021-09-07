@@ -28,7 +28,7 @@ final class TimetableData extends ObjectData
 
     public string $childrens_age;
 
-    public ?Carbon $date;
+    public ?string $date;
 
     public ?TimeValueObject $time;
 
@@ -73,8 +73,7 @@ final class TimetableData extends ObjectData
             'trips' => (int) $request->input($prefix . 'trips'),
             'childrens' => (int) $request->input($prefix . 'childrens'),
             'childrens_age' => $request->input($prefix . 'childrens_age'),
-            'date' => $request->input($prefix . 'date') ?
-                Carbon::createFromFormat('Y-m-d', $request->input($prefix . 'date')) : null,
+            'date' => $request->input($prefix . 'date'),
             'time' => $request->input($prefix . 'time') ?
                 TimeValueObject::fromNative($request->input($prefix . 'time')) : null,
             'duration' => (int) $request->input($prefix . 'duration'),
@@ -108,8 +107,7 @@ final class TimetableData extends ObjectData
             'childrens' => (int) $data->get('childrens'),
             'insurances' => (int) $data->get('insurances'),
             'childrens_age' => $data->get('childrens_age'),
-            'date' => $data->get('date') ?
-                Carbon::createFromFormat('Y-m-d', $data->get('date')) : null,
+            'date' => $data->get('date'),
             'time' => $data->get('time') ? TimeValueObject::fromNative($data->get('time')) : null,
             'duration' => (int) $data->get('duration'),
             'distance' => (float) $data->get('distance'),

@@ -74,7 +74,7 @@ class UserTimetablesDetail extends Component
         $this->modalTitle = trans('crud.user_timetables.edit_title');
         $this->timetable = $timetable;
 
-        $this->timetableDate = $this->timetable->date?->format('Y-m-d');
+        $this->timetableDate = $this->timetable->date;
 
         $this->dispatchBrowserEvent('refresh');
 
@@ -104,7 +104,7 @@ class UserTimetablesDetail extends Component
             $this->authorize('update', $this->timetable);
         }
 
-        $this->timetable->date = Carbon::parse($this->timetableDate);
+        $this->timetable->date = $this->timetableDate;
 
         $this->timetable->save();
 

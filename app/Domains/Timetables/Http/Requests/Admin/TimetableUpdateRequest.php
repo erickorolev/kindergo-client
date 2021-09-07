@@ -18,7 +18,7 @@ final class TimetableUpdateRequest extends Request
             'trips' => ['required', 'numeric'],
             'childrens' => ['required', 'numeric'],
             'childrens_age' => ['required', 'max:100', 'string'],
-            'date' => ['nullable', 'date'],
+            'date' => ['nullable', 'string'],
             'time' => ['nullable', 'date_format:H:i:s'],
             'insurances' => ['required', 'numeric'],
             'duration' => ['required', 'numeric'],

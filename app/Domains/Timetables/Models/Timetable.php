@@ -108,7 +108,6 @@ final class Timetable extends Model
     protected array $searchableFields = ['*'];
 
     protected $casts = [
-        'date' => 'date',
         'bill_paid' => 'boolean',
         'crmid' => CrmIdValueObjectCast::class,
         'assigned_user_id' => CrmIdValueObjectCast::class,

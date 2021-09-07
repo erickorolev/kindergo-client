@@ -52,13 +52,12 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
-        <x-inputs.date
+        <x-inputs.textarea
             name="date"
             label="Date"
-            value="{{ old('date', ($editing ? optional($timetable->date)->format('Y-m-d') : '')) }}"
-            max="255"
-            required
-        ></x-inputs.date>
+            value="{{ old('date', ($editing ? $timetable->date : '')) }}"
+            maxlength="255"
+        ></x-inputs.textarea>
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
