@@ -58,8 +58,11 @@ final class TripTransformer extends Transformer
         return $this->collection($model->children, new ChildTransformer(), Child::RESOURCE_NAME);
     }
 
-    public function includeAttendant(Trip $model): \League\Fractal\Resource\Item
+    public function includeAttendant(Trip $model): ?\League\Fractal\Resource\Item
     {
+        if (!$model->attendant) {
+            return null;
+        }
         return $this->item($model->attendant, new AttendantTransformer(), Attendant::RESOURCE_NAME);
     }
 }
