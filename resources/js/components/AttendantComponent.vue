@@ -12,20 +12,20 @@
               <li class="block sm:flex mb-6">
                 <div class="font-bold w-2/5 md:w-3/6">Имя</div>
                 <div class="w-3/5 md:w-3/6">
-                  <div class="text flex items-center">Елена</div>
+                  <div class="text flex items-center">{{ attendant.firstname }}</div>
                 </div>
               </li>
               <li class="block sm:flex mb-6">
                 <div class="font-bold w-2/5 md:w-3/6">Фамилия</div>
-                <div class="w-3/5 md:w-3/6">{{ attendant.firstname }}</div>
-              </li>
-              <li class="block sm:flex mb-6">
-                <div class="font-bold w-2/5 md:w-3/6">Отчество</div>
                 <div class="w-3/5 md:w-3/6">{{ attendant.lastname }}</div>
               </li>
               <li class="block sm:flex mb-6">
-                <div class="font-bold w-2/5 md:w-3/6">Пол</div>
+                <div class="font-bold w-2/5 md:w-3/6">Отчество</div>
                 <div class="w-3/5 md:w-3/6">{{ attendant.middle_name }}</div>
+              </li>
+              <li class="block sm:flex mb-6">
+                <div class="font-bold w-2/5 md:w-3/6">Пол</div>
+                <div class="w-3/5 md:w-3/6">{{ attendant.gender }}</div>
               </li>
               <li class="block sm:flex mb-6">
                 <div class="font-bold w-2/5 md:w-3/6">Марка автомобиля</div>
