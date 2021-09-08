@@ -58,7 +58,7 @@
             >
               <a
                 @click="onNavigate('/children')"
-                class="cursor-pointer px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out"
+                class="cursor-pointer px-5 py-3.5 block rounded-r-lg hover:bg-header-blue transition duration-500 ease-in-out"
                 >Дети</a
               >
             </li>
@@ -112,7 +112,7 @@
             >
               <a
                 @click="onNavigate('/children')"
-                class="cursor-pointer px-5 py-3.5 block hover:bg-header-blue transition duration-500 ease-in-out"
+                class="cursor-pointer px-5 py-3.5 block  rounded-r-lg hover:bg-header-blue transition duration-500 ease-in-out"
                 >Дети</a
               >
             </li>
