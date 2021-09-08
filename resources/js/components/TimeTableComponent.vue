@@ -9,41 +9,37 @@
         <ul class="s-about-info text-black pt-8 flex flex-wrap">
           <li class="block md:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Откуда</div>
-            <div class="w-3/6">{{ schedule.name }}</div>
+            <div class="w-3/6 pr-4">{{ schedule.name }}</div>
           </li>
           <li class="block md:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Куда</div>
-            <div class="w-3/6">{{ schedule.where_address }}</div>
+            <div class="w-3/6 pr-4">{{ schedule.where_address }}</div>
           </li>
           <li class="block md:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Количество поездок</div>
-            <div class="w-3/6">{{ schedule.trips }}</div>
+            <div class="w-3/6 pr-4">{{ schedule.trips }}</div>
           </li>
           <li class="block md:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Количество детей</div>
-            <div class="w-3/6">{{ schedule.children }}</div>
+            <div class="w-3/6 pr-4">{{ schedule.children }}</div>
           </li>
           <li class="block md:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Статус</div>
-            <div class="w-3/6">{{ schedule.status }}</div>
+            <div class="w-3/6 pr-4">{{ schedule.status }}</div>
           </li>
           <li class="block md:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Время отправления</div>
-            <div class="w-3/6">{{ schedule.time.substr(0, 5) }}</div>
-          </li>
-          <li class="block md:flex mb-6 md:w-1/2 w-full">
-            <div class="font-bold w-3/6">Оплачен ли счет</div>
-            <div class="w-3/6">{{ schedule.bill_paid }}</div>
-          </li>
+            <div class="w-3/6 pr-4">{{ schedule.time.substr(0, 5) }}</div>
+          </li>          
           <li class="block md:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Возраст детей</div>
-            <div class="w-3/6">{{ schedule.childrens_age }}</div>
+            <div class="w-3/6 pr-4">{{ schedule.childrens_age }}</div>
           </li>
           <li class="block md:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">
               Ребенок 1
             </div>
-            <div class="w-3/6">
+            <div class="w-3/6 pr-4">
               <a
                 @click="onNavigate(schedule.child1.url.replace(base_url, ''))"
                 class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
@@ -55,7 +51,7 @@
             <div class="font-bold w-3/6">
               Ребенок 3
             </div>
-            <div class="w-3/6">
+            <div class="w-3/6 pr-4">
               <a
                 @click="onNavigate(schedule.child3.url.replace(base_url, ''))"
                 class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
@@ -67,7 +63,7 @@
             <div class="font-bold w-3/6">
               Ребенок 2
             </div>
-            <div class="w-3/6">
+            <div class="w-3/6 pr-4">
               <a
                 @click="onNavigate(schedule.child2.url.replace(base_url, ''))"
                 class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
@@ -79,7 +75,7 @@
             <div class="font-bold w-3/6">
               Ребенок 4
             </div>
-            <div class="w-3/6">
+            <div class="w-3/6 pr-4">
               <a
                 @click="onNavigate(schedule.child4.url.replace(base_url, ''))"
                 class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
@@ -91,12 +87,8 @@
             <div class="font-bold w-2/6">
               Даты отправления
             </div>
-            <div class="w-4/6">              
-              {{("0" + new Date(schedule.date).getDate()).substr(-2) +
-                "." +
-                ("0" + (new Date(schedule.date).getMonth() + 1)).substr(-2) +
-                "." +
-                new Date(schedule.date).getFullYear()}}              
+            <div class="w-4/6 pr-4">              
+              {{schedule.date}}            
             </div>
           </li>
           <li class="block md:flex mb-6 md:w-3/4 w-full">
@@ -104,13 +96,7 @@
               Описание
             </div>
             <div class="w-4/6">
-              <textarea
-                name="info"
-                cols="30"
-                rows="10"
-                class="block w-full border-0 outline-none h-28"
-                v-model="schedule.description"
-              ></textarea>
+              {{schedule.description}}
             </div>
           </li>
           <li class="block md:flex mb-6 md:w-3/4 w-full">
@@ -118,13 +104,7 @@
               Информация о парковке
             </div>
             <div class="w-4/6">
-              <textarea
-                name="info1"
-                cols="30"
-                rows="10"
-                class="block w-full border-0 outline-none h-28"
-                v-model="schedule.parking_info"
-              ></textarea>
+              {{schedule.parking_info}}
             </div>
           </li>
           <li v-if="showParam" class="block md:flex mb-6 md:w-1/2 w-full">

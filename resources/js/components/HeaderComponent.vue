@@ -10,7 +10,7 @@
             <i v-if="showMenu" class="fas fa-times" @click="toggleMenu"></i>
           </div>
           <div class="s-header-logo mr-6">
-            <a class="cursor-pointer" @click="onNavigate('/')">
+            <a class="cursor-pointer" @click="onNavigate('/trips')">
               <img
                 class="mx-auto w-auto position-sticky"
                 src="../../img/logo.jpg"
@@ -62,7 +62,7 @@
                 >Дети</a
               >
             </li>
-            <li
+            <!-- <li
               class="lg:border-r border-main-gray-light"
               :class="currentUrl.indexOf('attendants') > -1 ? 'active' : ''"
             >
@@ -71,7 +71,7 @@
                 class="cursor-pointer px-5 py-3.5 block rounded-r-lg hover:bg-header-blue transition duration-500 ease-in-out"
                 >Сопровождающие</a
               >
-            </li>
+            </li> -->
           </ul>
           <ul
             class="s-header-list list-none m-0 border border-main-gray-light flex justify-start rounded-lg bg-white items-stretch hidden lg:flex"
@@ -116,7 +116,7 @@
                 >Дети</a
               >
             </li>
-            <li
+            <!-- <li
               class="lg:border-r border-main-gray-light"
               :class="currentUrl.indexOf('attendants') > -1 ? 'active' : ''"
             >
@@ -125,7 +125,7 @@
                 class="cursor-pointer px-5 py-3.5 block rounded-r-lg hover:bg-header-blue transition duration-500 ease-in-out"
                 >Сопровождающие</a
               >
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="flex">
