@@ -37,7 +37,7 @@ final class MoneyValueObject extends ValueObject
      */
     public static function fromNative($native): ?MoneyValueObject
     {
-        if (!$native) {
+        if (is_null($native)) {
             return null;
         }
         return new static(\money($native * 100, self::CURRENCY));

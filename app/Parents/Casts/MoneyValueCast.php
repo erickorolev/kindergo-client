@@ -18,7 +18,7 @@ final class MoneyValueCast extends CastAbstract
      */
     public function get($model, string $key, $value, array $attributes): ?MoneyValueObject
     {
-        if (!$value) {
+        if (is_null($value)) {
             return null;
         }
         if (is_object($value)) {
