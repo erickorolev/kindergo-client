@@ -361,8 +361,9 @@ export default defineComponent({
             email: this.email,
             firstname: this.firstname,
             lastname: this.lastname,
-            middle_name: this.lastname,
+            middle_name: this.middle_name,
             phone: this.phone,
+            otherphone: this.otherphone,
             attendant_gender: this.attendant_gender,
             file: this.fileid
           }
