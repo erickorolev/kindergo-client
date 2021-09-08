@@ -41,7 +41,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
-        <x-inputs.textarea name="resume" label="Resume" maxlength="255" required
+        <x-inputs.textarea name="resume" label="Resume" maxlength="2550" required
             >{{ old('resume', ($editing ? $attendant->resume : ''))
             }}</x-inputs.textarea
         >

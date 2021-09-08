@@ -48,7 +48,13 @@ final class UpdateImagesTask extends \Parents\Tasks\Task
         }
 
         if (!$userData->external_file->isNull()) {
-            $user->addMediaFromUrl($userData->external_file->toNative())->toMediaCollection($collection);
+            if ($userData->external_file->getKeyFromFragment()) {
+                $user->addMediaFromUrl($userData->external_file->toNative())
+                    ->setFileName($userData->external_file->getKeyFromFragment())
+                    ->toMediaCollection($collection);
+            } else {
+                $user->addMediaFromUrl($userData->external_file->toNative())->toMediaCollection($collection);
+            }
         }
 
         if (!empty($userData->documents)) {

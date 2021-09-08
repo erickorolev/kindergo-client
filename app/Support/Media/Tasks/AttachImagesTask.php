@@ -32,7 +32,13 @@ final class AttachImagesTask extends \Parents\Tasks\Task
             FindAndAttachFileAction::run($userData->file, $user, $collection);
         }
         if (!$userData->external_file->isNull()) {
-            $user->addMediaFromUrl($userData->external_file->toNative())->toMediaCollection($collection);
+            if ($userData->external_file->getKeyFromFragment()) {
+                $user->addMediaFromUrl($userData->external_file->toNative())
+                    ->setFileName($userData->external_file->getKeyFromFragment())
+                    ->toMediaCollection($collection);
+            } else {
+                $user->addMediaFromUrl($userData->external_file->toNative())->toMediaCollection($collection);
+            }
         }
         if (!empty($userData->documents)) {
             /** @var UrlValueObject $document */

@@ -78,4 +78,19 @@ final class UrlValueObject extends ValueObject
     {
         return $this->toNative() === $object->toNative();
     }
+
+    public function getKeyFromFragment(): ?string
+    {
+        $params = $this->uri->getQuery();
+        if (!$params) {
+            return null;
+        }
+        $data = explode('&', $params);
+        if (!isset($data[1])) {
+            return null;
+        }
+        $keyString = $data[1];
+        $keyData = explode('=', $keyString);
+        return $keyData[1];
+    }
 }
