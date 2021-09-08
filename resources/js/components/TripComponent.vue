@@ -9,39 +9,39 @@
         <ul class="s-about-info text-black pt-8 flex flex-wrap">
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Откуда</div>
-            <div class="w-3/6">{{ trip.name }}</div>
+            <div class="w-3/6 pr-4">{{ trip.name }}</div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Куда</div>
-            <div class="w-3/6">{{ trip.where_address }}</div>
+            <div class="w-3/6 pr-4">{{ trip.where_address }}</div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Дата отправления</div>
-            <div class="w-3/6">
+            <div class="w-3/6 pr-4">
               {{
                 ("0" + new Date(trip.date).getDate()).substr(-2) +
-                " " +
+                "." +
                 ("0" + (new Date(trip.date).getMonth() + 1)).substr(-2) +
-                " " +
+                "." +
                 new Date(trip.date).getFullYear()
               }}
             </div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Время отправления</div>
-            <div class="w-3/6">{{ trip.time.substr(0, 5) }}</div>
+            <div class="w-3/6 pr-4">{{ trip.time.substr(0, 5) }}</div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Количество детей</div>
-            <div class="w-3/6">{{ trip.childrens }}</div>
+            <div class="w-3/6 pr-4">{{ trip.childrens }}</div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Статус</div>
-            <div class="w-3/6">{{ trip.status }}</div>
+            <div class="w-3/6 pr-4">{{ trip.status }}</div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">Стоимость <br />парковки (руб)</div>
-            <div class="w-3/6">{{ trip.parking_fee }}</div>
+            <div class="w-3/6 pr-4">{{ trip.parking_fee }}</div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
             <div class="font-bold w-3/6">
@@ -59,7 +59,7 @@
             <div class="font-bold w-3/6">
               Ребенок 1
             </div>
-            <div class="w-3/6">
+            <div class="w-3/6 pr-4">
               <a
                 @click="onNavigate(trip.child1.url.replace(base_url, ''))"
                 class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
@@ -71,7 +71,7 @@
             <div class="font-bold w-3/6">
               Ребенок 3
             </div>
-            <div class="w-3/6">
+            <div class="w-3/6 pr-4">
               <a
                 @click="onNavigate(trip.child3.url.replace(base_url, ''))"
                 class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
@@ -80,7 +80,7 @@
             </div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
-            <div class="font-bold w-3/6">
+            <div class="font-bold w-3/6 pr-4">
               Ребенок 2
             </div>
             <div class="w-3/6">
@@ -92,7 +92,7 @@
             </div>
           </li>
           <li class="block sm:flex mb-6 md:w-1/2 w-full">
-            <div class="font-bold w-3/6">
+            <div class="font-bold w-3/6 pr-4">
               Ребенок 4
             </div>
             <div class="w-3/6">
@@ -107,7 +107,7 @@
         <ul v-if="showParam" class="s-about-info text-black md:w-1/2 w-full">
           <li class="flex mb-6">
             <div class="font-bold w-3/6">Расписание</div>
-            <div class="w-3/6">
+            <div class="w-3/6 pr-4">
               <a
                 @click="onNavigate(trip.schedule.url.replace(base_url, ''))"
                 class="cursor-pointer text-breadcrumb-blue border-b border-transparent hover:border-breadcrumb-blue transition duration-500 ease-in-out"
@@ -121,7 +121,7 @@
                 Незапланированное ожидание в точке "Куда" (мин)
               </div>
             </div>
-            <div class="w-3/6">{{ trip.scheduled_wait_where }}</div>
+            <div class="w-3/6 pr-4">{{ trip.scheduled_wait_where }}</div>
           </li>
           <li class="flex mb-6">
             <div class="font-bold w-3/6">
@@ -129,7 +129,7 @@
                 Незапланированное ожидание в точке "Откуда" (мин)
               </div>
             </div>
-            <div class="w-3/6">{{ trip.scheduled_wait_from }}</div>
+            <div class="w-3/6 pr-4">{{ trip.scheduled_wait_from }}</div>
           </li>
         </ul>
         <div class="mt-6">
