@@ -47,5 +47,5 @@ System supports following commands for getting data from Vtiger:
 * `php artisan timetables:receive` - import timetables
 * `php artisan trips:receive` - Getting trips from vtiger
 
-Логи
+### Логи
 `/storage/logs`
