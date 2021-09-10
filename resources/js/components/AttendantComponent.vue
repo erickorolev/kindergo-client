@@ -38,8 +38,8 @@
               <li class="block sm:flex mb-6">
                 <div class="font-bold w-2/5 md:w-3/6">Анкета</div>
                 <div class="w-3/5 md:w-3/6">
-                  <p>
-                    {{ attendant.resume }}
+                  <p class="pb-2" v-for="(item, key) in resumeArr" :key="key">
+                    {{ item }}
                   </p>
                 </div>
               </li>
@@ -85,7 +85,8 @@ export default defineComponent({
       resume: "",
       media: ""
     });
-    return { showParam, attendant };
+    const resumeArr = ref<string[]>([])
+    return { showParam, attendant, resumeArr };
   },
   mounted() {
     const auth = localStorage.getItem("token");
@@ -111,6 +112,8 @@ export default defineComponent({
           response.data.data.attributes.media.length > 0
             ? response.data.data.attributes.media[0].url
             : "";
+
+        vm.resumeArr = response.data.data.attributes.resume.split('\n');        
       })
       .catch(function (error) {
         console.log(error);
