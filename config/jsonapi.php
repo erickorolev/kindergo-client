@@ -106,7 +106,7 @@ return [
                 ]
             ],
             'allowedSorts' => [
-                'updated_at'
+                'updated_at', 'date'
             ],
             'allowedFilters' => [
 
