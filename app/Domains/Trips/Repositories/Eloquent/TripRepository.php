@@ -15,7 +15,7 @@ final class TripRepository extends \Parents\Repositories\Repository implements T
     {
         /** @var LengthAwarePaginator $trips */
         $trips = Trip::search($search)
-            ->orderBy('date')
+            ->orderBy('date', 'DESC')
             ->paginate(5);
         return $trips;
     }
