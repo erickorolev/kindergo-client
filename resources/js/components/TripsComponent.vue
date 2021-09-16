@@ -103,7 +103,7 @@ export default defineComponent({
     return { trips, links, current_page };
   },
   mounted() {
-    this.getData("/api/v1/trips");
+    this.getData("/api/v1/trips?sort=-date");
   },
   methods: {
     onNavigate(url: string): void {
