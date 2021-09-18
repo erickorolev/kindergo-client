@@ -47,11 +47,7 @@
           <div
             class="s-trips-nav flex justify-start text-center text-base items-stretch"
           >
-            <a
-              @click="getData(links.first)"
-              class="arrow-left block border-nav-gray-light border flex-initial rounded-l-md hover:border-main-gray-light transition duration-500 ease-in-out"
-              ><i class="fa fa-angle-left text-main-gray"></i
-            ></a>
+            
             <a
               v-if="links.prev"
               @click="getData(links.prev)"
@@ -73,11 +69,7 @@
               class="arrow-right blockborder-nav-gray-light border rounded-r-md hover:border-main-gray-light transition duration-500 ease-in-out"
               ><i class="fa fa-angle-right text-main-gray"></i
             ></a>
-            <a
-              @click="getData(links.last)"
-              class="arrow-right blockborder-nav-gray-light border rounded-r-md hover:border-main-gray-light transition duration-500 ease-in-out"
-              ><i class="fa fa-angle-right text-main-gray"></i
-            ></a>
+            
           </div>
         </div>
       </div>
